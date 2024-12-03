@@ -51,7 +51,13 @@
           "min_clearance": 0.5
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "version": 2
@@ -171,7 +177,11 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.0,
+        1.0,
+        2.0
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -198,7 +208,12 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -578,6 +593,18 @@
     [
       "00172638-8708-4530-9462-7b89510d184e",
       "Racine"
+    ],
+    [
+      "e79c3383-5a03-4763-a384-7173bf81024c",
+      "GPIO_Extender"
+    ],
+    [
+      "cf31942b-d251-4075-a2c4-ee161157a45a",
+      "MotorController"
+    ],
+    [
+      "78bff246-41fc-4733-9e2a-246d2af7033c",
+      "ESP32"
     ]
   ],
   "text_variables": {}
