@@ -605,6 +605,14 @@
     [
       "78bff246-41fc-4733-9e2a-246d2af7033c",
       "ESP32"
+    ],
+    [
+      "eeb50bde-ab8b-480a-a5ff-6c17ab97850c",
+      "Capteur"
+    ],
+    [
+      "f3347099-fedd-4ffb-9114-7098122f6191",
+      "Alimentation"
     ]
   ],
   "text_variables": {}

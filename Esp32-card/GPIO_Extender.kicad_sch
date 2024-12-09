@@ -831,6 +831,16 @@
 	)
 	(wire
 		(pts
+			(xy 185.42 81.28) (xy 193.04 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05f34738-1f50-4cdc-b4b2-d3dfa9379793")
+	)
+	(wire
+		(pts
 			(xy 91.44 62.23) (xy 91.44 57.15)
 		)
 		(stroke
@@ -898,6 +908,16 @@
 			(type default)
 		)
 		(uuid "19322f8c-d67e-4daf-8fc5-f70146275590")
+	)
+	(wire
+		(pts
+			(xy 185.42 88.9) (xy 193.04 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1eab4f79-67b3-4fe0-8c49-7df79881c6ad")
 	)
 	(wire
 		(pts
@@ -978,6 +998,16 @@
 			(type default)
 		)
 		(uuid "4d59d6fe-0be1-4224-af7d-f82025221ba1")
+	)
+	(wire
+		(pts
+			(xy 185.42 86.36) (xy 193.04 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5305a22b-9921-454d-8653-be209cc2e753")
 	)
 	(wire
 		(pts
@@ -1071,6 +1101,16 @@
 	)
 	(wire
 		(pts
+			(xy 185.42 78.74) (xy 193.04 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6fb89561-28ad-4517-873c-76e2581e0b6a")
+	)
+	(wire
+		(pts
 			(xy 115.57 99.06) (xy 137.16 99.06)
 		)
 		(stroke
@@ -1158,6 +1198,16 @@
 			(type default)
 		)
 		(uuid "a2f78780-20ff-4eba-b862-8e9a69b122f9")
+	)
+	(wire
+		(pts
+			(xy 185.42 83.82) (xy 193.04 83.82)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a3f2b25d-796b-4c7c-b1c4-cd710d92146e")
 	)
 	(wire
 		(pts
@@ -1411,6 +1461,28 @@
 			)
 		)
 	)
+	(global_label "Capteur_Hall_3"
+		(shape input)
+		(at 193.04 88.9 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2aa3c2c2-d4d6-4539-a63b-5a3894754ef1")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.2973 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "Analog_Pin1"
 		(shape input)
 		(at 160.02 78.74 180)
@@ -1543,6 +1615,28 @@
 			)
 		)
 	)
+	(global_label "Capteur_Hall_2"
+		(shape input)
+		(at 193.04 86.36 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "8ec82671-a10c-4b62-b7dc-89046ba02603")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.2973 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "3v3"
 		(shape input)
 		(at 160.02 69.85 180)
@@ -1671,6 +1765,72 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Capteur_Flexion_1"
+		(shape input)
+		(at 193.04 78.74 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "e7f33984-e974-4e78-bf0b-cd6cb21c8c6f")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 213.2607 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Capteur_Flexion_2"
+		(shape input)
+		(at 193.04 81.28 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "efd691fe-1e80-42b4-97e2-461d6fae2179")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 213.2607 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Capteur_Hall_1"
+		(shape input)
+		(at 193.04 83.82 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "f5a01849-ec90-4d8f-ab65-4334735b55a0")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 210.2973 83.82 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)

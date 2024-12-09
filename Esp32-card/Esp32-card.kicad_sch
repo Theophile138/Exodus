@@ -123,6 +123,82 @@
 			)
 		)
 	)
+	(sheet
+		(at 113.03 16.51)
+		(size 27.94 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "eeb50bde-ab8b-480a-a5ff-6c17ab97850c")
+		(property "Sheetname" "Capteur"
+			(at 113.03 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Capteur_Sheet.kicad_sch"
+			(at 113.03 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 144.78 16.51)
+		(size 29.21 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f3347099-fedd-4ffb-9114-7098122f6191")
+		(property "Sheetname" "Alimentation"
+			(at 144.78 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "AlimentationSheet.kicad_sch"
+			(at 144.78 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "6")
+				)
+			)
+		)
+	)
 	(sheet_instances
 		(path "/"
 			(page "1")
