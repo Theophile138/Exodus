@@ -499,10 +499,22 @@
 		(uuid "41e13d51-2f1f-48c6-966a-a519fe66596b")
 	)
 	(junction
+		(at 102.87 77.47)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "44e8a064-c5d6-4dd7-bcaf-20b7d104dce1")
+	)
+	(junction
 		(at 102.87 50.8)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "5f030c76-ef2e-4f6b-ba4c-9c98a7c934b8")
+	)
+	(junction
+		(at 102.87 88.9)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "cc1c41ea-2d2a-413d-8beb-ee0236fc1990")
 	)
 	(wire
 		(pts
@@ -536,6 +548,16 @@
 	)
 	(wire
 		(pts
+			(xy 86.36 74.93) (xy 92.71 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1f0d1361-0504-4001-ae5d-82c3cac6b068")
+	)
+	(wire
+		(pts
 			(xy 102.87 48.26) (xy 102.87 50.8)
 		)
 		(stroke
@@ -553,6 +575,16 @@
 			(type default)
 		)
 		(uuid "42ffb15e-ef4e-4517-8a23-2cb8f19d4b5e")
+	)
+	(wire
+		(pts
+			(xy 86.36 80.01) (xy 102.87 80.01)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "431e9ef4-c827-4ed4-a0f1-36ff05f6fca1")
 	)
 	(wire
 		(pts
@@ -576,6 +608,16 @@
 	)
 	(wire
 		(pts
+			(xy 86.36 77.47) (xy 102.87 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5343bf0c-9595-45d5-b2e3-4d62314f668e")
+	)
+	(wire
+		(pts
 			(xy 100.33 48.26) (xy 102.87 48.26)
 		)
 		(stroke
@@ -596,6 +638,16 @@
 	)
 	(wire
 		(pts
+			(xy 102.87 86.36) (xy 102.87 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "7d2fa10b-7065-4dc8-bcf3-1a84c6a9fe87")
+	)
+	(wire
+		(pts
 			(xy 147.32 63.5) (xy 154.94 63.5)
 		)
 		(stroke
@@ -603,6 +655,16 @@
 			(type default)
 		)
 		(uuid "8f28266c-45f2-46b3-ae46-064c1c95e386")
+	)
+	(wire
+		(pts
+			(xy 86.36 88.9) (xy 102.87 88.9)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "911dd40b-f318-4793-ad21-d2f00b45d219")
 	)
 	(wire
 		(pts
@@ -623,6 +685,16 @@
 			(type default)
 		)
 		(uuid "a73561ee-6b33-4d7a-8785-98f4b6c64b2f")
+	)
+	(wire
+		(pts
+			(xy 100.33 74.93) (xy 102.87 74.93)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ae2a68f6-40c5-4820-80d2-88f66918d36b")
 	)
 	(wire
 		(pts
@@ -666,6 +738,16 @@
 	)
 	(wire
 		(pts
+			(xy 86.36 91.44) (xy 102.87 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c38f43e5-300c-4264-bf29-e0c1213247c9")
+	)
+	(wire
+		(pts
 			(xy 100.33 60.96) (xy 102.87 60.96)
 		)
 		(stroke
@@ -673,6 +755,36 @@
 			(type default)
 		)
 		(uuid "cbc308dc-a235-4005-bb4d-07d3b3c506d0")
+	)
+	(wire
+		(pts
+			(xy 86.36 86.36) (xy 92.71 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ccacfe9e-9005-4b8a-8d8a-33935f878643")
+	)
+	(wire
+		(pts
+			(xy 100.33 86.36) (xy 102.87 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "d3b9ae34-b66b-4649-8c05-1aefab5a1b7a")
+	)
+	(wire
+		(pts
+			(xy 102.87 74.93) (xy 102.87 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4587f63-c130-4d4b-9002-e3685ab07dc3")
 	)
 	(wire
 		(pts
@@ -729,6 +841,28 @@
 		(uuid "075724c3-0d21-4d71-98b3-e87004efa101")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.4643 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape input)
+		(at 86.36 86.36 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "3ca8f59a-c770-466e-ae1b-2747cc832774")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 79.5043 86.36 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -872,6 +1006,50 @@
 	)
 	(global_label "GND"
 		(shape input)
+		(at 86.36 74.93 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "9eac9c52-6238-47e3-be2f-50898e9c4d64")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 79.5043 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "3v3"
+		(shape input)
+		(at 86.36 80.01 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "aa91d4ec-e0f4-47c3-bc12-b145102f3637")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 79.9882 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "GND"
+		(shape input)
 		(at 147.32 60.96 180)
 		(fields_autoplaced yes)
 		(effects
@@ -883,6 +1061,28 @@
 		(uuid "b0bbd6f8-5f2c-46d9-ae85-5c5341f31b59")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
 			(at 140.4643 60.96 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "3v3"
+		(shape input)
+		(at 86.36 91.44 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "c809a66c-ccf6-4537-b8b3-e710ce0a37b2")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 79.9882 91.44 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -958,6 +1158,50 @@
 			)
 		)
 	)
+	(global_label "Capteur_Potentiometre"
+		(shape input)
+		(at 86.36 88.9 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "df472a10-467d-40c4-a6dd-9e0d2dc5c407")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 61.8455 88.9 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "Capteur_Flexion_3"
+		(shape input)
+		(at 86.36 77.47 180)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "e3eba352-854a-4805-adc2-03b0e3b06819")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 66.1393 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+				(hide yes)
+			)
+		)
+	)
 	(global_label "3v3"
 		(shape input)
 		(at 86.36 66.04 180)
@@ -1021,6 +1265,76 @@
 				)
 				(justify right)
 				(hide yes)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 107.95 91.44 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "2896545e-d472-4ecc-a3b5-5abd8e871c76")
+		(property "Reference" "J11"
+			(at 109.22 88.8999 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x02_Pin"
+			(at 109.22 91.4399 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal"
+			(at 107.95 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 107.95 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 107.95 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "d1da8dda-0c7d-4dd9-a3da-5122aed12fb9")
+		)
+		(pin "2"
+			(uuid "13939db5-d550-4b04-b292-95a5e52b705d")
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e/eeb50bde-ab8b-480a-a5ff-6c17ab97850c"
+					(reference "J11")
+					(unit 1)
+				)
 			)
 		)
 	)
@@ -1228,6 +1542,212 @@
 			(project ""
 				(path "/00172638-8708-4530-9462-7b89510d184e/eeb50bde-ab8b-480a-a5ff-6c17ab97850c"
 					(reference "R1")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 96.52 74.93 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "62c112af-ad19-4dc4-b9e6-e53ff05e3e9c")
+		(property "Reference" "R3"
+			(at 96.52 68.58 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 96.52 71.12 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 96.52 76.708 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 96.52 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 96.52 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "145cd523-29d8-4e4c-810e-04ce6047087a")
+		)
+		(pin "1"
+			(uuid "0df325e7-a5d2-4f0c-96fc-6b5f751ab5ac")
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e/eeb50bde-ab8b-480a-a5ff-6c17ab97850c"
+					(reference "R3")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 96.52 86.36 90)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "a0d3d5c2-4b1d-4afc-bb4a-c04560347ed0")
+		(property "Reference" "R4"
+			(at 96.52 80.01 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "R"
+			(at 96.52 82.55 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal"
+			(at 96.52 88.138 90)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 96.52 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 96.52 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "7263860d-7524-4b35-aa3e-ec9a3cd78431")
+		)
+		(pin "1"
+			(uuid "5495b575-ffe0-46e1-8a72-debc8a3e4b2e")
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e/eeb50bde-ab8b-480a-a5ff-6c17ab97850c"
+					(reference "R4")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:Conn_01x02_Pin")
+		(at 107.95 80.01 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "ac8f8021-0984-4f48-8091-3eaec197d379")
+		(property "Reference" "J10"
+			(at 109.22 77.4699 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Value" "Conn_01x02_Pin"
+			(at 109.22 80.0099 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(property "Footprint" "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Horizontal"
+			(at 107.95 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 107.95 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Generic connector, single row, 01x02, script generated"
+			(at 107.95 80.01 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "64215115-e366-46a0-80bd-e186a947228c")
+		)
+		(pin "2"
+			(uuid "3ad3c522-a64b-43bb-9a34-e218cdfb4a0a")
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e/eeb50bde-ab8b-480a-a5ff-6c17ab97850c"
+					(reference "J10")
 					(unit 1)
 				)
 			)
