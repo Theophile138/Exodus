@@ -1,0 +1,207 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "00172638-8708-4530-9462-7b89510d184e")
+	(paper "A4")
+	(title_block
+		(title "Carte electronique Exodus")
+		(company "Fablab")
+	)
+	(lib_symbols)
+	(sheet
+		(at 81.28 16.51)
+		(size 27.94 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "78bff246-41fc-4733-9e2a-246d2af7033c")
+		(property "Sheetname" "ESP32"
+			(at 81.28 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ESP32_Sheet.kicad_sch"
+			(at 81.28 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 49.53 16.51)
+		(size 27.94 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "cf31942b-d251-4075-a2c4-ee161157a45a")
+		(property "Sheetname" "MotorController"
+			(at 49.53 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "MotorController.kicad_sch"
+			(at 49.53 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 17.78 16.51)
+		(size 27.94 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "e79c3383-5a03-4763-a384-7173bf81024c")
+		(property "Sheetname" "GPIO_Extender"
+			(at 17.78 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "GPIO_Extender.kicad_sch"
+			(at 17.78 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 113.03 16.51)
+		(size 27.94 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "eeb50bde-ab8b-480a-a5ff-6c17ab97850c")
+		(property "Sheetname" "Capteur"
+			(at 113.03 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Capteur_Sheet.kicad_sch"
+			(at 113.03 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 144.78 16.51)
+		(size 29.21 34.29)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f3347099-fedd-4ffb-9114-7098122f6191")
+		(property "Sheetname" "Alimentation"
+			(at 144.78 15.7984 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "AlimentationSheet.kicad_sch"
+			(at 144.78 51.3846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Esp32-card"
+				(path "/00172638-8708-4530-9462-7b89510d184e"
+					(page "6")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
