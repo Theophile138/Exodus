@@ -7,6 +7,7 @@ Theophile Klein - 27/01/2025
 
 #include "LibPeripherique.h"
 #include "Arduino.h"
+#include "LibCapteur.h"
 
 class configTest1 {
 public:
@@ -30,6 +31,8 @@ public:
   static MasterDevice* myEsp32;
 
   static Multiplexeur* monMultiplex1;
+
+  static CapteurDeForce* capteurForce1;
 };
 
 #endif

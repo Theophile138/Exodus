@@ -11,7 +11,7 @@ CapteurDeForce::CapteurDeForce(int pinAnalog,ParentAnalog* parent)
   CapteurDeForce::parent = parent;
 }
 
-int CapteurDeForce::getValueAnalog()
+int CapteurDeForce::getValue()
 {
   return parent->analogReadAnyDevice(pinAnalog);
 }

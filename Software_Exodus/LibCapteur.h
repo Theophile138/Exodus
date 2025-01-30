@@ -11,7 +11,7 @@ class CapteurDeForce {
   public:
 
     CapteurDeForce(int pinAnalog,ParentAnalog* parent);
-    int getValueAnalog();
+    int getValue();
 
   private: 
     ParentAnalog* parent;
