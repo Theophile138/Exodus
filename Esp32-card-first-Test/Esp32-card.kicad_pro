@@ -180,6 +180,7 @@
       "track_widths": [
         0.0,
         1.0,
+        1.5,
         2.0
       ],
       "tuning_pattern_settings": {
@@ -212,6 +213,10 @@
         {
           "diameter": 0.0,
           "drill": 0.0
+        },
+        {
+          "diameter": 1.0,
+          "drill": 0.8
         }
       ],
       "zones_allow_external_fillets": false
@@ -463,9 +468,9 @@
         "name": "Default",
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.0,
-        "via_diameter": 1.0,
-        "via_drill": 0.8,
+        "track_width": 1.5,
+        "via_diameter": 1.2,
+        "via_drill": 1.0,
         "wire_width": 6
       }
     ],
@@ -481,7 +486,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "Fichier cnc/V2/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",

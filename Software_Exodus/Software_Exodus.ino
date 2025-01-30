@@ -1,4 +1,3 @@
-#include "LibPeripherique.h"
 #include "configTest1.h"
 
 
@@ -7,8 +6,7 @@ void setup() {
   configTest1::init();
 }
 
-void loop() {
-
-  //monMultiplex1.SelectPin(1);
+void loop() 
+{
   configTest1::run();
 }

@@ -7,6 +7,7 @@
 //Registre
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+// Constructeur du registre
 Registre::Registre(int dataPin, int clockPin, int trigPin, int length)
 {
   Registre::dataPin = dataPin;
@@ -20,6 +21,8 @@ Registre::Registre(int dataPin, int clockPin, int trigPin, int length)
 
 }
 
+// Change dans un nombre binaire une petite partie en la remplaçant par un nombre plus petit
+// Ex : 01101110 et on veut qu'a partir de la position 3 les valeurs soit 000 , resulta : 011 000 10
 int Registre::changeByteInOctet(int largeBinary, int smallBinary,int lengthSmallBin, int position) {
 
     int decalage = length - position - lengthSmallBin;
@@ -29,6 +32,7 @@ int Registre::changeByteInOctet(int largeBinary, int smallBinary,int lengthSmall
     return result;
 }
 
+// Version pour registre de la fonction changeByteInOctet
 void Registre::changeByte(int smallBinary,int lengthSmallBin, int position){
 
   //int newValue = changeByteInOctet(dataNow,smallBinary,lengthSmallBin,position);
@@ -37,9 +41,11 @@ void Registre::changeByte(int smallBinary,int lengthSmallBin, int position){
   //Serial.println("dataNow : "+ String(dataNow));
 }
 
+// Sert a refresh l'etat des pins du registre
 void Registre::Refresh(){
   sendBit(dataNow);
 }
+
 
 void Registre::Begin()
 {
@@ -140,10 +146,10 @@ void Multiplexeur::SelectPin(int pin)
   parent->selectPinMultiplexeur(pin, S0 , S1 , S2);
 };
 
-int Multiplexeur::analogReadMultiplexeur(int pin)
+int Multiplexeur::analogReadAnyDevice(int pin)
 {
   Multiplexeur::SelectPin(pin);
-  int result = Multiplexeur::parentAnalog->analogReadMultiplexeur(Multiplexeur::analogPin);
+  int result = Multiplexeur::parentAnalog->analogReadAnyDevice(Multiplexeur::analogPin);
   return result;
 }
 
@@ -191,7 +197,7 @@ void MasterDevice::selectPinMultiplexeur(int pinChangeBin, int pin1, int pin2, i
   #endif
 }
 
-int MasterDevice::analogReadMultiplexeur(int pin)
+int MasterDevice::analogReadAnyDevice(int pin)
 {
   int result = analogRead(pin);
   return result;

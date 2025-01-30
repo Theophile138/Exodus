@@ -12,13 +12,13 @@ class ParentDevice
 class ParentAnalog // Class utilisé pour indiquer qui possède la pin analogique du multiplexeur 
 {
   public:
-    virtual int analogReadMultiplexeur(int pin) = 0;
+    virtual int analogReadAnyDevice(int pin) = 0;
 };
 
 class MasterDevice : public ParentDevice , public ParentAnalog {
 public:
     void selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int pin3) override;
-    int analogReadMultiplexeur(int pin) override;
+    int analogReadAnyDevice(int pin) override;
 };
 
 class Registre : public ParentDevice
@@ -48,7 +48,7 @@ class Multiplexeur : public ParentAnalog
 {
   public:
     Multiplexeur(int S0 , int S1 , int S2 , int analogPin , ParentDevice* parentSelec , ParentAnalog* parentAnalog);
-    int analogReadMultiplexeur(int pin) override;
+    int analogReadAnyDevice(int pin) override;
     void SelectPin(int pin);
 
   private:

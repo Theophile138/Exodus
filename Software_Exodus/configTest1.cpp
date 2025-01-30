@@ -1,3 +1,7 @@
+/*
+Theophile Klein - 27/01/2025
+*/
+
 #include "Arduino.h"
 #include "LibPeripherique.h"
 #include "configTest1.h"
@@ -17,15 +21,15 @@ void configTest1::init()
 
 void configTest1::run(){
 
-  int value = monMultiplex1->analogReadMultiplexeur(0);
+  int value = monMultiplex1->analogReadAnyDevice(0);
   Serial.print("Sensor1:" + String(value)+",");
-  int value2 = monMultiplex1->analogReadMultiplexeur(1);
+  int value2 = monMultiplex1->analogReadAnyDevice(1);
   Serial.print("Sensor2:" + String(value2)+",");
-  int value3 = monMultiplex1->analogReadMultiplexeur(2);
+  int value3 = monMultiplex1->analogReadAnyDevice(2);
   Serial.print("Sensor3:" + String(value3)+",");
-  int value4 = monMultiplex1->analogReadMultiplexeur(3);
+  int value4 = monMultiplex1->analogReadAnyDevice(3);
   Serial.print("Sensor4:" + String(value4)+",");
-  int value5 = monMultiplex1->analogReadMultiplexeur(4);
+  int value5 = monMultiplex1->analogReadAnyDevice(4);
   Serial.print("Sensor5:" + String(value5)+",");
 
 

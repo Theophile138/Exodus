@@ -165,7 +165,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 0 0 0)
+			(at 0 0 360)
 			(layer "F.Fab")
 			(uuid "bd9e0e70-7749-486c-a713-c6d799186963")
 			(effects
@@ -176,7 +176,7 @@
 			)
 		)
 		(property "Footprint" "MyEsp32Library:Esp32_Wroom32_DevKit"
-			(at 0 0 0)
+			(at 0 0 360)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "2495bfb5-1a51-4cee-ab36-fb0c4f960ed5")
@@ -188,7 +188,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 0)
+			(at 0 0 360)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "0e55c7c7-c169-4988-a2e4-e8951a6b07da")
@@ -200,7 +200,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 0)
+			(at 0 0 360)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "a261a37f-3afc-4636-b5d3-bc95493c053b")
@@ -1194,7 +1194,7 @@
 		(descr "16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U1"
-			(at 3.81 -2.33 0)
+			(at 3.81 -2.33 360)
 			(layer "F.SilkS")
 			(uuid "7f146e0d-4e42-40c7-b165-909062d265cb")
 			(effects
@@ -1205,7 +1205,7 @@
 			)
 		)
 		(property "Value" "74HC595"
-			(at 3.81 20.11 0)
+			(at 3.81 20.11 360)
 			(layer "F.Fab")
 			(uuid "c44645cd-5c53-4351-9320-8f1854ca549b")
 			(effects
@@ -1411,7 +1411,7 @@
 			(uuid "2bb20ce1-73a9-4abd-b088-903ccc44c9ad")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 3.81 8.89 0)
+			(at 3.81 8.89 360)
 			(layer "F.Fab")
 			(uuid "69dd5418-d130-44c9-96dd-1e186a3e47e3")
 			(effects
@@ -2390,7 +2390,7 @@
 			(uuid "66a86a47-f51d-43d3-bbab-85b03458725f")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 5.08 0)
+			(at 0 5.08 360)
 			(layer "F.Fab")
 			(uuid "a028d23d-dc1c-4cd1-a128-7ae07e8afe22")
 			(effects
@@ -2474,7 +2474,7 @@
 		(descr "Through hole angled pin header, 1x06, 2.54mm pitch, 6mm pin length, single row")
 		(tags "Through hole angled pin header THT 1x06 2.54mm single row")
 		(property "Reference" "J14"
-			(at 4.385 -2.27 0)
+			(at 4.385 -2.27 360)
 			(layer "F.SilkS")
 			(uuid "56688385-fbd0-4fac-9264-981b37320c7f")
 			(effects
@@ -2485,7 +2485,7 @@
 			)
 		)
 		(property "Value" "Conn_01x06_Pin"
-			(at 4.385 14.97 0)
+			(at 4.385 14.97 360)
 			(layer "F.Fab")
 			(uuid "a3eac6b8-0008-4bea-b736-25f53bbdf327")
 			(effects
@@ -6579,7 +6579,7 @@
 			(uuid "0311858f-3fce-4fed-9002-fdb5af8fc2a9")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 5.08 0)
+			(at 0 5.08 360)
 			(layer "F.Fab")
 			(uuid "da97cc47-2802-4e57-898f-bd7f82837de4")
 			(effects
@@ -7991,7 +7991,7 @@
 			(uuid "da14a740-1157-4c1e-95cb-c060e428c08b")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 1.27 0)
+			(at 0 1.27 360)
 			(layer "F.Fab")
 			(uuid "ce36239e-f066-4015-bad9-a2a26eff76a2")
 			(effects
@@ -9365,7 +9365,7 @@
 			(uuid "24da0d68-a2eb-4c23-8429-3244196c38dc")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 16.51 0)
+			(at 0 16.51 360)
 			(layer "F.Fab")
 			(uuid "6519b297-858b-40de-94cb-d43020d89154")
 			(effects
