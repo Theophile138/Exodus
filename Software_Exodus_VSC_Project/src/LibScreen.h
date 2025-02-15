@@ -11,6 +11,7 @@ Theophile Klein - 15/02/2025
 
 #define TFT_DC 2
 #define TFT_CS 5
+#define TFT_RST 4
 
 class Screen {
     

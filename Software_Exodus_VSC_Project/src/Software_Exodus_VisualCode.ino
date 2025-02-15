@@ -10,6 +10,9 @@ void setup() {
   myScreen = Screen(); 
   myScreen.testScreen();
 
+  pinMode(15,OUTPUT);
+  digitalWrite(15,HIGH);
+
 }
 
 void loop() 

@@ -5,7 +5,7 @@
 #include "Adafruit_ILI9341.h"
 
 Screen::Screen(){
-    tft = new Adafruit_ILI9341(TFT_CS, TFT_DC);
+    tft = new Adafruit_ILI9341(TFT_CS, TFT_DC,TFT_RST);
     tft->begin();
 }
 
