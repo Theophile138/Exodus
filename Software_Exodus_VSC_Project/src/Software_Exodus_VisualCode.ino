@@ -5,6 +5,12 @@ Screen myScreen;
 
 void setup() {
   Serial.begin(115200);
+
+  delay(1000);
+
+  Serial.print("Mémoire libre : ");
+  Serial.println(ESP.getFreeHeap());
+
   configTest1::init();
 
   myScreen = Screen(); 
@@ -18,8 +24,11 @@ void setup() {
 void loop() 
 {
   // Config pour testé le prototype n°1 :
-  configTest1::run();
+  //configTest1::run();
 
   myScreen.testScreen();
+
+  Serial.print("Mémoire libre : ");
+  Serial.println(ESP.getFreeHeap());
 
 }
