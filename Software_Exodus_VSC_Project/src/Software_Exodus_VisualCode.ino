@@ -3,22 +3,19 @@
 
 Screen myScreen;
 
+#define FirmwareVersion "0.1"
+
 void setup() {
   Serial.begin(115200);
-
-  delay(1000);
-
-  Serial.print("Mémoire libre : ");
-  Serial.println(ESP.getFreeHeap());
 
   configTest1::init();
 
   myScreen = Screen(); 
-  myScreen.testScreen();
+  myScreen.imageStart(FirmwareVersion);
 
-  pinMode(15,OUTPUT);
-  digitalWrite(15,HIGH);
+  delay(4000);
 
+  myScreen.StatMenu();
 }
 
 void loop() 
@@ -26,9 +23,8 @@ void loop()
   // Config pour testé le prototype n°1 :
   //configTest1::run();
 
-  myScreen.testScreen();
+  //myScreen.testScreen();
 
-  Serial.print("Mémoire libre : ");
-  Serial.println(ESP.getFreeHeap());
-
+  //Serial.print("Mémoire libre : ");
+  //Serial.println(ESP.getFreeHeap());
 }
