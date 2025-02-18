@@ -5,12 +5,13 @@
 #include <SPI.h>
 
 #define TFT_GREY 0x5AEB
+#define KEY_TEXTSIZE 1   // Font size multiplier
 
 class analogMeters {
     
     public:
 
-        analogMeters(TFT_eSPI* tft, int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit);
+        analogMeters(TFT_eSPI* tft,int positionX , int positionY,int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit);
         void plotNeedle(int value, byte ms_delay);
 
     private: 
@@ -30,6 +31,9 @@ class analogMeters {
 
         int minOrangeLimite = 25;
         int maxOrangeLimite = 50;
+
+        int positionX;
+        int positionY;
 
         String unit = "% Force";
 
