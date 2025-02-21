@@ -5,13 +5,13 @@ Theophile Klein - 27/01/2025
 #include "LibCapteur.h"
 #include "LibPeripherique.h"
 
-CapteurDeForce::CapteurDeForce(int pinAnalog,ParentAnalog* parent)
+Capteur::Capteur(int pinAnalog,ParentAnalog* parent)
 {
-  CapteurDeForce::pinAnalog = pinAnalog;
-  CapteurDeForce::parent = parent;
+  Capteur::pinAnalog = pinAnalog;
+  Capteur::parent = parent;
 }
 
-int CapteurDeForce::getValue()
+int Capteur::getValue()
 {
   return parent->analogReadAnyDevice(pinAnalog);
 }

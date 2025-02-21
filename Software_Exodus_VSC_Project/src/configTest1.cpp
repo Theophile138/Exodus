@@ -14,11 +14,11 @@ Registre* configTest1::monRegistre1 = nullptr;    // Initialisé à nullptr
 MasterDevice* configTest1::myEsp32 = nullptr;     // Initialisé à nullptr
 Multiplexeur* configTest1::monMultiplex1 = nullptr; // Initialisé à nullptr
 
-CapteurDeForce* configTest1::capteurForce1 = nullptr; // Initialisé à nullptr
-CapteurDeForce* configTest1::capteurForce2 = nullptr; // Initialisé à nullptr
-CapteurDeForce* configTest1::capteurForce3 = nullptr; // Initialisé à nullptr
-CapteurDeForce* configTest1::capteurForce4 = nullptr; // Initialisé à nullptr
-CapteurDeForce* configTest1::capteurForce5 = nullptr; // Initialisé à nullptr
+Capteur* configTest1::capteurForce1 = nullptr; // Initialisé à nullptr
+Capteur* configTest1::capteurForce2 = nullptr; // Initialisé à nullptr
+Capteur* configTest1::capteurForce3 = nullptr; // Initialisé à nullptr
+Capteur* configTest1::capteurForce4 = nullptr; // Initialisé à nullptr
+Capteur* configTest1::capteurForce5 = nullptr; // Initialisé à nullptr
 
 
 int configTest1::dir = 0;
@@ -31,11 +31,11 @@ void configTest1::init()
   configTest1::monRegistre1 = new Registre(Reg1DataPin,Reg1ClockPin,Reg1TrigPin,Reg1Length);
   configTest1::monMultiplex1 = new Multiplexeur(Multiplex1PinS0, Multiplex1PinS1 , Multiplex1PinS2 , Multiplex1PinA , monRegistre1, myEsp32); // crée un multiplexeur qui depend d'un registre et de l'esp32
   
-  configTest1::capteurForce1 = new CapteurDeForce(0,monMultiplex1);
-  configTest1::capteurForce2 = new CapteurDeForce(1,monMultiplex1);
-  configTest1::capteurForce3 = new CapteurDeForce(2,monMultiplex1);
-  configTest1::capteurForce4 = new CapteurDeForce(3,monMultiplex1);
-  configTest1::capteurForce5 = new CapteurDeForce(4,monMultiplex1);
+  configTest1::capteurForce1 = new Capteur(0,monMultiplex1);
+  configTest1::capteurForce2 = new Capteur(1,monMultiplex1);
+  configTest1::capteurForce3 = new Capteur(2,monMultiplex1);
+  configTest1::capteurForce4 = new Capteur(3,monMultiplex1);
+  configTest1::capteurForce5 = new Capteur(4,monMultiplex1);
 
 
 }

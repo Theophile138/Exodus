@@ -35,11 +35,11 @@ public:
 
   static Multiplexeur* monMultiplex1;
 
-  static CapteurDeForce* capteurForce1;
-  static CapteurDeForce* capteurForce2;
-  static CapteurDeForce* capteurForce3;
-  static CapteurDeForce* capteurForce4;
-  static CapteurDeForce* capteurForce5;
+  static Capteur* capteurForce1;
+  static Capteur* capteurForce2;
+  static Capteur* capteurForce3;
+  static Capteur* capteurForce4;
+  static Capteur* capteurForce5;
 
   static int dir;
   static int dir2;

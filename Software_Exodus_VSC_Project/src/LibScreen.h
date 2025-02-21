@@ -11,6 +11,9 @@ Theophile Klein - 15/02/2025
 
 #include "FS.h"
 
+#include "LibConfig.h"
+#include "LibButton.h"
+
 #define SCREEN_WIDTH  240
 #define SCREEN_HEIGHT 320
 
@@ -24,19 +27,6 @@ Theophile Klein - 15/02/2025
 // Repeat calibration if you change the screen rotation.
 #define REPEAT_CAL false
 
-// Keypad start position, key sizes and spacing
-#define KEY_X 40 // Centre of key
-#define KEY_Y 96
-#define KEY_W 62 // Width and height
-#define KEY_H 30
-#define KEY_SPACING_X 18 // X and Y gap
-#define KEY_SPACING_Y 20
-#define KEY_TEXTSIZE 1   // Font size multiplier
-
-// Using two fonts since numbers are nice when bold
-#define LABEL1_FONT &FreeSansOblique12pt7b // Key label font 1
-#define LABEL2_FONT &FreeSansBold12pt7b    // Key label font 2
-
 class Screen {
     
     public:
@@ -44,23 +34,28 @@ class Screen {
         Screen();
 
         void clearScreen();
-        unsigned long imageStart(String firmwareVersion);
+        void imageStart(String firmwareVersion);
 
-        void StatMenu();
-
-        analogMeters* myGauge;
+        void Select_Menu_init();
+        void Select_Menu_run();
         
         void touch_calibrate();
         void renderButton();
 
-        bool startButtonActive;
+        static void leftOnclick(TFT_eSPI* tft);
+        static void rightOnclick(TFT_eSPI* tft);
 
     private: 
         
         TFT_eSPI* tft;
-        TFT_eSPI_Button startButton;
-        TFT_eSPI_Button leftButton;
-        TFT_eSPI_Button rightButton;
+
+        analogMeters* myGauge;
+
+        //Configuration myListeConfig;
+
+        Button startButton;
+        Button leftButton;
+        Button rightButton;
 
 
   };

@@ -6,16 +6,16 @@
 #include <SPI.h>
 
 #include "image_data.h"
-#include "image_mode1.h"
 
 #include "FS.h"
+
+#include "LibConfig.h"
 
 Screen::Screen(){
     //tft = new Adafruit_ILI9341(TFT_CS, TFT_DC,TFT_RST);
     tft =new TFT_eSPI(); 
     tft->init();
-    tft->setRotation(0);
-
+    tft->setRotation(2);
 }
 
 void Screen::clearScreen()
@@ -23,28 +23,23 @@ void Screen::clearScreen()
     tft->fillScreen(ILI9341_BLACK);
 }
 
-unsigned long Screen::imageStart(String firmwareVersion){
-
-  unsigned long start;
-
+void Screen::imageStart(String firmwareVersion){
+  
   tft->fillScreen(ILI9341_BLACK);
-  start = micros();
   tft->setSwapBytes(true);
 
-  tft->pushImage(0, 0, 240, 320, image_data);
+  tft->pushImage(0, 0, image_StartImg_width, image_StartImg_height, image_StartImg);
 
   tft->setTextColor(TFT_WHITE);  // Text colour
 
-  //tft->drawCentreString("Exodus Firmware V",SCREEN_WIDTH/2,280,0);
   tft->drawCentreString("Exodus Firmware V"+firmwareVersion, SCREEN_WIDTH/2, 270, 2); // Comment out to avoid font 4
-  return micros() - start;
 }
 
-void Screen::StatMenu()
+void Screen::Select_Menu_init()
 {
   tft->fillScreen(ILI9341_BLACK);
 
-  tft->pushImage((SCREEN_WIDTH-160)/2, 0, 160, 160, image_mode1);
+  tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
 
   //myGauge = new analogMeters(tft,0,SCREEN_HEIGHT - 126,25,-20,-15,25,50,"% Force");
   
@@ -52,50 +47,36 @@ void Screen::StatMenu()
   tft->setTextFont(1); // Use GLCD font
 
   startButton.initButton(tft, SCREEN_WIDTH/2, 170, 200, 35, TFT_WHITE, TFT_GREEN, TFT_WHITE,"START", 2);
-  startButton.drawButton();
-  startButtonActive = true;
-  
-  leftButton.initButton(tft, 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,"<", 2);
-  leftButton.drawButton();
+  startButton.toggle_mode("STOP",TFT_RED,TFT_WHITE);
+  startButton.draw();
 
-  rightButton.initButton(tft, SCREEN_WIDTH - 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,">", 2);
-  rightButton.drawButton();
+  
+  leftButton.initButton(tft, 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,"<", 2, Screen::leftOnclick);
+  leftButton.draw();
+
+  rightButton.initButton(tft, SCREEN_WIDTH - 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,">", 2,Screen::rightOnclick);
+  rightButton.draw();
   
 }
 
-void Screen::renderButton()
+void Screen::Select_Menu_run()
 {
   uint16_t t_x = 0, t_y = 0; // To store the touch coordinates
 
   // Pressed will be set true is there is a valid touch on the screen
   bool pressed = tft->getTouch(&t_x, &t_y);
   
-  
+  leftButton.refreshTouch(t_x,t_y,pressed);
+  rightButton.refreshTouch(t_x,t_y,pressed);
+  startButton.refreshTouch(t_x,t_y,pressed);
+}
 
-  if (pressed && startButton.contains(t_x, t_y)) {
-    startButton.press(true);  // tell the button it is pressed
-  } else {
-    startButton.press(false);  // tell the button it is NOT pressed
-  }
+void Screen::leftOnclick(TFT_eSPI* tft){
+  tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
+}
 
-  //if (startButton.justReleased()) startButton.drawButton();     // draw normal
-
-  if (startButton.justPressed()) {
-    //startButton.drawButton(true);  // draw invert
-    startButtonActive = !startButtonActive;  // Inverser l'état
-
-    // Mettre à jour l'affichage du bouton
-    if (startButtonActive) {
-      startButton.initButton(tft, SCREEN_WIDTH/2, 170, 200, 35, TFT_WHITE, TFT_GREEN, TFT_WHITE,"START", 2);
-    } else {
-      startButton.initButton(tft, SCREEN_WIDTH/2, 170, 200, 35, TFT_WHITE, TFT_RED, TFT_WHITE,"STOP", 2);
-    }
-    startButton.drawButton();
-    
-  }
-
-  
-
+void Screen::rightOnclick(TFT_eSPI* tft){
+  tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode2_width, image_mode2_height, image_mode2);
 }
 
 void Screen::touch_calibrate()

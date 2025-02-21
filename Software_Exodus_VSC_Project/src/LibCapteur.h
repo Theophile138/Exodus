@@ -7,10 +7,10 @@ Theophile Klein - 27/01/2025
 
 #include "LibPeripherique.h"
 
-class CapteurDeForce {
+class Capteur {
   public:
 
-    CapteurDeForce(int pinAnalog,ParentAnalog* parent);
+    Capteur(int pinAnalog,ParentAnalog* parent);
     int getValue();
 
   private: 
