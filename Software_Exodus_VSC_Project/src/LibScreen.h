@@ -37,26 +37,48 @@ class Screen {
         void imageStart(String firmwareVersion);
 
         void Select_Menu_init();
-        void Select_Menu_run();
+        static void Select_Menu_run(Screen* Scr);
         
+        void Gauge_Menu_init();
+        static void Gauge_Menu_run(Screen* Scr);
+
         void touch_calibrate();
         void renderButton();
 
-        static void leftOnclick(TFT_eSPI* tft);
-        static void rightOnclick(TFT_eSPI* tft);
+        void (*run)(Screen*);
+
+        static void leftOnclick(Screen* Scr);
+        static void rightOnclick(Screen* Scr);
+        static void startOnclick(Screen* Scr);
+        static void startOffclick(Screen* Scr);
+
+        static void gaugeOnClick(Screen* Scr);
+
+        static void backOnClick(Screen* Scr);
+
+        linearMeter* linearMeters;
 
     private: 
         
+        int number;
+        int index;
+
         TFT_eSPI* tft;
 
         analogMeters* myGauge;
 
+        
+
         //Configuration myListeConfig;
+
+        static void emptyFunction(Screen*) {Serial.println("NO run set for the sreen !");} // Fonction vide qui ne fait rien si aucune methode a été donné pour le press button
 
         Button startButton;
         Button leftButton;
         Button rightButton;
+        Button gaugeButton;
 
+        Button backButton;
 
   };
 

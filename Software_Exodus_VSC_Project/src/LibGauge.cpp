@@ -71,6 +71,7 @@ void analogMeters::plotNeedle(int actualValue, byte ms_delay)
 // #########################################################################
 analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit)
 {
+    analogMeters::height = 126;
 
     analogMeters::tft = tft;
     analogMeters::mideNumber = mideNumber;
@@ -171,4 +172,96 @@ analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mi
   tft->drawRect(5 + positionX, 3 + positionY, 230 + positionX, 119 + positionY, TFT_BLACK); // Draw bezel line
 
   plotNeedle(0, 0); // Put meter needle at 0
+}
+
+
+// #########################################################################
+//  Draw the linear meter on the screen
+// #########################################################################
+void linearMeter::plotLinear(TFT_eSPI* tft, char *label, int x, int y)
+{
+  this->tft = tft;
+  this->name = label;
+  this->x = x;
+  this->y = y;
+  
+  old_value = -1;
+
+  if (disable == false){
+
+    int w = 36;
+    tft->drawRect(x, y, w, 155, TFT_GREY);
+    tft->fillRect(x + 2, y + 19, w - 3, 155 - 38, TFT_WHITE);
+    tft->setTextColor(TFT_CYAN, TFT_BLACK);
+    tft->drawCentreString(label, x + w / 2, y + 2, 2);
+
+    for (int i = 0; i < 110; i += 10)
+    {
+      tft->drawFastHLine(x + 20, y + 27 + i, 6, TFT_BLACK);
+    }
+
+    for (int i = 0; i < 110; i += 50)
+    {
+      tft->drawFastHLine(x + 20, y + 27 + i, 9, TFT_BLACK);
+    }
+
+    tft->fillTriangle(x + 3, y + 127, x + 3 + 16, y + 127, x + 3, y + 127 - 5, TFT_RED);
+    tft->fillTriangle(x + 3, y + 127, x + 3 + 16, y + 127, x + 3, y + 127 + 5, TFT_RED);
+
+    tft->drawCentreString("---", x + w / 2, y + 155 - 18, 2);
+  }
+}
+
+// #########################################################################
+//  Adjust linear meter pointer position
+// #########################################################################
+void linearMeter::plotPointer(int value)
+{ 
+  if (disable == false){
+    actual_value = value;
+    new_value = value;
+
+    tft->setTextSize(1);
+    int dy = y + 27;
+    byte pw = 16;
+
+    tft->setTextColor(TFT_GREEN, TFT_BLACK);
+
+    char buf[8]; dtostrf(value, 4, 0, buf);
+    tft->drawRightString(buf, x + 36 - 5, y + 155 - 18, 2);
+    //tft->drawCentreString(buf, x + (36 / 2), y + 155 - 18, 2);
+
+    int dx = 3 + x;
+    if (value < 0) value = 0; // Limit value to emulate needle end stops
+    if  (value > 100) value = 100;
+
+    while (!(value == old_value)) {
+    
+      dy = y + 27 + 100 - old_value;
+
+      if (old_value > value)
+      {
+        tft->drawLine(dx, dy - 5, dx + pw, dy, TFT_WHITE);
+        old_value--;
+        tft->drawLine(dx, dy + 6, dx + pw, dy + 1, TFT_RED);
+      }
+      else
+      {
+        tft->drawLine(dx, dy + 5, dx + pw, dy, TFT_WHITE);
+        old_value++;
+        tft->drawLine(dx, dy - 6, dx + pw, dy - 1, TFT_RED);
+      }
+    }
+  }
+}
+
+linearMeter::linearMeter(){
+  disable = false;
+}
+
+void linearMeter::refresh(){
+  if ((new_value != actual_value)&&(disable == false)){
+    plotPointer(new_value);
+  }
+
 }

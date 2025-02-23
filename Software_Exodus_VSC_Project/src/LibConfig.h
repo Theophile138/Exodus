@@ -3,7 +3,6 @@
 
 #include "Arduino.h"
 #include "LibPeripherique.h"
-#include "configTest1.h"
 #include "LibCapteur.h"
 
 class Configuration

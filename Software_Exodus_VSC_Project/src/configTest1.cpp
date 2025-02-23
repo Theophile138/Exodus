@@ -24,7 +24,14 @@ Capteur* configTest1::capteurForce5 = nullptr; // Initialisé à nullptr
 int configTest1::dir = 0;
 int configTest1::dir2 = 0;
 
-void configTest1::init() 
+int configTest1::value1 = 0;
+int configTest1::value2 = 0;
+int configTest1::value3 = 0;
+int configTest1::value4 = 0;
+int configTest1::value5 = 0;
+int configTest1::value6 = 0;
+
+void configTest1::init(Screen* scr) 
 {
 
   configTest1::myEsp32 = new MasterDevice(); // crée parent ici un esp32
@@ -37,12 +44,24 @@ void configTest1::init()
   configTest1::capteurForce4 = new Capteur(3,monMultiplex1);
   configTest1::capteurForce5 = new Capteur(4,monMultiplex1);
 
+  scr->linearMeters[0].disable = false;
+  scr->linearMeters[1].disable = false;
+  scr->linearMeters[2].disable = false;
+  scr->linearMeters[3].disable = true;
+  scr->linearMeters[4].disable = false;
+  scr->linearMeters[5].disable = true;
 
+  value1 = 0;
+  value2 = 0;
+  value3 = 0;
+  value4 = 0;
+  value5 = 0;
+  value6 = 0;
 }
 
 void configTest1::run(){
   
-  int value = configTest1::capteurForce1->getValue();
+  value1 = configTest1::capteurForce1->getValue();
   
   /*
 
@@ -57,22 +76,22 @@ void configTest1::run(){
 
   */
 
-  int value3 = configTest1::capteurForce3->getValue();
-  Serial.print("Capteur3:"+String(value3)+",");
+  value2 = configTest1::capteurForce3->getValue();
+  //Serial.print("Capteur3:"+String(value3)+",");
   
   //delay(100);
 
-  int value4 = configTest1::capteurForce4->getValue();
-  Serial.print("Capteur4:"+String(value4)+",");
+  value3 = configTest1::capteurForce4->getValue();
+  //Serial.print("Capteur4:"+String(value4)+",");
   
-  int value5 = configTest1::capteurForce5->getValue();
-  Serial.print("Capteur5:"+String(value5)+",");
+  value5 = configTest1::capteurForce5->getValue();
+  //Serial.print("Capteur5:"+String(value5)+",");
 
   //delay(100);
 
-  Serial.print("dir2:"+String(dir2)+",");
+  //Serial.print("dir2:"+String(dir2)+",");
 
-  Serial.println("");
+  //Serial.println("");
 
 
   if (value5 == 0){
@@ -105,7 +124,7 @@ void configTest1::run(){
   }
 
 
-  if (value > 2000){
+  if (value1 > 2000){
     
     if (dir != 1){
       configTest1::monRegistre1->changeByte(0b01, 2 , 0);
@@ -115,7 +134,7 @@ void configTest1::run(){
     }
   }
 
-  if ((value > 1500)&&(value < 2000))
+  if ((value1 > 1500)&&(value1 < 2000))
   {
     if (dir != 0){
       configTest1::monRegistre1->changeByte(0b00, 2 , 0);
@@ -124,7 +143,7 @@ void configTest1::run(){
     }
   }
 
-  if (value < 1500)
+  if (value1 < 1500)
   {
     if (dir != -1){
       configTest1::monRegistre1->changeByte(0b10, 2 , 0);

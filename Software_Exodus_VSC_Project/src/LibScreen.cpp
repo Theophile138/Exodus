@@ -16,6 +16,10 @@ Screen::Screen(){
     tft =new TFT_eSPI(); 
     tft->init();
     tft->setRotation(2);
+
+    linearMeters = new linearMeter[6];  // Allocation dynamique
+
+    run = emptyFunction;
 }
 
 void Screen::clearScreen()
@@ -37,46 +41,160 @@ void Screen::imageStart(String firmwareVersion){
 
 void Screen::Select_Menu_init()
 {
-  tft->fillScreen(ILI9341_BLACK);
+  tft->fillScreen(TFT_BLACK);
 
   tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
 
-  //myGauge = new analogMeters(tft,0,SCREEN_HEIGHT - 126,25,-20,-15,25,50,"% Force");
-  
-  //tft->setFreeFont(LABEL2_FONT);
   tft->setTextFont(1); // Use GLCD font
 
-  startButton.initButton(tft, SCREEN_WIDTH/2, 170, 200, 35, TFT_WHITE, TFT_GREEN, TFT_WHITE,"START", 2);
-  startButton.toggle_mode("STOP",TFT_RED,TFT_WHITE);
+  startButton.initButton(tft, SCREEN_WIDTH/2, 170, 200, 35, TFT_WHITE, TFT_GREEN, TFT_WHITE,"START", 2 , this, startOnclick);
+  startButton.toggle_mode("STOP",TFT_RED,TFT_WHITE,this,startOffclick);
   startButton.draw();
 
   
-  leftButton.initButton(tft, 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,"<", 2, Screen::leftOnclick);
+  leftButton.initButton(tft, 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,"<", 2,this, leftOnclick);
+  leftButton.disable_color_init(TFT_DARKGREY,TFT_WHITE);
   leftButton.draw();
 
-  rightButton.initButton(tft, SCREEN_WIDTH - 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,">", 2,Screen::rightOnclick);
+  rightButton.initButton(tft, SCREEN_WIDTH - 20, 60, 30, 60, TFT_WHITE, TFT_BLUE, TFT_WHITE,">", 2,this,rightOnclick);
+  rightButton.disable_color_init(TFT_DARKGREY,TFT_WHITE);
   rightButton.draw();
+
+  gaugeButton.initButton(tft,SCREEN_WIDTH-(image_gaugeButton_on_width/2),SCREEN_HEIGHT - (image_gaugeButton_on_height/2),
+    image_gaugeButton_on_width, image_gaugeButton_on_height, image_gaugeButton_on, image_gaugeButton_off,this,gaugeOnClick);
+  gaugeButton.disable = true;
+  gaugeButton.draw();
   
+  run = Select_Menu_run;
+
 }
 
-void Screen::Select_Menu_run()
+void Screen::Select_Menu_run(Screen* scr)
 {
   uint16_t t_x = 0, t_y = 0; // To store the touch coordinates
 
   // Pressed will be set true is there is a valid touch on the screen
-  bool pressed = tft->getTouch(&t_x, &t_y);
+  bool pressed = false;
+
+  if (scr->tft->getTouchRawZ()>200){
+    pressed = scr->tft->getTouch(&t_x, &t_y);
+  }
+
+  scr->leftButton.refreshTouch(t_x,t_y,pressed);
+  scr->rightButton.refreshTouch(t_x,t_y,pressed);
+  scr->startButton.refreshTouch(t_x,t_y,pressed);
+  scr->gaugeButton.refreshTouch(t_x,t_y,pressed);
+}
+
+void Screen::leftOnclick(Screen* scr){
+  scr->tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
+}
+
+void Screen::rightOnclick(Screen* scr){
+  scr->tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode2_width, image_mode2_height, image_mode2);
+}
+
+void Screen::startOnclick(Screen* scr){
+
+  scr->leftButton.disable = true;
+  scr->rightButton.disable = true;
+  scr->gaugeButton.disable = false;
+
+  scr->leftButton.draw();
+  scr->rightButton.draw();
+  scr->gaugeButton.draw();
+}
+
+void Screen::startOffclick(Screen* scr){
+  scr->leftButton.disable = false;
+  scr->rightButton.disable = false;
+  scr->gaugeButton.disable = true;
+
+  scr->leftButton.draw();
+  scr->rightButton.draw();
+  scr->gaugeButton.draw();
+}
+
+void Screen::gaugeOnClick(Screen* scr){
+
+  scr->leftButton.disable = true;
+  scr->rightButton.disable = true;
+  scr->startButton.disable = true;
+  scr->gaugeButton.disable = true;
+
+
+  scr->Gauge_Menu_init();
   
-  leftButton.refreshTouch(t_x,t_y,pressed);
-  rightButton.refreshTouch(t_x,t_y,pressed);
-  startButton.refreshTouch(t_x,t_y,pressed);
+  scr->run = scr->Gauge_Menu_run;
+
+
 }
 
-void Screen::leftOnclick(TFT_eSPI* tft){
-  tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
+void Screen::backOnClick(Screen* scr){
+  
+  scr->backButton.disable = true; 
+  scr->Select_Menu_init();
+
+  scr->run = scr->Select_Menu_run;
 }
 
-void Screen::rightOnclick(TFT_eSPI* tft){
-  tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode2_width, image_mode2_height, image_mode2);
+void Screen::Gauge_Menu_init(){
+
+  tft->fillScreen(TFT_BLACK);
+  myGauge = new analogMeters(tft,0,0,0,-50,-25,25,50,"% Force");
+  
+  int distance = 40;
+  char* labels[] = {"A0", "A1", "A2", "A3", "A4", "A5"};
+
+  for(int i = 0 ; i < 6 ; i++){
+    linearMeters[i].plotLinear(tft,labels[i],distance*i,165);
+  }
+
+  backButton.initButton(tft, SCREEN_WIDTH/2, myGauge->height + 20, 100, 24, TFT_WHITE, TFT_RED, TFT_WHITE,"BACK", 2,this, backOnClick);
+  backButton.draw();
+
+  number = 0;
+  index = 0;
+}
+
+void Screen::Gauge_Menu_run(Screen* scr){
+
+  /*
+  scr->linearMeters[scr->index].plotPointer(scr->number);
+  scr->number ++;
+  if (scr->number > 100){
+    scr->number = 0;
+    scr->index++;
+    if (scr->index > 5){
+      scr->index = 0;
+    }
+  }
+  */
+  
+  //scr->number += 4; if (scr->number >= 360) scr->number = 0;
+  //scr->linearMeters[0].plotPointer(50 + 50 * sin((scr->number + 0) * 0.0174532925));
+  //scr->linearMeters[1].plotPointer(50 + 50 * sin((scr->number + 60) * 0.0174532925));
+  //scr->linearMeters[2].plotPointer(50 + 50 * sin((scr->number + 120) * 0.0174532925));
+  //scr->linearMeters[3].plotPointer(50 + 50 * sin((scr->number + 180) * 0.0174532925));
+  //scr->linearMeters[4].plotPointer(50 + 50 * sin((scr->number + 240) * 0.0174532925));
+  //scr->linearMeters[5].plotPointer(50 + 50 * sin((scr->number+ 300) * 0.0174532925));
+
+  scr->linearMeters[0].refresh();
+  scr->linearMeters[1].refresh();
+  scr->linearMeters[2].refresh();
+  scr->linearMeters[3].refresh();
+  scr->linearMeters[4].refresh();
+  scr->linearMeters[5].refresh();
+
+
+  uint16_t t_x = 0, t_y = 0; // To store the touch coordinates
+
+  bool pressed = false;
+
+  if (scr->tft->getTouchRawZ()>200){
+    pressed = scr->tft->getTouch(&t_x, &t_y);
+  }
+  scr->backButton.refreshTouch(t_x, t_y ,pressed);
 }
 
 void Screen::touch_calibrate()

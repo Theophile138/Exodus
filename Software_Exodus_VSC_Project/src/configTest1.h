@@ -12,10 +12,12 @@ Theophile Klein - 27/01/2025
 #include "soc/gpio_struct.h" // Pour accéder aux registres GPIO
 #include "driver/gpio.h"    // Pour configurer les GPIOs
 
+#include "LibScreen.h"
+
 class configTest1 {
 public:
   // Déclaration de la methode init, pour le demarge de la class
-  static void init();
+  static void init(Screen* scr);
   static void run();
 
   // Pin pour le registre a decalage
@@ -43,6 +45,13 @@ public:
 
   static int dir;
   static int dir2;
+
+  static int value1;
+  static int value2;
+  static int value3;
+  static int value4;
+  static int value5;
+  static int value6;
 };
 
 #endif

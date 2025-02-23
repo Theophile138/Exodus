@@ -13,9 +13,9 @@
     {
       "type": "wokwi-ili9341",
       "id": "lcd1",
-      "top": 34.2,
-      "left": 88.1,
-      "rotate": 90,
+      "top": 257,
+      "left": -2.9,
+      "rotate": 180,
       "attrs": {}
     }
   ],
