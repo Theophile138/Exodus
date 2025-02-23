@@ -47,9 +47,9 @@ void configTest1::init(Screen* scr)
   scr->linearMeters[0].disable = false;
   scr->linearMeters[1].disable = false;
   scr->linearMeters[2].disable = false;
-  scr->linearMeters[3].disable = true;
+  scr->linearMeters[3].disable = false;
   scr->linearMeters[4].disable = false;
-  scr->linearMeters[5].disable = true;
+  scr->linearMeters[5].disable = false;
 
   value1 = 0;
   value2 = 0;
@@ -84,7 +84,7 @@ void configTest1::run(){
   value3 = configTest1::capteurForce4->getValue();
   //Serial.print("Capteur4:"+String(value4)+",");
   
-  value5 = configTest1::capteurForce5->getValue();
+  value6 = configTest1::capteurForce5->getValue();
   //Serial.print("Capteur5:"+String(value5)+",");
 
   //delay(100);
@@ -94,7 +94,7 @@ void configTest1::run(){
   //Serial.println("");
 
 
-  if (value5 == 0){
+  if (value6 == 0){
     
     if (dir2 != 100){
       configTest1::monRegistre1->changeByte(0b01, 2 , 0);
@@ -104,7 +104,7 @@ void configTest1::run(){
     }
   }
 
-  if ((value5 > 10)&&(value5 < 60))
+  if ((value6 > 10)&&(value5 < 60))
   {
     if (dir2 != 0){
       configTest1::monRegistre1->changeByte(0b00, 2 , 0);
@@ -114,7 +114,7 @@ void configTest1::run(){
     }
   }
 
-  if (value5 > 100)
+  if (value6 > 100)
   {
     if (dir2 != -1){
       configTest1::monRegistre1->changeByte(0b10, 2 , 0);

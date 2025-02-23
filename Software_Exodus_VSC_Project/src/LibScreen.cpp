@@ -171,21 +171,22 @@ void Screen::Gauge_Menu_run(Screen* scr){
   }
   */
   
-  //scr->number += 4; if (scr->number >= 360) scr->number = 0;
-  //scr->linearMeters[0].plotPointer(50 + 50 * sin((scr->number + 0) * 0.0174532925));
-  //scr->linearMeters[1].plotPointer(50 + 50 * sin((scr->number + 60) * 0.0174532925));
-  //scr->linearMeters[2].plotPointer(50 + 50 * sin((scr->number + 120) * 0.0174532925));
-  //scr->linearMeters[3].plotPointer(50 + 50 * sin((scr->number + 180) * 0.0174532925));
-  //scr->linearMeters[4].plotPointer(50 + 50 * sin((scr->number + 240) * 0.0174532925));
-  //scr->linearMeters[5].plotPointer(50 + 50 * sin((scr->number+ 300) * 0.0174532925));
+  scr->number += 4; if (scr->number >= 360) scr->number = 0;
+  scr->linearMeters[0].plotPointer(50 + 50 * sin((scr->number + 0) * 0.0174532925));
+  scr->linearMeters[1].plotPointer(50 + 50 * sin((scr->number + 60) * 0.0174532925));
+  scr->linearMeters[2].plotPointer(50 + 50 * sin((scr->number + 120) * 0.0174532925));
+  scr->linearMeters[3].plotPointer(50 + 50 * sin((scr->number + 180) * 0.0174532925));
+  scr->linearMeters[4].plotPointer(50 + 50 * sin((scr->number + 240) * 0.0174532925));
+  scr->linearMeters[5].plotPointer(50 + 50 * sin((scr->number+ 300) * 0.0174532925));
 
+  /*
   scr->linearMeters[0].refresh();
   scr->linearMeters[1].refresh();
   scr->linearMeters[2].refresh();
   scr->linearMeters[3].refresh();
   scr->linearMeters[4].refresh();
   scr->linearMeters[5].refresh();
-
+  */
 
   uint16_t t_x = 0, t_y = 0; // To store the touch coordinates
 
