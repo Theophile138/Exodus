@@ -11,6 +11,8 @@
 
 #include "LibConfig.h"
 
+#include "configTest1.h"
+
 Screen::Screen(){
     //tft = new Adafruit_ILI9341(TFT_CS, TFT_DC,TFT_RST);
     tft =new TFT_eSPI(); 
@@ -20,6 +22,10 @@ Screen::Screen(){
     linearMeters = new linearMeter[6];  // Allocation dynamique
 
     run = emptyFunction;
+
+    activeControle = false;
+
+    config_selectionne = 0;
 }
 
 void Screen::clearScreen()
@@ -88,10 +94,12 @@ void Screen::Select_Menu_run(Screen* scr)
 
 void Screen::leftOnclick(Screen* scr){
   scr->tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode1_width, image_mode1_height, image_mode1);
+  scr->config_selectionne = 0;
 }
 
 void Screen::rightOnclick(Screen* scr){
   scr->tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_mode2_width, image_mode2_height, image_mode2);
+  scr->config_selectionne = 1;
 }
 
 void Screen::startOnclick(Screen* scr){
@@ -103,6 +111,21 @@ void Screen::startOnclick(Screen* scr){
   scr->leftButton.draw();
   scr->rightButton.draw();
   scr->gaugeButton.draw();
+
+  scr->activeControle = true;
+
+    // Le mieux serai d'appeler le init de la config qui serait donné par une instance dans la class screen
+    if (scr->config_selectionne == 0){
+      configTest1::init(scr);
+    }else{
+      scr->linearMeters[0].disable = false;
+      scr->linearMeters[1].disable = false;
+      scr->linearMeters[2].disable = false;
+      scr->linearMeters[3].disable = false;
+      scr->linearMeters[4].disable = false;
+      scr->linearMeters[5].disable = false;
+    }
+
 }
 
 void Screen::startOffclick(Screen* scr){
@@ -113,6 +136,8 @@ void Screen::startOffclick(Screen* scr){
   scr->leftButton.draw();
   scr->rightButton.draw();
   scr->gaugeButton.draw();
+
+  scr->activeControle = false;
 }
 
 void Screen::gaugeOnClick(Screen* scr){
@@ -141,8 +166,9 @@ void Screen::backOnClick(Screen* scr){
 void Screen::Gauge_Menu_init(){
 
   tft->fillScreen(TFT_BLACK);
-  myGauge = new analogMeters(tft,0,0,0,-50,-25,25,50,"% Force");
   
+  myGauge = new analogMeters(tft,0,0,0,-50,-25,25,50,"% Force");
+
   int distance = 40;
   char* labels[] = {"A0", "A1", "A2", "A3", "A4", "A5"};
 
@@ -155,6 +181,7 @@ void Screen::Gauge_Menu_init(){
 
   number = 0;
   index = 0;
+
 }
 
 void Screen::Gauge_Menu_run(Screen* scr){
@@ -170,14 +197,26 @@ void Screen::Gauge_Menu_run(Screen* scr){
     }
   }
   */
-  
-  scr->number += 4; if (scr->number >= 360) scr->number = 0;
-  scr->linearMeters[0].plotPointer(50 + 50 * sin((scr->number + 0) * 0.0174532925));
-  scr->linearMeters[1].plotPointer(50 + 50 * sin((scr->number + 60) * 0.0174532925));
-  scr->linearMeters[2].plotPointer(50 + 50 * sin((scr->number + 120) * 0.0174532925));
-  scr->linearMeters[3].plotPointer(50 + 50 * sin((scr->number + 180) * 0.0174532925));
-  scr->linearMeters[4].plotPointer(50 + 50 * sin((scr->number + 240) * 0.0174532925));
-  scr->linearMeters[5].plotPointer(50 + 50 * sin((scr->number+ 300) * 0.0174532925));
+  if (scr->config_selectionne == 0){
+    scr->linearMeters[0].refresh();
+    scr->linearMeters[1].refresh();
+    scr->linearMeters[2].refresh();
+    scr->linearMeters[3].refresh();
+    scr->linearMeters[4].refresh();
+    scr->linearMeters[5].refresh();
+
+    scr->myGauge->refresh();
+  }else{
+    scr->number += 4; if (scr->number >= 360) scr->number = 0;
+    scr->linearMeters[0].plotPointer(50 + 50 * sin((scr->number + 0) * 0.0174532925));
+    scr->linearMeters[1].plotPointer(50 + 50 * sin((scr->number + 60) * 0.0174532925));
+    scr->linearMeters[2].plotPointer(50 + 50 * sin((scr->number + 120) * 0.0174532925));
+    scr->linearMeters[3].plotPointer(50 + 50 * sin((scr->number + 180) * 0.0174532925));
+    scr->linearMeters[4].plotPointer(50 + 50 * sin((scr->number + 240) * 0.0174532925));
+    scr->linearMeters[5].plotPointer(50 + 50 * sin((scr->number+ 300) * 0.0174532925));
+
+    scr->myGauge->plotNeedle(50 + 50 * sin((scr->number + 0) * 0.0174532925),0);
+  }
 
   /*
   scr->linearMeters[0].refresh();

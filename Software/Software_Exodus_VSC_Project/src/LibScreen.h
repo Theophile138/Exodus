@@ -58,16 +58,18 @@ class Screen {
 
         linearMeter* linearMeters;
 
+        bool activeControle;
+
+        int config_selectionne;
+
+        analogMeters* myGauge;
+
     private: 
         
         int number;
         int index;
 
         TFT_eSPI* tft;
-
-        analogMeters* myGauge;
-
-        
 
         //Configuration myListeConfig;
 

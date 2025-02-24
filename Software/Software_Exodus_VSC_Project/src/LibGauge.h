@@ -16,8 +16,12 @@ class analogMeters {
 
         int height;
 
+        void refresh();
+        int new_value;
+
     private: 
         
+        int actual_value;
 
         // Variable pour l'analog meter
         float ltx = 0;    // Saved x coord of bottom of needle

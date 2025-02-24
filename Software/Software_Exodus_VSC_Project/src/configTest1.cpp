@@ -47,8 +47,8 @@ void configTest1::init(Screen* scr)
   scr->linearMeters[0].disable = false;
   scr->linearMeters[1].disable = false;
   scr->linearMeters[2].disable = false;
-  scr->linearMeters[3].disable = false;
-  scr->linearMeters[4].disable = false;
+  scr->linearMeters[3].disable = true;
+  scr->linearMeters[4].disable = true;
   scr->linearMeters[5].disable = false;
 
   value1 = 0;

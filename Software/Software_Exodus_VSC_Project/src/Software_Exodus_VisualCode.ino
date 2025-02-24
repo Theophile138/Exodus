@@ -30,8 +30,6 @@ void setup() {
   myScreen = Screen(); 
   myScreen.touch_calibrate();
   
-  configTest1::init(&myScreen);
-
   myScreen.imageStart(FirmwareVersion);
 
   delay(5000);
@@ -64,7 +62,9 @@ void loop()
 
   if (micros() - Time_config > 400){
     Time_config = micros();
-    Task2();
+    if (myScreen.activeControle == true){
+      Task2();
+    }
     total_time2 = total_time2 + (micros() - Time_config);
     iteration2 ++;
   }
@@ -115,14 +115,19 @@ void loop()
 
 void Task2(){
   
-  configTest1::run();
-  myScreen.linearMeters[0].new_value = (int)(configTest1::value1*100.0/4095.0);
-  myScreen.linearMeters[1].new_value = (int)(configTest1::value2*100.0/4095.0);
-  myScreen.linearMeters[2].new_value = (int)(configTest1::value3*100.0/4095.0);
-  myScreen.linearMeters[3].new_value = (int)(configTest1::value4*100.0/4095.0);
-  myScreen.linearMeters[4].new_value = (int)(configTest1::value5*100.0/4095.0);
-  myScreen.linearMeters[5].new_value = (int)(configTest1::value6*100.0/4095.0);
-
+  if (myScreen.config_selectionne == 0){
+    configTest1::run();
+    myScreen.linearMeters[0].new_value = (int)(configTest1::value1*100.0/4095.0);
+    myScreen.linearMeters[1].new_value = (int)(configTest1::value2*100.0/4095.0);
+    myScreen.linearMeters[2].new_value = (int)(configTest1::value3*100.0/4095.0);
+    myScreen.linearMeters[3].new_value = (int)(configTest1::value4*100.0/4095.0);
+    myScreen.linearMeters[4].new_value = (int)(configTest1::value5*100.0/4095.0);
+    myScreen.linearMeters[5].new_value = (int)(configTest1::value6*100.0/4095.0);
+  
+    if (myScreen.myGauge != nullptr){ 
+      myScreen.myGauge->new_value = (int)(configTest1::value1*100.0/4095.0);
+    }
+  }
 }
 
 

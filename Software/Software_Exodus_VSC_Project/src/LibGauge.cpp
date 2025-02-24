@@ -172,6 +172,18 @@ analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mi
   tft->drawRect(5 + positionX, 3 + positionY, 230 + positionX, 119 + positionY, TFT_BLACK); // Draw bezel line
 
   plotNeedle(0, 0); // Put meter needle at 0
+
+  actual_value = 0 ;
+  new_value = 0;
+}
+
+void analogMeters::refresh(){
+
+  if (actual_value != new_value){
+    plotNeedle(new_value,0);
+    actual_value = new_value;
+  }
+
 }
 
 
@@ -184,6 +196,8 @@ void linearMeter::plotLinear(TFT_eSPI* tft, char *label, int x, int y)
   this->name = label;
   this->x = x;
   this->y = y;
+  
+  tft->setTextSize(1);
   
   old_value = -1;
 
