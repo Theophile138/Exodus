@@ -71,19 +71,21 @@ void analogMeters::plotNeedle(int actualValue, byte ms_delay)
 // #########################################################################
 analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit)
 {
-    analogMeters::height = 126;
+  analogMeters::height = 126;
 
-    analogMeters::tft = tft;
-    analogMeters::mideNumber = mideNumber;
-    analogMeters::minGreenLimite = minGreenLimite;
-    analogMeters::maxGreenLimite = maxGreenLimite;
-    analogMeters::minOrangeLimite = minOrangeLimite;
-    analogMeters::maxOrangeLimite = maxOrangeLimite;  
-    analogMeters::unit = unit;
+  analogMeters::tft = tft;
+  analogMeters::mideNumber = mideNumber;
+  analogMeters::minGreenLimite = minGreenLimite;
+  analogMeters::maxGreenLimite = maxGreenLimite;
+  analogMeters::minOrangeLimite = minOrangeLimite;
+  analogMeters::maxOrangeLimite = maxOrangeLimite;  
+  analogMeters::unit = unit;
 
-    analogMeters::positionX = positionX;
-    analogMeters::positionY = positionY;
+  analogMeters::positionX = positionX;
+  analogMeters::positionY = positionY;
 
+  new_value = 0;
+  actual_value = 0;
 
   tft->setTextSize(1);
 
@@ -271,6 +273,8 @@ void linearMeter::plotPointer(int value)
 
 linearMeter::linearMeter(){
   disable = false;
+  actual_value = 0;
+  new_value = 0;
 }
 
 void linearMeter::refresh(){

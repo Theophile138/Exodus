@@ -76,7 +76,7 @@ void configTest1::run(){
 
   */
 
-  value2 = configTest1::capteurForce3->getValue();
+  value2 = configTest1::capteurForce2->getValue();
   //Serial.print("Capteur3:"+String(value3)+",");
   
   //delay(100);

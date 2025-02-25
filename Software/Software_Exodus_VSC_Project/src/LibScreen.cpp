@@ -197,14 +197,18 @@ void Screen::Gauge_Menu_run(Screen* scr){
     }
   }
   */
+
+
+
   if (scr->config_selectionne == 0){
+    
     scr->linearMeters[0].refresh();
     scr->linearMeters[1].refresh();
     scr->linearMeters[2].refresh();
     scr->linearMeters[3].refresh();
     scr->linearMeters[4].refresh();
     scr->linearMeters[5].refresh();
-
+    
     scr->myGauge->refresh();
   }else{
     scr->number += 4; if (scr->number >= 360) scr->number = 0;
@@ -217,6 +221,8 @@ void Screen::Gauge_Menu_run(Screen* scr){
 
     scr->myGauge->plotNeedle(50 + 50 * sin((scr->number + 0) * 0.0174532925),0);
   }
+
+
 
   /*
   scr->linearMeters[0].refresh();
