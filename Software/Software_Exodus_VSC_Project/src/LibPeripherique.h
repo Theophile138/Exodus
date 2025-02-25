@@ -7,6 +7,7 @@ class ParentDevice
 {
   public:
     virtual void selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int pin3) = 0; //Cette méthode virtuelle pure est plutôt dédier aux changement des pins du multiplexeur en même temps. Et elle plutôt dedier au registre
+    virtual void setPin(int pin , bool value);
 };
 
 class ParentAnalog // Class utilisé pour indiquer qui possède la pin analogique du multiplexeur 
@@ -18,6 +19,7 @@ class ParentAnalog // Class utilisé pour indiquer qui possède la pin analogiqu
 class MasterDevice : public ParentDevice , public ParentAnalog {
 public:
     void selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int pin3) override;
+    void setPin(int pin , bool value) override;
     int analogReadAnyDevice(int pin) override;
 };
 
@@ -30,6 +32,7 @@ class Registre : public ParentDevice
     void Refresh();
     void Begin();
     void selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int pin3) override;
+    void setPin(int pin , bool value) override;
     
   private:
     int changeByteInOctet(int largeBinary, int smallBinary,int lengthSmallBin, int position);

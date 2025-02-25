@@ -126,6 +126,11 @@ void Registre::selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int 
     Refresh();
 }
 
+void Registre::setPin(int pin , bool value){
+  changeByte(value, 1 , pin);
+  Refresh();
+}
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Multiplexeur
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -195,6 +200,18 @@ void MasterDevice::selectPinMultiplexeur(int pinChangeBin, int pin1, int pin2, i
     digitalWrite(pin2, ((pinChangeBin >> 1) & 1) ? HIGH : LOW);
     digitalWrite(pin3, (pinChangeBin & 1) ? HIGH : LOW);
   #endif
+}
+
+void MasterDevice::setPin(int pin , bool value){
+  
+  gpio_set_direction((gpio_num_t)pin, GPIO_MODE_OUTPUT);
+
+  if (value == true){
+    GPIO.out_w1ts = (1 << pin); // Pin3 HIGH
+  }else{
+    GPIO.out_w1tc = (1 << pin); // Pin3 LOW
+  }
+
 }
 
 int MasterDevice::analogReadAnyDevice(int pin)
