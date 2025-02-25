@@ -1,5 +1,6 @@
 /*
 Theophile Klein - 27/01/2025
+Paul Escalier - 25/02/2025
 */
 
 #ifndef LibDriver_h
@@ -11,16 +12,16 @@ class DriverMotor {
   public:
 
   //void setDir(int direction);
-  DriverMotor(int pin1 , int pin2 , int pinEn,ParentDevice* parentDir, ParentDevice* parentPWN);
+  DriverMotor(int pinParent1, int pinParent2, ParentDevice* parent);
+
+  RaiseArm();
+  LowerArm();
+  StopArm()
 
   private: 
-    
-    ParentDevice* parentDir;
-    ParentDevice* parentPWN;
-
-    int pin1;
-    int pin2;
-    int pinEn;
+  int pinParent1; 
+  int pinParent2;
+  ParentDevice* parent;    
 };
 
 

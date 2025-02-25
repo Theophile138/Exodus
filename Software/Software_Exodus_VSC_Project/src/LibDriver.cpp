@@ -1,25 +1,32 @@
 /*
 Theophile Klein - 15/02/2025
+Paul Escalier - 25/02/2025
 */
 
 #include "LibDriver.h"
 #include "LibPeripherique.h"
 
-/*
 
-DriverL298n::DriverL298n(int pin1 , int pin2 , int pinEn,ParentDevince* parent)
+
+DriverMotor::DriverMotor(int pinParent1, int pinParent2, ParentDevice* parent)
 {
-  CapteurDeForce::pin1 = pin1;
-  CapteurDeForce::pin2 = pin2;
-  CapteurDeForce::pinEn = pinEn;
-
-  
-  CapteurDeForce::parent = parent;
+  DriverMotor::pinParent1 = pinParent1;
+  DriverMotor::pinParent2 = pinParent2;
+  DriverMotor::parent= parent;
+}
+void RaiseArm()
+{
+  parent->setPin(pinParent1,HIGH);
+  parent->setPin(pinParent2,LOW);
 }
 
-void DriverL298n::setDir(int direction)
+void LowerArm()
 {
-  parent->selectPinMultiplexeur(int pinChangeBin, int pin1 , int pin2, int pin3);
+  parent->setPin(pinParent1,LOW);
+  parent->setPin(pinParent2,HIGH);
 }
-
-*/
+void StopArm()
+{
+  parent->setPin(pinParent1,LOW);
+  parent->setPin(pinParent2,LOW);
+}
