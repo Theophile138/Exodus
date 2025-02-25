@@ -2,7 +2,7 @@
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <SPI.h>
 
-#include "LibGauge.h"
+#include "LibJauge.h"
 
 // #########################################################################
 // Update needle position
@@ -69,7 +69,7 @@ void analogMeters::plotNeedle(int actualValue, byte ms_delay)
 // #########################################################################
 //  Draw the analogue meter on the screen
 // #########################################################################
-analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit)
+void analogMeters::drawAnalogMeters(TFT_eSPI* tft, int positionX , int positionY , int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit)
 {
   analogMeters::height = 126;
 
@@ -177,6 +177,27 @@ analogMeters::analogMeters(TFT_eSPI* tft, int positionX , int positionY , int mi
 
   actual_value = 0 ;
   new_value = 0;
+
+}
+
+analogMeters::analogMeters()
+{
+  height = 0;
+  new_value = 0;
+  actual_value = 0;
+
+  int old_analog =  -999; // Value last displayed
+
+  int mideNumber = 50;
+
+  int minGreenLimite = -50;
+  int maxGreenLimite = -25;
+
+  int minOrangeLimite = 25;
+  int maxOrangeLimite = 50;
+
+  int positionX = 0;
+  int positionY = 0;
 }
 
 void analogMeters::refresh(){

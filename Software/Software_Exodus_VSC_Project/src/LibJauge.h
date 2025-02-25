@@ -1,5 +1,5 @@
-#ifndef LibGauge_h
-#define LibGauge_h
+#ifndef LibJauge_h
+#define LibJauge_h
 
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <SPI.h>
@@ -11,7 +11,8 @@ class analogMeters {
     
     public:
 
-        analogMeters(TFT_eSPI* tft,int positionX , int positionY,int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit);
+        analogMeters();
+        void drawAnalogMeters(TFT_eSPI* tft,int positionX , int positionY,int mideNumber,int minGreenLimite,int maxGreenLimite,int minOrangeLimite,int maxOrangeLimite,String unit);
         void plotNeedle(int value, byte ms_delay);
 
         int height;

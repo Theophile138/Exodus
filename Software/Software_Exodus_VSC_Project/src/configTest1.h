@@ -8,6 +8,7 @@ Theophile Klein - 27/01/2025
 #include "LibPeripherique.h"
 #include "Arduino.h"
 #include "LibCapteur.h"
+#include "LibDriver.h"
 
 #include "soc/gpio_struct.h" // Pour accéder aux registres GPIO
 #include "driver/gpio.h"    // Pour configurer les GPIOs
@@ -42,6 +43,8 @@ public:
   static Capteur* capteurForce3;
   static Capteur* capteurForce4;
   static Capteur* capteurForce5;
+
+  static DriverMotor* verin;
 
   static int dir;
   static int dir2;

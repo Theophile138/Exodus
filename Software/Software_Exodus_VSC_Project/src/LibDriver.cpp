@@ -14,18 +14,18 @@ DriverMotor::DriverMotor(int pinParent1, int pinParent2, ParentDevice* parent)
   DriverMotor::pinParent2 = pinParent2;
   DriverMotor::parent= parent;
 }
-void RaiseArm()
+void DriverMotor::RaiseArm()
 {
   parent->setPin(pinParent1,HIGH);
   parent->setPin(pinParent2,LOW);
 }
 
-void LowerArm()
+void DriverMotor::LowerArm()
 {
   parent->setPin(pinParent1,LOW);
   parent->setPin(pinParent2,HIGH);
 }
-void StopArm()
+void DriverMotor::StopArm()
 {
   parent->setPin(pinParent1,LOW);
   parent->setPin(pinParent2,LOW);

@@ -14,9 +14,9 @@ class DriverMotor {
   //void setDir(int direction);
   DriverMotor(int pinParent1, int pinParent2, ParentDevice* parent);
 
-  RaiseArm();
-  LowerArm();
-  StopArm()
+  void RaiseArm();
+  void LowerArm();
+  void StopArm();
 
   private: 
   int pinParent1; 

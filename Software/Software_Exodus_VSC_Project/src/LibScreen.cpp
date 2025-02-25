@@ -1,6 +1,6 @@
 #include "LibScreen.h"
 
-#include "LibGauge.h"
+#include "LibJauge.h"
 
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <SPI.h>
@@ -8,9 +8,6 @@
 #include "image_data.h"
 
 #include "FS.h"
-
-#include "LibConfig.h"
-
 #include "configTest1.h"
 
 Screen::Screen(){
@@ -20,6 +17,7 @@ Screen::Screen(){
     tft->setRotation(2);
 
     linearMeters = new linearMeter[6];  // Allocation dynamique
+    myGauge = new analogMeters();
 
     run = emptyFunction;
 
@@ -167,7 +165,7 @@ void Screen::Gauge_Menu_init(){
 
   tft->fillScreen(TFT_BLACK);
   
-  myGauge = new analogMeters(tft,0,0,0,-50,-25,25,50,"% Force");
+  myGauge->drawAnalogMeters(tft,0,0,0,-50,-25,25,50,"% Force");
 
   int distance = 40;
   char* labels[] = {"A0", "A1", "A2", "A3", "A4", "A5"};

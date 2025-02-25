@@ -6,6 +6,7 @@ Theophile Klein - 27/01/2025
 #include "LibPeripherique.h"
 #include "configTest1.h"
 #include "LibCapteur.h"
+#include "LibDriver.h"
 
 #include "soc/gpio_struct.h" // Pour accéder aux registres GPIO
 #include "driver/gpio.h"    // Pour configurer les GPIOs
@@ -20,6 +21,7 @@ Capteur* configTest1::capteurForce3 = nullptr; // Initialisé à nullptr
 Capteur* configTest1::capteurForce4 = nullptr; // Initialisé à nullptr
 Capteur* configTest1::capteurForce5 = nullptr; // Initialisé à nullptr
 
+DriverMotor* configTest1::verin = nullptr;
 
 int configTest1::dir = 0;
 int configTest1::dir2 = 0;
@@ -43,6 +45,8 @@ void configTest1::init(Screen* scr)
   configTest1::capteurForce3 = new Capteur(2,monMultiplex1);
   configTest1::capteurForce4 = new Capteur(3,monMultiplex1);
   configTest1::capteurForce5 = new Capteur(4,monMultiplex1);
+
+  configTest1::verin = new DriverMotor(0,1,monRegistre1);
 
   scr->linearMeters[0].disable = false;
   scr->linearMeters[1].disable = false;
@@ -97,8 +101,7 @@ void configTest1::run(){
   if (value6 == 0){
     
     if (dir2 != 100){
-      configTest1::monRegistre1->changeByte(0b01, 2 , 0);
-      configTest1::monRegistre1->Refresh();
+      configTest1::verin->LowerArm();
         // ESP32 : Configuration des broches en mode sortie
         dir2 = 1;
     }
@@ -107,9 +110,8 @@ void configTest1::run(){
   if ((value6 > 10)&&(value5 < 60))
   {
     if (dir2 != 0){
-      configTest1::monRegistre1->changeByte(0b00, 2 , 0);
-      configTest1::monRegistre1->Refresh();
-   
+
+      configTest1::verin->StopArm();
       dir2 = 0;
     }
   }
@@ -117,8 +119,7 @@ void configTest1::run(){
   if (value6 > 100)
   {
     if (dir2 != -1){
-      configTest1::monRegistre1->changeByte(0b10, 2 , 0);
-      configTest1::monRegistre1->Refresh();
+      configTest1::verin->RaiseArm();
       dir2 = -1;
     }
   }

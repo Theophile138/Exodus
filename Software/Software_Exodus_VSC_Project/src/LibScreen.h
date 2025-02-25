@@ -7,11 +7,10 @@ Theophile Klein - 15/02/2025
 
 #include <TFT_eSPI.h> // Hardware-specific library
 #include <SPI.h>
-#include "LibGauge.h"
+#include "LibJauge.h"
 
 #include "FS.h"
 
-#include "LibConfig.h"
 #include "LibButton.h"
 
 #define SCREEN_WIDTH  240
