@@ -124,7 +124,9 @@ void Task2(){
     myScreen.linearMeters[5].new_value = (int)(configTest1::value6*100.0/4095.0);
   
     if (myScreen.myGauge != nullptr){ 
-      myScreen.myGauge->new_value = (int)(configTest1::value1*100.0/4095.0);
+
+      myScreen.myGauge->new_value = (int)((configTest1::value6) );
+
     }
   }
 }

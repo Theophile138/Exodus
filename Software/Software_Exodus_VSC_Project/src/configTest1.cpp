@@ -89,7 +89,7 @@ void configTest1::run(){
   //Serial.print("Capteur4:"+String(value4)+",");
   
   value6 = configTest1::capteurForce5->getValue();
-  //Serial.print("Capteur5:"+String(value5)+",");
+  Serial.print("Capteur6:"+String(value6)+",");
 
   //delay(100);
 
@@ -100,31 +100,31 @@ void configTest1::run(){
 
   if (value6 == 0){
     
-    if (dir2 != 100){
+    //if (dir2 != 100){
       configTest1::verin->LowerArm();
         // ESP32 : Configuration des broches en mode sortie
-        dir2 = 1;
-    }
+    //    dir2 = 1;
+    //}
   }
 
-  if ((value6 > 10)&&(value5 < 60))
+  if ((value6 > 25)&&(value6 < 75))
   {
-    if (dir2 != 0){
+    //if (dir2 != 0){
 
       configTest1::verin->StopArm();
-      dir2 = 0;
-    }
+    //  dir2 = 0;
+    //}
   }
 
-  if (value6 > 100)
+  if (value6 > 75)
   {
-    if (dir2 != -1){
+    //if (dir2 != -1){
       configTest1::verin->RaiseArm();
-      dir2 = -1;
-    }
+    //  dir2 = -1;
+    //}
   }
 
-
+/*
   if (value1 > 2000){
     
     if (dir != 1){
@@ -153,4 +153,5 @@ void configTest1::run(){
     }
   }
 
+  */
 }
