@@ -1,0 +1,127 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "eff6fa20-5234-4050-97e2-50c0f1200604")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 69.85 19.05)
+		(size 34.29 44.45)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "0b54829d-427a-4cec-ad76-5ec109d9b946")
+		(property "Sheetname" "registers_mux"
+			(at 69.85 18.3384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "registers_mux.kicad_sch"
+			(at 69.85 64.0846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Exaudus_Emma_test"
+				(path "/eff6fa20-5234-4050-97e2-50c0f1200604"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 21.59 17.78)
+		(size 34.29 45.72)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "c95d1659-af23-419b-b221-0176ed7de2aa")
+		(property "Sheetname" "microcontroller"
+			(at 21.59 17.0684 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "microcontroller.kicad_sch"
+			(at 21.59 64.0846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Exaudus_Emma_test"
+				(path "/eff6fa20-5234-4050-97e2-50c0f1200604"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 115.57 19.05)
+		(size 35.56 44.45)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "f32e1329-6f8d-417e-b827-643538bf3a3d")
+		(property "Sheetname" "power"
+			(at 115.57 18.3384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power.kicad_sch"
+			(at 115.57 64.0846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "Exaudus_Emma_test"
+				(path "/eff6fa20-5234-4050-97e2-50c0f1200604"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
