@@ -165,7 +165,7 @@ void Screen::Gauge_Menu_init(){
 
   tft->fillScreen(TFT_BLACK);
   
-  myGauge->drawAnalogMeters(tft,0,0,0,0,25,50,75,"% Force");
+  myGauge->drawAnalogMeters(tft,0,0,50,0,25,75,100,"% Force");
 
   int distance = 40;
   char* labels[] = {"A0", "A1", "A2", "A3", "A4", "A5"};

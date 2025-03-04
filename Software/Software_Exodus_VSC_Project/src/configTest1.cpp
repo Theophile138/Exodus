@@ -98,7 +98,7 @@ void configTest1::run(){
   //Serial.println("");
 
 
-  if (value6 == 0){
+  if (value6 < 10){
     
     //if (dir2 != 100){
       configTest1::verin->LowerArm();
@@ -107,7 +107,7 @@ void configTest1::run(){
     //}
   }
 
-  if ((value6 > 25)&&(value6 < 75))
+  if ((value6 > 15)&&(value6 < 85))
   {
     //if (dir2 != 0){
 
