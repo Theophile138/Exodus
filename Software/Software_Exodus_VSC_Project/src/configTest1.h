@@ -10,15 +10,29 @@ Theophile Klein - 27/01/2025
 #include "LibCapteur.h"
 #include "LibDriver.h"
 
+#if defined(ESP32)
+
 #include "soc/gpio_struct.h" // Pour accéder aux registres GPIO
 #include "driver/gpio.h"    // Pour configurer les GPIOs
 
 #include "LibScreen.h"
 
+#endif
+
 class configTest1 {
 public:
+  
+  #if defined(ESP32)
+
   // Déclaration de la methode init, pour le demarge de la class
   static void init(Screen* scr);
+
+  #else
+
+  static void init();
+  
+  #endif
+
   static void run();
 
   // Pin pour le registre a decalage
@@ -30,12 +44,11 @@ public:
   static Registre* monRegistre1;
 
   static const int Multiplex1PinA = 33;
-  static const int Multiplex1PinS0 = 4; // pin N°4 sur le registre 1
-  static const int Multiplex1PinS1 = 5; // pin N°5 ... registre 1
-  static const int Multiplex1PinS2 = 6; // ect ...
+  static const int Multiplex1PinS0 = 2; // pin N°4 sur le registre 1
+  static const int Multiplex1PinS1 = 1; // pin N°5 ... registre 1
+  static const int Multiplex1PinS2 = 0; // ect ...
 
   static MasterDevice* myEsp32;
-
   static Multiplexeur* monMultiplex1;
 
   static Capteur* capteurForce1;
