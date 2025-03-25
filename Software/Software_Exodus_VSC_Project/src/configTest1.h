@@ -57,6 +57,8 @@ public:
   static Capteur* capteurForce4;
   static Capteur* capteurForce5;
 
+  static CapteurMPU6050* capteurMPU;
+
   static DriverMotor* verin;
 
   static int dir;
