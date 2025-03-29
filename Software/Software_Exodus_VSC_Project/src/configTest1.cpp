@@ -25,6 +25,8 @@ Capteur* configTest1::capteurForce3 = nullptr; // Initialisé à nullptr
 Capteur* configTest1::capteurForce4 = nullptr; // Initialisé à nullptr
 Capteur* configTest1::capteurForce5 = nullptr; // Initialisé à nullptr
 
+CapteurMPU6050* configTest1::capteurMPU = nullptr;
+
 DriverMotor* configTest1::verin = nullptr;
 
 int configTest1::dir = 0;
@@ -53,6 +55,9 @@ void configTest1::init(Screen* scr)
   configTest1::capteurForce5 = new Capteur(5,monMultiplex1);
 
   configTest1::verin = new DriverMotor(6,7,monRegistre1);
+
+  configTest1::capteurMPU = new CapteurMPU6050();
+  configTest1::capteurMPU->begin();
 
   scr->linearMeters[0].disable = false;
   scr->linearMeters[1].disable = false;
@@ -211,5 +216,10 @@ void configTest1::run(){
     //}
   }
 
-  
+  	int16_t ax, ay, az;
+	configTest1::capteurMPU->getAcceleration(ax, ay, az);
+	Serial.print("MPU6050 Accel -> X: "); Serial.print(ax);
+	Serial.print(" Y: "); Serial.print(ay);
+	Serial.print(" Z: "); Serial.println(az);
+
 }
