@@ -39,11 +39,11 @@ public:
   static const int Reg1DataPin = 25; // Pin de l'esp32
   static const int Reg1ClockPin = 26;
   static const int Reg1TrigPin = 27;
-  static const int Reg1Length = 16; // Taile du registre (formule cas général, 8 * nombreDeRegistre en serie)
+  static const int Reg1Length = 16; // Taile du registre (formule cas général, 8 * nombreDeRegistre en serie)b
 
   static Registre* monRegistre1;
 
-  static const int Multiplex1PinA = 33;
+  static const int Multiplex1PinA = 36;
   static const int Multiplex1PinS0 = 2; // pin N°4 sur le registre 1
   static const int Multiplex1PinS1 = 1; // pin N°5 ... registre 1
   static const int Multiplex1PinS2 = 0; // ect ...

@@ -1,3 +1,6 @@
+# 1 "C:\\Users\\THEOPH~1\\AppData\\Local\\Temp\\tmpvxfvf0zu"
+#include <Arduino.h>
+# 1 "C:/Users/Theophile/Documents/A2/Exodus/ExodusGit/Software/Software_Exodus_VSC_Project/src/Software_Exodus_VisualCode.ino"
 #include "configTest1.h"
 #include "LibScreen.h"
 
@@ -18,13 +21,16 @@ int iteration2;
 #define FirmwareVersion "0.5"
 
 float timeDelay = 10000;
-
+void setup();
+void loop();
+void Task2();
+#line 22 "C:/Users/Theophile/Documents/A2/Exodus/ExodusGit/Software/Software_Exodus_VSC_Project/src/Software_Exodus_VisualCode.ino"
 void setup() {
   Serial.begin(115200);
 
-  myScreen = Screen(); 
+  myScreen = Screen();
   myScreen.touch_calibrate();
-  
+
   myScreen.imageStart(FirmwareVersion);
 
   delay(5000);
@@ -32,7 +38,7 @@ void setup() {
   myScreen.Select_Menu_init();
 
   Time_screen = millis();
-  
+
   Time_config = micros();
 
   Time = millis();
@@ -45,7 +51,7 @@ void setup() {
 
 }
 
-void loop() 
+void loop()
 {
 
   if (millis() - Time_screen > 20){
@@ -66,12 +72,12 @@ void loop()
 
 
 
-  
+
   if (millis() - Time >= timeDelay){
-  
+
     Serial.print("Temp de gestion des taches sur "+String(timeDelay/1000.0));
-    //Serial.print(" seconde :");
-    //Serial.print(total_time1);
+
+
     Serial.print("  Ecran :");
     Serial.print((total_time1/timeDelay)*100);
     Serial.print("%");
@@ -102,14 +108,14 @@ void loop()
 
     Time = millis();
 
-    
+
 
   }
-  
+
 }
 
 void Task2(){
-  
+
   if (myScreen.config_selectionne == 0){
     configTest1::run();
     myScreen.linearMeters[0].new_value = (int)(configTest1::value1*100.0/4095.0);
@@ -118,8 +124,8 @@ void Task2(){
     myScreen.linearMeters[3].new_value = (int)(configTest1::value4*100.0/4095.0);
     myScreen.linearMeters[4].new_value = (int)(configTest1::value5*100.0/4095.0);
     myScreen.linearMeters[5].new_value = (int)(configTest1::value6*100.0/4095.0);
-  
-    if (myScreen.myGauge != nullptr){ 
+
+    if (myScreen.myGauge != nullptr){
 
       myScreen.myGauge->new_value = (int)((configTest1::value6) );
 
