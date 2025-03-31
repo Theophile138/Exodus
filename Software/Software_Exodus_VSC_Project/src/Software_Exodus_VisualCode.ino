@@ -1,9 +1,12 @@
-#include "configTest1.h"
-#include "LibScreen.h"
+#include "Extend_Card_lib/configTest1.h"
+
+#include "Extend_Card_lib/Extend_Card_lib.h"
+#include "Screen_lib/LibScreen.h"
 
 #include "Arduino.h"
 
 Screen myScreen;
+Extend_Card myCard;
 
 unsigned long Time_screen;
 unsigned long Time;
@@ -21,6 +24,8 @@ float timeDelay = 10000;
 
 void setup() {
   Serial.begin(115200);
+
+  myCard = Extend_Card();
 
   myScreen = Screen(); 
   myScreen.touch_calibrate();
