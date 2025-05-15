@@ -1,0 +1,130 @@
+\doxysection{bmp2array4bit Namespace Reference}
+\hypertarget{namespacebmp2array4bit}{}\label{namespacebmp2array4bit}\index{bmp2array4bit@{bmp2array4bit}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacebmp2array4bit_af3c455d623ca49c851441c42ca882b0f}\label{namespacebmp2array4bit_af3c455d623ca49c851441c42ca882b0f} 
+{\bfseries debug\+Out} (s)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{namespacebmp2array4bit_a3f5be9487bf3624ef8552381565d17f6}\label{namespacebmp2array4bit_a3f5be9487bf3624ef8552381565d17f6} 
+{\bfseries debug} = None
+\item 
+\Hypertarget{namespacebmp2array4bit_acb4529231e05452dcbd0c69dd54fb3a6}\label{namespacebmp2array4bit_acb4529231e05452dcbd0c69dd54fb3a6} 
+{\bfseries parser} = argparse.\+Argument\+Parser(description="{}Convert bmp file to C array"{})
+\item 
+\Hypertarget{namespacebmp2array4bit_a229668fac61b50f830952d32a02bc97e}\label{namespacebmp2array4bit_a229668fac61b50f830952d32a02bc97e} 
+{\bfseries help}
+\item 
+\Hypertarget{namespacebmp2array4bit_aa263350b11e1da583b73ae360e323e13}\label{namespacebmp2array4bit_aa263350b11e1da583b73ae360e323e13} 
+{\bfseries action}
+\item 
+\Hypertarget{namespacebmp2array4bit_ad2a266600690e65b275b3ed3b78cf7f3}\label{namespacebmp2array4bit_ad2a266600690e65b275b3ed3b78cf7f3} 
+{\bfseries args} = parser.\+parse\+\_\+args()
+\item 
+\Hypertarget{namespacebmp2array4bit_a4e1b28f1d0c3b9e8d1af64ed18976d1a}\label{namespacebmp2array4bit_a4e1b28f1d0c3b9e8d1af64ed18976d1a} 
+{\bfseries output} = os.\+path.\+basename(args.\+input).replace("{}.bmp"{}, "{}.c"{})
+\item 
+\Hypertarget{namespacebmp2array4bit_a156d64e1dc29467b830b1b8bc748f8c5}\label{namespacebmp2array4bit_a156d64e1dc29467b830b1b8bc748f8c5} 
+{\bfseries infile} = open(args.\+input,"{}rb"{})
+\item 
+\Hypertarget{namespacebmp2array4bit_a7d9f859fd563414471d28fbe074201fd}\label{namespacebmp2array4bit_a7d9f859fd563414471d28fbe074201fd} 
+{\bfseries contents} = bytearray(infile.\+read())
+\item 
+\Hypertarget{namespacebmp2array4bit_af9b9535e0a28cffae97dbc53afcb4763}\label{namespacebmp2array4bit_af9b9535e0a28cffae97dbc53afcb4763} 
+int {\bfseries upto} = 2
+\item 
+\Hypertarget{namespacebmp2array4bit_aa9e5f7f28ff9700f3200d46263b9331c}\label{namespacebmp2array4bit_aa9e5f7f28ff9700f3200d46263b9331c} 
+{\bfseries data} = struct.\+pack("{}BBBB"{}, contents\mbox{[}upto\mbox{]}, contents\mbox{[}upto+1\mbox{]}, contents\mbox{[}upto+2\mbox{]}, contents\mbox{[}upto+3\mbox{]})
+\item 
+\Hypertarget{namespacebmp2array4bit_a1687d1dd48c8a783d54a4b8fe967b63b}\label{namespacebmp2array4bit_a1687d1dd48c8a783d54a4b8fe967b63b} 
+{\bfseries file\+Size} = struct.\+unpack("{}I"{}, bytearray(data))
+\item 
+\Hypertarget{namespacebmp2array4bit_afe304981d22edf31f336fef0ed05cd1c}\label{namespacebmp2array4bit_afe304981d22edf31f336fef0ed05cd1c} 
+{\bfseries offset} = struct.\+unpack("{}I"{}, bytearray(data))
+\item 
+\Hypertarget{namespacebmp2array4bit_aa2bd6521484c7c7eef2ca36fa4a9aeb4}\label{namespacebmp2array4bit_aa2bd6521484c7c7eef2ca36fa4a9aeb4} 
+{\bfseries headersize} = struct.\+unpack("{}I"{}, bytearray(data))
+\item 
+\Hypertarget{namespacebmp2array4bit_a19e3ad3bd069d6e51072004e26f4706e}\label{namespacebmp2array4bit_a19e3ad3bd069d6e51072004e26f4706e} 
+{\bfseries header\+Length} = headersize\mbox{[}0\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_ae7520d4fe470dad7c6c8a5675a25cd7b}\label{namespacebmp2array4bit_ae7520d4fe470dad7c6c8a5675a25cd7b} 
+int {\bfseries start\+Of\+Definitions} = header\+Length + upto
+\item 
+\Hypertarget{namespacebmp2array4bit_a0665c443babefa5f5cd63014f24d1e6a}\label{namespacebmp2array4bit_a0665c443babefa5f5cd63014f24d1e6a} 
+{\bfseries t} = struct.\+unpack("{}I"{}, bytearray(data))
+\item 
+\Hypertarget{namespacebmp2array4bit_a90ff8f8f0dfc2d9c59b3a8e4dee6825a}\label{namespacebmp2array4bit_a90ff8f8f0dfc2d9c59b3a8e4dee6825a} 
+{\bfseries width} = t\mbox{[}0\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_ac069b0326c8ec43953c6b999f6dba8bd}\label{namespacebmp2array4bit_ac069b0326c8ec43953c6b999f6dba8bd} 
+{\bfseries height} = t\mbox{[}0\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_ae3c596a94730f9f96532228699f4ccc3}\label{namespacebmp2array4bit_ae3c596a94730f9f96532228699f4ccc3} 
+{\bfseries bits\+Per\+Pixel} = t\mbox{[}0\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_a4e33d96643e747f5aeff0e2e133bf25c}\label{namespacebmp2array4bit_a4e33d96643e747f5aeff0e2e133bf25c} 
+{\bfseries colors\+Used} = t
+\item 
+\Hypertarget{namespacebmp2array4bit_a00920ee6aade3edf4c87b7bf12b43f86}\label{namespacebmp2array4bit_a00920ee6aade3edf4c87b7bf12b43f86} 
+list {\bfseries color\+Index} = \mbox{[}$\,$\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_aaba126b4b74d66150bf2656cca760e94}\label{namespacebmp2array4bit_aaba126b4b74d66150bf2656cca760e94} 
+{\bfseries blue} = contents\mbox{[}upto\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_a9c46ca634789675034206226e198a44f}\label{namespacebmp2array4bit_a9c46ca634789675034206226e198a44f} 
+{\bfseries green} = contents\mbox{[}upto + 1\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_af015638c6933e87f599c39d15ef4f602}\label{namespacebmp2array4bit_af015638c6933e87f599c39d15ef4f602} 
+{\bfseries red} = contents\mbox{[}upto + 2\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_a4ea70b37edc29a8e955e8717e032430b}\label{namespacebmp2array4bit_a4ea70b37edc29a8e955e8717e032430b} 
+tuple {\bfseries array\+Size} = (len(contents) -\/ offset\mbox{[}0\mbox{]})
+\item 
+\Hypertarget{namespacebmp2array4bit_ab5938a7d11e42878ce22018bc5349114}\label{namespacebmp2array4bit_ab5938a7d11e42878ce22018bc5349114} 
+str {\bfseries output\+String} = "{}/\texorpdfstring{$\ast$}{*} This was generated using a script based on the Spark\+Fun BMPto\+Array python script"{} + \textquotesingle{}\textbackslash{}n\textquotesingle{}
+\item 
+\Hypertarget{namespacebmp2array4bit_a41dceccf77baf8e6b7bd57a2d985d8dc}\label{namespacebmp2array4bit_a41dceccf77baf8e6b7bd57a2d985d8dc} 
+bool {\bfseries drop\+Last\+Number} = True
+\item 
+\Hypertarget{namespacebmp2array4bit_aecae1a2bc49ec9708c39f84e42d261df}\label{namespacebmp2array4bit_aecae1a2bc49ec9708c39f84e42d261df} 
+{\bfseries padded\+Width} = int(math.\+ceil(bits\+Per\+Pixel \texorpdfstring{$\ast$}{*} width / 32.\+0) \texorpdfstring{$\ast$}{*} 4)
+\item 
+\Hypertarget{namespacebmp2array4bit_aba74d1e7493e05b526df5d55d2e3825e}\label{namespacebmp2array4bit_aba74d1e7493e05b526df5d55d2e3825e} 
+int {\bfseries r} = 0
+\item 
+\Hypertarget{namespacebmp2array4bit_a0650325948312ba6f3bba119c8700ad5}\label{namespacebmp2array4bit_a0650325948312ba6f3bba119c8700ad5} 
+int {\bfseries i} = 0
+\item 
+\Hypertarget{namespacebmp2array4bit_ae9972c8da4e3c92b1112912f88a7822d}\label{namespacebmp2array4bit_ae9972c8da4e3c92b1112912f88a7822d} 
+{\bfseries color\+Code1} = contents\mbox{[}row + col\texorpdfstring{$\ast$}{*}padded\+Width + offset\mbox{[}0\mbox{]}\mbox{]}
+\item 
+\Hypertarget{namespacebmp2array4bit_a6bd1975ca5696e276ca6ee139d8dfc6e}\label{namespacebmp2array4bit_a6bd1975ca5696e276ca6ee139d8dfc6e} 
+{\bfseries outfile} = open(output, "{}w"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}    This script takes in a bitmap and outputs a text file that is a
+    byte array used in Arduino files.
+
+    It is loosely based on Spark Fun's bmp2array script.
+
+    You'll need python 3.6 (the original use Python 2.7)
+
+    usage: python fourbitbmp2array.py [-v] star.bmp [-o myfile.c]
+    
+    Create the bmp file in Gimp by :
+
+    . Remove the alpha channel (if it has one) Layer -> Transparency -> Remove Alpha Channel
+    . Set the mode to indexed.  Image -> Mode -> Indexed...
+    . Select Generate optimum palette with 16 colors (max)
+    . Export the file with a .bmp extension. Options are:
+        . Run-Length Encoded: not selected
+        . Compatibility Options: "Do not write color space information" not selected
+        . There are no Advanced Options available with these settings
+\end{DoxyVerb}
+ 

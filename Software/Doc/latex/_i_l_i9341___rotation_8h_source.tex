@@ -1,0 +1,88 @@
+\doxysection{ILI9341\+\_\+\+Rotation.\+h}
+\hypertarget{_i_l_i9341___rotation_8h_source}{}\label{_i_l_i9341___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9341\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9341\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ILI9341\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 8;\ \textcolor{comment}{//\ Limit\ the\ range\ of\ values\ to\ 0-\/7}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//\ These\ next\ rotations\ are\ for\ bottom\ up\ BMP\ drawing}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{case}\ 4:}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{case}\ 5:}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordflow}{case}\ 6:}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{case}\ 7:}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \}}
+
+\end{DoxyCode}

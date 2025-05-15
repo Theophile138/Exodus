@@ -4,9 +4,16 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 import os
 
+"""Convertit des images en tableaux RGB565 et les enregistre dans un fichier d'en-tête C (.h)."""
 
 def rgb_to_rgb565(r, g, b):
-    """Convert RGB to RGB565 format."""
+    """Permet de convertir un code RGB vers le format RGB565.
+    Args:
+        r (int): Composante de rouge (0-255).
+        g (int): Composante de vert (0-255).
+        b (int): Composante de bleu (0-255).
+    Returns:
+        int: Valeur RGB565."""
     r = (r >> 3) & 0x1F  # 5 bits for red
     g = (g >> 2) & 0x3F  # 6 bits for green
     b = (b >> 3) & 0x1F  # 5 bits for blue
@@ -14,7 +21,11 @@ def rgb_to_rgb565(r, g, b):
 
 
 def image_to_rgb565_array(image_path):
-    """Convert an image to a RGB565 array without resizing."""
+    """Permet de convertir une image vers un tableau de RGB565 sans changer la taille.
+    Args:
+        image_path (str): Chemin de l'image à convertir.
+    Returns:
+        (Tableau, Largeur, Hauteur) (tuple): Un tuple contenant le tableau RGB565, la largeur et la hauteur de l'image."""
     img = Image.open(image_path).convert('RGB')
     width, height = img.size
     rgb565_array = np.zeros((height, width), dtype=np.uint16)
@@ -28,7 +39,10 @@ def image_to_rgb565_array(image_path):
 
 
 def save_arrays_to_header_file(images_dict, filename):
-    """Save multiple RGB565 arrays to a single .h file."""
+    """Enregistre plusieurs tableaux RGB565 dans un seul fichier .h.
+    Args:
+        images_dict (dict): Dictionnaire contenant les tableaux d'images.
+        filename (str): Nom du fichier de sortie."""
     with open(filename, 'w') as f:
         f.write("#ifndef IMAGE_DATA_H\n")
         f.write("#define IMAGE_DATA_H\n\n")
@@ -45,7 +59,7 @@ def save_arrays_to_header_file(images_dict, filename):
 
 
 def select_folder():
-    """Open a file dialog to select a folder and process all images inside."""
+    """ Ouvre une fenêtre de dialogue pour sélectionner un dossier et traite toutes les images à l'intérieur."""
     folder_path = filedialog.askdirectory()
     if folder_path:
         try:
@@ -65,18 +79,19 @@ def select_folder():
                     save_arrays_to_header_file(images_dict, save_path)
                     messagebox.showinfo("Success", "Images converted and saved successfully!")
             else:
-                messagebox.showwarning("No Images Found", "No valid images found in the selected folder.")
+                messagebox.showwarning("Pas d'images trouvées", "Pas d'images valides trouvées dans le dossier sélectionné.")
         except Exception as e:
-            messagebox.showerror("Error", str(e))
+            messagebox.showerror("Erreur: ", str(e))
 
 
-# Create a simple GUI
-root = tk.Tk()
-root.title("Image to RGB565 Converter")
+# Interface graphique
+root = tk.Tk() 
+root.title("Convertisseur d'images RGB vers RGB565")
 root.geometry("400x200")
 
-# Select Folder Button
-button = tk.Button(root, text="Select Folder", command=select_folder)
+# Bouton pour sélectionner le dossier
+button = tk.Button(root, text="Choisissez le dossier", command=select_folder)
 button.pack(pady=20)
+
 
 root.mainloop()

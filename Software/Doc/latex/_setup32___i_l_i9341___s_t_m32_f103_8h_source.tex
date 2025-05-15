@@ -1,0 +1,65 @@
+\doxysection{Setup32\+\_\+\+ILI9341\+\_\+\+STM32\+F103.\+h}
+\hypertarget{_setup32___i_l_i9341___s_t_m32_f103_8h_source}{}\label{_setup32___i_l_i9341___s_t_m32_f103_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup32\_ILI9341\_STM32F103.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup32\_ILI9341\_STM32F103.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ for\ STM32F103\ (e.g.\ Blue\ Pill)\ and\ ILI9341\ display\ //}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Last\ update\ by\ Bodmer:\ 14/1/20}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Define\ STM32\ to\ invoke\ STM32\ optimised\ driver}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ STM32}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Define\ the\ TFT\ display\ driver}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#define\ ILI9481\_DRIVER}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ MOSI\ and\ SCK\ do\ not\ need\ to\ be\ defined,\ connect:}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ -\/\ Arduino\ SCK\ (Blue\ Pill\ pin\ A5)\ \ to\ TFT\ SCK}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ -\/\ Arduino\ MOSI\ (Blue\ Pill\ pin\ A7)\ to\ TFT\ SDI\ (may\ be\ marked\ SDA\ or\ MOSI)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ -\/\ Optional\ to\ read\ TFT:\ Arduino\ MISO\ (Blue\ Pill\ pin\ A6)\ to\ TFT\ SDO\ (may\ be\ marked\ MISO\ or\ may\ not\ exist\ on\ TFT)}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ Note:\ not\ all\ TFT's\ support\ reads}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ reminder:\ Blue\ Pill\ SPI\ pins\ are\ SCK=A5,\ MISO\ =\ A6,\ MOSI=A7}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Can\ use\ Ardiuno\ pin\ references,\ arbitrary\ allocation,\ TFT\_eSPI\ controls\ chip\ select}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ A0\ }\textcolor{comment}{//\ Chip\ select\ control\ pin\ to\ TFT\ CS}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ A1\ }\textcolor{comment}{//\ Data\ Command\ control\ pin\ to\ TFT\ DC\ (may\ be\ labelled\ RS\ =\ Register\ Select)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ A2\ }\textcolor{comment}{//\ Reset\ pin\ to\ TFT\ RST\ (or\ RESET)}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\#define\ TFT\_RST\ \ -\/1\ \ \ //\ Set\ TFT\_RST\ to\ -\/1\ if\ the\ display\ RESET\ is\ connected\ to\ processor\ reset}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ an\ Arduino\ pin\ for\ initial\ testing\ as\ connecting\ to\ processor\ reset}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ may\ not\ work\ (due\ to\ variations\ in\ display\ design)}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TOUCH\_CS\ A4\ }\textcolor{comment}{//\ Connect\ to\ T\_CS\ (Touch\ controller\ chip\ select)\ if\ XPT2046\ is\ connected\ to\ SPI\ bus}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ may\ need\ to\ wire\ the\ touch\ controller\ to\ the\ processor\ in\ addition\ to\ the\ TFT}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ example\ on\ some\ boards\ the\ pins\ are\ labelled:}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\_IRQ\ -\/\ no\ connection\ to\ processor}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\_DO\ \ -\/\ connect\ to\ processor\ MISO}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\_DIN\ -\/\ connect\ to\ processor\ MOSI}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\_CS\ \ -\/\ connect\ to\ processor\ pin\ specified\ by\ TOUCH\_CS\ above}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ T\_SCK\ -\/\ connect\ to\ processor\ SCK}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ STM32\ support\ for\ smooth\ fonts\ via\ program\ memory\ (FLASH)\ arrays}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Assuming\ the\ processor\ clock\ is\ 72MHz:}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 36000000\ \ \ }\textcolor{comment}{//\ 36MHz\ SPI\ clock}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 18000000\ \ \ //\ 18MHz\ SPI\ clock}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 12000000\ }\textcolor{comment}{//\ Reads\ need\ a\ slower\ SPI\ clock}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000\ }\textcolor{comment}{//\ Must\ be\ very\ slow}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ This\ has\ no\ effect,\ transactions\ are\ automatically\ enabled\ for\ STM32}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\#define\ SUPPORT\_TRANSACTIONS}}
+
+\end{DoxyCode}

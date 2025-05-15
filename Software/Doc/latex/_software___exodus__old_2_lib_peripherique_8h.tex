@@ -1,0 +1,16 @@
+\doxysection{Software\+\_\+\+Exodus\+\_\+old/\+Lib\+Peripherique.h File Reference}
+\hypertarget{_software___exodus__old_2_lib_peripherique_8h}{}\label{_software___exodus__old_2_lib_peripherique_8h}\index{Software\_Exodus\_old/LibPeripherique.h@{Software\_Exodus\_old/LibPeripherique.h}}
+{\ttfamily \#include "{}Arduino.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_parent_device}{Parent\+Device}}
+\begin{DoxyCompactList}\small\item\em Interface pour les périphériques pouvant être sélectionnés par un multiplexeur ou contrôlés par un registre. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_parent_analog}{Parent\+Analog}}
+\begin{DoxyCompactList}\small\item\em Interface pour les périphériques capables de lire une valeur analogique. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_master_device}{Master\+Device}}
+\begin{DoxyCompactList}\small\item\em Implémente \doxylink{class_parent_device}{Parent\+Device} et \doxylink{class_parent_analog}{Parent\+Analog} pour gérer directement les pins du microcontrôleur. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_registre}{Registre}}
+\begin{DoxyCompactList}\small\item\em Classe pour piloter un registre. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}
+\begin{DoxyCompactList}\small\item\em Classe pour piloter un multiplexeur analogique (ex \+: CD4051). \end{DoxyCompactList}\end{DoxyCompactItemize}

@@ -1,0 +1,570 @@
+\doxysection{Button Class Reference}
+\hypertarget{class_button}{}\label{class_button}\index{Button@{Button}}
+
+
+Classe pour créer et gérer des boutons graphiques (texte ou image), avec gestion du tactile, du mode toggle et de l\textquotesingle{}état désactivé.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Button.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_button_adf271b1be4c753b7f9ddf23e8f67c530}{Button}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut du bouton. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a738597cb3eefde9c995364bbdfcc9e7a}{init\+Button}} (TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}}, int16\+\_\+t \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}}, int16\+\_\+t \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}}, uint16\+\_\+t \mbox{\hyperlink{class_button_ab86d5efc973df18859900023ebadc172}{outline}}, uint16\+\_\+t \mbox{\hyperlink{class_button_abd83f5d2f2e1a767233d92cba99540f5}{fill}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb}{textcolor}}, char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_acf60de4c64d60c1b9449c056bc6bfcf7}{label}}, uint8\+\_\+t \mbox{\hyperlink{class_button_ad2d642a63a07934860392fa5018b235f}{textsize}}, \mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}=nullptr, void(\texorpdfstring{$\ast$}{*}on\+Press)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})=\mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}})
+\begin{DoxyCompactList}\small\item\em Initialise un bouton texte. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a764580d193444b7377404294f4842348}{init\+Button}} (TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}}, int16\+\_\+t \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}}, int16\+\_\+t \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}}, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a79490d23a5d64d5efde6e1301b2baf83}{image}}, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}image\+Off=nullptr, \mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}=nullptr, void(\texorpdfstring{$\ast$}{*}on\+Press)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})=\mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}})
+\begin{DoxyCompactList}\small\item\em Initialise un bouton image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a7948696d2a9f3dd685f8a41eb7089c8b}{toggle\+\_\+mode}} (char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_ac3b8bb77a963df89fd1be40254368585}{toggle\+\_\+label}}, uint16\+\_\+t \mbox{\hyperlink{class_button_a0949675a0ea4765fdf55c6b83d65573d}{toggle\+\_\+color}}, uint16\+\_\+t \mbox{\hyperlink{class_button_aaf11cb58cc4c6063854f8c96c318a7fa}{toggle\+\_\+text\+\_\+color}}, \mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}=nullptr, void(\texorpdfstring{$\ast$}{*}off\+Press)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})=\mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}, bool toggle\+\_\+button=true)
+\begin{DoxyCompactList}\small\item\em Active le mode toggle (texte). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_aa184398dc7331a7833a82abb1fa6f82b}{toggle\+\_\+mode}} (const uint16\+\_\+t \texorpdfstring{$\ast$}{*}image\+\_\+toggle, \mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}=nullptr, void(\texorpdfstring{$\ast$}{*}off\+Press)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})=\mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}, bool toggle\+\_\+button=true)
+\begin{DoxyCompactList}\small\item\em Active le mode toggle (image). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a864a80a58ea8bea5f271bd2e8107dd0b}{disable\+\_\+color\+\_\+init}} (uint16\+\_\+t fill\+Color, uint16\+\_\+t text\+Color)
+\begin{DoxyCompactList}\small\item\em Initialise les couleurs à utiliser en mode désactivé. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_adb3cf331346189654d528ee8e24b681a}{draw}} (bool invert=false)
+\begin{DoxyCompactList}\small\item\em Dessine le bouton à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_button_a75b33b927f84cbaaeb8c188fa57baee7}{refresh\+Touch}} (uint16\+\_\+t touch\+\_\+x, uint16\+\_\+t touch\+\_\+y, bool pressed)
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}état du bouton en fonction du tactile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{class_button_a4f6a7f253bdd17de45549df1fc71b8c0}{disable}}
+\begin{DoxyCompactList}\small\item\em Indique si le bouton est désactivé \end{DoxyCompactList}\item 
+TFT\+\_\+e\+SPI\+\_\+\+Button \mbox{\hyperlink{class_button_a3cd970a7e7208668228a917ee232b2e1}{my\+Button}}
+\begin{DoxyCompactList}\small\item\em Objet bouton de la bibliothèque TFT\+\_\+e\+SPI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Fonction vide par défaut pour les callbacks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet graphique TFT. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}}
+\begin{DoxyCompactList}\small\item\em Position X du centre du bouton. \end{DoxyCompactList}\item 
+int16\+\_\+t \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}}
+\begin{DoxyCompactList}\small\item\em Position Y du centre du bouton. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}}
+\begin{DoxyCompactList}\small\item\em Largeur du bouton. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}}
+\begin{DoxyCompactList}\small\item\em Hauteur du bouton. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_ab86d5efc973df18859900023ebadc172}{outline}}
+\begin{DoxyCompactList}\small\item\em Couleur du contour. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_abd83f5d2f2e1a767233d92cba99540f5}{fill}}
+\begin{DoxyCompactList}\small\item\em Couleur de fond. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb}{textcolor}}
+\begin{DoxyCompactList}\small\item\em Couleur du texte. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_acf60de4c64d60c1b9449c056bc6bfcf7}{label}}
+\begin{DoxyCompactList}\small\item\em Texte affiché sur le bouton. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{class_button_ad2d642a63a07934860392fa5018b235f}{textsize}}
+\begin{DoxyCompactList}\small\item\em Taille du texte. \end{DoxyCompactList}\item 
+const uint16\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a79490d23a5d64d5efde6e1301b2baf83}{image}}
+\begin{DoxyCompactList}\small\item\em Image principale du bouton (format RGB565) \end{DoxyCompactList}\item 
+const uint16\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_aa25e74c9fe00866f6b326f500b351d40}{image\+\_\+press}}
+\begin{DoxyCompactList}\small\item\em Image affichée lors de l\textquotesingle{}appui ou en mode désactivé \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_a32317f847ce51fe316ab4a627d9f82ed}{button\+\_\+image\+\_\+bool}}
+\begin{DoxyCompactList}\small\item\em Indique si le bouton utilise une image. \end{DoxyCompactList}\item 
+const uint16\+\_\+t \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a6b431061601bfd8dd0285e6d1696b938}{actual\+\_\+image}}
+\begin{DoxyCompactList}\small\item\em Image actuellement affichée. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_ad86c27ef6d8b18fc15f3d3ab1dd918a6}{toggle\+\_\+mode\+\_\+bool}}
+\begin{DoxyCompactList}\small\item\em Indique si le bouton est en mode toggle. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_ac3b8bb77a963df89fd1be40254368585}{toggle\+\_\+label}}
+\begin{DoxyCompactList}\small\item\em Texte du bouton en mode toggle. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_a0949675a0ea4765fdf55c6b83d65573d}{toggle\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Couleur de fond en mode toggle. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_aaf11cb58cc4c6063854f8c96c318a7fa}{toggle\+\_\+text\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Couleur du texte en mode toggle. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_a3925a04c05688e61608c810e5f66bb1c}{toggle\+\_\+state}}
+\begin{DoxyCompactList}\small\item\em État actuel du toggle. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_ac8aa35310e444bfeef28d99f2647982e}{disable\+\_\+fill\+\_\+color}}
+\begin{DoxyCompactList}\small\item\em Couleur de fond en mode désactivé \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{class_button_a22ec919ba7f7461e346194cf25d174eb}{disable\+\_\+text\+Color}}
+\begin{DoxyCompactList}\small\item\em Couleur du texte en mode désactivé \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_button_a1b638af4f9d6e18fe17a0395e13ef829}{disable\+\_\+color\+\_\+on}}
+\begin{DoxyCompactList}\small\item\em Indique si les couleurs désactivées sont utilisées. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}écran associé \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a8365cc39baa7ace1838f0a23c312bca0}{on\+Click}} )(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Callback appelé lors de l\textquotesingle{}appui. \end{DoxyCompactList}\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_button_a8eea7cc7a2f055318d6879b1799db19b}{off\+Click}} )(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Callback appelé lors du relâchement (toggle) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour créer et gérer des boutons graphiques (texte ou image), avec gestion du tactile, du mode toggle et de l\textquotesingle{}état désactivé. 
+
+Permet d\textquotesingle{}afficher des boutons sur un écran TFT, de gérer leur état (pressé, relâché, désactivé), d\textquotesingle{}utiliser des images ou du texte, et de définir des callbacks pour les actions (on\+Click, off\+Click). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_button_adf271b1be4c753b7f9ddf23e8f67c530}\index{Button@{Button}!Button@{Button}}
+\index{Button@{Button}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{Button()}{Button()}}
+{\footnotesize\ttfamily \label{class_button_adf271b1be4c753b7f9ddf23e8f67c530} 
+\mbox{\hyperlink{class_button}{Button}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut du bouton. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_button_a864a80a58ea8bea5f271bd2e8107dd0b}\index{Button@{Button}!disable\_color\_init@{disable\_color\_init}}
+\index{disable\_color\_init@{disable\_color\_init}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{disable\_color\_init()}{disable\_color\_init()}}
+{\footnotesize\ttfamily \label{class_button_a864a80a58ea8bea5f271bd2e8107dd0b} 
+void disable\+\_\+color\+\_\+init (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{fill\+Color}{, }\item[{uint16\+\_\+t}]{text\+Color}{}\end{DoxyParamCaption})}
+
+
+
+Initialise les couleurs à utiliser en mode désactivé. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em fill\+Color} & Couleur de fond désactivée. \\
+\hline
+{\em text\+Color} & Couleur du texte désactivé. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_adb3cf331346189654d528ee8e24b681a}\index{Button@{Button}!draw@{draw}}
+\index{draw@{draw}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_button_adb3cf331346189654d528ee8e24b681a} 
+void draw (\begin{DoxyParamCaption}\item[{bool}]{invert}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Dessine le bouton à l\textquotesingle{}écran. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em invert} & Si vrai, affiche le bouton en mode inversé (pressé/désactivé). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_aba2759bfdeedb10657246fc123813ec5}\index{Button@{Button}!emptyFunction@{emptyFunction}}
+\index{emptyFunction@{emptyFunction}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{emptyFunction()}{emptyFunction()}}
+{\footnotesize\ttfamily \label{class_button_aba2759bfdeedb10657246fc123813ec5} 
+static void empty\+Function (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Fonction vide par défaut pour les callbacks. 
+
+\Hypertarget{class_button_a764580d193444b7377404294f4842348}\index{Button@{Button}!initButton@{initButton}}
+\index{initButton@{initButton}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{initButton()}{initButton()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_button_a764580d193444b7377404294f4842348} 
+void init\+Button (\begin{DoxyParamCaption}\item[{TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}}]{gfx}{, }\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{w}{, }\item[{uint16\+\_\+t}]{h}{, }\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{image}{, }\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{image\+Off}{ = {\ttfamily nullptr}, }\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{scr}{ = {\ttfamily nullptr}, }\item[{void(\texorpdfstring{$\ast$}{*}}]{on\+Press~}{)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}) = {\ttfamily \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}}}\end{DoxyParamCaption})}
+
+
+
+Initialise un bouton image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gfx} & Pointeur vers l\textquotesingle{}objet graphique TFT. \\
+\hline
+{\em x} & Position X du centre. \\
+\hline
+{\em y} & Position Y du centre. \\
+\hline
+{\em w} & Largeur. \\
+\hline
+{\em h} & Hauteur. \\
+\hline
+{\em image} & Image principale (RGB565). \\
+\hline
+{\em image\+Off} & Image affichée lors de l\textquotesingle{}appui ou en mode désactivé (optionnel). \\
+\hline
+{\em scr} & Pointeur vers l\textquotesingle{}écran associé (optionnel). \\
+\hline
+{\em on\+Press} & Callback à appeler lors de l\textquotesingle{}appui (optionnel). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_a738597cb3eefde9c995364bbdfcc9e7a}\index{Button@{Button}!initButton@{initButton}}
+\index{initButton@{initButton}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{initButton()}{initButton()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_button_a738597cb3eefde9c995364bbdfcc9e7a} 
+void init\+Button (\begin{DoxyParamCaption}\item[{TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}}]{gfx}{, }\item[{int16\+\_\+t}]{x}{, }\item[{int16\+\_\+t}]{y}{, }\item[{uint16\+\_\+t}]{w}{, }\item[{uint16\+\_\+t}]{h}{, }\item[{uint16\+\_\+t}]{outline}{, }\item[{uint16\+\_\+t}]{fill}{, }\item[{uint16\+\_\+t}]{textcolor}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{label}{, }\item[{uint8\+\_\+t}]{textsize}{, }\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{scr}{ = {\ttfamily nullptr}, }\item[{void(\texorpdfstring{$\ast$}{*}}]{on\+Press~}{)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}) = {\ttfamily \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}}}\end{DoxyParamCaption})}
+
+
+
+Initialise un bouton texte. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gfx} & Pointeur vers l\textquotesingle{}objet graphique TFT. \\
+\hline
+{\em x} & Position X du centre. \\
+\hline
+{\em y} & Position Y du centre. \\
+\hline
+{\em w} & Largeur. \\
+\hline
+{\em h} & Hauteur. \\
+\hline
+{\em outline} & Couleur du contour. \\
+\hline
+{\em fill} & Couleur de fond. \\
+\hline
+{\em textcolor} & Couleur du texte. \\
+\hline
+{\em label} & Texte à afficher. \\
+\hline
+{\em textsize} & Taille du texte. \\
+\hline
+{\em scr} & Pointeur vers l\textquotesingle{}écran associé (optionnel). \\
+\hline
+{\em on\+Press} & Callback à appeler lors de l\textquotesingle{}appui (optionnel). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_a75b33b927f84cbaaeb8c188fa57baee7}\index{Button@{Button}!refreshTouch@{refreshTouch}}
+\index{refreshTouch@{refreshTouch}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{refreshTouch()}{refreshTouch()}}
+{\footnotesize\ttfamily \label{class_button_a75b33b927f84cbaaeb8c188fa57baee7} 
+void refresh\+Touch (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{touch\+\_\+x}{, }\item[{uint16\+\_\+t}]{touch\+\_\+y}{, }\item[{bool}]{pressed}{}\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}état du bouton en fonction du tactile. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em touch\+\_\+x} & Coordonnée X du toucher. \\
+\hline
+{\em touch\+\_\+y} & Coordonnée Y du toucher. \\
+\hline
+{\em pressed} & État du toucher (pressé ou non). \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_a7948696d2a9f3dd685f8a41eb7089c8b}\index{Button@{Button}!toggle\_mode@{toggle\_mode}}
+\index{toggle\_mode@{toggle\_mode}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_mode()}{toggle\_mode()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_button_a7948696d2a9f3dd685f8a41eb7089c8b} 
+void toggle\+\_\+mode (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{toggle\+\_\+label}{, }\item[{uint16\+\_\+t}]{toggle\+\_\+color}{, }\item[{uint16\+\_\+t}]{toggle\+\_\+text\+\_\+color}{, }\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{scr}{ = {\ttfamily nullptr}, }\item[{void(\texorpdfstring{$\ast$}{*}}]{off\+Press~}{)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}) = {\ttfamily \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}}, }\item[{bool}]{toggle\+\_\+button}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Active le mode toggle (texte). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em toggle\+\_\+label} & Texte en mode toggle. \\
+\hline
+{\em toggle\+\_\+color} & Couleur de fond en mode toggle. \\
+\hline
+{\em toggle\+\_\+text\+\_\+color} & Couleur du texte en mode toggle. \\
+\hline
+{\em scr} & Pointeur vers l\textquotesingle{}écran associé (optionnel). \\
+\hline
+{\em off\+Press} & Callback à appeler lors du relâchement (optionnel). \\
+\hline
+{\em toggle\+\_\+button} & Active/désactive le mode toggle. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_button_aa184398dc7331a7833a82abb1fa6f82b}\index{Button@{Button}!toggle\_mode@{toggle\_mode}}
+\index{toggle\_mode@{toggle\_mode}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_mode()}{toggle\_mode()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_button_aa184398dc7331a7833a82abb1fa6f82b} 
+void toggle\+\_\+mode (\begin{DoxyParamCaption}\item[{const uint16\+\_\+t \texorpdfstring{$\ast$}{*}}]{image\+\_\+toggle}{, }\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{scr}{ = {\ttfamily nullptr}, }\item[{void(\texorpdfstring{$\ast$}{*}}]{off\+Press~}{)(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}) = {\ttfamily \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{empty\+Function}}}, }\item[{bool}]{toggle\+\_\+button}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+Active le mode toggle (image). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image\+\_\+toggle} & Image à afficher en mode toggle. \\
+\hline
+{\em scr} & Pointeur vers l\textquotesingle{}écran associé (optionnel). \\
+\hline
+{\em off\+Press} & Callback à appeler lors du relâchement (optionnel). \\
+\hline
+{\em toggle\+\_\+button} & Active/désactive le mode toggle. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_button_a6b431061601bfd8dd0285e6d1696b938}\index{Button@{Button}!actual\_image@{actual\_image}}
+\index{actual\_image@{actual\_image}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{actual\_image}{actual\_image}}
+{\footnotesize\ttfamily \label{class_button_a6b431061601bfd8dd0285e6d1696b938} 
+const uint16\+\_\+t\texorpdfstring{$\ast$}{*} actual\+\_\+image\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image actuellement affichée. 
+
+\Hypertarget{class_button_a32317f847ce51fe316ab4a627d9f82ed}\index{Button@{Button}!button\_image\_bool@{button\_image\_bool}}
+\index{button\_image\_bool@{button\_image\_bool}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{button\_image\_bool}{button\_image\_bool}}
+{\footnotesize\ttfamily \label{class_button_a32317f847ce51fe316ab4a627d9f82ed} 
+bool button\+\_\+image\+\_\+bool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indique si le bouton utilise une image. 
+
+\Hypertarget{class_button_a4f6a7f253bdd17de45549df1fc71b8c0}\index{Button@{Button}!disable@{disable}}
+\index{disable@{disable}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{disable}{disable}}
+{\footnotesize\ttfamily \label{class_button_a4f6a7f253bdd17de45549df1fc71b8c0} 
+bool disable}
+
+
+
+Indique si le bouton est désactivé 
+
+\Hypertarget{class_button_a1b638af4f9d6e18fe17a0395e13ef829}\index{Button@{Button}!disable\_color\_on@{disable\_color\_on}}
+\index{disable\_color\_on@{disable\_color\_on}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{disable\_color\_on}{disable\_color\_on}}
+{\footnotesize\ttfamily \label{class_button_a1b638af4f9d6e18fe17a0395e13ef829} 
+bool disable\+\_\+color\+\_\+on\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indique si les couleurs désactivées sont utilisées. 
+
+\Hypertarget{class_button_ac8aa35310e444bfeef28d99f2647982e}\index{Button@{Button}!disable\_fill\_color@{disable\_fill\_color}}
+\index{disable\_fill\_color@{disable\_fill\_color}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{disable\_fill\_color}{disable\_fill\_color}}
+{\footnotesize\ttfamily \label{class_button_ac8aa35310e444bfeef28d99f2647982e} 
+uint16\+\_\+t disable\+\_\+fill\+\_\+color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur de fond en mode désactivé 
+
+\Hypertarget{class_button_a22ec919ba7f7461e346194cf25d174eb}\index{Button@{Button}!disable\_textColor@{disable\_textColor}}
+\index{disable\_textColor@{disable\_textColor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{disable\_textColor}{disable\_textColor}}
+{\footnotesize\ttfamily \label{class_button_a22ec919ba7f7461e346194cf25d174eb} 
+uint16\+\_\+t disable\+\_\+text\+Color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur du texte en mode désactivé 
+
+\Hypertarget{class_button_abd83f5d2f2e1a767233d92cba99540f5}\index{Button@{Button}!fill@{fill}}
+\index{fill@{fill}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{fill}{fill}}
+{\footnotesize\ttfamily \label{class_button_abd83f5d2f2e1a767233d92cba99540f5} 
+uint16\+\_\+t fill\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur de fond. 
+
+\Hypertarget{class_button_a6ca5035bcc0cd40ba552fd02421deea1}\index{Button@{Button}!gfx@{gfx}}
+\index{gfx@{gfx}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{gfx}{gfx}}
+{\footnotesize\ttfamily \label{class_button_a6ca5035bcc0cd40ba552fd02421deea1} 
+TFT\+\_\+e\+SPI\texorpdfstring{$\ast$}{*} gfx\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet graphique TFT. 
+
+\Hypertarget{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}\index{Button@{Button}!h@{h}}
+\index{h@{h}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{h}{h}}
+{\footnotesize\ttfamily \label{class_button_a8bf5747847b23fa2d39ef956e10bfbd3} 
+uint16\+\_\+t h\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Hauteur du bouton. 
+
+\Hypertarget{class_button_a79490d23a5d64d5efde6e1301b2baf83}\index{Button@{Button}!image@{image}}
+\index{image@{image}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{image}{image}}
+{\footnotesize\ttfamily \label{class_button_a79490d23a5d64d5efde6e1301b2baf83} 
+const uint16\+\_\+t\texorpdfstring{$\ast$}{*} image\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image principale du bouton (format RGB565) 
+
+\Hypertarget{class_button_aa25e74c9fe00866f6b326f500b351d40}\index{Button@{Button}!image\_press@{image\_press}}
+\index{image\_press@{image\_press}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{image\_press}{image\_press}}
+{\footnotesize\ttfamily \label{class_button_aa25e74c9fe00866f6b326f500b351d40} 
+const uint16\+\_\+t\texorpdfstring{$\ast$}{*} image\+\_\+press\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Image affichée lors de l\textquotesingle{}appui ou en mode désactivé 
+
+\Hypertarget{class_button_acf60de4c64d60c1b9449c056bc6bfcf7}\index{Button@{Button}!label@{label}}
+\index{label@{label}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{label}{label}}
+{\footnotesize\ttfamily \label{class_button_acf60de4c64d60c1b9449c056bc6bfcf7} 
+char\texorpdfstring{$\ast$}{*} label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Texte affiché sur le bouton. 
+
+\Hypertarget{class_button_a3cd970a7e7208668228a917ee232b2e1}\index{Button@{Button}!myButton@{myButton}}
+\index{myButton@{myButton}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{myButton}{myButton}}
+{\footnotesize\ttfamily \label{class_button_a3cd970a7e7208668228a917ee232b2e1} 
+TFT\+\_\+e\+SPI\+\_\+\+Button my\+Button}
+
+
+
+Objet bouton de la bibliothèque TFT\+\_\+e\+SPI. 
+
+\Hypertarget{class_button_a8eea7cc7a2f055318d6879b1799db19b}\index{Button@{Button}!offClick@{offClick}}
+\index{offClick@{offClick}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{offClick}{offClick}}
+{\footnotesize\ttfamily \label{class_button_a8eea7cc7a2f055318d6879b1799db19b} 
+void(\texorpdfstring{$\ast$}{*} off\+Click) (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback appelé lors du relâchement (toggle) 
+
+\Hypertarget{class_button_a8365cc39baa7ace1838f0a23c312bca0}\index{Button@{Button}!onClick@{onClick}}
+\index{onClick@{onClick}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{onClick}{onClick}}
+{\footnotesize\ttfamily \label{class_button_a8365cc39baa7ace1838f0a23c312bca0} 
+void(\texorpdfstring{$\ast$}{*} on\+Click) (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Callback appelé lors de l\textquotesingle{}appui. 
+
+\Hypertarget{class_button_ab86d5efc973df18859900023ebadc172}\index{Button@{Button}!outline@{outline}}
+\index{outline@{outline}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{outline}{outline}}
+{\footnotesize\ttfamily \label{class_button_ab86d5efc973df18859900023ebadc172} 
+uint16\+\_\+t outline\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur du contour. 
+
+\Hypertarget{class_button_a6523aa9ce436e2c07b39516062d704d7}\index{Button@{Button}!scr@{scr}}
+\index{scr@{scr}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{scr}{scr}}
+{\footnotesize\ttfamily \label{class_button_a6523aa9ce436e2c07b39516062d704d7} 
+\mbox{\hyperlink{class_screen}{Screen}}\texorpdfstring{$\ast$}{*} scr\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}écran associé 
+
+\Hypertarget{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb}\index{Button@{Button}!textcolor@{textcolor}}
+\index{textcolor@{textcolor}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{textcolor}{textcolor}}
+{\footnotesize\ttfamily \label{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb} 
+uint16\+\_\+t textcolor\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur du texte. 
+
+\Hypertarget{class_button_ad2d642a63a07934860392fa5018b235f}\index{Button@{Button}!textsize@{textsize}}
+\index{textsize@{textsize}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{textsize}{textsize}}
+{\footnotesize\ttfamily \label{class_button_ad2d642a63a07934860392fa5018b235f} 
+uint8\+\_\+t textsize\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Taille du texte. 
+
+\Hypertarget{class_button_a0949675a0ea4765fdf55c6b83d65573d}\index{Button@{Button}!toggle\_color@{toggle\_color}}
+\index{toggle\_color@{toggle\_color}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_color}{toggle\_color}}
+{\footnotesize\ttfamily \label{class_button_a0949675a0ea4765fdf55c6b83d65573d} 
+uint16\+\_\+t toggle\+\_\+color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur de fond en mode toggle. 
+
+\Hypertarget{class_button_ac3b8bb77a963df89fd1be40254368585}\index{Button@{Button}!toggle\_label@{toggle\_label}}
+\index{toggle\_label@{toggle\_label}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_label}{toggle\_label}}
+{\footnotesize\ttfamily \label{class_button_ac3b8bb77a963df89fd1be40254368585} 
+char\texorpdfstring{$\ast$}{*} toggle\+\_\+label\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Texte du bouton en mode toggle. 
+
+\Hypertarget{class_button_ad86c27ef6d8b18fc15f3d3ab1dd918a6}\index{Button@{Button}!toggle\_mode\_bool@{toggle\_mode\_bool}}
+\index{toggle\_mode\_bool@{toggle\_mode\_bool}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_mode\_bool}{toggle\_mode\_bool}}
+{\footnotesize\ttfamily \label{class_button_ad86c27ef6d8b18fc15f3d3ab1dd918a6} 
+bool toggle\+\_\+mode\+\_\+bool\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Indique si le bouton est en mode toggle. 
+
+\Hypertarget{class_button_a3925a04c05688e61608c810e5f66bb1c}\index{Button@{Button}!toggle\_state@{toggle\_state}}
+\index{toggle\_state@{toggle\_state}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_state}{toggle\_state}}
+{\footnotesize\ttfamily \label{class_button_a3925a04c05688e61608c810e5f66bb1c} 
+bool toggle\+\_\+state\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+État actuel du toggle. 
+
+\Hypertarget{class_button_aaf11cb58cc4c6063854f8c96c318a7fa}\index{Button@{Button}!toggle\_text\_color@{toggle\_text\_color}}
+\index{toggle\_text\_color@{toggle\_text\_color}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{toggle\_text\_color}{toggle\_text\_color}}
+{\footnotesize\ttfamily \label{class_button_aaf11cb58cc4c6063854f8c96c318a7fa} 
+uint16\+\_\+t toggle\+\_\+text\+\_\+color\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Couleur du texte en mode toggle. 
+
+\Hypertarget{class_button_a69e28057d97f59f81862a467cc6299fc}\index{Button@{Button}!w@{w}}
+\index{w@{w}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily \label{class_button_a69e28057d97f59f81862a467cc6299fc} 
+uint16\+\_\+t w\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Largeur du bouton. 
+
+\Hypertarget{class_button_ae1c2d516777e6b42af0d281c9ecc7375}\index{Button@{Button}!x@{x}}
+\index{x@{x}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{class_button_ae1c2d516777e6b42af0d281c9ecc7375} 
+int16\+\_\+t x\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position X du centre du bouton. 
+
+\Hypertarget{class_button_af77b1a54442f2443cf64a4766f916bcd}\index{Button@{Button}!y@{y}}
+\index{y@{y}!Button@{Button}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{class_button_af77b1a54442f2443cf64a4766f916bcd} 
+int16\+\_\+t y\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position Y du centre du bouton. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_button_8h}{Lib\+Button.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_button_8cpp}{Lib\+Button.\+cpp}}\end{DoxyCompactItemize}

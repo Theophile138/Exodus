@@ -1,0 +1,40 @@
+\doxysection{SSD1351\+\_\+\+Rotation.\+h}
+\hypertarget{_s_s_d1351___rotation_8h_source}{}\label{_s_s_d1351___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ SSD1351\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;\ \textcolor{comment}{//\ Limit\ the\ range\ of\ values\ to\ 0-\/3}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ uint8\_t\ madctl\ =\ 0x64;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ madctl\ |=\ 0x10;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ madctl\ |=\ 0x13;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ madctl\ |=\ 0x02;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ madctl\ |=\ 0x01;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00029\ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ writecommand(0xA0);\ \textcolor{comment}{//\ SETREMAP}}
+\DoxyCodeLine{00032\ \ \ writedata(madctl);}
+\DoxyCodeLine{00033\ \ \ writecommand(0xA1);\ \textcolor{comment}{//\ STARTLINE}}
+\DoxyCodeLine{00034\ \ \ writedata(rotation\ <\ 2\ ?\ TFT\_HEIGHT\ :\ 0);}
+
+\end{DoxyCode}

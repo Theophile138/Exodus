@@ -1,0 +1,47 @@
+\doxysection{User\+\_\+\+Custom\+\_\+\+Fonts.\+h}
+\hypertarget{_user___custom___fonts_8h_source}{}\label{_user___custom___fonts_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/User\_Custom\_Fonts.h@{lib/TFT\_eSPI-\/master/User\_Setups/User\_Custom\_Fonts.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Custom\ "{}Adafruit"{}\ compatible\ font\ files\ can\ be\ added\ to\ the\ "{}TFT\_eSPI/Fonts/Custom"{}\ folder}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Fonts\ in\ a\ suitable\ format\ can\ be\ created\ using\ a\ Squix\ blog\ web\ based\ tool\ here:}}
+\DoxyCodeLine{00004\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ https://blog.squix.org/2016/10/font-\/creator-\/now-\/creates-\/adafruit-\/gfx-\/fonts.html}}
+\DoxyCodeLine{00006\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Note:\ At\ the\ time\ of\ writing\ there\ is\ a\ last\ character\ code\ definition\ bug\ in\ the}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Squix\ font\ file\ format\ so\ do\ NOT\ try\ and\ print\ the\ tilda\ (\string~)\ symbol\ (ASCII\ 0x7E)}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Alternatively\ look\ at\ the\ end\ of\ the\ font\ header\ file\ and\ edit:\ \ 0x7E\ to\ read\ 0x7D}}
+\DoxyCodeLine{00011\ \textcolor{comment}{/*\ e.g.\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vvvv}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ (uint8\_t\ \ *)Orbitron\_Light\_32Bitmaps,(GFXglyph\ *)Orbitron\_Light\_32Glyphs,0x20,\ 0x7D,\ 32\};}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^\string^\string^\string^}}
+\DoxyCodeLine{00014\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ When\ font\ files\ are\ placed\ in\ the\ Custom\ folder\ (TFT\_eSPI\(\backslash\)Fonts\(\backslash\)Custom)\ then\ they\ must}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ also\ be\ \#included\ here:}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ The\ CF\_OL24\ etc\ are\ a\ shorthand\ reference,\ but\ this\ is\ not\ essential\ to\ use\ the\ fonts}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{comment}{//\ New\ custom\ font\ file\ \#includes}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Custom/Orbitron\_Light\_24.h>}\ \textcolor{comment}{//\ CF\_OL24}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Custom/Orbitron\_Light\_32.h>}\ \textcolor{comment}{//\ CF\_OL32}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Custom/Roboto\_Thin\_24.h>}\ \ \ \ \textcolor{comment}{//\ CF\_RT24}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Custom/Satisfy\_24.h>}\ \ \ \ \ \ \ \ \textcolor{comment}{//\ CF\_S24}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/Custom/Yellowtail\_32.h>}\ \ \ \ \ \textcolor{comment}{//\ CF\_Y32}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Shorthand\ references\ -\/\ any\ coding\ scheme\ can\ be\ used,\ here\ CF\_\ =\ Custom\ Font}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ The\ \#defines\ below\ MUST\ be\ added\ to\ sketches\ to\ use\ shorthand\ references,\ so}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ they\ are\ only\ put\ here\ for\ reference\ and\ copy+paste\ purposes!}}
+\DoxyCodeLine{00035\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\#define\ CF\_OL24\ \&Orbitron\_Light\_24}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\#define\ CF\_OL32\ \&Orbitron\_Light\_32}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\#define\ CF\_RT24\ \&Roboto\_Thin\_24}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\#define\ CF\_S24\ \ \&Satisfy\_24}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\#define\ CF\_Y32\ \ \&Yellowtail\_32}}
+\DoxyCodeLine{00041\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

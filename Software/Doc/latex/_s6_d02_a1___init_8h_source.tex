@@ -1,0 +1,53 @@
+\doxysection{S6\+D02\+A1\+\_\+\+Init.\+h}
+\hypertarget{_s6_d02_a1___init_8h_source}{}\label{_s6_d02_a1___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/S6D02A1\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/S6D02A1\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ S6D02A1\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ is\ in\ a\ format\ accecpted\ by\ the\ commandList()\ function}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ which\ reduces\ FLASH\ space,\ but\ on\ an\ ESP8266\ there\ is\ plenty\ available!}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ See\ ILI9341\_Setup.h\ file\ for\ an\ alternative\ simpler\ format}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Initialization\ commands\ for\ S6D02A1\ screens}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ S6D02A1\_cmds[]\ PROGMEM\ =}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ 29,}
+\DoxyCodeLine{00014\ \ \ \ \ 0xf0,\ \ \ 2,\ \ 0x5a,\ 0x5a,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Excommand2}}
+\DoxyCodeLine{00015\ \ \ \ \ 0xfc,\ \ \ 2,\ \ 0x5a,\ 0x5a,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Excommand3}}
+\DoxyCodeLine{00016\ \ \ \ \ 0x26,\ \ \ 1,\ \ 0x01,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gamma\ set}}
+\DoxyCodeLine{00017\ \ \ \ \ 0xfa,\ \ \ 15,\ 0x02,\ 0x1f,\ 0x00,\ 0x10,\ 0x22,\ 0x30,\ 0x38,\ 0x3A,\ 0x3A,\ 0x3A,\ 0x3A,\ 0x3A,\ 0x3d,\ 0x02,\ 0x01,\ \ \ \textcolor{comment}{//\ Positive\ gamma\ control}}
+\DoxyCodeLine{00018\ \ \ \ \ 0xfb,\ \ \ 15,\ 0x21,\ 0x00,\ 0x02,\ 0x04,\ 0x07,\ 0x0a,\ 0x0b,\ 0x0c,\ 0x0c,\ 0x16,\ 0x1e,\ 0x30,\ 0x3f,\ 0x01,\ 0x02,\ \ \ \textcolor{comment}{//\ Negative\ gamma\ control}}
+\DoxyCodeLine{00019\ \ \ \ \ 0xfd,\ \ \ 11,\ 0x00,\ 0x00,\ 0x00,\ 0x17,\ 0x10,\ 0x00,\ 0x01,\ 0x01,\ 0x00,\ 0x1f,\ 0x1f,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Analog\ parameter\ control}}
+\DoxyCodeLine{00020\ \ \ \ \ 0xf4,\ \ \ 15,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x3f,\ 0x3f,\ 0x07,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ \ \ \textcolor{comment}{//\ Power\ control}}
+\DoxyCodeLine{00021\ \ \ \ \ 0xf5,\ \ \ 13,\ 0x00,\ 0x70,\ 0x66,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x6d,\ 0x66,\ 0x06,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ VCOM\ control}}
+\DoxyCodeLine{00022\ \ \ \ \ 0xf6,\ \ \ 11,\ 0x02,\ 0x00,\ 0x3f,\ 0x00,\ 0x00,\ 0x00,\ 0x02,\ 0x00,\ 0x06,\ 0x01,\ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Source\ control}}
+\DoxyCodeLine{00023\ \ \ \ \ 0xf2,\ \ \ 17,\ 0x00,\ 0x01,\ 0x03,\ 0x08,\ 0x08,\ 0x04,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x01,\ 0x00,\ 0x00,\ 0x04,\ 0x08,\ 0x08,\ \ \ \textcolor{comment}{//Display\ control}}
+\DoxyCodeLine{00024\ \ \ \ \ 0xf8,\ \ \ 1,\ \ 0x11,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gate\ control}}
+\DoxyCodeLine{00025\ \ \ \ \ 0xf7,\ \ \ 4,\ 0xc8,\ 0x20,\ 0x00,\ 0x00,\ \ \textcolor{comment}{//\ Interface\ control}}
+\DoxyCodeLine{00026\ \ \ \ \ 0xf3,\ \ \ 2,\ 0x00,\ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00027\ \ \ \ \ 0x11,\ \ \ TFT\_INIT\_DELAY,\ 50,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wake}}
+\DoxyCodeLine{00028\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x01,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00029\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x03,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00030\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x07,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00031\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x0f,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00032\ \ \ \ \ 0xf4,\ \ \ 15+TFT\_INIT\_DELAY,\ 0x00,\ 0x04,\ 0x00,\ 0x00,\ 0x00,\ 0x3f,\ 0x3f,\ 0x07,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ 50,\ \ \ \ \textcolor{comment}{//\ Power\ control}}
+\DoxyCodeLine{00033\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x1f,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00034\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0x7f,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00035\ \ \ \ \ 0xf3,\ \ \ 2+TFT\_INIT\_DELAY,\ 0x00,\ 0xff,\ 50,\ \ \ \textcolor{comment}{//\ Power\ sequence\ control}}
+\DoxyCodeLine{00036\ \ \ \ \ 0xfd,\ \ \ 11,\ 0x00,\ 0x00,\ 0x00,\ 0x17,\ 0x10,\ 0x00,\ 0x00,\ 0x01,\ 0x00,\ 0x16,\ 0x16,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Analog\ parameter\ control}}
+\DoxyCodeLine{00037\ \ \ \ \ 0xf4,\ \ \ 15,\ 0x00,\ 0x09,\ 0x00,\ 0x00,\ 0x00,\ 0x3f,\ 0x3f,\ 0x07,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ 0x3C,\ 0x36,\ 0x00,\ \ \ \textcolor{comment}{//\ Power\ control}}
+\DoxyCodeLine{00038\ \ \ \ \ 0x36,\ \ \ 1,\ 0xC8,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Memory\ access\ data\ control}}
+\DoxyCodeLine{00039\ \ \ \ \ 0x35,\ \ \ 1,\ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tearing\ effect\ line\ on}}
+\DoxyCodeLine{00040\ \ \ \ \ 0x3a,\ \ \ 1+TFT\_INIT\_DELAY,\ 0x05,\ 150,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Interface\ pixel\ control}}
+\DoxyCodeLine{00041\ \ \ \ \ 0x29,\ \ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ on}}
+\DoxyCodeLine{00042\ \ \ \ \ 0x2c,\ \ \ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Memory\ write}}
+\DoxyCodeLine{00043\ \ \ \ \ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ commandList(S6D02A1\_cmds);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}

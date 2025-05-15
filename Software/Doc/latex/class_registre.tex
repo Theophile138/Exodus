@@ -1,0 +1,248 @@
+\doxysection{Registre Class Reference}
+\hypertarget{class_registre}{}\label{class_registre}\index{Registre@{Registre}}
+
+
+Classe pour piloter un registre.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Peripherique.\+h$>$}
+
+Inheritance diagram for Registre\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_registre}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_registre_a32a022237e99bb421a0db3d3c590eeac}{Registre}} (int \mbox{\hyperlink{class_registre_a5c8495d8b1f5b62f845cb37b60ff015a}{data\+Pin}}, int \mbox{\hyperlink{class_registre_a1acc62be4d3d57f1bd530e815120869f}{clock\+Pin}}, int \mbox{\hyperlink{class_registre_a190ab0e735cec97be28a9ba3a5988dd9}{trig\+Pin}}, int \mbox{\hyperlink{class_registre_a9f59b34b1f25fe00023291b678246bcc}{length}})
+\begin{DoxyCompactList}\small\item\em Constructeur du registre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_a08891c6a44f9386835dccba6bbda64bf}{change\+Byte}} (int small\+Binary, int length\+Small\+Bin, int position)
+\begin{DoxyCompactList}\small\item\em Modifie une partie des données du registre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_ac3c6292a931287d34f6e353524a6a3d0}{Refresh}} ()
+\begin{DoxyCompactList}\small\item\em Met à jour l\textquotesingle{}état des sorties du registre. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_a1149e1e7da0129dfcc98c047dcdf9c79}{Begin}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le registre (configuration des pins). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_ae4cd8d8473d4ad64d50115a866958f9a}{select\+Pin\+Multiplexeur}} (int pin\+Change\+Bin, int pin1, int pin2, int pin3) override
+\begin{DoxyCompactList}\small\item\em Sélectionne un canal sur un multiplexeur.    \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_a73a9f84b3460cd42c312802f4994f3a2}{set\+Pin}} (int pin, bool value) override
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres).    \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_registre_aa6de84773c43adcdb484c78d00de377b}{change\+Byte\+In\+Octet}} (int large\+Binary, int small\+Binary, int length\+Small\+Bin, int position)
+\begin{DoxyCompactList}\small\item\em Modifie une partie d\textquotesingle{}un nombre binaire. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_registre_a52996781d1ace9e6a0bb4ac7e3d6af09}{send\+Bit}} (int binary\+Data)
+\begin{DoxyCompactList}\small\item\em Envoie les données sur le registre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_registre_a5c8495d8b1f5b62f845cb37b60ff015a}{data\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de données. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_registre_a1acc62be4d3d57f1bd530e815120869f}{clock\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin d\textquotesingle{}horloge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_registre_a190ab0e735cec97be28a9ba3a5988dd9}{trig\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de validation (latch) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_registre_a9f59b34b1f25fe00023291b678246bcc}{length}}
+\begin{DoxyCompactList}\small\item\em Nombre de bits du registre. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_registre_a31e98d915bd34a68bc204769c4e1256e}{data\+Now}}
+\begin{DoxyCompactList}\small\item\em Données courantes du registre. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour piloter un registre. 
+
+Permet d\textquotesingle{}augmenter le nombre de sorties digitales disponibles. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_registre_a32a022237e99bb421a0db3d3c590eeac}\index{Registre@{Registre}!Registre@{Registre}}
+\index{Registre@{Registre}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{Registre()}{Registre()}}
+{\footnotesize\ttfamily \label{class_registre_a32a022237e99bb421a0db3d3c590eeac} 
+\mbox{\hyperlink{class_registre}{Registre}} (\begin{DoxyParamCaption}\item[{int}]{data\+Pin}{, }\item[{int}]{clock\+Pin}{, }\item[{int}]{trig\+Pin}{, }\item[{int}]{length}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur du registre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data\+Pin} & Pin de données. \\
+\hline
+{\em clock\+Pin} & Pin d\textquotesingle{}horloge. \\
+\hline
+{\em trig\+Pin} & Pin de validation. \\
+\hline
+{\em length} & Nombre de bits du registre. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_registre_a1149e1e7da0129dfcc98c047dcdf9c79}\index{Registre@{Registre}!Begin@{Begin}}
+\index{Begin@{Begin}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{Begin()}{Begin()}}
+{\footnotesize\ttfamily \label{class_registre_a1149e1e7da0129dfcc98c047dcdf9c79} 
+void Begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise le registre (configuration des pins). 
+
+\Hypertarget{class_registre_a08891c6a44f9386835dccba6bbda64bf}\index{Registre@{Registre}!changeByte@{changeByte}}
+\index{changeByte@{changeByte}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{changeByte()}{changeByte()}}
+{\footnotesize\ttfamily \label{class_registre_a08891c6a44f9386835dccba6bbda64bf} 
+void change\+Byte (\begin{DoxyParamCaption}\item[{int}]{small\+Binary}{, }\item[{int}]{length\+Small\+Bin}{, }\item[{int}]{position}{}\end{DoxyParamCaption})}
+
+
+
+Modifie une partie des données du registre. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em small\+Binary} & Valeur à insérer. \\
+\hline
+{\em length\+Small\+Bin} & Taille de la valeur à insérer. \\
+\hline
+{\em position} & Position de départ dans le registre. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_registre_aa6de84773c43adcdb484c78d00de377b}\index{Registre@{Registre}!changeByteInOctet@{changeByteInOctet}}
+\index{changeByteInOctet@{changeByteInOctet}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{changeByteInOctet()}{changeByteInOctet()}}
+{\footnotesize\ttfamily \label{class_registre_aa6de84773c43adcdb484c78d00de377b} 
+int change\+Byte\+In\+Octet (\begin{DoxyParamCaption}\item[{int}]{large\+Binary}{, }\item[{int}]{small\+Binary}{, }\item[{int}]{length\+Small\+Bin}{, }\item[{int}]{position}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Modifie une partie d\textquotesingle{}un nombre binaire. 
+
+\Hypertarget{class_registre_ac3c6292a931287d34f6e353524a6a3d0}\index{Registre@{Registre}!Refresh@{Refresh}}
+\index{Refresh@{Refresh}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{Refresh()}{Refresh()}}
+{\footnotesize\ttfamily \label{class_registre_ac3c6292a931287d34f6e353524a6a3d0} 
+void Refresh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Met à jour l\textquotesingle{}état des sorties du registre. 
+
+\Hypertarget{class_registre_ae4cd8d8473d4ad64d50115a866958f9a}\index{Registre@{Registre}!selectPinMultiplexeur@{selectPinMultiplexeur}}
+\index{selectPinMultiplexeur@{selectPinMultiplexeur}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{selectPinMultiplexeur()}{selectPinMultiplexeur()}}
+{\footnotesize\ttfamily \label{class_registre_ae4cd8d8473d4ad64d50115a866958f9a} 
+void select\+Pin\+Multiplexeur (\begin{DoxyParamCaption}\item[{int}]{pin\+Change\+Bin}{, }\item[{int}]{pin1}{, }\item[{int}]{pin2}{, }\item[{int}]{pin3}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sélectionne un canal sur un multiplexeur.    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Change\+Bin} & Valeur binaire à appliquer sur les pins de sélection. \\
+\hline
+{\em pin1} & Premier pin de sélection. \\
+\hline
+{\em pin2} & Deuxième pin de sélection. \\
+\hline
+{\em pin3} & Troisième pin de sélection.    \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_parent_device_ad7e19f476bb257b76c96fd70a2f4570a}{Parent\+Device}}.
+
+\Hypertarget{class_registre_a52996781d1ace9e6a0bb4ac7e3d6af09}\index{Registre@{Registre}!sendBit@{sendBit}}
+\index{sendBit@{sendBit}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{sendBit()}{sendBit()}}
+{\footnotesize\ttfamily \label{class_registre_a52996781d1ace9e6a0bb4ac7e3d6af09} 
+void send\+Bit (\begin{DoxyParamCaption}\item[{int}]{binary\+Data}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Envoie les données sur le registre. 
+
+\Hypertarget{class_registre_a73a9f84b3460cd42c312802f4994f3a2}\index{Registre@{Registre}!setPin@{setPin}}
+\index{setPin@{setPin}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{setPin()}{setPin()}}
+{\footnotesize\ttfamily \label{class_registre_a73a9f84b3460cd42c312802f4994f3a2} 
+void set\+Pin (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres).    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du pin à modifier. \\
+\hline
+{\em value} & Valeur à appliquer (HIGH ou LOW).    \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_parent_device_a53241009451a55d315ed1d14cc6fd731}{Parent\+Device}}.
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_registre_a1acc62be4d3d57f1bd530e815120869f}\index{Registre@{Registre}!clockPin@{clockPin}}
+\index{clockPin@{clockPin}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{clockPin}{clockPin}}
+{\footnotesize\ttfamily \label{class_registre_a1acc62be4d3d57f1bd530e815120869f} 
+int clock\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin d\textquotesingle{}horloge. 
+
+\Hypertarget{class_registre_a31e98d915bd34a68bc204769c4e1256e}\index{Registre@{Registre}!dataNow@{dataNow}}
+\index{dataNow@{dataNow}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{dataNow}{dataNow}}
+{\footnotesize\ttfamily \label{class_registre_a31e98d915bd34a68bc204769c4e1256e} 
+int data\+Now\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Données courantes du registre. 
+
+\Hypertarget{class_registre_a5c8495d8b1f5b62f845cb37b60ff015a}\index{Registre@{Registre}!dataPin@{dataPin}}
+\index{dataPin@{dataPin}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{dataPin}{dataPin}}
+{\footnotesize\ttfamily \label{class_registre_a5c8495d8b1f5b62f845cb37b60ff015a} 
+int data\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin de données. 
+
+\Hypertarget{class_registre_a9f59b34b1f25fe00023291b678246bcc}\index{Registre@{Registre}!length@{length}}
+\index{length@{length}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{length}{length}}
+{\footnotesize\ttfamily \label{class_registre_a9f59b34b1f25fe00023291b678246bcc} 
+int length\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Nombre de bits du registre. 
+
+\Hypertarget{class_registre_a190ab0e735cec97be28a9ba3a5988dd9}\index{Registre@{Registre}!trigPin@{trigPin}}
+\index{trigPin@{trigPin}!Registre@{Registre}}
+\doxysubsubsection{\texorpdfstring{trigPin}{trigPin}}
+{\footnotesize\ttfamily \label{class_registre_a190ab0e735cec97be28a9ba3a5988dd9} 
+int trig\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin de validation (latch) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8h}{Lib\+Peripherique.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8cpp}{Lib\+Peripherique.\+cpp}}\end{DoxyCompactItemize}

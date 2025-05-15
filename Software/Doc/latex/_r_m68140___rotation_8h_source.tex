@@ -1,0 +1,50 @@
+\doxysection{RM68140\+\_\+\+Rotation.\+h}
+\hypertarget{_r_m68140___rotation_8h_source}{}\label{_r_m68140___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68140\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68140\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ RM68140\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00005\ \ \ rotation\ =\ m\ \%\ 4;}
+\DoxyCodeLine{00006\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00007\ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00008\ \ \ \ \ \ writedata(TFT\_MAD\_BGR);}
+\DoxyCodeLine{00009\ \ \ \ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00010\ \ \ \ \ \ writedata(0);}
+\DoxyCodeLine{00011\ \ \ \ \ \ writedata(0x22);}
+\DoxyCodeLine{00012\ \ \ \ \ \ writedata(0x3B);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \_width\ \ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \_height\ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00016\ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00017\ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00018\ \ \ \ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00019\ \ \ \ \ \ writedata(0);}
+\DoxyCodeLine{00020\ \ \ \ \ \ writedata(0x02);}
+\DoxyCodeLine{00021\ \ \ \ \ \ writedata(0x3B);}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \_width\ \ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \_height\ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00025\ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00026\ \ \ \ \ \ writedata(TFT\_MAD\_BGR);}
+\DoxyCodeLine{00027\ \ \ \ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00028\ \ \ \ \ \ writedata(0);}
+\DoxyCodeLine{00029\ \ \ \ \ \ writedata(0x42);}
+\DoxyCodeLine{00030\ \ \ \ \ \ writedata(0x3B);}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \_width\ \ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \_height\ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00034\ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00035\ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00036\ \ \ \ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00037\ \ \ \ \ \ writedata(0);}
+\DoxyCodeLine{00038\ \ \ \ \ \ writedata(0x62);}
+\DoxyCodeLine{00039\ \ \ \ \ \ writedata(0x3B);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \_width\ \ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \_height\ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ }
+
+\end{DoxyCode}

@@ -1,0 +1,65 @@
+\doxysection{astro\+\_\+elongation\+\_\+t Struct Reference}
+\hypertarget{structastro__elongation__t}{}\label{structastro__elongation__t}\index{astro\_elongation\_t@{astro\_elongation\_t}}
+
+
+Contains information about the visibility of a celestial body at a given date and time. See Astronomy\+\_\+\+Elongation for more detailed information about the members of this structure. See also Astronomy\+\_\+\+Search\+Max\+Elongation for how to search for maximum elongation events.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__elongation__t_a769739d6a5284136d2e54cb9247acc8a}{status}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__elongation__t_a81a285588e39f9fb3e292ab1305a869e}{time}}
+\item 
+astro\+\_\+visibility\+\_\+t \mbox{\hyperlink{structastro__elongation__t_a798a24a1449115fbf489083678763cea}{visibility}}
+\item 
+double \mbox{\hyperlink{structastro__elongation__t_ad277178bd020945f1e1881e00c323563}{elongation}}
+\item 
+double \mbox{\hyperlink{structastro__elongation__t_acbc8400777fe1fbde0245fe46acece1a}{ecliptic\+\_\+separation}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Contains information about the visibility of a celestial body at a given date and time. See Astronomy\+\_\+\+Elongation for more detailed information about the members of this structure. See also Astronomy\+\_\+\+Search\+Max\+Elongation for how to search for maximum elongation events. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__elongation__t_acbc8400777fe1fbde0245fe46acece1a}\index{astro\_elongation\_t@{astro\_elongation\_t}!ecliptic\_separation@{ecliptic\_separation}}
+\index{ecliptic\_separation@{ecliptic\_separation}!astro\_elongation\_t@{astro\_elongation\_t}}
+\doxysubsubsection{\texorpdfstring{ecliptic\_separation}{ecliptic\_separation}}
+{\footnotesize\ttfamily \label{structastro__elongation__t_acbc8400777fe1fbde0245fe46acece1a} 
+double astro\+\_\+elongation\+\_\+t\+::ecliptic\+\_\+separation}
+
+The difference between the ecliptic longitudes of the body and the Sun, as seen from the Earth. \Hypertarget{structastro__elongation__t_ad277178bd020945f1e1881e00c323563}\index{astro\_elongation\_t@{astro\_elongation\_t}!elongation@{elongation}}
+\index{elongation@{elongation}!astro\_elongation\_t@{astro\_elongation\_t}}
+\doxysubsubsection{\texorpdfstring{elongation}{elongation}}
+{\footnotesize\ttfamily \label{structastro__elongation__t_ad277178bd020945f1e1881e00c323563} 
+double astro\+\_\+elongation\+\_\+t\+::elongation}
+
+The angle in degrees between the body and the Sun, as seen from the Earth. \Hypertarget{structastro__elongation__t_a769739d6a5284136d2e54cb9247acc8a}\index{astro\_elongation\_t@{astro\_elongation\_t}!status@{status}}
+\index{status@{status}!astro\_elongation\_t@{astro\_elongation\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__elongation__t_a769739d6a5284136d2e54cb9247acc8a} 
+astro\+\_\+status\+\_\+t astro\+\_\+elongation\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__elongation__t_a81a285588e39f9fb3e292ab1305a869e}\index{astro\_elongation\_t@{astro\_elongation\_t}!time@{time}}
+\index{time@{time}!astro\_elongation\_t@{astro\_elongation\_t}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{structastro__elongation__t_a81a285588e39f9fb3e292ab1305a869e} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+elongation\+\_\+t\+::time}
+
+The date and time of the observation. \Hypertarget{structastro__elongation__t_a798a24a1449115fbf489083678763cea}\index{astro\_elongation\_t@{astro\_elongation\_t}!visibility@{visibility}}
+\index{visibility@{visibility}!astro\_elongation\_t@{astro\_elongation\_t}}
+\doxysubsubsection{\texorpdfstring{visibility}{visibility}}
+{\footnotesize\ttfamily \label{structastro__elongation__t_a798a24a1449115fbf489083678763cea} 
+astro\+\_\+visibility\+\_\+t astro\+\_\+elongation\+\_\+t\+::visibility}
+
+Whether the body is best seen in the morning or the evening. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

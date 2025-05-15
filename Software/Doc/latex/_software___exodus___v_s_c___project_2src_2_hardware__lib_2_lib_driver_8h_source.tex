@@ -1,0 +1,34 @@
+\doxysection{Lib\+Driver.\+h}
+\hypertarget{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_driver_8h_source}{}\label{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_driver_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibDriver.h@{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibDriver.h}}
+\mbox{\hyperlink{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Theophile\ Klein\ -\/\ 27/01/2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Paul\ Escalier\ -\/\ 25/02/2025}}
+\DoxyCodeLine{00004\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibDriver\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibDriver\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_peripherique_8h}{LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_driver_motor}{DriverMotor}}\ \{}
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \textcolor{comment}{//void\ setDir(int\ direction);}}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{class_driver_motor_a1dda28a06c532ba852d4d3d2383b224b}{DriverMotor}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a0a199212b28f3ec7b85632337557607f}{pinParent1}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a7ab808f49a599840c99afdfb02039188}{pinParent2}},\ ParentDevice*\ \mbox{\hyperlink{class_driver_motor_ad9ed727134ba656dfee69cfdfdad9ceb}{parent}});}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_ac32e217c9fe0dbcc054e7fdf6eeba8a5}{RaiseArm}}();}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_a69acfb60bb064a11a3d8d6c1eff76782}{LowerArm}}();}
+\DoxyCodeLine{00019\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_af4d570589f48b3d329c9e5f27016e8ec}{StopArm}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a0a199212b28f3ec7b85632337557607f}{pinParent1}};\ }
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a7ab808f49a599840c99afdfb02039188}{pinParent2}};}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{class_parent_device}{ParentDevice}}*\ \mbox{\hyperlink{class_driver_motor_ad9ed727134ba656dfee69cfdfdad9ceb}{parent}};\ \ \ \ }
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

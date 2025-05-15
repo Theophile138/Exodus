@@ -1,0 +1,26 @@
+\doxysection{SSD1351\+\_\+\+Defines.\+h}
+\hypertarget{_s_s_d1351___defines_8h_source}{}\label{_s_s_d1351___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ TFT\_WIDTH}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WIDTH\ 128}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifndef\ TFT\_HEIGHT}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\ \ \#define\ TFT\_HEIGHT\ 128}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x80}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ TFT\_NOP}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ \ \ 0x15\ }\textcolor{comment}{//\ SETCOLUMN}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ \ \ 0x75\ }\textcolor{comment}{//\ SETROW}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ 0x5C\ }\textcolor{comment}{//\ WRITERAM}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ 0x5D\ }\textcolor{comment}{//\ READRAM}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ TFT\_NOP}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ 0xA6\ }\textcolor{comment}{//\ NORMALDISPLAY}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ 0xA7\ }\textcolor{comment}{//\ INVERTDISPLAY}}
+
+\end{DoxyCode}

@@ -1,0 +1,45 @@
+\doxysection{Touch.\+h}
+\hypertarget{_touch_8h_source}{}\label{_touch_8h_source}\index{lib/TFT\_eSPI-\/master/Extensions/Touch.h@{lib/TFT\_eSPI-\/master/Extensions/Touch.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \textcolor{comment}{//\ Coded\ by\ Bodmer\ 10/2/18,\ see\ license\ in\ root\ directory.}}
+\DoxyCodeLine{00002\ \ \textcolor{comment}{//\ This\ is\ part\ of\ the\ TFT\_eSPI\ class\ and\ is\ associated\ with\ the\ Touch\ Screen\ handlers}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ raw\ x,y\ ADC\ values\ from\ touch\ controller}}
+\DoxyCodeLine{00006\ \ \ uint8\_t\ \ getTouchRaw(uint16\_t\ *x,\ uint16\_t\ *y);}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ raw\ z\ (i.e.\ pressure)\ ADC\ value\ from\ touch\ controller}}
+\DoxyCodeLine{00008\ \ \ uint16\_t\ getTouchRawZ(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Convert\ raw\ x,y\ values\ to\ calibrated\ and\ correctly\ rotated\ screen\ coordinates}}
+\DoxyCodeLine{00010\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ convertRawXY(uint16\_t\ *x,\ uint16\_t\ *y);}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ screen\ touch\ coordinates,\ returns\ true\ if\ screen\ has\ been\ touched}}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ if\ the\ touch\ coordinates\ are\ off\ screen\ then\ x\ and\ y\ are\ not\ updated}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ returned\ value\ can\ be\ treated\ as\ a\ bool\ type,\ false\ or\ 0\ means\ touch\ not\ detected}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ future\ the\ function\ may\ return\ an\ 8\ "{}quality"{}\ (jitter)\ value.}}
+\DoxyCodeLine{00015\ \ \ uint8\_t\ \ getTouch(uint16\_t\ *x,\ uint16\_t\ *y,\ uint16\_t\ threshold\ =\ 600);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Run\ screen\ calibration\ and\ test,\ report\ calibration\ values\ to\ the\ serial\ port}}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ calibrateTouch(uint16\_t\ *data,\ uint32\_t\ color\_fg,\ uint32\_t\ color\_bg,\ uint8\_t\ size);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ screen\ calibration\ values}}
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setTouch(uint16\_t\ *data);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Legacy\ support\ only\ -\/\ deprecated\ TODO:\ delete}}
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_begin\_touch();}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ spi\_end\_touch();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handlers\ for\ the\ touch\ controller\ bus\ settings}}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ begin\_touch\_read\_write()\ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00029\ \ \ inline\ \textcolor{keywordtype}{void}\ end\_touch\_read\_write()\ \ \ \_\_attribute\_\_((always\_inline));}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Private\ function\ to\ validate\ a\ touch,\ allow\ settle\ time\ and\ reduce\ spurious\ coordinates}}
+\DoxyCodeLine{00032\ \ \ uint8\_t\ \ validTouch(uint16\_t\ *x,\ uint16\_t\ *y,\ uint16\_t\ threshold\ =\ 600);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialise\ with\ example\ calibration\ values\ so\ processor\ does\ not\ crash\ if\ setTouch()\ not\ called\ in\ setup()}}
+\DoxyCodeLine{00035\ \ \ uint16\_t\ touchCalibration\_x0\ =\ 300,\ touchCalibration\_x1\ =\ 3600,\ touchCalibration\_y0\ =\ 300,\ touchCalibration\_y1\ =\ 3600;}
+\DoxyCodeLine{00036\ \ \ uint8\_t\ \ touchCalibration\_rotate\ =\ 1,\ touchCalibration\_invert\_x\ =\ 2,\ touchCalibration\_invert\_y\ =\ 0;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ uint32\_t\ \_pressTime;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Press\ and\ hold\ time-\/out}}
+\DoxyCodeLine{00039\ \ \ uint16\_t\ \_pressX,\ \_pressY;\ \ \textcolor{comment}{//\ For\ future\ use\ (last\ sampled\ calibrated\ coordinates)}}
+
+\end{DoxyCode}

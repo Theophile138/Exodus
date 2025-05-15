@@ -1,0 +1,141 @@
+\doxysection{Capteur\+\_\+\+De\+\_\+\+Force Class Reference}
+\hypertarget{class_capteur___de___force}{}\label{class_capteur___de___force}\index{Capteur\_De\_Force@{Capteur\_De\_Force}}
+
+
+Classe pour gérer un ou deux capteurs de force et sélectionner le(s) capteur(s) actif(s).  
+
+
+
+
+{\ttfamily \#include $<$Traitement\+\_\+\+Capteur.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_capteur___de___force_adc5617187730647cc915e83d2e183da9}{Capteur\+\_\+\+De\+\_\+\+Force}} (\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_capteur___de___force_a82b616f50c23a0c9181835724573b2e4}{Force1}})
+\begin{DoxyCompactList}\small\item\em Constructeur pour un seul capteur de force. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_capteur___de___force_ae05eb199fd80aed1da212846804f6c9c}{Capteur\+\_\+\+De\+\_\+\+Force}} (\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_capteur___de___force_a82b616f50c23a0c9181835724573b2e4}{Force1}}, \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_capteur___de___force_a1a1ac9af1d69ac757604878fda99e6d8}{Force2}})
+\begin{DoxyCompactList}\small\item\em Constructeur pour deux capteurs de force. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_capteur___de___force_ad4ef6161df8538d25c69158454012152}{set\+Active\+Capteur}} (int nombre)
+\begin{DoxyCompactList}\small\item\em Définit le nombre de capteurs actifs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_capteur___de___force_a82b616f50c23a0c9181835724573b2e4}{Force1}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le premier capteur de force. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_capteur___de___force_a1a1ac9af1d69ac757604878fda99e6d8}{Force2}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le second capteur de force (ou nullptr si non utilisé) \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_capteur___de___force_a62ba02f1197bf1f5611fd0cc46116942}{nbr\+\_\+capteur}}
+\begin{DoxyCompactList}\small\item\em Nombre total de capteurs gérés. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_capteur___de___force_acf53f13e0f7556a94e39e78ff069f4d2}{nbr\+\_\+active\+\_\+capteur}}
+\begin{DoxyCompactList}\small\item\em Nombre de capteurs actuellement actifs. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour gérer un ou deux capteurs de force et sélectionner le(s) capteur(s) actif(s). 
+
+Permet d\textquotesingle{}initialiser la gestion de 1 ou 2 capteurs de force, de choisir combien sont actifs, et de stocker les pointeurs vers ces capteurs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_capteur___de___force_adc5617187730647cc915e83d2e183da9}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{Capteur\_De\_Force()}{Capteur\_De\_Force()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_adc5617187730647cc915e83d2e183da9} 
+\mbox{\hyperlink{class_capteur___de___force}{Capteur\+\_\+\+De\+\_\+\+Force}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}}]{Force1}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur pour un seul capteur de force. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force1} & Pointeur vers le premier capteur de force. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_capteur___de___force_ae05eb199fd80aed1da212846804f6c9c}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{Capteur\_De\_Force()}{Capteur\_De\_Force()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_ae05eb199fd80aed1da212846804f6c9c} 
+\mbox{\hyperlink{class_capteur___de___force}{Capteur\+\_\+\+De\+\_\+\+Force}} (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}}]{Force1}{, }\item[{\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*}}]{Force2}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur pour deux capteurs de force. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Force1} & Pointeur vers le premier capteur de force. \\
+\hline
+{\em Force2} & Pointeur vers le second capteur de force. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_capteur___de___force_ad4ef6161df8538d25c69158454012152}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!setActiveCapteur@{setActiveCapteur}}
+\index{setActiveCapteur@{setActiveCapteur}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{setActiveCapteur()}{setActiveCapteur()}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_ad4ef6161df8538d25c69158454012152} 
+bool set\+Active\+Capteur (\begin{DoxyParamCaption}\item[{int}]{nombre}{}\end{DoxyParamCaption})}
+
+
+
+Définit le nombre de capteurs actifs. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nombre} & Nombre de capteurs à activer (1 ou 2). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true si la configuration est acceptée, false sinon. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_capteur___de___force_a82b616f50c23a0c9181835724573b2e4}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Force1@{Force1}}
+\index{Force1@{Force1}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{Force1}{Force1}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_a82b616f50c23a0c9181835724573b2e4} 
+\mbox{\hyperlink{class_capteur}{Capteur}}\texorpdfstring{$\ast$}{*} Force1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers le premier capteur de force. 
+
+\Hypertarget{class_capteur___de___force_a1a1ac9af1d69ac757604878fda99e6d8}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!Force2@{Force2}}
+\index{Force2@{Force2}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{Force2}{Force2}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_a1a1ac9af1d69ac757604878fda99e6d8} 
+\mbox{\hyperlink{class_capteur}{Capteur}}\texorpdfstring{$\ast$}{*} Force2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers le second capteur de force (ou nullptr si non utilisé) 
+
+\Hypertarget{class_capteur___de___force_acf53f13e0f7556a94e39e78ff069f4d2}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!nbr\_active\_capteur@{nbr\_active\_capteur}}
+\index{nbr\_active\_capteur@{nbr\_active\_capteur}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{nbr\_active\_capteur}{nbr\_active\_capteur}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_acf53f13e0f7556a94e39e78ff069f4d2} 
+int nbr\+\_\+active\+\_\+capteur\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Nombre de capteurs actuellement actifs. 
+
+\Hypertarget{class_capteur___de___force_a62ba02f1197bf1f5611fd0cc46116942}\index{Capteur\_De\_Force@{Capteur\_De\_Force}!nbr\_capteur@{nbr\_capteur}}
+\index{nbr\_capteur@{nbr\_capteur}!Capteur\_De\_Force@{Capteur\_De\_Force}}
+\doxysubsubsection{\texorpdfstring{nbr\_capteur}{nbr\_capteur}}
+{\footnotesize\ttfamily \label{class_capteur___de___force_a62ba02f1197bf1f5611fd0cc46116942} 
+int nbr\+\_\+capteur\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Nombre total de capteurs gérés. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Traitement\+\_\+\+Capteur/\mbox{\hyperlink{_traitement___capteur_8h}{Traitement\+\_\+\+Capteur.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Traitement\+\_\+\+Capteur/\mbox{\hyperlink{_traitement___capteur_8cpp}{Traitement\+\_\+\+Capteur.\+cpp}}\end{DoxyCompactItemize}

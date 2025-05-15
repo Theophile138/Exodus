@@ -1,0 +1,53 @@
+\doxysection{HX8357\+D\+\_\+\+Rotation.\+h}
+\hypertarget{_h_x8357_d___rotation_8h_source}{}\label{_h_x8357_d___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ HX8357D\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00004\ rotation\ =\ m\ \%\ 8;}
+\DoxyCodeLine{00005\ \textcolor{keywordflow}{switch}\ (rotation)}
+\DoxyCodeLine{00006\ \{}
+\DoxyCodeLine{00007\ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00008\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MX);}
+\DoxyCodeLine{00009\ \ \ \_width\ =\ \_init\_width;}
+\DoxyCodeLine{00010\ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00012\ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00013\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MV);}
+\DoxyCodeLine{00014\ \ \ \_width\ =\ \_init\_height;}
+\DoxyCodeLine{00015\ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00017\ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00018\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MY);}
+\DoxyCodeLine{00019\ \ \ \_width\ =\ \_init\_width;}
+\DoxyCodeLine{00020\ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00022\ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00023\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_MX\ |\ TFT\_MAD\_MY);}
+\DoxyCodeLine{00024\ \ \ \_width\ =\ \_init\_height;}
+\DoxyCodeLine{00025\ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00026\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00027\ \textcolor{keywordflow}{case}\ 4:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00028\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MX\ |\ TFT\_MAD\_MY);}
+\DoxyCodeLine{00029\ \ \ \_width\ =\ \_init\_width;}
+\DoxyCodeLine{00030\ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00032\ \textcolor{keywordflow}{case}\ 5:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00033\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_MX);}
+\DoxyCodeLine{00034\ \ \ \_width\ =\ \_init\_height;}
+\DoxyCodeLine{00035\ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00037\ \textcolor{keywordflow}{case}\ 6:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00038\ \ \ writedata(TFT\_MAD\_BGR);}
+\DoxyCodeLine{00039\ \ \ \_width\ =\ \_init\_width;}
+\DoxyCodeLine{00040\ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00041\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00042\ \textcolor{keywordflow}{case}\ 7:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00043\ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_MY);}
+\DoxyCodeLine{00044\ \ \ \_width\ =\ \_init\_height;}
+\DoxyCodeLine{00045\ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00047\ \}}
+
+\end{DoxyCode}

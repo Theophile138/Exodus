@@ -1,0 +1,59 @@
+\doxysection{Extend\+\_\+\+Card\+\_\+lib.\+h}
+\hypertarget{_extend___card__lib_8h_source}{}\label{_extend___card__lib_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Extend\_Card\_lib/Extend\_Card\_lib.h@{Software\_Exodus\_VSC\_Project/src/Extend\_Card\_lib/Extend\_Card\_lib.h}}
+\mbox{\hyperlink{_extend___card__lib_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ @file\ Extend\_Card\_lib.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ @brief\ Déclaration\ de\ la\ classe\ Extend\_Card\ pour\ gérer\ l'extension\ d'entrées/sorties\ via\ registres\ à\ décalage\ et\ multiplexeurs\ sur\ ESP32.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ Extend\_Card\_lib\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ Extend\_Card\_lib\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_peripherique_8h}{../Hardware\_lib/LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ defined(ESP32)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}soc/gpio\_struct.h"{}}\ \textcolor{comment}{//\ Pour\ accéder\ aux\ registres\ GPIO}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}\ \ \ \ \textcolor{comment}{//\ Pour\ configurer\ les\ GPIOs}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_extend___card_ad96d110c5fe07c2eb3318b4778e5a568}{Extend\_Card}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_extend___card_ad96d110c5fe07c2eb3318b4778e5a568}{Extend\_Card}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_extend___card_a9d16a91b1911a641ea3ff91bdbb0125e}{digitalWrite}}(\textcolor{keywordtype}{int}\ pin,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a6a005b7bdfeeca9d1d61b38929f34c58}{analogRead}}(\textcolor{keywordtype}{int}\ pin);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_master_device}{MasterDevice}}*\ \mbox{\hyperlink{class_extend___card_ab853565d161d1e2ca54010b5a2cd627c}{myEsp32}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Registre\ à\ décalage\ -\/-\/-\/}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_aa242eff4c3c0c61e117e0066c1f83efb}{Reg1DataPin}};\ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a2d4923328f18e2ee43c131a3579d537f}{Reg1ClockPin}};\ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a263b5a6260904fb2c66535b31869d1dc}{Reg1TrigPin}};\ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_af7b3a71ad2688b0aa95c947f11573757}{Reg1Length}};\ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_registre}{Registre}}*\ \mbox{\hyperlink{class_extend___card_a630bd6931c0ae31b7515e8b818bb3745}{monRegistre1}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Multiplexeur\ 1\ -\/-\/-\/}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a98b2964d88e6940b693d4a25ed886f8d}{Multiplex1PinA}};\ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a5e79c8de1b972ae11d619bbfc1474109}{Multiplex1PinS0}};\ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_ae1e3d52906ac4d8d0f078cda6ba2f595}{Multiplex1PinS1}};\ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}{Multiplex1PinS2}};\ \ }
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}*\ \mbox{\hyperlink{class_extend___card_acbbcdbcfa1c57b8962594403fac250c3}{monMultiplex1}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Multiplexeur\ 2\ (en\ cascade)\ -\/-\/-\/}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_ac6a1c6d103ab56c8a7022556aa602ae0}{Multiplex2PinA}};\ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a7e7d1d0267e7a78948c063ff7b7fba33}{Multiplex2PinS0}};\ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_aa6cb6e5e409110310929b861bf694b60}{Multiplex2PinS1}};\ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_extend___card_a73592c6755064e523aa1d0cb319dfcb5}{Multiplex2PinS2}};\ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}*\ \mbox{\hyperlink{class_extend___card_abdb5d6b749658f776b590b1898a49ee1}{monMultiplex2}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

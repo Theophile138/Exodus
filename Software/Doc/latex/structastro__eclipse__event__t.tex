@@ -1,0 +1,45 @@
+\doxysection{astro\+\_\+eclipse\+\_\+event\+\_\+t Struct Reference}
+\hypertarget{structastro__eclipse__event__t}{}\label{structastro__eclipse__event__t}\index{astro\_eclipse\_event\_t@{astro\_eclipse\_event\_t}}
+
+
+Holds a time and the observed altitude of the Sun at that time.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__eclipse__event__t_aca6926157d0e9f5807c08a715f8f5fd2}{time}}
+\item 
+double \mbox{\hyperlink{structastro__eclipse__event__t_a9890b97cba9cf7c704df9278c75fe26b}{altitude}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Holds a time and the observed altitude of the Sun at that time. 
+
+When reporting a solar eclipse observed at a specific location on the Earth (a "{}local"{} solar eclipse), a series of events occur. In addition to the time of each event, it is important to know the altitude of the Sun, because each event may be invisible to the observer if the Sun is below the horizon (i.\+e. it at night).
+
+If {\ttfamily altitude} is negative, the event is theoretical only; it would be visible if the Earth were transparent, but the observer cannot actually see it. If {\ttfamily altitude} is positive but less than a few degrees, visibility will be impaired by atmospheric interference (sunrise or sunset conditions). 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__eclipse__event__t_a9890b97cba9cf7c704df9278c75fe26b}\index{astro\_eclipse\_event\_t@{astro\_eclipse\_event\_t}!altitude@{altitude}}
+\index{altitude@{altitude}!astro\_eclipse\_event\_t@{astro\_eclipse\_event\_t}}
+\doxysubsubsection{\texorpdfstring{altitude}{altitude}}
+{\footnotesize\ttfamily \label{structastro__eclipse__event__t_a9890b97cba9cf7c704df9278c75fe26b} 
+double astro\+\_\+eclipse\+\_\+event\+\_\+t\+::altitude}
+
+The angular altitude of the center of the Sun above/below the horizon, at {\ttfamily time}, corrected for atmospheric refraction and expressed in degrees. \Hypertarget{structastro__eclipse__event__t_aca6926157d0e9f5807c08a715f8f5fd2}\index{astro\_eclipse\_event\_t@{astro\_eclipse\_event\_t}!time@{time}}
+\index{time@{time}!astro\_eclipse\_event\_t@{astro\_eclipse\_event\_t}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{structastro__eclipse__event__t_aca6926157d0e9f5807c08a715f8f5fd2} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+eclipse\+\_\+event\+\_\+t\+::time}
+
+The date and time of the event. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

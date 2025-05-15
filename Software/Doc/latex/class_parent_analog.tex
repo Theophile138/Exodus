@@ -1,0 +1,55 @@
+\doxysection{Parent\+Analog Class Reference}
+\hypertarget{class_parent_analog}{}\label{class_parent_analog}\index{ParentAnalog@{ParentAnalog}}
+
+
+Interface pour les périphériques capables de lire une valeur analogique.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Peripherique.\+h$>$}
+
+Inheritance diagram for Parent\+Analog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_parent_analog}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual int \mbox{\hyperlink{class_parent_analog_a5e73de9dc55604826785e88045310739}{analog\+Read\+Any\+Device}} (int pin)=0
+\begin{DoxyCompactList}\small\item\em Lit la valeur analogique d\textquotesingle{}un canal donné. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface pour les périphériques capables de lire une valeur analogique. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_parent_analog_a5e73de9dc55604826785e88045310739}\index{ParentAnalog@{ParentAnalog}!analogReadAnyDevice@{analogReadAnyDevice}}
+\index{analogReadAnyDevice@{analogReadAnyDevice}!ParentAnalog@{ParentAnalog}}
+\doxysubsubsection{\texorpdfstring{analogReadAnyDevice()}{analogReadAnyDevice()}}
+{\footnotesize\ttfamily \label{class_parent_analog_a5e73de9dc55604826785e88045310739} 
+virtual int analog\+Read\+Any\+Device (\begin{DoxyParamCaption}\item[{int}]{pin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Lit la valeur analogique d\textquotesingle{}un canal donné. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du canal à lire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valeur analogique lue. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_master_device_a83f2a28db1123d2b9e73a0ca9e52b1ce}{Master\+Device}}, and \mbox{\hyperlink{class_multiplexeur_a83f2a28db1123d2b9e73a0ca9e52b1ce}{Multiplexeur}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8h}{Lib\+Peripherique.\+h}}\end{DoxyCompactItemize}

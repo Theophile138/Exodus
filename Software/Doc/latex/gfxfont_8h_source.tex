@@ -1,0 +1,101 @@
+\doxysection{gfxfont.\+h}
+\hypertarget{gfxfont_8h_source}{}\label{gfxfont_8h_source}\index{lib/TFT\_eSPI-\/master/Fonts/GFXFF/gfxfont.h@{lib/TFT\_eSPI-\/master/Fonts/GFXFF/gfxfont.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Adopted\ by\ Bodmer\ to\ support\ TFT\_eSPI\ library.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Font\ structures\ for\ newer\ Adafruit\_GFX\ (1.1\ and\ later).}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Example\ fonts\ are\ included\ in\ 'Fonts'\ directory.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ To\ use\ a\ font\ in\ your\ Arduino\ sketch,\ \#include\ the\ corresponding\ .h}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ file\ and\ pass\ address\ of\ GFXfont\ struct\ to\ setFont().\ \ Pass\ NULL\ to}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ revert\ to\ 'classic'\ fixed-\/space\ bitmap\ font.}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#ifndef\ \_GFXFONT\_H\_}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ \_GFXFONT\_H\_}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{\ \textcolor{comment}{//\ Data\ stored\ PER\ GLYPH}}
+\DoxyCodeLine{00015\ \ \ \ \ uint32\_t\ bitmapOffset;\ \ \ \ \ \textcolor{comment}{//\ Pointer\ into\ GFXfont-\/>bitmap}}
+\DoxyCodeLine{00016\ \ \ \ \ uint8\_t\ \ width,\ height;\ \ \ \ \textcolor{comment}{//\ Bitmap\ dimensions\ in\ pixels}}
+\DoxyCodeLine{00017\ \ \ \ \ uint8\_t\ \ xAdvance;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Distance\ to\ advance\ cursor\ (x\ axis)}}
+\DoxyCodeLine{00018\ \ \ \ \ int8\_t\ \ \ xOffset,\ yOffset;\ \textcolor{comment}{//\ Dist\ from\ cursor\ pos\ to\ UL\ corner}}
+\DoxyCodeLine{00019\ \}\ GFXglyph;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\{\ \textcolor{comment}{//\ Data\ stored\ for\ FONT\ AS\ A\ WHOLE:}}
+\DoxyCodeLine{00022\ \ \ \ \ uint8\_t\ \ *bitmap;\ \ \ \ \ \ \textcolor{comment}{//\ Glyph\ bitmaps,\ concatenated}}
+\DoxyCodeLine{00023\ \ \ \ \ GFXglyph\ *glyph;\ \ \ \ \ \ \ \textcolor{comment}{//\ Glyph\ array}}
+\DoxyCodeLine{00024\ \ \ \ \ uint16\_t\ \ first,\ last;\ \textcolor{comment}{//\ ASCII\ extents}}
+\DoxyCodeLine{00025\ \ \ \ \ uint8\_t\ \ \ yAdvance;\ \ \ \ \textcolor{comment}{//\ Newline\ distance\ (y\ axis)}}
+\DoxyCodeLine{00026\ \}\ GFXfont;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \textcolor{comment}{//\ Original\ Adafruit\_GFX\ "{}Free\ Fonts"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/TomThumb.h>}\ \ \textcolor{comment}{//\ TT1}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMono9pt7b.h>}\ \ \textcolor{comment}{//\ FF1\ or\ FM9}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMono12pt7b.h>}\ \textcolor{comment}{//\ FF2\ or\ FM12}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMono18pt7b.h>}\ \textcolor{comment}{//\ FF3\ or\ FM18}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMono24pt7b.h>}\ \textcolor{comment}{//\ FF4\ or\ FM24}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoOblique9pt7b.h>}\ \ \textcolor{comment}{//\ FF5\ or\ FMO9}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoOblique12pt7b.h>}\ \textcolor{comment}{//\ FF6\ or\ FMO12}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoOblique18pt7b.h>}\ \textcolor{comment}{//\ FF7\ or\ FMO18}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoOblique24pt7b.h>}\ \textcolor{comment}{//\ FF8\ or\ FMO24}}
+\DoxyCodeLine{00040\ \ \ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBold9pt7b.h>}\ \ \textcolor{comment}{//\ FF9\ \ or\ FMB9}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBold12pt7b.h>}\ \textcolor{comment}{//\ FF10\ or\ FMB12}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBold18pt7b.h>}\ \textcolor{comment}{//\ FF11\ or\ FMB18}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBold24pt7b.h>}\ \textcolor{comment}{//\ FF12\ or\ FMB24}}
+\DoxyCodeLine{00045\ \ \ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBoldOblique9pt7b.h>}\ \ \textcolor{comment}{//\ FF13\ or\ FMBO9}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBoldOblique12pt7b.h>}\ \textcolor{comment}{//\ FF14\ or\ FMBO12}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBoldOblique18pt7b.h>}\ \textcolor{comment}{//\ FF15\ or\ FMBO18}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeMonoBoldOblique24pt7b.h>}\ \textcolor{comment}{//\ FF16\ or\ FMBO24}}
+\DoxyCodeLine{00050\ \ \ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//\ Sans\ serif\ fonts}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSans9pt7b.h>}\ \ \textcolor{comment}{//\ FF17\ or\ FSS9}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSans12pt7b.h>}\ \textcolor{comment}{//\ FF18\ or\ FSS12}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSans18pt7b.h>}\ \textcolor{comment}{//\ FF19\ or\ FSS18}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSans24pt7b.h>}\ \textcolor{comment}{//\ FF20\ or\ FSS24}}
+\DoxyCodeLine{00056\ \ \ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansOblique9pt7b.h>}\ \ \textcolor{comment}{//\ FF21\ or\ FSSO9}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansOblique12pt7b.h>}\ \textcolor{comment}{//\ FF22\ or\ FSSO12}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansOblique18pt7b.h>}\ \textcolor{comment}{//\ FF23\ or\ FSSO18}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansOblique24pt7b.h>}\ \textcolor{comment}{//\ FF24\ or\ FSSO24}}
+\DoxyCodeLine{00061\ \ \ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBold9pt7b.h>}\ \ \textcolor{comment}{//\ FF25\ or\ FSSB9}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBold12pt7b.h>}\ \textcolor{comment}{//\ FF26\ or\ FSSB12}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBold18pt7b.h>}\ \textcolor{comment}{//\ FF27\ or\ FSSB18}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBold24pt7b.h>}\ \textcolor{comment}{//\ FF28\ or\ FSSB24}}
+\DoxyCodeLine{00066\ \ \ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBoldOblique9pt7b.h>}\ \ \textcolor{comment}{//\ FF29\ or\ FSSBO9}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBoldOblique12pt7b.h>}\ \textcolor{comment}{//\ FF30\ or\ FSSBO12}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBoldOblique18pt7b.h>}\ \textcolor{comment}{//\ FF31\ or\ FSSBO18}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSansBoldOblique24pt7b.h>}\ \textcolor{comment}{//\ FF32\ or\ FSSBO24}}
+\DoxyCodeLine{00071\ \ \ }
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{//\ Serif\ fonts}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerif9pt7b.h>}\ \ \textcolor{comment}{//\ FF33\ or\ FS9}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerif12pt7b.h>}\ \textcolor{comment}{//\ FF34\ or\ FS12}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerif18pt7b.h>}\ \textcolor{comment}{//\ FF35\ or\ FS18}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerif24pt7b.h>}\ \textcolor{comment}{//\ FF36\ or\ FS24}}
+\DoxyCodeLine{00077\ \ \ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifItalic9pt7b.h>}\ \ \textcolor{comment}{//\ FF37\ or\ FSI9}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifItalic12pt7b.h>}\ \textcolor{comment}{//\ FF38\ or\ FSI12}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifItalic18pt7b.h>}\ \textcolor{comment}{//\ FF39\ or\ FSI18}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifItalic24pt7b.h>}\ \textcolor{comment}{//\ FF40\ or\ FSI24}}
+\DoxyCodeLine{00082\ \ \ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBold9pt7b.h>}\ \ \textcolor{comment}{//\ FF41\ or\ FSB9}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBold12pt7b.h>}\ \textcolor{comment}{//\ FF42\ or\ FSB12}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBold18pt7b.h>}\ \textcolor{comment}{//\ FF43\ or\ FSB18}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBold24pt7b.h>}\ \textcolor{comment}{//\ FF44\ or\ FSB24}}
+\DoxyCodeLine{00087\ \ \ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBoldItalic9pt7b.h>}\ \ \textcolor{comment}{//\ FF45\ or\ FSBI9}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBoldItalic12pt7b.h>}\ \textcolor{comment}{//\ FF46\ or\ FSBI12}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBoldItalic18pt7b.h>}\ \textcolor{comment}{//\ FF47\ or\ FSBI18}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \#include\ <Fonts/GFXFF/FreeSerifBoldItalic24pt7b.h>}\ \textcolor{comment}{//\ FF48\ or\ FSBI24}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOAD\_GFXFF}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_GFXFONT\_H\_}}
+
+\end{DoxyCode}

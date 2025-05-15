@@ -1,0 +1,99 @@
+\doxysection{config.\+h}
+\hypertarget{_animated___eyes__2_2config_8h_source}{}\label{_animated___eyes__2_2config_8h_source}\index{lib/TFT\_eSPI-\/master/examples/Generic/Animated\_Eyes\_2/config.h@{lib/TFT\_eSPI-\/master/examples/Generic/Animated\_Eyes\_2/config.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Pin\ selections\ here\ are\ based\ on\ the\ original\ Adafruit\ Learning\ System}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ guide\ for\ the\ Teensy\ 3.x\ project.\ \ Some\ of\ these\ pin\ numbers\ don't\ even}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ exist\ on\ the\ smaller\ SAMD\ M0\ \&\ M4\ boards,\ so\ you\ may\ need\ to\ make\ other}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ selections:}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ GRAPHICS\ SETTINGS\ (appearance\ of\ eye)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ If\ using\ a\ SINGLE\ EYE,\ you\ might\ want\ this\ next\ line\ enabled,\ which}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ uses\ a\ simpler\ "{}football-\/shaped"{}\ eye\ that's\ left/right\ symmetrical.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Default\ shape\ includes\ the\ caruncle,\ creating\ distinct\ left/right\ eyes.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\#define\ SYMMETRICAL\_EYELID}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Enable\ ONE\ of\ these\ \#includes\ -\/-\/\ HUGE\ graphics\ tables\ for\ various\ eyes:}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}data/defaultEye.h"{}}\ \ \ \ \ \ \textcolor{comment}{//\ Standard\ human-\/ish\ hazel\ eye\ -\/OR-\/}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\#include\ "{}data/dragonEye.h"{}\ \ \ \ \ //\ Slit\ pupil\ fiery\ dragon/demon\ eye\ -\/OR-\/}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\#include\ "{}data/noScleraEye.h"{}\ \ \ //\ Large\ iris,\ no\ sclera\ -\/OR-\/}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\#include\ "{}data/goatEye.h"{}\ \ \ \ \ \ \ //\ Horizontal\ pupil\ goat/Krampus\ eye\ -\/OR-\/}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\#include\ "{}data/newtEye.h"{}\ \ \ \ \ \ \ //\ Eye\ of\ newt\ -\/OR-\/}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\#include\ "{}data/terminatorEye.h"{}\ //\ Git\ to\ da\ choppah!}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\#include\ "{}data/catEye.h"{}\ \ \ \ \ \ \ \ //\ Cartoonish\ cat\ (flat\ "{}2D"{}\ colors)}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\#include\ "{}data/owlEye.h"{}\ \ \ \ \ \ \ \ //\ Minerva\ the\ owl\ (DISABLE\ TRACKING)}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\#include\ "{}data/naugaEye.h"{}\ \ \ \ \ \ //\ Nauga\ googly\ eye\ (DISABLE\ TRACKING)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\#include\ "{}data/doeEye.h"{}\ \ \ \ \ \ \ \ //\ Cartoon\ deer\ eye\ (DISABLE\ TRACKING)}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ DISPLAY\ HARDWARE\ SETTINGS\ (screen\ type\ \&\ connections)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ TFT\_COUNT\ 2\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Number\ of\ screens\ (1\ or\ 2)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TFT1\_CS\ 22\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ TFT\ 1\ chip\ select\ pin\ (set\ to\ -\/1\ to\ use\ TFT\_eSPI\ setup)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ TFT2\_CS\ 21\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ TFT\ 2\ chip\ select\ pin\ (set\ to\ -\/1\ to\ use\ TFT\_eSPI\ setup)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TFT\_1\_ROT\ 1\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ TFT\ 1\ rotation}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TFT\_2\_ROT\ 3\ \ \ \ \ \ \ \ }\textcolor{comment}{//\ TFT\ 2\ rotation}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ EYE\_1\_XPOSITION\ \ 0\ }\textcolor{comment}{//\ x\ shift\ for\ eye\ 1\ image\ on\ display}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ EYE\_2\_XPOSITION\ \ 0\ }\textcolor{comment}{//\ x\ shift\ for\ eye\ 2\ image\ on\ display}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ DISPLAY\_BACKLIGHT\ \ -\/1\ }\textcolor{comment}{//\ Pin\ for\ backlight\ control\ (-\/1\ for\ none)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ BACKLIGHT\_MAX\ \ \ \ 255}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ EYE\ LIST\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ NUM\_EYES\ 2\ }\textcolor{comment}{//\ Number\ of\ eyes\ to\ display\ (1\ or\ 2)}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ BLINK\_PIN\ \ \ -\/1\ }\textcolor{comment}{//\ Pin\ for\ manual\ blink\ button\ (BOTH\ eyes)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LH\_WINK\_PIN\ -\/1\ }\textcolor{comment}{//\ Left\ wink\ pin\ (set\ to\ -\/1\ for\ no\ pin)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ RH\_WINK\_PIN\ -\/1\ }\textcolor{comment}{//\ Right\ wink\ pin\ (set\ to\ -\/1\ for\ no\ pin)}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ This\ table\ contains\ ONE\ LINE\ PER\ EYE.\ \ The\ table\ MUST\ be\ present\ with}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ this\ name\ and\ contain\ ONE\ OR\ MORE\ lines.\ \ Each\ line\ contains\ THREE\ items:}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ a\ pin\ number\ for\ the\ corresponding\ TFT/OLED\ display's\ SELECT\ line,\ a\ pin}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ pin\ number\ for\ that\ eye's\ "{}wink"{}\ button\ (or\ -\/1\ if\ not\ used),\ a\ screen}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ rotation\ value\ (0-\/3)\ and\ x\ position\ offset\ for\ that\ eye.}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#if\ (NUM\_EYES\ ==\ 2)}}
+\DoxyCodeLine{00052\ \ \ eyeInfo\_t\ eyeInfo[]\ =\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \{\ TFT1\_CS,\ LH\_WINK\_PIN,\ TFT\_1\_ROT,\ EYE\_1\_XPOSITION\ \},\ \textcolor{comment}{//\ LEFT\ EYE\ chip\ select\ and\ wink\ pins,\ rotation\ and\ offset}}
+\DoxyCodeLine{00054\ \ \ \ \ \{\ TFT2\_CS,\ RH\_WINK\_PIN,\ TFT\_2\_ROT,\ EYE\_2\_XPOSITION\ \},\ \textcolor{comment}{//\ RIGHT\ EYE\ chip\ select\ and\ wink\ pins,\ rotation\ and\ offset}}
+\DoxyCodeLine{00055\ \ \ \};}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00057\ \ \ eyeInfo\_t\ eyeInfo[]\ =\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \{\ TFT1\_CS,\ LH\_WINK\_PIN,\ TFT\_1\_ROT,\ EYE\_1\_XPOSITION\ \},\ \textcolor{comment}{//\ EYE\ chip\ select\ and\ wink\ pins,\ rotation\ and\ offset}}
+\DoxyCodeLine{00059\ \ \ \};}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ INPUT\ SETTINGS\ (for\ controlling\ eye\ motion)\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ JOYSTICK\_X\_PIN\ and\ JOYSTICK\_Y\_PIN\ specify\ analog\ input\ pins\ for\ manually}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ controlling\ the\ eye\ with\ an\ analog\ joystick.\ \ If\ set\ to\ -\/1\ or\ if\ not}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ defined,\ the\ eye\ will\ move\ on\ its\ own.}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ IRIS\_PIN\ speficies\ an\ analog\ input\ pin\ for\ a\ photocell\ to\ make\ pupils}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ react\ to\ light\ (or\ potentiometer\ for\ manual\ control).\ \ If\ set\ to\ -\/1\ or}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ if\ not\ defined,\ the\ pupils\ will\ change\ on\ their\ own.}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ BLINK\_PIN\ specifies\ an\ input\ pin\ for\ a\ button\ (to\ ground)\ that\ will}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ make\ any/all\ eyes\ blink.\ \ If\ set\ to\ -\/1\ or\ if\ not\ defined,\ the\ eyes\ will}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ only\ blink\ if\ AUTOBLINK\ is\ defined,\ or\ if\ the\ eyeInfo[]\ table\ above}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ includes\ wink\ button\ settings\ for\ each\ eye.}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{comment}{//\#define\ JOYSTICK\_X\_PIN\ A0\ //\ Analog\ pin\ for\ eye\ horiz\ pos\ (else\ auto)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\#define\ JOYSTICK\_Y\_PIN\ A1\ //\ Analog\ pin\ for\ eye\ vert\ position\ ("{})}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\#define\ JOYSTICK\_X\_FLIP\ \ \ //\ If\ defined,\ reverse\ stick\ X\ axis}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\#define\ JOYSTICK\_Y\_FLIP\ \ \ //\ If\ defined,\ reverse\ stick\ Y\ axis}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ TRACKING\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ If\ defined,\ eyelid\ tracks\ pupil}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ AUTOBLINK\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ If\ defined,\ eyes\ also\ blink\ autonomously}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ \ \#define\ LIGHT\_PIN\ \ \ \ \ \ -\/1\ //\ Light\ sensor\ pin}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \#define\ LIGHT\_CURVE\ \ 0.33\ }\textcolor{comment}{//\ Light\ sensor\ adjustment\ curve}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \#define\ LIGHT\_MIN\ \ \ \ \ \ \ 0\ }\textcolor{comment}{//\ Minimum\ useful\ reading\ from\ light\ sensor}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \#define\ LIGHT\_MAX\ \ \ \ 1023\ }\textcolor{comment}{//\ Maximum\ useful\ reading\ from\ sensor}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ IRIS\_SMOOTH\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ If\ enabled,\ filter\ input\ from\ IRIS\_PIN}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ !defined(IRIS\_MIN)\ \ \ \ \ \ }\textcolor{comment}{//\ Each\ eye\ might\ have\ its\ own\ MIN/MAX}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \#define\ IRIS\_MIN\ \ \ \ \ \ \ 90\ }\textcolor{comment}{//\ Iris\ size\ (0-\/1023)\ in\ brightest\ light}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#if\ !defined(IRIS\_MAX)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \#define\ IRIS\_MAX\ \ \ \ \ \ 130\ }\textcolor{comment}{//\ Iris\ size\ (0-\/1023)\ in\ darkest\ light}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

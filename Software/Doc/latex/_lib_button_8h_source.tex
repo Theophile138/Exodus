@@ -1,0 +1,80 @@
+\doxysection{Lib\+Button.\+h}
+\hypertarget{_lib_button_8h_source}{}\label{_lib_button_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibButton.h@{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibButton.h}}
+\mbox{\hyperlink{_lib_button_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibButton\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibButton\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <TFT\_eSPI.h>}\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \#include\ "{}LibScreen.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_screen}{Screen}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_button_adf271b1be4c753b7f9ddf23e8f67c530}{Button}}}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ TFT\_eSPI\ *\mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ int16\_t\ \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ int16\_t\ \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_ab86d5efc973df18859900023ebadc172}{outline}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_abd83f5d2f2e1a767233d92cba99540f5}{fill}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb}{textcolor}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_button_acf60de4c64d60c1b9449c056bc6bfcf7}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ uint8\_t\ \mbox{\hyperlink{class_button_ad2d642a63a07934860392fa5018b235f}{textsize}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint16\_t*\ \mbox{\hyperlink{class_button_a79490d23a5d64d5efde6e1301b2baf83}{image}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint16\_t*\ \mbox{\hyperlink{class_button_aa25e74c9fe00866f6b326f500b351d40}{image\_press}};\ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_button_a32317f847ce51fe316ab4a627d9f82ed}{button\_image\_bool}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint16\_t*\ \mbox{\hyperlink{class_button_a6b431061601bfd8dd0285e6d1696b938}{actual\_image}};\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Mode\ toggle\ -\/-\/-\/}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_button_ad86c27ef6d8b18fc15f3d3ab1dd918a6}{toggle\_mode\_bool}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_button_ac3b8bb77a963df89fd1be40254368585}{toggle\_label}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_a0949675a0ea4765fdf55c6b83d65573d}{toggle\_color}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_aaf11cb58cc4c6063854f8c96c318a7fa}{toggle\_text\_color}};\ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_button_a3925a04c05688e61608c810e5f66bb1c}{toggle\_state}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Couleurs\ pour\ état\ désactivé\ -\/-\/-\/}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_ac8aa35310e444bfeef28d99f2647982e}{disable\_fill\_color}};\ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_a22ec919ba7f7461e346194cf25d174eb}{disable\_textColor}};\ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_button_a1b638af4f9d6e18fe17a0395e13ef829}{disable\_color\_on}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_screen}{Screen}}*\ \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{emptyFunction}}(\mbox{\hyperlink{class_screen}{Screen}}*)\ \{\}\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ void\ (*\mbox{\hyperlink{class_button_a8365cc39baa7ace1838f0a23c312bca0}{onClick}})(\mbox{\hyperlink{class_screen}{Screen}}*);\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ void\ (*\mbox{\hyperlink{class_button_a8eea7cc7a2f055318d6879b1799db19b}{offClick}})(\mbox{\hyperlink{class_screen}{Screen}}*);\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button_adf271b1be4c753b7f9ddf23e8f67c530}{Button}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a738597cb3eefde9c995364bbdfcc9e7a}{initButton}}(TFT\_eSPI\ *\mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}},\ int16\_t\ \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}},\ int16\_t\ \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}},\ uint16\_t\ \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}},\ uint16\_t\ \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{class_button_ab86d5efc973df18859900023ebadc172}{outline}},\ uint16\_t\ \mbox{\hyperlink{class_button_abd83f5d2f2e1a767233d92cba99540f5}{fill}},\ uint16\_t\ \mbox{\hyperlink{class_button_a96d8daa0982a8b9ab1eebc9be73f0bbb}{textcolor}},}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_button_acf60de4c64d60c1b9449c056bc6bfcf7}{label}},\ uint8\_t\ \mbox{\hyperlink{class_button_ad2d642a63a07934860392fa5018b235f}{textsize}},\ \mbox{\hyperlink{class_screen}{Screen}}*\ \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{void}\ (*onPress)(\mbox{\hyperlink{class_screen}{Screen}}*)\ =\ \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{emptyFunction}});}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a738597cb3eefde9c995364bbdfcc9e7a}{initButton}}(TFT\_eSPI\ *\mbox{\hyperlink{class_button_a6ca5035bcc0cd40ba552fd02421deea1}{gfx}},\ int16\_t\ \mbox{\hyperlink{class_button_ae1c2d516777e6b42af0d281c9ecc7375}{x}},\ int16\_t\ \mbox{\hyperlink{class_button_af77b1a54442f2443cf64a4766f916bcd}{y}},\ uint16\_t\ \mbox{\hyperlink{class_button_a69e28057d97f59f81862a467cc6299fc}{w}},\ uint16\_t\ \mbox{\hyperlink{class_button_a8bf5747847b23fa2d39ef956e10bfbd3}{h}},}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ uint16\_t*\ \mbox{\hyperlink{class_button_a79490d23a5d64d5efde6e1301b2baf83}{image}},\ \textcolor{keyword}{const}\ uint16\_t*\ imageOff\ =\ \textcolor{keyword}{nullptr},\ \mbox{\hyperlink{class_screen}{Screen}}*\ \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{void}\ (*onPress)(\mbox{\hyperlink{class_screen}{Screen}}*)\ =\ \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{emptyFunction}});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a7948696d2a9f3dd685f8a41eb7089c8b}{toggle\_mode}}(\textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_button_ac3b8bb77a963df89fd1be40254368585}{toggle\_label}},\ uint16\_t\ \mbox{\hyperlink{class_button_a0949675a0ea4765fdf55c6b83d65573d}{toggle\_color}},\ uint16\_t\ \mbox{\hyperlink{class_button_aaf11cb58cc4c6063854f8c96c318a7fa}{toggle\_text\_color}},\ \mbox{\hyperlink{class_screen}{Screen}}*\ \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{void}\ (*offPress)(\mbox{\hyperlink{class_screen}{Screen}}*)\ =\ \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{emptyFunction}},\ \textcolor{keywordtype}{bool}\ toggle\_button\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a7948696d2a9f3dd685f8a41eb7089c8b}{toggle\_mode}}(\textcolor{keyword}{const}\ uint16\_t*\ image\_toggle,\ \mbox{\hyperlink{class_screen}{Screen}}*\ \mbox{\hyperlink{class_button_a6523aa9ce436e2c07b39516062d704d7}{scr}}\ =\ \textcolor{keyword}{nullptr},\ \textcolor{keywordtype}{void}\ (*offPress)(\mbox{\hyperlink{class_screen}{Screen}}*)\ =\ \mbox{\hyperlink{class_button_aba2759bfdeedb10657246fc123813ec5}{emptyFunction}},\ \textcolor{keywordtype}{bool}\ toggle\_button\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a864a80a58ea8bea5f271bd2e8107dd0b}{disable\_color\_init}}(uint16\_t\ fillColor,\ uint16\_t\ textColor);}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_adb3cf331346189654d528ee8e24b681a}{draw}}(\textcolor{keywordtype}{bool}\ invert\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_button_a75b33b927f84cbaaeb8c188fa57baee7}{refreshTouch}}(uint16\_t\ touch\_x,\ uint16\_t\ touch\_y,\ \textcolor{keywordtype}{bool}\ pressed);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_button_a4f6a7f253bdd17de45549df1fc71b8c0}{disable}};\ }
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ TFT\_eSPI\_Button\ \mbox{\hyperlink{class_button_a3cd970a7e7208668228a917ee232b2e1}{myButton}};\ }
+\DoxyCodeLine{00143\ \};}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

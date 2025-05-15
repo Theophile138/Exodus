@@ -1,0 +1,44 @@
+\doxysection{Setup17\+\_\+e\+Paper.\+h}
+\hypertarget{_setup17__e_paper_8h_source}{}\label{_setup17__e_paper_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup17\_ePaper.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup17\_ePaper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ EPD\_DRIVER\ }\textcolor{comment}{//\ ePaper\ driver}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ READ\ THIS\ \ READ\ THIS\ \ READ\ THIS\ \ READ\ THIS\ \ READ\ THIS\ \ READ\ THIS}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Install\ the\ ePaper\ library\ for\ your\ own\ display\ size\ and\ type}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ from\ here:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ https://github.com/Bodmer/EPD\_Libraries}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ Note:\ Pin\ allocations\ for\ the\ ePaper\ signals\ are\ defined\ in}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ the\ ePaper\ library's\ epdif.h\ file.\ There\ follows\ the\ default}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ pins\ already\ included\ in\ epdif.h\ file\ for\ the\ ESP8266:}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ \ For\ ESP8266\ connect\ as\ follows:\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ \ Display\ \ 3.3V\ to\ NodeMCU\ 3V3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ \ Display\ \ \ GND\ to\ NodeMCU\ GND\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ Display\ \ \ GPIO\ \ \ NodeMCU\ pin\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ \ \ BUSY\ \ \ \ \ \ \ 5\ \ \ \ \ \ D1\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ \ \ RESET\ \ \ \ \ \ 4\ \ \ \ \ \ D2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ \ \ \ DC\ \ \ \ \ \ \ \ \ 0\ \ \ \ \ \ D3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ \ \ CS\ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ D4\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ \ \ \ CLK\ \ \ \ \ \ \ 14\ \ \ \ \ \ D5\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ D6\ (MISO\ not\ connected\ to\ display)\ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ \ \ \ DIN\ \ \ \ \ \ \ 13\ \ \ \ \ \ D7\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+
+\end{DoxyCode}

@@ -1,0 +1,81 @@
+\doxysection{Parent\+Device Class Reference}
+\hypertarget{class_parent_device}{}\label{class_parent_device}\index{ParentDevice@{ParentDevice}}
+
+
+Interface pour les périphériques pouvant être sélectionnés par un multiplexeur ou contrôlés par un registre.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Peripherique.\+h$>$}
+
+Inheritance diagram for Parent\+Device\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_parent_device}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_parent_device_ad7e19f476bb257b76c96fd70a2f4570a}{select\+Pin\+Multiplexeur}} (int pin\+Change\+Bin, int pin1, int pin2, int pin3)=0
+\begin{DoxyCompactList}\small\item\em Sélectionne un canal sur un multiplexeur. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_parent_device_a53241009451a55d315ed1d14cc6fd731}{set\+Pin}} (int pin, bool value)
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface pour les périphériques pouvant être sélectionnés par un multiplexeur ou contrôlés par un registre. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_parent_device_ad7e19f476bb257b76c96fd70a2f4570a}\index{ParentDevice@{ParentDevice}!selectPinMultiplexeur@{selectPinMultiplexeur}}
+\index{selectPinMultiplexeur@{selectPinMultiplexeur}!ParentDevice@{ParentDevice}}
+\doxysubsubsection{\texorpdfstring{selectPinMultiplexeur()}{selectPinMultiplexeur()}}
+{\footnotesize\ttfamily \label{class_parent_device_ad7e19f476bb257b76c96fd70a2f4570a} 
+virtual void select\+Pin\+Multiplexeur (\begin{DoxyParamCaption}\item[{int}]{pin\+Change\+Bin}{, }\item[{int}]{pin1}{, }\item[{int}]{pin2}{, }\item[{int}]{pin3}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sélectionne un canal sur un multiplexeur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Change\+Bin} & Valeur binaire à appliquer sur les pins de sélection. \\
+\hline
+{\em pin1} & Premier pin de sélection. \\
+\hline
+{\em pin2} & Deuxième pin de sélection. \\
+\hline
+{\em pin3} & Troisième pin de sélection. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_master_device_ae4cd8d8473d4ad64d50115a866958f9a}{Master\+Device}}, and \mbox{\hyperlink{class_registre_ae4cd8d8473d4ad64d50115a866958f9a}{Registre}}.
+
+\Hypertarget{class_parent_device_a53241009451a55d315ed1d14cc6fd731}\index{ParentDevice@{ParentDevice}!setPin@{setPin}}
+\index{setPin@{setPin}!ParentDevice@{ParentDevice}}
+\doxysubsubsection{\texorpdfstring{setPin()}{setPin()}}
+{\footnotesize\ttfamily \label{class_parent_device_a53241009451a55d315ed1d14cc6fd731} 
+virtual void set\+Pin (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du pin à modifier. \\
+\hline
+{\em value} & Valeur à appliquer (HIGH ou LOW). \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented in \mbox{\hyperlink{class_master_device_a73a9f84b3460cd42c312802f4994f3a2}{Master\+Device}}, and \mbox{\hyperlink{class_registre_a73a9f84b3460cd42c312802f4994f3a2}{Registre}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8h}{Lib\+Peripherique.\+h}}\end{DoxyCompactItemize}

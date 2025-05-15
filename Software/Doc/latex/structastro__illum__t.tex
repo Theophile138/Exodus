@@ -1,0 +1,75 @@
+\doxysection{astro\+\_\+illum\+\_\+t Struct Reference}
+\hypertarget{structastro__illum__t}{}\label{structastro__illum__t}\index{astro\_illum\_t@{astro\_illum\_t}}
+
+
+Information about the brightness and illuminated shape of a celestial body.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__illum__t_a2c5171551ffcd52a6f22de82f83f6e11}{status}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__illum__t_af637ea2ce377bbe504dd3f76d71f160b}{time}}
+\item 
+double \mbox{\hyperlink{structastro__illum__t_a4e869d8238236f3b0a6df0be1711abb6}{mag}}
+\item 
+double \mbox{\hyperlink{structastro__illum__t_afc4a65f7fe01c4198c95fd2265219046}{phase\+\_\+angle}}
+\item 
+double \mbox{\hyperlink{structastro__illum__t_a2b92ab3fcc89bc6d648433420c19da5d}{helio\+\_\+dist}}
+\item 
+double \mbox{\hyperlink{structastro__illum__t_a60be7a165fd30aaf279f335f882e39e9}{ring\+\_\+tilt}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Information about the brightness and illuminated shape of a celestial body. 
+
+Returned by the functions Astronomy\+\_\+\+Illumination and Astronomy\+\_\+\+Search\+Peak\+Magnitude to report the visual magnitude and illuminated fraction of a celestial body at a given date and time. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__illum__t_a2b92ab3fcc89bc6d648433420c19da5d}\index{astro\_illum\_t@{astro\_illum\_t}!helio\_dist@{helio\_dist}}
+\index{helio\_dist@{helio\_dist}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{helio\_dist}{helio\_dist}}
+{\footnotesize\ttfamily \label{structastro__illum__t_a2b92ab3fcc89bc6d648433420c19da5d} 
+double astro\+\_\+illum\+\_\+t\+::helio\+\_\+dist}
+
+The distance between the Sun and the body at the observation time. \Hypertarget{structastro__illum__t_a4e869d8238236f3b0a6df0be1711abb6}\index{astro\_illum\_t@{astro\_illum\_t}!mag@{mag}}
+\index{mag@{mag}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{mag}{mag}}
+{\footnotesize\ttfamily \label{structastro__illum__t_a4e869d8238236f3b0a6df0be1711abb6} 
+double astro\+\_\+illum\+\_\+t\+::mag}
+
+The visual magnitude of the body. Smaller values are brighter. \Hypertarget{structastro__illum__t_afc4a65f7fe01c4198c95fd2265219046}\index{astro\_illum\_t@{astro\_illum\_t}!phase\_angle@{phase\_angle}}
+\index{phase\_angle@{phase\_angle}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{phase\_angle}{phase\_angle}}
+{\footnotesize\ttfamily \label{structastro__illum__t_afc4a65f7fe01c4198c95fd2265219046} 
+double astro\+\_\+illum\+\_\+t\+::phase\+\_\+angle}
+
+The angle in degrees between the Sun and the Earth, as seen from the body. Indicates the body\textquotesingle{}s phase as seen from the Earth. \Hypertarget{structastro__illum__t_a60be7a165fd30aaf279f335f882e39e9}\index{astro\_illum\_t@{astro\_illum\_t}!ring\_tilt@{ring\_tilt}}
+\index{ring\_tilt@{ring\_tilt}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{ring\_tilt}{ring\_tilt}}
+{\footnotesize\ttfamily \label{structastro__illum__t_a60be7a165fd30aaf279f335f882e39e9} 
+double astro\+\_\+illum\+\_\+t\+::ring\+\_\+tilt}
+
+For Saturn, the tilt angle in degrees of its rings as seen from Earth. For all other bodies, 0. \Hypertarget{structastro__illum__t_a2c5171551ffcd52a6f22de82f83f6e11}\index{astro\_illum\_t@{astro\_illum\_t}!status@{status}}
+\index{status@{status}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__illum__t_a2c5171551ffcd52a6f22de82f83f6e11} 
+astro\+\_\+status\+\_\+t astro\+\_\+illum\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__illum__t_af637ea2ce377bbe504dd3f76d71f160b}\index{astro\_illum\_t@{astro\_illum\_t}!time@{time}}
+\index{time@{time}!astro\_illum\_t@{astro\_illum\_t}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{structastro__illum__t_af637ea2ce377bbe504dd3f76d71f160b} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+illum\+\_\+t\+::time}
+
+The date and time of the observation. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

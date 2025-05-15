@@ -1,0 +1,50 @@
+\doxysection{ILI9163\+\_\+\+Rotation.\+h}
+\hypertarget{_i_l_i9163___rotation_8h_source}{}\label{_i_l_i9163___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9163\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9163\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ILI9163\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ writedata(TFT\_MAD\_BGR);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ rowstart\ =\ 32;}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ colstart\ =\ 32;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00044\ \ \ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,54 @@
+\doxysection{config\+Test1.\+h}
+\hypertarget{_software___exodus__old_2config_test1_8h_source}{}\label{_software___exodus__old_2config_test1_8h_source}\index{Software\_Exodus\_old/configTest1.h@{Software\_Exodus\_old/configTest1.h}}
+\mbox{\hyperlink{_software___exodus__old_2config_test1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Theophile\ Klein\ -\/\ 27/01/2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ configTest1\_h}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ configTest1\_h}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_software___exodus__old_2_lib_peripherique_8h}{LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_software___exodus__old_2_lib_capteur_8h}{LibCapteur.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}soc/gpio\_struct.h"{}}\ \textcolor{comment}{//\ Pour\ accéder\ aux\ registres\ GPIO}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}\ \ \ \ \textcolor{comment}{//\ Pour\ configurer\ les\ GPIOs}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classconfig_test1}{configTest1}}\ \{}
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \textcolor{comment}{//\ Déclaration\ de\ la\ methode\ init,\ pour\ le\ demarge\ de\ la\ class}}
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classconfig_test1_a06252f408f864e71eb7524823fe4a09f}{init}}();}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classconfig_test1_ac1bd4a7c42c85d889379dcb0296b0a5f}{run}}();}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \textcolor{comment}{//\ Pin\ pour\ le\ registre\ a\ decalage}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a3839aac4808479aa21cc4ad15fc87492}{Reg1DataPin}}\ =\ 25;\ \textcolor{comment}{//\ Pin\ de\ l'esp32}}
+\DoxyCodeLine{00023\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a321cb314628c167abc0042db920b312e}{Reg1ClockPin}}\ =\ 26;}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a5c17981aca6fa9445f4ef19b4924c6f5}{Reg1TrigPin}}\ =\ 27;}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_ac6af98e23fb347116a541d1859b2cf80}{Reg1Length}}\ =\ 16;\ \textcolor{comment}{//\ Taile\ du\ registre\ (formule\ cas\ général,\ 8\ *\ nombreDeRegistre\ en\ serie)}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_registre}{Registre}}*\ \mbox{\hyperlink{classconfig_test1_a4d06ca8403e1b98127744f12e3d1400f}{monRegistre1}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a28ec4fd28629e0c7046df69a26f88527}{Multiplex1PinA}}\ =\ 33;}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a9ef9d6922ec07fce18e5582ac2f9fdf5}{Multiplex1PinS0}}\ =\ 4;\ \textcolor{comment}{//\ pin\ N°4\ sur\ le\ registre\ 1}}
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a25fe2800a7999688e6d705f2f85f5fe6}{Multiplex1PinS1}}\ =\ 5;\ \textcolor{comment}{//\ pin\ N°5\ ...\ registre\ 1}}
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a7ae8e041e171035bbe5b89d959164c9c}{Multiplex1PinS2}}\ =\ 6;\ \textcolor{comment}{//\ ect\ ...}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_master_device}{MasterDevice}}*\ \mbox{\hyperlink{classconfig_test1_a80512d8e9b3f4d6c4b197cd35dc640db}{myEsp32}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}*\ \mbox{\hyperlink{classconfig_test1_a2037ef340549893997b9da364306c084}{monMultiplex1}};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_de_force}{CapteurDeForce}}*\ \mbox{\hyperlink{classconfig_test1_aba8f3269d37e4e5d7549410170c32c87}{capteurForce1}};}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_de_force}{CapteurDeForce}}*\ \mbox{\hyperlink{classconfig_test1_af305cf71cf81254bda30b7b800479185}{capteurForce2}};}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_de_force}{CapteurDeForce}}*\ \mbox{\hyperlink{classconfig_test1_aa4e7146669fd652c78a1dd42f28c8d60}{capteurForce3}};}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_de_force}{CapteurDeForce}}*\ \mbox{\hyperlink{classconfig_test1_ae48bc322171e395cfc1fb240bf055938}{capteurForce4}};}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_de_force}{CapteurDeForce}}*\ \mbox{\hyperlink{classconfig_test1_ada6948145ce000b70af71c3f09dd18ce}{capteurForce5}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_aaa7963152c6d66944104f289306f0b0f}{dir}};}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_af1980d719b763e8e7b32224a4451b427}{dir2}};}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

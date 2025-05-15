@@ -1,0 +1,23 @@
+\doxysection{Servo\+DS3240.\+h}
+\hypertarget{_servo_d_s3240_8h_source}{}\label{_servo_d_s3240_8h_source}\index{Software\_Exodus\_VSC\_Project/lib/ServoDS3240/ServoDS3240.h@{Software\_Exodus\_VSC\_Project/lib/ServoDS3240/ServoDS3240.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SERVODS3240\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SERVODS3240\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }ServoDS3240\ \{}
+\DoxyCodeLine{00005\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00006\ \ \ \ \ ServoDS3240(\textcolor{keywordtype}{int}\ pwmPin,\ \textcolor{keywordtype}{int}\ pwmChannel\ =\ 0);}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{void}\ begin();}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordtype}{void}\ setAngle(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{keywordtype}{void}\ detach();}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ pin;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{int}\ channel;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ angleToDutyCycle(\textcolor{keywordtype}{float}\ angle);}
+\DoxyCodeLine{00015\ \};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

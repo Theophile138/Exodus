@@ -1,0 +1,44 @@
+\doxysection{Lib\+Capteur.\+h}
+\hypertarget{_lib_capteur_8h_source}{}\label{_lib_capteur_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibCapteur.h@{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibCapteur.h}}
+\mbox{\hyperlink{_lib_capteur_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibCapteur\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibCapteur\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <Wire.h>}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <MPU6050.h>}\ \ \ \ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_peripherique_8h}{LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_extend___card__lib_8h}{../Extend\_Card\_lib/Extend\_Card\_lib.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8}{Capteur}}\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8}{Capteur}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pinAnalog}},\ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9}{parent}});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8}{Capteur}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pinAnalog}},\ \mbox{\hyperlink{class_extend___card}{Extend\_Card}}*\ Card);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_aae714dc01fe7f5bb1a175d0d1068bb92}{getValue}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9}{parent}};\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pinAnalog}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_capteur_m_p_u6050_a222c2515883b97d058cbd36d7c391bb8}{CapteurMPU6050}}\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_capteur_m_p_u6050_a222c2515883b97d058cbd36d7c391bb8}{CapteurMPU6050}}();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_ab0bdf5cca484fb2ba637c39384b27fb2}{begin}}();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_ac6ff06d912faf0d270fe8e2ef05c347e}{getAcceleration}}(int16\_t\ \&ax,\ int16\_t\ \&ay,\ int16\_t\ \&az);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_ad41e9c4eab2d58d7869623bb8840b334}{getGyroscope}}(int16\_t\ \&gx,\ int16\_t\ \&gy,\ int16\_t\ \&gz);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ \ \ MPU6050\ \mbox{\hyperlink{class_capteur_m_p_u6050_a88c170d7ee5608442cacbd97992d5ed8}{mpu}};\ }
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

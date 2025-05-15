@@ -1,0 +1,111 @@
+\doxysection{ILI9225\+\_\+\+Init.\+h}
+\hypertarget{_i_l_i9225___init_8h_source}{}\label{_i_l_i9225___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ILI9225\ driver}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \{}
+\DoxyCodeLine{00004\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL1);}
+\DoxyCodeLine{00005\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00006\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL2);}
+\DoxyCodeLine{00007\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00008\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL3);}
+\DoxyCodeLine{00009\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00010\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL4);}
+\DoxyCodeLine{00011\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00012\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL5);}
+\DoxyCodeLine{00013\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ delay(40);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL2);}
+\DoxyCodeLine{00018\ \ \ \ \ writedata(0x00);writedata(0x18);}
+\DoxyCodeLine{00019\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL3);}
+\DoxyCodeLine{00020\ \ \ \ \ writedata(0x61);writedata(0x21);}
+\DoxyCodeLine{00021\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL4);}
+\DoxyCodeLine{00022\ \ \ \ \ writedata(0x00);writedata(0x6F);}
+\DoxyCodeLine{00023\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL5);}
+\DoxyCodeLine{00024\ \ \ \ \ writedata(0x49);writedata(0x5F);}
+\DoxyCodeLine{00025\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL1);}
+\DoxyCodeLine{00026\ \ \ \ \ writedata(0x08);writedata(0x00);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ delay(10);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ writecommand(ILI9225\_POWER\_CTRL2);}
+\DoxyCodeLine{00031\ \ \ \ \ writedata(0x10);writedata(0x3B);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ delay(50);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ writecommand(ILI9225\_LCD\_AC\_DRIVING\_CTRL);}
+\DoxyCodeLine{00036\ \ \ \ \ writedata(0x01);writedata(0x00);}
+\DoxyCodeLine{00037\ \ \ \ \ writecommand(ILI9225\_DISP\_CTRL1);}
+\DoxyCodeLine{00038\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00039\ \ \ \ \ writecommand(ILI9225\_BLANK\_PERIOD\_CTRL1);}
+\DoxyCodeLine{00040\ \ \ \ \ writedata(0x08);writedata(0x08);}
+\DoxyCodeLine{00041\ \ \ \ \ writecommand(ILI9225\_FRAME\_CYCLE\_CTRL);}
+\DoxyCodeLine{00042\ \ \ \ \ writedata(0x11);writedata(0x00);}
+\DoxyCodeLine{00043\ \ \ \ \ writecommand(ILI9225\_INTERFACE\_CTRL);}
+\DoxyCodeLine{00044\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00045\ \ \ \ \ writecommand(ILI9225\_OSC\_CTRL);}
+\DoxyCodeLine{00046\ \ \ \ \ writedata(0x0D);writedata(0x01);}
+\DoxyCodeLine{00047\ \ \ \ \ writecommand(ILI9225\_VCI\_RECYCLING);}
+\DoxyCodeLine{00048\ \ \ \ \ writedata(0x00);writedata(0x20);}
+\DoxyCodeLine{00049\ \ \ \ \ writecommand(ILI9225\_RAM\_ADDR\_SET1);}
+\DoxyCodeLine{00050\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00051\ \ \ \ \ writecommand(ILI9225\_RAM\_ADDR\_SET2);}
+\DoxyCodeLine{00052\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ writecommand(ILI9225\_GATE\_SCAN\_CTRL);}
+\DoxyCodeLine{00055\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00056\ \ \ \ \ writecommand(ILI9225\_VERTICAL\_SCROLL\_CTRL1);}
+\DoxyCodeLine{00057\ \ \ \ \ writedata(0x00);writedata(0xDB);}
+\DoxyCodeLine{00058\ \ \ \ \ writecommand(ILI9225\_VERTICAL\_SCROLL\_CTRL2);}
+\DoxyCodeLine{00059\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00060\ \ \ \ \ writecommand(ILI9225\_VERTICAL\_SCROLL\_CTRL3);}
+\DoxyCodeLine{00061\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00062\ \ \ \ \ writecommand(ILI9225\_PARTIAL\_DRIVING\_POS1);}
+\DoxyCodeLine{00063\ \ \ \ \ writedata(0x00);writedata(0xDB);}
+\DoxyCodeLine{00064\ \ \ \ \ writecommand(ILI9225\_PARTIAL\_DRIVING\_POS2);}
+\DoxyCodeLine{00065\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00066\ \ \ \ \ writecommand(ILI9225\_HORIZONTAL\_WINDOW\_ADDR1);}
+\DoxyCodeLine{00067\ \ \ \ \ writedata(0x00);writedata(0xAF);}
+\DoxyCodeLine{00068\ \ \ \ \ writecommand(ILI9225\_HORIZONTAL\_WINDOW\_ADDR2);}
+\DoxyCodeLine{00069\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00070\ \ \ \ \ writecommand(ILI9225\_VERTICAL\_WINDOW\_ADDR1);}
+\DoxyCodeLine{00071\ \ \ \ \ writedata(0x00);writedata(0xDB);}
+\DoxyCodeLine{00072\ \ \ \ \ writecommand(ILI9225\_VERTICAL\_WINDOW\_ADDR2);}
+\DoxyCodeLine{00073\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{/*\ Set\ GAMMA\ curve\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL1);}
+\DoxyCodeLine{00077\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00078\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL2);}
+\DoxyCodeLine{00079\ \ \ \ \ writedata(0x08);writedata(0x08);}
+\DoxyCodeLine{00080\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL3);}
+\DoxyCodeLine{00081\ \ \ \ \ writedata(0x08);writedata(0x0A);}
+\DoxyCodeLine{00082\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL4);}
+\DoxyCodeLine{00083\ \ \ \ \ writedata(0x00);writedata(0x0A);}
+\DoxyCodeLine{00084\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL5);}
+\DoxyCodeLine{00085\ \ \ \ \ writedata(0x0A);writedata(0x08);}
+\DoxyCodeLine{00086\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL6);}
+\DoxyCodeLine{00087\ \ \ \ \ writedata(0x08);writedata(0x08);}
+\DoxyCodeLine{00088\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL7);}
+\DoxyCodeLine{00089\ \ \ \ \ writedata(0x00);writedata(0x00);}
+\DoxyCodeLine{00090\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL8);}
+\DoxyCodeLine{00091\ \ \ \ \ writedata(0x0A);writedata(0x00);}
+\DoxyCodeLine{00092\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL9);}
+\DoxyCodeLine{00093\ \ \ \ \ writedata(0x07);writedata(0x10);}
+\DoxyCodeLine{00094\ \ \ \ \ writecommand(ILI9225\_GAMMA\_CTRL10);}
+\DoxyCodeLine{00095\ \ \ \ \ writedata(0x07);writedata(0x10);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ writecommand(ILI9225\_DISP\_CTRL1);}
+\DoxyCodeLine{00098\ \ \ \ \ writedata(0x00);writedata(0x12);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ delay(50);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ writecommand(ILI9225\_DISP\_CTRL1);}
+\DoxyCodeLine{00103\ \ \ \ \ writedata(0x10);writedata(0x17);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \}}
+
+\end{DoxyCode}

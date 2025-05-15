@@ -1,0 +1,692 @@
+\doxysection{TFT\+\_\+e\+Sprite Class Reference}
+\hypertarget{class_t_f_t__e_sprite}{}\label{class_t_f_t__e_sprite}\index{TFT\_eSprite@{TFT\_eSprite}}
+Inheritance diagram for TFT\+\_\+e\+Sprite\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_t_f_t__e_sprite}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a9acc114fa70482ea6117e795ccd32845}\label{class_t_f_t__e_sprite_a9acc114fa70482ea6117e795ccd32845} 
+{\bfseries TFT\+\_\+e\+Sprite} (\mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}} \texorpdfstring{$\ast$}{*}tft)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a242cbf9bcd3148af87f68587c446c3a9}\label{class_t_f_t__e_sprite_a242cbf9bcd3148af87f68587c446c3a9} 
+void \texorpdfstring{$\ast$}{*} {\bfseries create\+Sprite} (int16\+\_\+t width, int16\+\_\+t height, uint8\+\_\+t frames=1)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a57b7adfcfbb06148b7aaa4d66fe81788}\label{class_t_f_t__e_sprite_a57b7adfcfbb06148b7aaa4d66fe81788} 
+void \texorpdfstring{$\ast$}{*} {\bfseries get\+Pointer} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aab3b167b4a7dfb8b87d5063e062d9f5a}\label{class_t_f_t__e_sprite_aab3b167b4a7dfb8b87d5063e062d9f5a} 
+bool {\bfseries created} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_adc42520af92c8e47c9069d4496291388}\label{class_t_f_t__e_sprite_adc42520af92c8e47c9069d4496291388} 
+void {\bfseries delete\+Sprite} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a939dbc51ae576d4ce5a6ea1e8279d678}\label{class_t_f_t__e_sprite_a939dbc51ae576d4ce5a6ea1e8279d678} 
+void \texorpdfstring{$\ast$}{*} {\bfseries frame\+Buffer} (int8\+\_\+t f)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_adea45a73a254ef7d048202bc89518643}\label{class_t_f_t__e_sprite_adea45a73a254ef7d048202bc89518643} 
+void \texorpdfstring{$\ast$}{*} {\bfseries set\+Color\+Depth} (int8\+\_\+t b)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a5adecb831418738ffab78d7748c65f22}\label{class_t_f_t__e_sprite_a5adecb831418738ffab78d7748c65f22} 
+int8\+\_\+t {\bfseries get\+Color\+Depth} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a9c0856755fa1ce721acc1f55023a10dc}\label{class_t_f_t__e_sprite_a9c0856755fa1ce721acc1f55023a10dc} 
+void {\bfseries create\+Palette} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}palette=nullptr, uint8\+\_\+t colors=16)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ab703fb051b5b8b72fe8e438ef01eda34}\label{class_t_f_t__e_sprite_ab703fb051b5b8b72fe8e438ef01eda34} 
+void {\bfseries create\+Palette} (const uint16\+\_\+t \texorpdfstring{$\ast$}{*}palette=nullptr, uint8\+\_\+t colors=16)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ad58fe2f7b9583040b150b827c7960817}\label{class_t_f_t__e_sprite_ad58fe2f7b9583040b150b827c7960817} 
+void {\bfseries set\+Palette\+Color} (uint8\+\_\+t index, uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aa25f9f45f211a0da9f463af2eda63adb}\label{class_t_f_t__e_sprite_aa25f9f45f211a0da9f463af2eda63adb} 
+uint16\+\_\+t {\bfseries get\+Palette\+Color} (uint8\+\_\+t index)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ae00520e7c5d7ae34620a6a8a23a530d3}\label{class_t_f_t__e_sprite_ae00520e7c5d7ae34620a6a8a23a530d3} 
+void {\bfseries set\+Bitmap\+Color} (uint16\+\_\+t fg, uint16\+\_\+t bg)
+\item 
+void \mbox{\hyperlink{class_t_f_t__e_sprite_a6679cdbf3391923e5687ab035ebed56b}{draw\+Pixel}} (int32\+\_\+t x, int32\+\_\+t y, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a9ceef5df8536246b4475cfc16b40340f}\label{class_t_f_t__e_sprite_a9ceef5df8536246b4475cfc16b40340f} 
+void {\bfseries draw\+Char} (int32\+\_\+t x, int32\+\_\+t y, uint16\+\_\+t c, uint32\+\_\+t color, uint32\+\_\+t bg, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a7079259acdfd09ee8ca609111109644b}\label{class_t_f_t__e_sprite_a7079259acdfd09ee8ca609111109644b} 
+void {\bfseries fill\+Sprite} (uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a2b9c08e4ec5bfbc6ad9b4fc359295020}\label{class_t_f_t__e_sprite_a2b9c08e4ec5bfbc6ad9b4fc359295020} 
+void {\bfseries set\+Window} (int32\+\_\+t x0, int32\+\_\+t y0, int32\+\_\+t x1, int32\+\_\+t y1)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_addfe3b5908d2554ed50db3230359c7a7}\label{class_t_f_t__e_sprite_addfe3b5908d2554ed50db3230359c7a7} 
+void {\bfseries push\+Color} (uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a8d887872b0cc6f50702569960149d685}\label{class_t_f_t__e_sprite_a8d887872b0cc6f50702569960149d685} 
+void {\bfseries push\+Color} (uint32\+\_\+t color, uint16\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a050a050e1ee41a31f93c8c9dbeee890d}\label{class_t_f_t__e_sprite_a050a050e1ee41a31f93c8c9dbeee890d} 
+void {\bfseries write\+Color} (uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ab798b8426fbf23431e535ec5471736d8}\label{class_t_f_t__e_sprite_ab798b8426fbf23431e535ec5471736d8} 
+void {\bfseries set\+Scroll\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t color=TFT\+\_\+\+BLACK)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a6cf16cc8eec03ebd1d3161d8eb9966fc}\label{class_t_f_t__e_sprite_a6cf16cc8eec03ebd1d3161d8eb9966fc} 
+void {\bfseries scroll} (int16\+\_\+t dx, int16\+\_\+t dy=0)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a7ae6b14a8e955f27d6800eaf7761b5f8}\label{class_t_f_t__e_sprite_a7ae6b14a8e955f27d6800eaf7761b5f8} 
+void {\bfseries draw\+Line} (int32\+\_\+t x0, int32\+\_\+t y0, int32\+\_\+t x1, int32\+\_\+t y1, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a491b6e872bc430d9003434d4195a6a70}\label{class_t_f_t__e_sprite_a491b6e872bc430d9003434d4195a6a70} 
+void {\bfseries draw\+Fast\+VLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a8eab95d4821af539a6d10dce36773a55}\label{class_t_f_t__e_sprite_a8eab95d4821af539a6d10dce36773a55} 
+void {\bfseries draw\+Fast\+HLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a3bdeab4658cd86ee88b76a9c89f970fb}\label{class_t_f_t__e_sprite_a3bdeab4658cd86ee88b76a9c89f970fb} 
+void {\bfseries fill\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a1364264278d68f343c4d0531d153ec94}\label{class_t_f_t__e_sprite_a1364264278d68f343c4d0531d153ec94} 
+void {\bfseries set\+Rotation} (uint8\+\_\+t rotation)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aa6e6f8f33ffcdbaef756023b67ba8617}\label{class_t_f_t__e_sprite_aa6e6f8f33ffcdbaef756023b67ba8617} 
+uint8\+\_\+t {\bfseries get\+Rotation} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_af9f52612718f039c4cbc9da3d49f1d82}\label{class_t_f_t__e_sprite_af9f52612718f039c4cbc9da3d49f1d82} 
+bool {\bfseries push\+Rotated} (int16\+\_\+t angle, uint32\+\_\+t transp=0x00\+FFFFFF)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a4026494b8f9ca97a5ba545dd754e117c}\label{class_t_f_t__e_sprite_a4026494b8f9ca97a5ba545dd754e117c} 
+bool {\bfseries push\+Rotated} (\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\+\_\+e\+Sprite}} \texorpdfstring{$\ast$}{*}spr, int16\+\_\+t angle, uint32\+\_\+t transp=0x00\+FFFFFF)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a3a3f5f726f9187b3a43a4f5259d5e2dd}\label{class_t_f_t__e_sprite_a3a3f5f726f9187b3a43a4f5259d5e2dd} 
+bool {\bfseries get\+Rotated\+Bounds} (int16\+\_\+t angle, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+y, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a2f88795b3b1f03b3bdf5ec3eac21647a}\label{class_t_f_t__e_sprite_a2f88795b3b1f03b3bdf5ec3eac21647a} 
+bool {\bfseries get\+Rotated\+Bounds} (\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\+\_\+e\+Sprite}} \texorpdfstring{$\ast$}{*}spr, int16\+\_\+t angle, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+y, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a6606772a53e0dddea010b8d6151e8dd3}\label{class_t_f_t__e_sprite_a6606772a53e0dddea010b8d6151e8dd3} 
+void {\bfseries get\+Rotated\+Bounds} (int16\+\_\+t angle, int16\+\_\+t w, int16\+\_\+t h, int16\+\_\+t xp, int16\+\_\+t yp, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}min\+\_\+y, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+x, int16\+\_\+t \texorpdfstring{$\ast$}{*}max\+\_\+y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a9567d2fce696e37fa064ec11f195d7d9}\label{class_t_f_t__e_sprite_a9567d2fce696e37fa064ec11f195d7d9} 
+uint16\+\_\+t {\bfseries read\+Pixel} (int32\+\_\+t x0, int32\+\_\+t y0)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a8253d3a216b10596561f73a83edd83cf}\label{class_t_f_t__e_sprite_a8253d3a216b10596561f73a83edd83cf} 
+uint16\+\_\+t {\bfseries read\+Pixel\+Value} (int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aaa7ac9604b85bf1d28a48160c8f4f6ae}\label{class_t_f_t__e_sprite_aaa7ac9604b85bf1d28a48160c8f4f6ae} 
+void {\bfseries push\+Image} (int32\+\_\+t x0, int32\+\_\+t y0, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t sbpp=0)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a44664ce9e99533a321fa6b8711bbca19}\label{class_t_f_t__e_sprite_a44664ce9e99533a321fa6b8711bbca19} 
+void {\bfseries push\+Image} (int32\+\_\+t x0, int32\+\_\+t y0, int32\+\_\+t w, int32\+\_\+t h, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a93cdc3e149dd4f6a3581ab08cd55f85e}\label{class_t_f_t__e_sprite_a93cdc3e149dd4f6a3581ab08cd55f85e} 
+void {\bfseries push\+Sprite} (int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a4a1bb4eb43683cfaf74fbbb5b49fb35b}\label{class_t_f_t__e_sprite_a4a1bb4eb43683cfaf74fbbb5b49fb35b} 
+void {\bfseries push\+Sprite} (int32\+\_\+t x, int32\+\_\+t y, uint16\+\_\+t transparent)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a19b3beafbeacd5fa5b6092aa8faf152b}\label{class_t_f_t__e_sprite_a19b3beafbeacd5fa5b6092aa8faf152b} 
+bool {\bfseries push\+Sprite} (int32\+\_\+t tx, int32\+\_\+t ty, int32\+\_\+t sx, int32\+\_\+t sy, int32\+\_\+t sw, int32\+\_\+t sh)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a549a4c800be56e5ee40c2b248e83ada4}\label{class_t_f_t__e_sprite_a549a4c800be56e5ee40c2b248e83ada4} 
+bool {\bfseries push\+To\+Sprite} (\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\+\_\+e\+Sprite}} \texorpdfstring{$\ast$}{*}dspr, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aab13f047502cfaf9e8b6ebce043a3617}\label{class_t_f_t__e_sprite_aab13f047502cfaf9e8b6ebce043a3617} 
+bool {\bfseries push\+To\+Sprite} (\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\+\_\+e\+Sprite}} \texorpdfstring{$\ast$}{*}dspr, int32\+\_\+t x, int32\+\_\+t y, uint16\+\_\+t transparent)
+\item 
+int16\+\_\+t \mbox{\hyperlink{class_t_f_t__e_sprite_a915bd45d3d6d7401de746ee6bd0d2e6e}{draw\+Char}} (uint16\+\_\+t uni\+Code, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_acc7deb06a3a1e780e5c3ba2925941799}\label{class_t_f_t__e_sprite_acc7deb06a3a1e780e5c3ba2925941799} 
+int16\+\_\+t {\bfseries draw\+Char} (uint16\+\_\+t uni\+Code, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a75b64339dec0dc53205e1fea662dbc1c}\label{class_t_f_t__e_sprite_a75b64339dec0dc53205e1fea662dbc1c} 
+int16\+\_\+t {\bfseries width} (void)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aeaaf00c611161aa0ce56c9d66b911038}\label{class_t_f_t__e_sprite_aeaaf00c611161aa0ce56c9d66b911038} 
+int16\+\_\+t {\bfseries height} (void)
+\item 
+void \mbox{\hyperlink{class_t_f_t__e_sprite_ab47cf2f10e3fc9ebfe36ae67719c7363}{draw\+Glyph}} (uint16\+\_\+t code)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ae940bb518a951c098b1d43f8307e4c39}\label{class_t_f_t__e_sprite_ae940bb518a951c098b1d43f8307e4c39} 
+void {\bfseries print\+To\+Sprite} (String string)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a556a52b8708e8579549917c1b9a918d7}\label{class_t_f_t__e_sprite_a556a52b8708e8579549917c1b9a918d7} 
+void {\bfseries print\+To\+Sprite} (char \texorpdfstring{$\ast$}{*}cbuffer, uint16\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a515e6de327e70d0a2330a909b959f491}\label{class_t_f_t__e_sprite_a515e6de327e70d0a2330a909b959f491} 
+int16\+\_\+t {\bfseries print\+To\+Sprite} (int16\+\_\+t x, int16\+\_\+t y, uint16\+\_\+t index)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries TFT\+\_\+e\+SPI} (int16\+\_\+t \+\_\+W=TFT\+\_\+\+WIDTH, int16\+\_\+t \+\_\+H=TFT\+\_\+\+HEIGHT)
+\item 
+void {\bfseries init} (uint8\+\_\+t tc=TAB\+\_\+\+COLOUR)
+\item 
+void {\bfseries begin} (uint8\+\_\+t tc=TAB\+\_\+\+COLOUR)
+\item 
+virtual void {\bfseries draw\+Char} (int32\+\_\+t x, int32\+\_\+t y, uint16\+\_\+t c, uint32\+\_\+t color, uint32\+\_\+t bg, uint8\+\_\+t size)
+\item 
+virtual void {\bfseries draw\+Line} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t xe, int32\+\_\+t ye, uint32\+\_\+t color)
+\item 
+virtual void {\bfseries draw\+Fast\+VLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+virtual void {\bfseries draw\+Fast\+HLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, uint32\+\_\+t color)
+\item 
+virtual void {\bfseries fill\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+virtual int16\+\_\+t {\bfseries draw\+Char} (uint16\+\_\+t uni\+Code, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+virtual int16\+\_\+t {\bfseries height} (void)
+\item 
+virtual int16\+\_\+t {\bfseries width} (void)
+\item 
+void {\bfseries set\+Rotation} (uint8\+\_\+t r)
+\item 
+uint8\+\_\+t {\bfseries get\+Rotation} (void)
+\item 
+void {\bfseries invert\+Display} (bool i)
+\item 
+void {\bfseries set\+Addr\+Window} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t w, int32\+\_\+t h)
+\item 
+void {\bfseries set\+Window} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t xe, int32\+\_\+t ye)
+\item 
+void {\bfseries set\+Viewport} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, bool vp\+Datum=true)
+\item 
+bool {\bfseries check\+Viewport} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h)
+\item 
+int32\+\_\+t {\bfseries get\+ViewportX} (void)
+\item 
+int32\+\_\+t {\bfseries get\+ViewportY} (void)
+\item 
+int32\+\_\+t {\bfseries get\+Viewport\+Width} (void)
+\item 
+int32\+\_\+t {\bfseries get\+Viewport\+Height} (void)
+\item 
+bool {\bfseries get\+Viewport\+Datum} (void)
+\item 
+void {\bfseries frame\+Viewport} (uint16\+\_\+t color, int32\+\_\+t w)
+\item 
+void {\bfseries reset\+Viewport} (void)
+\item 
+void {\bfseries push\+Color} (uint16\+\_\+t color)
+\item 
+void {\bfseries push\+Color} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+void {\bfseries push\+Colors} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len, bool swap=true)
+\item 
+void {\bfseries push\+Colors} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\item 
+void {\bfseries push\+Block} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+void {\bfseries push\+Pixels} (const void \texorpdfstring{$\ast$}{*}data\+\_\+in, uint32\+\_\+t len)
+\item 
+uint16\+\_\+t {\bfseries read\+Pixel} (int32\+\_\+t x, int32\+\_\+t y)
+\item 
+void {\bfseries fill\+Screen} (uint32\+\_\+t color)
+\item 
+void {\bfseries draw\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+void {\bfseries draw\+Round\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, int32\+\_\+t radius, uint32\+\_\+t color)
+\item 
+void {\bfseries fill\+Round\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, int32\+\_\+t radius, uint32\+\_\+t color)
+\item 
+void {\bfseries draw\+Circle} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint32\+\_\+t color)
+\item 
+void {\bfseries draw\+Circle\+Helper} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint8\+\_\+t cornername, uint32\+\_\+t color)
+\item 
+void {\bfseries fill\+Circle} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint32\+\_\+t color)
+\item 
+void {\bfseries fill\+Circle\+Helper} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint8\+\_\+t cornername, int32\+\_\+t delta, uint32\+\_\+t color)
+\item 
+void {\bfseries draw\+Ellipse} (int16\+\_\+t x, int16\+\_\+t y, int32\+\_\+t rx, int32\+\_\+t ry, uint16\+\_\+t color)
+\item 
+void {\bfseries fill\+Ellipse} (int16\+\_\+t x, int16\+\_\+t y, int32\+\_\+t rx, int32\+\_\+t ry, uint16\+\_\+t color)
+\item 
+void {\bfseries draw\+Triangle} (int32\+\_\+t x1, int32\+\_\+t y1, int32\+\_\+t x2, int32\+\_\+t y2, int32\+\_\+t x3, int32\+\_\+t y3, uint32\+\_\+t color)
+\item 
+void {\bfseries fill\+Triangle} (int32\+\_\+t x1, int32\+\_\+t y1, int32\+\_\+t x2, int32\+\_\+t y2, int32\+\_\+t x3, int32\+\_\+t y3, uint32\+\_\+t color)
+\item 
+void {\bfseries set\+Swap\+Bytes} (bool swap)
+\item 
+bool {\bfseries get\+Swap\+Bytes} (void)
+\item 
+void {\bfseries draw\+Bitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor)
+\item 
+void {\bfseries draw\+Bitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+void {\bfseries draw\+XBitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor)
+\item 
+void {\bfseries draw\+XBitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+void {\bfseries set\+Bitmap\+Color} (uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+void {\bfseries set\+Pivot} (int16\+\_\+t x, int16\+\_\+t y)
+\item 
+int16\+\_\+t {\bfseries get\+PivotX} (void)
+\item 
+int16\+\_\+t {\bfseries get\+PivotY} (void)
+\item 
+void {\bfseries read\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+void {\bfseries push\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t transparent)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t transparent)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, bool bpp8=true, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t transparent, bool bpp8=true, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, bool bpp8, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+void {\bfseries read\+Rect\+RGB} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+int16\+\_\+t {\bfseries draw\+Number} (long int\+Number, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+Number} (long int\+Number, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+int16\+\_\+t {\bfseries draw\+Float} (float float\+Number, uint8\+\_\+t decimal, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+Float} (float float\+Number, uint8\+\_\+t decimal, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+int16\+\_\+t {\bfseries draw\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+int16\+\_\+t {\bfseries draw\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+int16\+\_\+t {\bfseries draw\+Centre\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+Right\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+Centre\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries draw\+Right\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+void {\bfseries set\+Cursor} (int16\+\_\+t x, int16\+\_\+t y)
+\item 
+void {\bfseries set\+Cursor} (int16\+\_\+t x, int16\+\_\+t y, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries get\+CursorX} (void)
+\item 
+int16\+\_\+t {\bfseries get\+CursorY} (void)
+\item 
+void {\bfseries set\+Text\+Color} (uint16\+\_\+t color)
+\item 
+void {\bfseries set\+Text\+Color} (uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+void {\bfseries set\+Text\+Size} (uint8\+\_\+t size)
+\item 
+void {\bfseries set\+Text\+Wrap} (bool wrapX, bool wrapY=false)
+\item 
+void {\bfseries set\+Text\+Datum} (uint8\+\_\+t datum)
+\item 
+uint8\+\_\+t {\bfseries get\+Text\+Datum} (void)
+\item 
+void {\bfseries set\+Text\+Padding} (uint16\+\_\+t x\+\_\+width)
+\item 
+uint16\+\_\+t {\bfseries get\+Text\+Padding} (void)
+\item 
+void {\bfseries set\+Free\+Font} (const GFXfont \texorpdfstring{$\ast$}{*}f=NULL)
+\item 
+void {\bfseries set\+Text\+Font} (uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries text\+Width} (const char \texorpdfstring{$\ast$}{*}string, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries text\+Width} (const char \texorpdfstring{$\ast$}{*}string)
+\item 
+int16\+\_\+t {\bfseries text\+Width} (const String \&string, uint8\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries text\+Width} (const String \&string)
+\item 
+int16\+\_\+t {\bfseries font\+Height} (int16\+\_\+t font)
+\item 
+int16\+\_\+t {\bfseries font\+Height} (void)
+\item 
+uint16\+\_\+t {\bfseries decode\+UTF8} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t \texorpdfstring{$\ast$}{*}index, uint16\+\_\+t remaining)
+\item 
+uint16\+\_\+t {\bfseries decode\+UTF8} (uint8\+\_\+t c)
+\item 
+size\+\_\+t {\bfseries write} (uint8\+\_\+t)
+\item 
+void {\bfseries set\+Callback} (get\+Color\+Callback get\+Col)
+\item 
+uint16\+\_\+t {\bfseries fonts\+Loaded} (void)
+\item 
+void {\bfseries spiwrite} (uint8\+\_\+t)
+\item 
+void {\bfseries writecommand} (uint8\+\_\+t c)
+\item 
+void {\bfseries writedata} (uint8\+\_\+t d)
+\item 
+void {\bfseries command\+List} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr)
+\item 
+uint8\+\_\+t {\bfseries readcommand8} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+uint16\+\_\+t {\bfseries readcommand16} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+uint32\+\_\+t {\bfseries readcommand32} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+uint16\+\_\+t {\bfseries color565} (uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+uint16\+\_\+t {\bfseries color8to16} (uint8\+\_\+t color332)
+\item 
+uint8\+\_\+t {\bfseries color16to8} (uint16\+\_\+t color565)
+\item 
+uint32\+\_\+t {\bfseries color16to24} (uint16\+\_\+t color565)
+\item 
+uint32\+\_\+t {\bfseries color24to16} (uint32\+\_\+t color888)
+\item 
+uint16\+\_\+t {\bfseries alpha\+Blend} (uint8\+\_\+t alpha, uint16\+\_\+t fgc, uint16\+\_\+t bgc)
+\item 
+uint16\+\_\+t {\bfseries alpha\+Blend} (uint8\+\_\+t alpha, uint16\+\_\+t fgc, uint16\+\_\+t bgc, uint8\+\_\+t dither)
+\item 
+uint32\+\_\+t {\bfseries alpha\+Blend24} (uint8\+\_\+t alpha, uint32\+\_\+t fgc, uint32\+\_\+t bgc, uint8\+\_\+t dither=0)
+\item 
+bool {\bfseries init\+DMA} (bool ctrl\+\_\+cs=false)
+\item 
+void {\bfseries de\+Init\+DMA} (void)
+\item 
+void {\bfseries push\+Image\+DMA} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t \texorpdfstring{$\ast$}{*}buffer=nullptr)
+\item 
+void {\bfseries push\+Pixels\+DMA} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}image, uint32\+\_\+t len)
+\item 
+bool {\bfseries dma\+Busy} (void)
+\item 
+void {\bfseries dma\+Wait} (void)
+\item 
+void {\bfseries start\+Write} (void)
+\item 
+void {\bfseries write\+Color} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+void {\bfseries end\+Write} (void)
+\item 
+void {\bfseries set\+Attribute} (uint8\+\_\+t id=0, uint8\+\_\+t a=0)
+\item 
+uint8\+\_\+t {\bfseries get\+Attribute} (uint8\+\_\+t id=0)
+\item 
+void {\bfseries get\+Setup} (\mbox{\hyperlink{structsetup__t}{setup\+\_\+t}} \&tft\+\_\+settings)
+\item 
+uint8\+\_\+t {\bfseries get\+Touch\+Raw} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y)
+\item 
+uint16\+\_\+t {\bfseries get\+Touch\+RawZ} (void)
+\item 
+void {\bfseries convert\+Raw\+XY} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y)
+\item 
+uint8\+\_\+t {\bfseries get\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y, uint16\+\_\+t threshold=600)
+\item 
+void {\bfseries calibrate\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t color\+\_\+fg, uint32\+\_\+t color\+\_\+bg, uint8\+\_\+t size)
+\item 
+void {\bfseries set\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+void {\bfseries load\+Font} (const uint8\+\_\+t array\mbox{[}$\,$\mbox{]})
+\item 
+void {\bfseries load\+Font} (String font\+Name, bool flash=true)
+\item 
+void {\bfseries unload\+Font} (void)
+\item 
+bool {\bfseries get\+Unicode\+Index} (uint16\+\_\+t unicode, uint16\+\_\+t \texorpdfstring{$\ast$}{*}index)
+\item 
+void {\bfseries show\+Font} (uint32\+\_\+t td)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a0e309ceff5f8fe9f5d070df5249033a8}\label{class_t_f_t__e_sprite_a0e309ceff5f8fe9f5d070df5249033a8} 
+uint8\+\_\+t {\bfseries \+\_\+bpp}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a6f0f0e069a82f125db1d9f9594c8b667}\label{class_t_f_t__e_sprite_a6f0f0e069a82f125db1d9f9594c8b667} 
+uint16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+img}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a63e8051097e20bc3a0b2d4b94571f148}\label{class_t_f_t__e_sprite_a63e8051097e20bc3a0b2d4b94571f148} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+img8}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ae008b830fe6fb27e3c29dd75f79ef463}\label{class_t_f_t__e_sprite_ae008b830fe6fb27e3c29dd75f79ef463} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+img4}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a823d73c0ccac5fa55a94c79aa21e244a}\label{class_t_f_t__e_sprite_a823d73c0ccac5fa55a94c79aa21e244a} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+img8\+\_\+1}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a97919da0a53adb482c7ef383e7d75cd4}\label{class_t_f_t__e_sprite_a97919da0a53adb482c7ef383e7d75cd4} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+img8\+\_\+2}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a5d3b087988cc797eef8d54b8d29c20fe}\label{class_t_f_t__e_sprite_a5d3b087988cc797eef8d54b8d29c20fe} 
+uint16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries \+\_\+color\+Map}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a210f416eb060f08a3af9a04ff154365e}\label{class_t_f_t__e_sprite_a210f416eb060f08a3af9a04ff154365e} 
+int32\+\_\+t {\bfseries \+\_\+sinra}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aa8fe18176d436e37873466df98339c90}\label{class_t_f_t__e_sprite_aa8fe18176d436e37873466df98339c90} 
+int32\+\_\+t {\bfseries \+\_\+cosra}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a42e01a52887bca6e31233356f22b8877}\label{class_t_f_t__e_sprite_a42e01a52887bca6e31233356f22b8877} 
+bool {\bfseries \+\_\+created}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a084b4eed5513fdbb4b911047ca8d0240}\label{class_t_f_t__e_sprite_a084b4eed5513fdbb4b911047ca8d0240} 
+bool {\bfseries \+\_\+g\+Font} = false
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a4f8d4696ce9b8c0e8ba7f952a6a33fbf}\label{class_t_f_t__e_sprite_a4f8d4696ce9b8c0e8ba7f952a6a33fbf} 
+int32\+\_\+t {\bfseries \+\_\+xs}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a4aac0db8980bffe5ea24bdcd65f3aa46}\label{class_t_f_t__e_sprite_a4aac0db8980bffe5ea24bdcd65f3aa46} 
+int32\+\_\+t {\bfseries \+\_\+ys}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ae37992aa472702009e18963426e55cbf}\label{class_t_f_t__e_sprite_ae37992aa472702009e18963426e55cbf} 
+int32\+\_\+t {\bfseries \+\_\+xe}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a7a87b915b9eca0688e213f56edb6d3d5}\label{class_t_f_t__e_sprite_a7a87b915b9eca0688e213f56edb6d3d5} 
+int32\+\_\+t {\bfseries \+\_\+ye}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a48d2a82072668f111c445c90ed6a990f}\label{class_t_f_t__e_sprite_a48d2a82072668f111c445c90ed6a990f} 
+int32\+\_\+t {\bfseries \+\_\+xptr}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aea4780309eac5fb5dbe79f88e52a5473}\label{class_t_f_t__e_sprite_aea4780309eac5fb5dbe79f88e52a5473} 
+int32\+\_\+t {\bfseries \+\_\+yptr}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a5570ce23dcdcaf5f7ea8a4319f0abc07}\label{class_t_f_t__e_sprite_a5570ce23dcdcaf5f7ea8a4319f0abc07} 
+int32\+\_\+t {\bfseries \+\_\+sx}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_aa0750fd482893b39dce195c410889bd2}\label{class_t_f_t__e_sprite_aa0750fd482893b39dce195c410889bd2} 
+int32\+\_\+t {\bfseries \+\_\+sy}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_adf31a4939edee4095249ba94f0902dea}\label{class_t_f_t__e_sprite_adf31a4939edee4095249ba94f0902dea} 
+uint32\+\_\+t {\bfseries \+\_\+sw}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_ac9971a8946d86529f31774e7b096eb2d}\label{class_t_f_t__e_sprite_ac9971a8946d86529f31774e7b096eb2d} 
+uint32\+\_\+t {\bfseries \+\_\+sh}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a382666b9731a106590401d17633acbc6}\label{class_t_f_t__e_sprite_a382666b9731a106590401d17633acbc6} 
+uint32\+\_\+t {\bfseries \+\_\+scolor}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a6fd24c34e5c41950e031082ea4f8dd51}\label{class_t_f_t__e_sprite_a6fd24c34e5c41950e031082ea4f8dd51} 
+int32\+\_\+t {\bfseries \+\_\+iwidth}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a14c96f36080e87ef318c29fe9a3c00ea}\label{class_t_f_t__e_sprite_a14c96f36080e87ef318c29fe9a3c00ea} 
+int32\+\_\+t {\bfseries \+\_\+iheight}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a91c6a98fc6a227ad0512a1db714ea57b}\label{class_t_f_t__e_sprite_a91c6a98fc6a227ad0512a1db714ea57b} 
+int32\+\_\+t {\bfseries \+\_\+dwidth}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a92ae263fcfbedd6470c0f574f8707ebe}\label{class_t_f_t__e_sprite_a92ae263fcfbedd6470c0f574f8707ebe} 
+int32\+\_\+t {\bfseries \+\_\+dheight}
+\item 
+\Hypertarget{class_t_f_t__e_sprite_a12ce64d4eae62f02e0cc67f78e9adac3}\label{class_t_f_t__e_sprite_a12ce64d4eae62f02e0cc67f78e9adac3} 
+int32\+\_\+t {\bfseries \+\_\+bitwidth}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}}
+\begin{DoxyCompactItemize}
+\item 
+int32\+\_\+t {\bfseries \+\_\+init\+\_\+width}
+\item 
+int32\+\_\+t {\bfseries \+\_\+init\+\_\+height}
+\item 
+int32\+\_\+t {\bfseries \+\_\+width}
+\item 
+int32\+\_\+t {\bfseries \+\_\+height}
+\item 
+int32\+\_\+t {\bfseries addr\+\_\+row}
+\item 
+int32\+\_\+t {\bfseries addr\+\_\+col}
+\item 
+int16\+\_\+t {\bfseries \+\_\+x\+Pivot}
+\item 
+int16\+\_\+t {\bfseries \+\_\+y\+Pivot}
+\item 
+int32\+\_\+t {\bfseries \+\_\+vpX}
+\item 
+int32\+\_\+t {\bfseries \+\_\+vpY}
+\item 
+int32\+\_\+t {\bfseries \+\_\+vpW}
+\item 
+int32\+\_\+t {\bfseries \+\_\+vpH}
+\item 
+int32\+\_\+t {\bfseries \+\_\+x\+Datum}
+\item 
+int32\+\_\+t {\bfseries \+\_\+y\+Datum}
+\item 
+int32\+\_\+t {\bfseries \+\_\+x\+Width}
+\item 
+int32\+\_\+t {\bfseries \+\_\+y\+Height}
+\item 
+bool {\bfseries \+\_\+vp\+Datum}
+\item 
+bool {\bfseries \+\_\+vp\+OoB}
+\item 
+int32\+\_\+t {\bfseries cursor\+\_\+x}
+\item 
+int32\+\_\+t {\bfseries cursor\+\_\+y}
+\item 
+int32\+\_\+t {\bfseries padX}
+\item 
+uint32\+\_\+t {\bfseries fontsloaded}
+\item 
+uint8\+\_\+t {\bfseries glyph\+\_\+ab}
+\item 
+uint8\+\_\+t {\bfseries glyph\+\_\+bb}
+\item 
+bool {\bfseries is\+Digits}
+\item 
+bool {\bfseries textwrapX}
+\item 
+bool {\bfseries textwrapY}
+\item 
+bool {\bfseries \+\_\+swap\+Bytes}
+\item 
+bool {\bfseries locked}
+\item 
+bool {\bfseries in\+Transaction}
+\item 
+bool {\bfseries lock\+Transaction}
+\item 
+bool {\bfseries \+\_\+booted}
+\item 
+bool {\bfseries \+\_\+cp437}
+\item 
+bool {\bfseries \+\_\+utf8}
+\item 
+bool {\bfseries \+\_\+psram\+\_\+enable}
+\item 
+uint32\+\_\+t {\bfseries \+\_\+last\+Color}
+\item 
+GFXfont \texorpdfstring{$\ast$}{*} {\bfseries gfx\+Font}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}}
+\begin{DoxyCompactItemize}
+\item 
+static SPIClass \& {\bfseries get\+SPIinstance} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries DMA\+\_\+\+Enabled} = false
+\item 
+uint8\+\_\+t {\bfseries spi\+Busy\+Check} = 0
+\item 
+uint32\+\_\+t {\bfseries textcolor}
+\item 
+uint32\+\_\+t {\bfseries textbgcolor}
+\item 
+uint32\+\_\+t {\bfseries bitmap\+\_\+fg}
+\item 
+uint32\+\_\+t {\bfseries bitmap\+\_\+bg}
+\item 
+uint8\+\_\+t {\bfseries textfont}
+\item 
+uint8\+\_\+t {\bfseries textsize}
+\item 
+uint8\+\_\+t {\bfseries textdatum}
+\item 
+uint8\+\_\+t {\bfseries rotation}
+\item 
+uint8\+\_\+t {\bfseries decoder\+State} = 0
+\item 
+uint16\+\_\+t {\bfseries decoder\+Buffer}
+\item 
+\mbox{\hyperlink{struct_t_f_t__e_s_p_i_1_1font_metrics}{font\+Metrics}} {\bfseries g\+Font} = \{ nullptr, 0, 0, 0, 0, 0, 0, 0 \}
+\item 
+uint16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Unicode} = NULL
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Height} = NULL
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Width} = NULL
+\item 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gx\+Advance} = NULL
+\item 
+int16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gdY} = NULL
+\item 
+int8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gdX} = NULL
+\item 
+uint32\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Bitmap} = NULL
+\item 
+bool {\bfseries font\+Loaded} = false
+\item 
+bool {\bfseries font\+File} = true
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_t_f_t__e_sprite_a915bd45d3d6d7401de746ee6bd0d2e6e}\index{TFT\_eSprite@{TFT\_eSprite}!drawChar@{drawChar}}
+\index{drawChar@{drawChar}!TFT\_eSprite@{TFT\_eSprite}}
+\doxysubsubsection{\texorpdfstring{drawChar()}{drawChar()}}
+{\footnotesize\ttfamily \label{class_t_f_t__e_sprite_a915bd45d3d6d7401de746ee6bd0d2e6e} 
+int16\+\_\+t TFT\+\_\+e\+Sprite\+::draw\+Char (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{uni\+Code}{, }\item[{int32\+\_\+t}]{x}{, }\item[{int32\+\_\+t}]{y}{, }\item[{uint8\+\_\+t}]{font}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}.
+
+\Hypertarget{class_t_f_t__e_sprite_ab47cf2f10e3fc9ebfe36ae67719c7363}\index{TFT\_eSprite@{TFT\_eSprite}!drawGlyph@{drawGlyph}}
+\index{drawGlyph@{drawGlyph}!TFT\_eSprite@{TFT\_eSprite}}
+\doxysubsubsection{\texorpdfstring{drawGlyph()}{drawGlyph()}}
+{\footnotesize\ttfamily \label{class_t_f_t__e_sprite_ab47cf2f10e3fc9ebfe36ae67719c7363} 
+void TFT\+\_\+e\+Sprite\+::draw\+Glyph (\begin{DoxyParamCaption}\item[{uint16\+\_\+t}]{code}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}.
+
+\Hypertarget{class_t_f_t__e_sprite_a6679cdbf3391923e5687ab035ebed56b}\index{TFT\_eSprite@{TFT\_eSprite}!drawPixel@{drawPixel}}
+\index{drawPixel@{drawPixel}!TFT\_eSprite@{TFT\_eSprite}}
+\doxysubsubsection{\texorpdfstring{drawPixel()}{drawPixel()}}
+{\footnotesize\ttfamily \label{class_t_f_t__e_sprite_a6679cdbf3391923e5687ab035ebed56b} 
+void TFT\+\_\+e\+Sprite\+::draw\+Pixel (\begin{DoxyParamCaption}\item[{int32\+\_\+t}]{x}{, }\item[{int32\+\_\+t}]{y}{, }\item[{uint32\+\_\+t}]{color}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\+\_\+e\+SPI}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Extensions/Sprite.\+h\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Extensions/Sprite.\+cpp\end{DoxyCompactItemize}

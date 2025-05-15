@@ -1,0 +1,2604 @@
+\doxysection{Sprite.\+cpp}
+\hypertarget{_sprite_8cpp_source}{}\label{_sprite_8cpp_source}\index{lib/TFT\_eSPI-\/master/Extensions/Sprite.cpp@{lib/TFT\_eSPI-\/master/Extensions/Sprite.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/**************************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ following\ class\ creates\ Sprites\ in\ RAM,\ graphics\ can\ then\ be\ drawn\ in\ the\ Sprite}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ and\ rendered\ quickly\ onto\ the\ TFT\ screen.\ The\ class\ inherits\ the\ graphics\ functions}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ from\ the\ TFT\_eSPI\ class.\ Some\ functions\ are\ overridden\ by\ this\ class\ so\ that\ the}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ graphics\ are\ written\ to\ the\ Sprite\ rather\ than\ the\ TFT.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Coded\ by\ Bodmer,\ see\ license\ file\ in\ root\ folder}}
+\DoxyCodeLine{00007\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00008\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Color\ bytes\ are\ swapped\ when\ writing\ to\ RAM,\ this\ introduces\ a\ small\ overhead\ but}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ there\ is\ a\ nett\ performance\ gain\ by\ using\ swapped\ bytes.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00014\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ TFT\_eSprite}}
+\DoxyCodeLine{00015\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Class\ constructor}}
+\DoxyCodeLine{00016\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00017\ TFT\_eSprite::TFT\_eSprite(\mbox{\hyperlink{class_t_f_t__e_s_p_i}{TFT\_eSPI}}\ *tft)}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \ \ \_tft\ =\ tft;\ \ \ \ \ \textcolor{comment}{//\ Pointer\ to\ tft\ class\ so\ we\ can\ call\ member\ functions}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \_iwidth\ \ \ \ =\ 0;\ \textcolor{comment}{//\ Initialise\ width\ and\ height\ to\ 0\ (it\ does\ not\ exist\ yet)}}
+\DoxyCodeLine{00022\ \ \ \_iheight\ \ \ =\ 0;}
+\DoxyCodeLine{00023\ \ \ \_bpp\ =\ 16;}
+\DoxyCodeLine{00024\ \ \ \_swapBytes\ =\ \textcolor{keyword}{false};\ \ \ \textcolor{comment}{//\ Do\ not\ swap\ pushImage\ colour\ bytes\ by\ default}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \_created\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00027\ \ \ \_vpOoB\ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \_xs\ =\ 0;\ \ \textcolor{comment}{//\ window\ bounds\ for\ pushColor}}
+\DoxyCodeLine{00030\ \ \ \_ys\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \_xe\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \_ye\ =\ 0;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \_xptr\ =\ 0;\ \textcolor{comment}{//\ pushColor\ coordinate}}
+\DoxyCodeLine{00035\ \ \ \_yptr\ =\ 0;}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \_colorMap\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \_psram\_enable\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00044\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ createSprite}}
+\DoxyCodeLine{00045\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Create\ a\ sprite\ (bitmap)\ of\ defined\ width\ and\ height}}
+\DoxyCodeLine{00046\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ cast\ returned\ value\ to\ (uint8\_t*)\ for\ 8\ bit\ or\ (uint16\_t*)\ for\ 16\ bit\ colours}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}*\ TFT\_eSprite::createSprite(int16\_t\ w,\ int16\_t\ h,\ uint8\_t\ frames)}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}\ (\ \_created\ )\ \textcolor{keywordflow}{return}\ \_img8\_1;}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordflow}{if}\ (\ w\ <\ 1\ ||\ h\ <\ 1\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \_iwidth\ \ =\ \_dwidth\ \ =\ \_bitwidth\ =\ w;}
+\DoxyCodeLine{00056\ \ \ \_iheight\ =\ \_dheight\ =\ h;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ cursor\_x\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ cursor\_y\ =\ 0;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{comment}{//\ Default\ scroll\ rectangle\ and\ gap\ fill\ colour}}
+\DoxyCodeLine{00062\ \ \ \_sx\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \_sy\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \_sw\ =\ w;}
+\DoxyCodeLine{00065\ \ \ \_sh\ =\ h;}
+\DoxyCodeLine{00066\ \ \ \_scolor\ =\ TFT\_BLACK;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \_img8\ \ \ =\ (uint8\_t*)\ callocSprite(w,\ h,\ frames);}
+\DoxyCodeLine{00069\ \ \ \_img8\_1\ =\ \_img8;}
+\DoxyCodeLine{00070\ \ \ \_img8\_2\ =\ \_img8;}
+\DoxyCodeLine{00071\ \ \ \_img\ \ \ \ =\ (uint16\_t*)\ \_img8;}
+\DoxyCodeLine{00072\ \ \ \_img4\ \ \ =\ \_img8;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{if}\ (\ (\_bpp\ ==\ 16)\ \&\&\ (frames\ >\ 1)\ )\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \_img8\_2\ =\ \_img8\ +\ (w\ *\ h\ *\ 2\ +\ 1);}
+\DoxyCodeLine{00076\ \ \ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{//\ ESP32\ only\ 16bpp\ check}}
+\DoxyCodeLine{00079\ \ \ \textcolor{comment}{//if\ (esp\_ptr\_dma\_capable(\_img8\_1))\ Serial.println("{}DMA\ capable\ Sprite\ pointer\ \_img8\_1"{});}}
+\DoxyCodeLine{00080\ \ \ \textcolor{comment}{//else\ Serial.println("{}Not\ a\ DMA\ capable\ Sprite\ pointer\ \_img8\_1"{});}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//if\ (esp\_ptr\_dma\_capable(\_img8\_2))\ Serial.println("{}DMA\ capable\ Sprite\ pointer\ \_img8\_2"{});}}
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//else\ Serial.println("{}Not\ a\ DMA\ capable\ Sprite\ pointer\ \_img8\_2"{});}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keywordflow}{if}\ (\ (\_bpp\ ==\ 8)\ \&\&\ (frames\ >\ 1)\ )\ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \_img8\_2\ =\ \_img8\ +\ (w\ *\ h\ +\ 1);}
+\DoxyCodeLine{00086\ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordflow}{if}\ (\ (\_bpp\ ==\ 4)\ \&\&\ (\_colorMap\ ==\ \textcolor{keyword}{nullptr}))\ createPalette(default\_4bit\_palette);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//\ This\ is\ to\ make\ it\ clear\ what\ pointer\ size\ is\ expected\ to\ be\ used}}
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ but\ casting\ in\ the\ user\ sketch\ is\ needed\ due\ to\ the\ use\ of\ void*}}
+\DoxyCodeLine{00092\ \ \ \textcolor{keywordflow}{if}\ (\ (\_bpp\ ==\ 1)\ \&\&\ (frames\ >\ 1)\ )}
+\DoxyCodeLine{00093\ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ w\ =\ (w+7)\ \&\ 0xFFF8;}
+\DoxyCodeLine{00095\ \ \ \ \ \_img8\_2\ =\ \_img8\ +\ (\ (w>>3)\ *\ h\ +\ 1\ );}
+\DoxyCodeLine{00096\ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordflow}{if}\ (\_img8)}
+\DoxyCodeLine{00099\ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \_created\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ rotation\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ setViewport(0,\ 0,\ \_dwidth,\ \_dheight);}
+\DoxyCodeLine{00103\ \ \ \ \ setPivot(\_iwidth/2,\ \_iheight/2);}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{return}\ \_img8\_1;}
+\DoxyCodeLine{00105\ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00108\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00112\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getPointer}}
+\DoxyCodeLine{00113\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Returns\ pointer\ to\ start\ of\ sprite\ memory\ area}}
+\DoxyCodeLine{00114\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00115\ \textcolor{keywordtype}{void}*\ TFT\_eSprite::getPointer(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordflow}{return}\ \_img8\_1;}
+\DoxyCodeLine{00119\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00123\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ created}}
+\DoxyCodeLine{00124\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Returns\ true\ if\ sprite\ has\ been\ created}}
+\DoxyCodeLine{00125\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00126\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::created(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00127\ \{}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordflow}{return}\ \_created;}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00133\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ \string~TFT\_eSprite}}
+\DoxyCodeLine{00134\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Class\ destructor}}
+\DoxyCodeLine{00135\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00136\ TFT\_eSprite::\string~TFT\_eSprite(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ deleteSprite();}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#ifdef\ SMOOTH\_FONT}}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{if}(fontLoaded)\ unloadFont();}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00147\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ callocSprite}}
+\DoxyCodeLine{00148\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Allocate\ a\ memory\ area\ for\ the\ Sprite\ and\ return\ pointer}}
+\DoxyCodeLine{00149\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{void}*\ TFT\_eSprite::callocSprite(int16\_t\ w,\ int16\_t\ h,\ uint8\_t\ frames)}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \textcolor{comment}{//\ Add\ one\ extra\ "{}off\ screen"{}\ pixel\ to\ point\ out-\/of-\/bounds\ setWindow()\ coordinates}}
+\DoxyCodeLine{00153\ \ \ \textcolor{comment}{//\ this\ means\ push/writeColor\ functions\ do\ not\ need\ additional\ bounds\ checks\ and}}
+\DoxyCodeLine{00154\ \ \ \textcolor{comment}{//\ hence\ will\ run\ faster\ in\ normal\ circumstances.}}
+\DoxyCodeLine{00155\ \ \ uint8\_t*\ ptr8\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \textcolor{keywordflow}{if}\ (frames\ >\ 2)\ frames\ =\ 2;\ \textcolor{comment}{//\ Currently\ restricted\ to\ 2\ frame\ buffers}}
+\DoxyCodeLine{00158\ \ \ \textcolor{keywordflow}{if}\ (frames\ <\ 1)\ frames\ =\ 1;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00161\ \ \ \{}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ \&\&\ defined\ (CONFIG\_SPIRAM\_SUPPORT)}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ psramFound()\ \&\&\ \_psram\_enable\ \&\&\ !\_tft-\/>DMA\_Enabled)}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ ptr8\ =\ (\ uint8\_t*)\ ps\_calloc(frames\ *\ w\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint16\_t));}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \textcolor{comment}{//Serial.println("{}PSRAM"{});}}
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ ptr8\ =\ (\ uint8\_t*)\ calloc(frames\ *\ w\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint16\_t));}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \textcolor{comment}{//Serial.println("{}Normal\ RAM"{});}}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{00177\ \ \ \{}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ \&\&\ defined\ (CONFIG\_SPIRAM\_SUPPORT)}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ psramFound()\ \&\&\ \_psram\_enable\ )\ ptr8\ =\ (\ uint8\_t*)\ ps\_calloc(frames\ *\ w\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00182\ \ \ \ \ ptr8\ =\ (\ uint8\_t*)\ calloc(frames\ *\ w\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00183\ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00186\ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ w\ =\ (w+1)\ \&\ 0xFFFE;\ \textcolor{comment}{//\ width\ needs\ to\ be\ multiple\ of\ 2,\ with\ an\ extra\ "{}off\ screen"{}\ pixel}}
+\DoxyCodeLine{00188\ \ \ \ \ \_iwidth\ =\ w;}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ \&\&\ defined\ (CONFIG\_SPIRAM\_SUPPORT)}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ psramFound()\ \&\&\ \_psram\_enable\ )\ ptr8\ =\ (\ uint8\_t*)\ ps\_calloc(((frames\ *\ w\ *\ h)\ >>\ 1)\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00193\ \ \ \ \ ptr8\ =\ (\ uint8\_t*)\ calloc(((frames\ *\ w\ *\ h)\ >>\ 1)\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00194\ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Must\ be\ 1\ bpp}}
+\DoxyCodeLine{00197\ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{comment}{//\_dwidth\ \ \ Display\ width+height\ in\ pixels\ always\ in\ rotation\ 0\ orientation}}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{comment}{//\_dheight\ \ Not\ swapped\ for\ sprite\ rotations}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//\ Note:\ for\ 1bpp\ \_iwidth\ and\ \_iheight\ are\ swapped\ during\ Sprite\ rotations}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ w\ =\ \ (w+7)\ \&\ 0xFFF8;\ \textcolor{comment}{//\ width\ should\ be\ the\ multiple\ of\ 8\ bits\ to\ be\ compatible\ with\ epdpaint}}
+\DoxyCodeLine{00203\ \ \ \ \ \_iwidth\ =\ w;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \_iwidth\ is\ rounded\ up\ to\ be\ multiple\ of\ 8,\ so\ might\ not\ be\ =\ \_dwidth}}
+\DoxyCodeLine{00204\ \ \ \ \ \_bitwidth\ =\ w;\ \ \ \ \ \ \ \textcolor{comment}{//\ \_bitwidth\ will\ not\ be\ rotated\ whereas\ \_iwidth\ may\ be}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ \&\&\ defined\ (CONFIG\_SPIRAM\_SUPPORT)}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ psramFound()\ \&\&\ \_psram\_enable\ )\ ptr8\ =\ (\ uint8\_t*)\ ps\_calloc(frames\ *\ (w>>3)\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00210\ \ \ \ \ ptr8\ =\ (\ uint8\_t*)\ calloc(frames\ *\ (w>>3)\ *\ h\ +\ frames,\ \textcolor{keyword}{sizeof}(uint8\_t));}
+\DoxyCodeLine{00211\ \ \ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \textcolor{keywordflow}{return}\ ptr8;}
+\DoxyCodeLine{00214\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00218\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ createPalette\ (from\ RAM\ array)}}
+\DoxyCodeLine{00219\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ a\ palette\ for\ a\ 4-\/bit\ per\ pixel\ sprite}}
+\DoxyCodeLine{00220\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00221\ \textcolor{keywordtype}{void}\ TFT\_eSprite::createPalette(uint16\_t\ colorMap[],\ uint8\_t\ colors)}
+\DoxyCodeLine{00222\ \{}
+\DoxyCodeLine{00223\ \ \ \textcolor{keywordflow}{if}\ (\_colorMap\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00224\ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ free(\_colorMap);}
+\DoxyCodeLine{00226\ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordflow}{if}\ (colorMap\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00229\ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ color\ map\ using\ the\ default\ FLASH\ map}}
+\DoxyCodeLine{00231\ \ \ \ \ createPalette(default\_4bit\_palette);}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00233\ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \textcolor{comment}{//\ Allocate\ and\ clear\ memory\ for\ 16\ color\ map}}
+\DoxyCodeLine{00236\ \ \ \_colorMap\ =\ (uint16\_t\ *)calloc(16,\ \textcolor{keyword}{sizeof}(uint16\_t));}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \textcolor{keywordflow}{if}\ (colors\ >\ 16)\ colors\ =\ 16;}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \textcolor{comment}{//\ Copy\ map\ colors}}
+\DoxyCodeLine{00241\ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ colors;\ i++)}
+\DoxyCodeLine{00242\ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \_colorMap[i]\ =\ colorMap[i];}
+\DoxyCodeLine{00244\ \ \ \}}
+\DoxyCodeLine{00245\ \}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00249\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ createPalette\ (from\ FLASH\ array)}}
+\DoxyCodeLine{00250\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ a\ palette\ for\ a\ 4-\/bit\ per\ pixel\ sprite}}
+\DoxyCodeLine{00251\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00252\ \textcolor{keywordtype}{void}\ TFT\_eSprite::createPalette(\textcolor{keyword}{const}\ uint16\_t\ colorMap[],\ uint8\_t\ colors)}
+\DoxyCodeLine{00253\ \{}
+\DoxyCodeLine{00254\ \ \ \textcolor{keywordflow}{if}\ (colorMap\ ==\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00255\ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \textcolor{comment}{//\ Create\ a\ color\ map\ using\ the\ default\ FLASH\ map}}
+\DoxyCodeLine{00257\ \ \ \ \ colorMap\ =\ default\_4bit\_palette;}
+\DoxyCodeLine{00258\ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \textcolor{comment}{//\ Allocate\ and\ clear\ memory\ for\ 16\ color\ map}}
+\DoxyCodeLine{00261\ \ \ \_colorMap\ =\ (uint16\_t\ *)calloc(16,\ \textcolor{keyword}{sizeof}(uint16\_t));}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordflow}{if}\ (colors\ >\ 16)\ colors\ =\ 16;}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \textcolor{comment}{//\ Copy\ map\ colors}}
+\DoxyCodeLine{00266\ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ colors;\ i++)}
+\DoxyCodeLine{00267\ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \_colorMap[i]\ =\ pgm\_read\_word(colorMap++);}
+\DoxyCodeLine{00269\ \ \ \}}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00274\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ frameBuffer}}
+\DoxyCodeLine{00275\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ For\ 1\ bpp\ Sprites,\ select\ the\ frame\ used\ for\ graphics}}
+\DoxyCodeLine{00276\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00277\ \textcolor{comment}{//\ Frames\ are\ numbered\ 1\ and\ 2}}
+\DoxyCodeLine{00278\ \textcolor{keywordtype}{void}*\ TFT\_eSprite::frameBuffer(int8\_t\ f)}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \textcolor{keywordflow}{if}\ (\ f\ ==\ 2\ )\ \_img8\ =\ \_img8\_2;}
+\DoxyCodeLine{00283\ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \ \ \ \_img8\ =\ \_img8\_1;}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ \_img\ =\ (uint16\_t*)\_img8;}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \textcolor{comment}{//if\ (\_bpp\ ==\ 8)\ \_img8\ =\ \_img8;}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)\ \_img4\ =\ \_img8;}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \textcolor{keywordflow}{return}\ \_img8;}
+\DoxyCodeLine{00292\ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00296\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setColorDepth}}
+\DoxyCodeLine{00297\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ bits\ per\ pixel\ for\ colour\ (1,\ 8\ or\ 16)}}
+\DoxyCodeLine{00298\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00299\ \textcolor{keywordtype}{void}*\ TFT\_eSprite::setColorDepth(int8\_t\ b)}
+\DoxyCodeLine{00300\ \{}
+\DoxyCodeLine{00301\ \ \ \textcolor{comment}{//\ Do\ not\ re-\/create\ the\ sprite\ if\ the\ colour\ depth\ does\ not\ change}}
+\DoxyCodeLine{00302\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ b)\ \textcolor{keywordflow}{return}\ \_img8\_1;}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \textcolor{comment}{//\ Validate\ the\ new\ colour\ depth}}
+\DoxyCodeLine{00305\ \ \ \textcolor{keywordflow}{if}\ (\ b\ >\ 8\ )\ \_bpp\ =\ 16;\ \ \textcolor{comment}{//\ Bytes\ per\ pixel}}
+\DoxyCodeLine{00306\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\ b\ >\ 4\ )\ \_bpp\ =\ 8;}
+\DoxyCodeLine{00307\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\ b\ >\ 1\ )\ \_bpp\ =\ 4;}
+\DoxyCodeLine{00308\ \ \ \textcolor{keywordflow}{else}\ \_bpp\ =\ 1;}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ \ \textcolor{comment}{//\ Can't\ change\ an\ existing\ sprite's\ colour\ depth\ so\ delete\ it}}
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordflow}{if}\ (\_created)\ free(\_img8\_1);}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \textcolor{comment}{//\ If\ it\ existed,\ re-\/create\ the\ sprite\ with\ the\ new\ colour\ depth}}
+\DoxyCodeLine{00314\ \ \ \textcolor{keywordflow}{if}\ (\_created)}
+\DoxyCodeLine{00315\ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \_created\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordflow}{return}\ createSprite(\_dwidth,\ \_dheight);}
+\DoxyCodeLine{00318\ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00321\ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00325\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getColorDepth}}
+\DoxyCodeLine{00326\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ bits\ per\ pixel\ for\ colour\ (1,\ 8\ or\ 16)}}
+\DoxyCodeLine{00327\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00328\ int8\_t\ TFT\_eSprite::getColorDepth(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00329\ \{}
+\DoxyCodeLine{00330\ \ \ \textcolor{keywordflow}{if}\ (\_created)\ \textcolor{keywordflow}{return}\ \_bpp;}
+\DoxyCodeLine{00331\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00332\ \}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00336\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setBitmapColor}}
+\DoxyCodeLine{00337\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ the\ 1bpp\ foreground\ foreground\ and\ background\ colour}}
+\DoxyCodeLine{00338\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00339\ \textcolor{keywordtype}{void}\ TFT\_eSprite::setBitmapColor(uint16\_t\ c,\ uint16\_t\ b)}
+\DoxyCodeLine{00340\ \{}
+\DoxyCodeLine{00341\ \ \ \textcolor{keywordflow}{if}\ (c\ ==\ b)\ b\ =\ \string~c;}
+\DoxyCodeLine{00342\ \ \ \_tft-\/>bitmap\_fg\ =\ c;}
+\DoxyCodeLine{00343\ \ \ \_tft-\/>bitmap\_bg\ =\ b;}
+\DoxyCodeLine{00344\ \}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00348\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setPaletteColor}}
+\DoxyCodeLine{00349\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ the\ 4bpp\ palette\ color\ at\ the\ given\ index}}
+\DoxyCodeLine{00350\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00351\ \textcolor{keywordtype}{void}\ TFT\_eSprite::setPaletteColor(uint8\_t\ index,\ uint16\_t\ color)}
+\DoxyCodeLine{00352\ \{}
+\DoxyCodeLine{00353\ \ \ \textcolor{keywordflow}{if}\ (\_colorMap\ ==\ \textcolor{keyword}{nullptr}\ ||\ index\ >\ 15)\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ out\ of\ bounds}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \_colorMap[index]\ =\ color;}
+\DoxyCodeLine{00356\ \}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00360\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getPaletteColor}}
+\DoxyCodeLine{00361\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Return\ the\ palette\ color\ at\ 4bpp\ index,\ or\ 0\ on\ error.}}
+\DoxyCodeLine{00362\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00363\ uint16\_t\ TFT\_eSprite::getPaletteColor(uint8\_t\ index)}
+\DoxyCodeLine{00364\ \{}
+\DoxyCodeLine{00365\ \ \ \textcolor{keywordflow}{if}\ (\_colorMap\ ==\ \textcolor{keyword}{nullptr}\ ||\ index\ >\ 15)\ \textcolor{keywordflow}{return}\ 0;\ \textcolor{comment}{//\ out\ of\ bounds}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \textcolor{keywordflow}{return}\ \_colorMap[index];}
+\DoxyCodeLine{00368\ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00372\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ deleteSprite}}
+\DoxyCodeLine{00373\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Delete\ the\ sprite\ to\ free\ up\ memory\ (RAM)}}
+\DoxyCodeLine{00374\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00375\ \textcolor{keywordtype}{void}\ TFT\_eSprite::deleteSprite(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00376\ \{}
+\DoxyCodeLine{00377\ \ \ \textcolor{keywordflow}{if}\ (\_colorMap\ !=\ \textcolor{keyword}{nullptr})}
+\DoxyCodeLine{00378\ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ free(\_colorMap);}
+\DoxyCodeLine{00380\ \ \ \ \ \_colorMap\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00381\ \ \ \}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \textcolor{keywordflow}{if}\ (\_created)}
+\DoxyCodeLine{00384\ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ free(\_img8\_1);}
+\DoxyCodeLine{00386\ \ \ \ \ \_img8\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00387\ \ \ \ \ \_created\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00388\ \ \ \ \ \_vpOoB\ \ \ =\ \textcolor{keyword}{true};\ \ \textcolor{comment}{//\ TFT\_eSPI\ class\ write()\ uses\ this\ to\ check\ for\ valid\ sprite}}
+\DoxyCodeLine{00389\ \ \ \}}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00394\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushRotated\ -\/\ Fast\ fixed\ point\ integer\ maths\ version}}
+\DoxyCodeLine{00395\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ rotated\ Sprite\ to\ TFT\ screen}}
+\DoxyCodeLine{00396\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\#define\ FP\_SCALE\ 10}}
+\DoxyCodeLine{00398\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::pushRotated(int16\_t\ angle,\ uint32\_t\ transp)}
+\DoxyCodeLine{00399\ \{}
+\DoxyCodeLine{00400\ \ \ \textcolor{keywordflow}{if}\ (\ !\_created\ ||\ \_tft-\/>\_vpOoB)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \textcolor{comment}{//\ Bounding\ box\ parameters}}
+\DoxyCodeLine{00403\ \ \ int16\_t\ min\_x;}
+\DoxyCodeLine{00404\ \ \ int16\_t\ min\_y;}
+\DoxyCodeLine{00405\ \ \ int16\_t\ max\_x;}
+\DoxyCodeLine{00406\ \ \ int16\_t\ max\_y;}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00408\ \ \ \textcolor{comment}{//\ Get\ the\ bounding\ box\ of\ this\ rotated\ source\ Sprite\ relative\ to\ Sprite\ pivot}}
+\DoxyCodeLine{00409\ \ \ \textcolor{keywordflow}{if}\ (\ !getRotatedBounds(angle,\ \&min\_x,\ \&min\_y,\ \&max\_x,\ \&max\_y)\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \ \ uint16\_t\ sline\_buffer[max\_x\ -\/\ min\_x\ +\ 1];}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ int32\_t\ xt\ =\ min\_x\ -\/\ \_tft-\/>\_xPivot;}
+\DoxyCodeLine{00414\ \ \ int32\_t\ yt\ =\ min\_y\ -\/\ \_tft-\/>\_yPivot;}
+\DoxyCodeLine{00415\ \ \ uint32\_t\ xe\ =\ \_dwidth\ <<\ FP\_SCALE;}
+\DoxyCodeLine{00416\ \ \ uint32\_t\ ye\ =\ \_dheight\ <<\ FP\_SCALE;}
+\DoxyCodeLine{00417\ \ \ uint32\_t\ tpcolor\ =\ transp;}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \textcolor{keywordflow}{if}\ (transp\ !=\ 0x00FFFFFF)\ \{}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)\ tpcolor\ =\ \_colorMap[transp\ \&\ 0x0F];}
+\DoxyCodeLine{00421\ \ \ \ \ tpcolor\ =\ tpcolor>>8\ |\ tpcolor<<8;\ \textcolor{comment}{//\ Working\ with\ swapped\ color\ bytes}}
+\DoxyCodeLine{00422\ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ \_tft-\/>startWrite();\ \textcolor{comment}{//\ Avoid\ transaction\ overhead\ for\ every\ tft\ pixel}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \ \ \textcolor{comment}{//\ Scan\ destination\ bounding\ box\ and\ fetch\ transformed\ pixels\ from\ source\ Sprite}}
+\DoxyCodeLine{00426\ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ y\ =\ min\_y;\ y\ <=\ max\_y;\ y++,\ yt++)\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ int32\_t\ x\ =\ min\_x;}
+\DoxyCodeLine{00428\ \ \ \ \ uint32\_t\ xs\ =\ (\_cosra\ *\ xt\ -\/\ (\_sinra\ *\ yt\ -\/\ (\_xPivot\ <<\ FP\_SCALE))\ +\ (1\ <<\ (FP\_SCALE\ -\/\ 1)));}
+\DoxyCodeLine{00429\ \ \ \ \ uint32\_t\ ys\ =\ (\_sinra\ *\ xt\ +\ (\_cosra\ *\ yt\ +\ (\_yPivot\ <<\ FP\_SCALE))\ +\ (1\ <<\ (FP\_SCALE\ -\/\ 1)));}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{while}\ ((xs\ >=\ xe\ ||\ ys\ >=\ ye)\ \&\&\ x\ <\ max\_x)\ \{\ x++;\ xs\ +=\ \_cosra;\ ys\ +=\ \_sinra;\ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ max\_x)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ uint32\_t\ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ uint32\_t\ rp;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ int32\_t\ xp\ =\ xs\ >>\ FP\_SCALE;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ int32\_t\ yp\ =\ ys\ >>\ FP\_SCALE;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ \{rp\ =\ \_img[xp\ +\ yp\ *\ \_iwidth];\ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ rp\ =\ readPixel(xp,\ yp);\ rp\ =\ (uint16\_t)(rp>>8\ |\ rp<<8);\ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tpcolor\ ==\ rp)\ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TFT\ window\ is\ already\ clipped,\ so\ this\ is\ faster\ than\ pushImage()}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \_tft-\/>setWindow(x\ -\/\ pixel\_count,\ y,\ x\ -\/\ 1,\ y);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \_tft-\/>pushPixels(sline\_buffer,\ pixel\_count);}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ sline\_buffer[pixel\_count++]\ =\ rp;}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (++x\ <\ max\_x\ \&\&\ (xs\ +=\ \_cosra)\ <\ xe\ \&\&\ (ys\ +=\ \_sinra)\ <\ ye);}
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \textcolor{comment}{//\ TFT\ window\ is\ already\ clipped,\ so\ this\ is\ faster\ than\ pushImage()}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \_tft-\/>setWindow(x\ -\/\ pixel\_count,\ y,\ x\ -\/\ 1,\ y);}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \_tft-\/>pushPixels(sline\_buffer,\ pixel\_count);}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \_tft-\/>endWrite();\ \textcolor{comment}{//\ End\ transaction}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00463\ \}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00467\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushRotated\ -\/\ Fast\ fixed\ point\ integer\ maths\ version}}
+\DoxyCodeLine{00468\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ a\ rotated\ copy\ of\ the\ Sprite\ to\ another\ Sprite}}
+\DoxyCodeLine{00469\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00470\ \textcolor{comment}{//\ Not\ compatible\ with\ 4bpp}}
+\DoxyCodeLine{00471\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::pushRotated(\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\_eSprite}}\ *spr,\ int16\_t\ angle,\ uint32\_t\ transp)}
+\DoxyCodeLine{00472\ \{}
+\DoxyCodeLine{00473\ \ \ \textcolor{keywordflow}{if}\ (\ !\_created\ \ ||\ \_bpp\ ==\ 4)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Check\ this\ Sprite\ is\ created}}
+\DoxyCodeLine{00474\ \ \ \textcolor{keywordflow}{if}\ (\ !spr-\/>\_created\ \ ||\ spr-\/>\_bpp\ ==\ 4)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \ \textcolor{comment}{//\ Ckeck\ destination\ Sprite\ is\ created}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \textcolor{comment}{//\ Bounding\ box\ parameters}}
+\DoxyCodeLine{00477\ \ \ int16\_t\ min\_x;}
+\DoxyCodeLine{00478\ \ \ int16\_t\ min\_y;}
+\DoxyCodeLine{00479\ \ \ int16\_t\ max\_x;}
+\DoxyCodeLine{00480\ \ \ int16\_t\ max\_y;}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \textcolor{comment}{//\ Get\ the\ bounding\ box\ of\ this\ rotated\ source\ Sprite}}
+\DoxyCodeLine{00483\ \ \ \textcolor{keywordflow}{if}\ (\ !getRotatedBounds(spr,\ angle,\ \&min\_x,\ \&min\_y,\ \&max\_x,\ \&max\_y)\ )\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ uint16\_t\ sline\_buffer[max\_x\ -\/\ min\_x\ +\ 1];}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \ \ int32\_t\ xt\ =\ min\_x\ -\/\ spr-\/>\_xPivot;}
+\DoxyCodeLine{00488\ \ \ int32\_t\ yt\ =\ min\_y\ -\/\ spr-\/>\_yPivot;}
+\DoxyCodeLine{00489\ \ \ uint32\_t\ xe\ =\ \_dwidth\ <<\ FP\_SCALE;}
+\DoxyCodeLine{00490\ \ \ uint32\_t\ ye\ =\ \_dheight\ <<\ FP\_SCALE;}
+\DoxyCodeLine{00491\ \ \ uint32\_t\ tpcolor\ =\ transp;}
+\DoxyCodeLine{00492\ \ \ }
+\DoxyCodeLine{00493\ \ \ \textcolor{keywordflow}{if}\ (transp\ !=\ 0x00FFFFFF)\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)\ tpcolor\ =\ \_colorMap[transp\ \&\ 0x0F];}
+\DoxyCodeLine{00495\ \ \ \ \ tpcolor\ =\ tpcolor>>8\ |\ tpcolor<<8;\ \textcolor{comment}{//\ Working\ with\ swapped\ color\ bytes}}
+\DoxyCodeLine{00496\ \ \ \}}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ spr-\/>getSwapBytes();}
+\DoxyCodeLine{00499\ \ \ spr-\/>setSwapBytes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \textcolor{comment}{//\ Scan\ destination\ bounding\ box\ and\ fetch\ transformed\ pixels\ from\ source\ Sprite}}
+\DoxyCodeLine{00502\ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ y\ =\ min\_y;\ y\ <=\ max\_y;\ y++,\ yt++)\ \{}
+\DoxyCodeLine{00503\ \ \ \ \ int32\_t\ x\ =\ min\_x;}
+\DoxyCodeLine{00504\ \ \ \ \ uint32\_t\ xs\ =\ (\_cosra\ *\ xt\ -\/\ (\_sinra\ *\ yt\ -\/\ (\_xPivot\ <<\ FP\_SCALE))\ +\ (1\ <<\ (FP\_SCALE\ -\/\ 1)));}
+\DoxyCodeLine{00505\ \ \ \ \ uint32\_t\ ys\ =\ (\_sinra\ *\ xt\ +\ (\_cosra\ *\ yt\ +\ (\_yPivot\ <<\ FP\_SCALE))\ +\ (1\ <<\ (FP\_SCALE\ -\/\ 1)));}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordflow}{while}\ ((xs\ >=\ xe\ ||\ ys\ >=\ ye)\ \&\&\ x\ <\ max\_x)\ \{\ x++;\ xs\ +=\ \_cosra;\ ys\ +=\ \_sinra;\ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ ==\ max\_x)\ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ uint32\_t\ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordflow}{do}\ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ uint32\_t\ rp;}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ int32\_t\ xp\ =\ xs\ >>\ FP\_SCALE;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ int32\_t\ yp\ =\ ys\ >>\ FP\_SCALE;}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ rp\ =\ \_img[xp\ +\ yp\ *\ \_iwidth];}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ rp\ =\ readPixel(xp,\ yp);\ rp\ =\ (uint16\_t)(rp>>8\ |\ rp<<8);\ \}}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tpcolor\ ==\ rp)\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ spr-\/>pushImage(x\ -\/\ pixel\_count,\ y,\ pixel\_count,\ 1,\ sline\_buffer);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ sline\_buffer[pixel\_count++]\ =\ rp;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ \ \ \ \ \}\ \textcolor{keywordflow}{while}\ (++x\ <\ max\_x\ \&\&\ (xs\ +=\ \_cosra)\ <\ xe\ \&\&\ (ys\ +=\ \_sinra)\ <\ ye);}
+\DoxyCodeLine{00527\ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ spr-\/>pushImage(x\ -\/\ pixel\_count,\ y,\ pixel\_count,\ 1,\ sline\_buffer);}
+\DoxyCodeLine{00528\ \ \ \}}
+\DoxyCodeLine{00529\ \ \ spr-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00530\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00531\ \}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00535\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getRotatedBounds}}
+\DoxyCodeLine{00536\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ TFT\ bounding\ box\ of\ a\ rotated\ Sprite\ wrt\ pivot}}
+\DoxyCodeLine{00537\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00538\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::getRotatedBounds(int16\_t\ angle,\ int16\_t\ *min\_x,\ int16\_t\ *min\_y,}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ *max\_x,\ int16\_t\ *max\_y)}
+\DoxyCodeLine{00540\ \{}
+\DoxyCodeLine{00541\ \ \ \textcolor{comment}{//\ Get\ the\ bounding\ box\ of\ this\ rotated\ source\ Sprite\ relative\ to\ Sprite\ pivot}}
+\DoxyCodeLine{00542\ \ \ getRotatedBounds(angle,\ width(),\ height(),\ \_xPivot,\ \_yPivot,\ min\_x,\ min\_y,\ max\_x,\ max\_y);}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \textcolor{comment}{//\ Move\ bounding\ box\ so\ source\ Sprite\ pivot\ coincides\ with\ TFT\ pivot}}
+\DoxyCodeLine{00545\ \ \ *min\_x\ +=\ \_tft-\/>\_xPivot;}
+\DoxyCodeLine{00546\ \ \ *max\_x\ +=\ \_tft-\/>\_xPivot;}
+\DoxyCodeLine{00547\ \ \ *min\_y\ +=\ \_tft-\/>\_yPivot;}
+\DoxyCodeLine{00548\ \ \ *max\_y\ +=\ \_tft-\/>\_yPivot;}
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \ \ \textcolor{comment}{//\ Return\ if\ bounding\ box\ is\ outside\ of\ TFT\ viewport}}
+\DoxyCodeLine{00551\ \ \ \textcolor{keywordflow}{if}\ (*min\_x\ >\ \_tft-\/>\_vpW)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00552\ \ \ \textcolor{keywordflow}{if}\ (*min\_y\ >\ \_tft-\/>\_vpH)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00553\ \ \ \textcolor{keywordflow}{if}\ (*max\_x\ <\ \_tft-\/>\_vpX)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00554\ \ \ \textcolor{keywordflow}{if}\ (*max\_y\ <\ \_tft-\/>\_vpY)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \ \ \textcolor{comment}{//\ Clip\ bounding\ box\ to\ be\ within\ TFT\ viewport}}
+\DoxyCodeLine{00557\ \ \ \textcolor{keywordflow}{if}\ (*min\_x\ <\ \_tft-\/>\_vpX)\ *min\_x\ =\ \_tft-\/>\_vpX;}
+\DoxyCodeLine{00558\ \ \ \textcolor{keywordflow}{if}\ (*min\_y\ <\ \_tft-\/>\_vpY)\ *min\_y\ =\ \_tft-\/>\_vpY;}
+\DoxyCodeLine{00559\ \ \ \textcolor{keywordflow}{if}\ (*max\_x\ >\ \_tft-\/>\_vpW)\ *max\_x\ =\ \_tft-\/>\_vpW;}
+\DoxyCodeLine{00560\ \ \ \textcolor{keywordflow}{if}\ (*max\_y\ >\ \_tft-\/>\_vpH)\ *max\_y\ =\ \_tft-\/>\_vpH;}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00563\ \}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00567\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getRotatedBounds}}
+\DoxyCodeLine{00568\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ destination\ Sprite\ bounding\ box\ of\ a\ rotated\ Sprite\ wrt\ pivot}}
+\DoxyCodeLine{00569\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00570\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::getRotatedBounds(\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\_eSprite}}\ *spr,\ int16\_t\ angle,\ int16\_t\ *min\_x,\ int16\_t\ *min\_y,}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ *max\_x,\ int16\_t\ *max\_y)}
+\DoxyCodeLine{00572\ \{}
+\DoxyCodeLine{00573\ \ \ \textcolor{comment}{//\ Get\ the\ bounding\ box\ of\ this\ rotated\ source\ Sprite\ relative\ to\ Sprite\ pivot}}
+\DoxyCodeLine{00574\ \ \ getRotatedBounds(angle,\ width(),\ height(),\ \_xPivot,\ \_yPivot,\ min\_x,\ min\_y,\ max\_x,\ max\_y);}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \ \ \textcolor{comment}{//\ Move\ bounding\ box\ so\ source\ Sprite\ pivot\ coincides\ with\ destination\ Sprite\ pivot}}
+\DoxyCodeLine{00577\ \ \ *min\_x\ +=\ spr-\/>\_xPivot;}
+\DoxyCodeLine{00578\ \ \ *max\_x\ +=\ spr-\/>\_xPivot;}
+\DoxyCodeLine{00579\ \ \ *min\_y\ +=\ spr-\/>\_yPivot;}
+\DoxyCodeLine{00580\ \ \ *max\_y\ +=\ spr-\/>\_yPivot;}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ \ \ \textcolor{comment}{//\ Test\ only\ to\ show\ bounding\ box}}
+\DoxyCodeLine{00583\ \ \ \textcolor{comment}{//\ spr-\/>fillSprite(TFT\_BLACK);}}
+\DoxyCodeLine{00584\ \ \ \textcolor{comment}{//\ spr-\/>drawRect(min\_x,\ min\_y,\ max\_x\ -\/\ min\_x\ +\ 1,\ max\_y\ -\/\ min\_y\ +\ 1,\ TFT\_GREEN);}}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \textcolor{comment}{//\ Return\ if\ bounding\ box\ is\ completely\ outside\ of\ destination\ Sprite}}
+\DoxyCodeLine{00587\ \ \ \textcolor{keywordflow}{if}\ (*min\_x\ >\ spr-\/>width())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00588\ \ \ \textcolor{keywordflow}{if}\ (*min\_y\ >\ spr-\/>height())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00589\ \ \ \textcolor{keywordflow}{if}\ (*max\_x\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00590\ \ \ \textcolor{keywordflow}{if}\ (*max\_y\ <\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \textcolor{comment}{//\ Clip\ bounding\ box\ to\ Sprite\ boundaries}}
+\DoxyCodeLine{00593\ \ \ \textcolor{comment}{//\ Clipping\ to\ a\ viewport\ will\ be\ done\ by\ destination\ Sprite\ pushImage\ function}}
+\DoxyCodeLine{00594\ \ \ \textcolor{keywordflow}{if}\ (*min\_x\ <\ 0)\ min\_x\ =\ 0;}
+\DoxyCodeLine{00595\ \ \ \textcolor{keywordflow}{if}\ (*min\_y\ <\ 0)\ min\_y\ =\ 0;}
+\DoxyCodeLine{00596\ \ \ \textcolor{keywordflow}{if}\ (*max\_x\ >\ spr-\/>width())\ \ *max\_x\ =\ spr-\/>width();}
+\DoxyCodeLine{00597\ \ \ \textcolor{keywordflow}{if}\ (*max\_y\ >\ spr-\/>height())\ *max\_y\ =\ spr-\/>height();}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00600\ \}}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ }
+\DoxyCodeLine{00603\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00604\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ rotatedBounds}}
+\DoxyCodeLine{00605\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ bounding\ box\ of\ a\ rotated\ Sprite\ wrt\ pivot}}
+\DoxyCodeLine{00606\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00607\ \textcolor{keywordtype}{void}\ TFT\_eSprite::getRotatedBounds(int16\_t\ angle,\ int16\_t\ w,\ int16\_t\ h,\ int16\_t\ xp,\ int16\_t\ yp,}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ *min\_x,\ int16\_t\ *min\_y,\ int16\_t\ *max\_x,\ int16\_t\ *max\_y)}
+\DoxyCodeLine{00609\ \{}
+\DoxyCodeLine{00610\ \ \ \textcolor{comment}{//\ Trig\ values\ for\ the\ rotation}}
+\DoxyCodeLine{00611\ \ \ \textcolor{keywordtype}{float}\ radAngle\ =\ -\/angle\ *\ 0.0174532925;\ \textcolor{comment}{//\ Convert\ degrees\ to\ radians}}
+\DoxyCodeLine{00612\ \ \ \textcolor{keywordtype}{float}\ sina\ =\ sin(radAngle);}
+\DoxyCodeLine{00613\ \ \ \textcolor{keywordtype}{float}\ cosa\ =\ cos(radAngle);}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \ \ w\ -\/=\ xp;\ \textcolor{comment}{//\ w\ is\ now\ right\ edge\ coordinate\ relative\ to\ xp}}
+\DoxyCodeLine{00616\ \ \ h\ -\/=\ yp;\ \textcolor{comment}{//\ h\ is\ now\ bottom\ edge\ coordinate\ relative\ to\ yp}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ \ \ \textcolor{comment}{//\ Calculate\ new\ corner\ coordinates}}
+\DoxyCodeLine{00619\ \ \ int16\_t\ x0\ =\ -\/xp\ *\ cosa\ -\/\ yp\ *\ sina;}
+\DoxyCodeLine{00620\ \ \ int16\_t\ y0\ =\ \ xp\ *\ sina\ -\/\ yp\ *\ cosa;}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ int16\_t\ x1\ =\ \ w\ *\ cosa\ -\/\ yp\ *\ sina;}
+\DoxyCodeLine{00623\ \ \ int16\_t\ y1\ =\ -\/w\ *\ sina\ -\/\ yp\ *\ cosa;}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ \ \ int16\_t\ x2\ =\ \ h\ *\ sina\ +\ w\ *\ cosa;}
+\DoxyCodeLine{00626\ \ \ int16\_t\ y2\ =\ \ h\ *\ cosa\ -\/\ w\ *\ sina;}
+\DoxyCodeLine{00627\ }
+\DoxyCodeLine{00628\ \ \ int16\_t\ x3\ =\ \ h\ *\ sina\ -\/\ xp\ *\ cosa;}
+\DoxyCodeLine{00629\ \ \ int16\_t\ y3\ =\ \ h\ *\ cosa\ +\ xp\ *\ sina;}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \textcolor{comment}{//\ Find\ bounding\ box\ extremes,\ enlarge\ box\ to\ accomodate\ rounding\ errors}}
+\DoxyCodeLine{00632\ \ \ *min\_x\ =\ x0-\/2;}
+\DoxyCodeLine{00633\ \ \ \textcolor{keywordflow}{if}\ (x1\ <\ *min\_x)\ *min\_x\ =\ x1-\/2;}
+\DoxyCodeLine{00634\ \ \ \textcolor{keywordflow}{if}\ (x2\ <\ *min\_x)\ *min\_x\ =\ x2-\/2;}
+\DoxyCodeLine{00635\ \ \ \textcolor{keywordflow}{if}\ (x3\ <\ *min\_x)\ *min\_x\ =\ x3-\/2;}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \ \ *max\_x\ =\ x0+2;}
+\DoxyCodeLine{00638\ \ \ \textcolor{keywordflow}{if}\ (x1\ >\ *max\_x)\ *max\_x\ =\ x1+2;}
+\DoxyCodeLine{00639\ \ \ \textcolor{keywordflow}{if}\ (x2\ >\ *max\_x)\ *max\_x\ =\ x2+2;}
+\DoxyCodeLine{00640\ \ \ \textcolor{keywordflow}{if}\ (x3\ >\ *max\_x)\ *max\_x\ =\ x3+2;}
+\DoxyCodeLine{00641\ }
+\DoxyCodeLine{00642\ \ \ *min\_y\ =\ y0-\/2;}
+\DoxyCodeLine{00643\ \ \ \textcolor{keywordflow}{if}\ (y1\ <\ *min\_y)\ *min\_y\ =\ y1-\/2;}
+\DoxyCodeLine{00644\ \ \ \textcolor{keywordflow}{if}\ (y2\ <\ *min\_y)\ *min\_y\ =\ y2-\/2;}
+\DoxyCodeLine{00645\ \ \ \textcolor{keywordflow}{if}\ (y3\ <\ *min\_y)\ *min\_y\ =\ y3-\/2;}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ *max\_y\ =\ y0+2;}
+\DoxyCodeLine{00648\ \ \ \textcolor{keywordflow}{if}\ (y1\ >\ *max\_y)\ *max\_y\ =\ y1+2;}
+\DoxyCodeLine{00649\ \ \ \textcolor{keywordflow}{if}\ (y2\ >\ *max\_y)\ *max\_y\ =\ y2+2;}
+\DoxyCodeLine{00650\ \ \ \textcolor{keywordflow}{if}\ (y3\ >\ *max\_y)\ *max\_y\ =\ y3+2;}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \_sinra\ =\ round(sina\ *\ (1<<FP\_SCALE));}
+\DoxyCodeLine{00653\ \ \ \_cosra\ =\ round(cosa\ *\ (1<<FP\_SCALE));}
+\DoxyCodeLine{00654\ \}}
+\DoxyCodeLine{00655\ }
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00658\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushSprite}}
+\DoxyCodeLine{00659\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ the\ sprite\ to\ the\ TFT\ at\ x,\ y}}
+\DoxyCodeLine{00660\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00661\ \textcolor{keywordtype}{void}\ TFT\_eSprite::pushSprite(int32\_t\ x,\ int32\_t\ y)}
+\DoxyCodeLine{00662\ \{}
+\DoxyCodeLine{00663\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00665\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00666\ \ \ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ \_tft-\/>getSwapBytes();}
+\DoxyCodeLine{00668\ \ \ \ \ \_tft-\/>setSwapBytes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00669\ \ \ \ \ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img\ );}
+\DoxyCodeLine{00670\ \ \ \ \ \_tft-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00671\ \ \ \}}
+\DoxyCodeLine{00672\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00673\ \ \ \{}
+\DoxyCodeLine{00674\ \ \ \ \ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img4,\ \textcolor{keyword}{false},\ \_colorMap);}
+\DoxyCodeLine{00675\ \ \ \}}
+\DoxyCodeLine{00676\ \ \ \textcolor{keywordflow}{else}\ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img8,\ (\textcolor{keywordtype}{bool})(\_bpp\ ==\ 8));}
+\DoxyCodeLine{00677\ \}}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00681\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushSprite}}
+\DoxyCodeLine{00682\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ the\ sprite\ to\ the\ TFT\ at\ x,\ y\ with\ transparent\ colour}}
+\DoxyCodeLine{00683\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00684\ \textcolor{keywordtype}{void}\ TFT\_eSprite::pushSprite(int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ transp)}
+\DoxyCodeLine{00685\ \{}
+\DoxyCodeLine{00686\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00689\ \ \ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ \_tft-\/>getSwapBytes();}
+\DoxyCodeLine{00691\ \ \ \ \ \_tft-\/>setSwapBytes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00692\ \ \ \ \ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img,\ transp\ );}
+\DoxyCodeLine{00693\ \ \ \ \ \_tft-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00694\ \ \ \}}
+\DoxyCodeLine{00695\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{00696\ \ \ \{}
+\DoxyCodeLine{00697\ \ \ \ \ transp\ =\ (uint8\_t)((transp\ \&\ 0xE000)>>8\ |\ (transp\ \&\ 0x0700)>>6\ |\ (transp\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{00698\ \ \ \ \ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img8,\ (uint8\_t)transp,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{true});}
+\DoxyCodeLine{00699\ \ \ \}}
+\DoxyCodeLine{00700\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00701\ \ \ \{}
+\DoxyCodeLine{00702\ \ \ \ \ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img4,\ (uint8\_t)(transp\ \&\ 0x0F),\ \textcolor{keyword}{false},\ \_colorMap);}
+\DoxyCodeLine{00703\ \ \ \}}
+\DoxyCodeLine{00704\ \ \ \textcolor{keywordflow}{else}\ \_tft-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img8,\ 0,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{false});}
+\DoxyCodeLine{00705\ \}}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ }
+\DoxyCodeLine{00708\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00709\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushToSprite}}
+\DoxyCodeLine{00710\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ the\ sprite\ to\ another\ sprite\ at\ x,\ y}}
+\DoxyCodeLine{00711\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00712\ \textcolor{comment}{//\ Note:\ The\ following\ sprite\ to\ sprite\ colour\ depths\ are\ currently\ supported:}}
+\DoxyCodeLine{00713\ \textcolor{comment}{//\ \ \ \ Source\ \ \ \ Destination}}
+\DoxyCodeLine{00714\ \textcolor{comment}{//\ \ \ \ 16bpp\ \ -\/>\ 16bpp}}
+\DoxyCodeLine{00715\ \textcolor{comment}{//\ \ \ \ 16bpp\ \ -\/>\ \ 8bpp}}
+\DoxyCodeLine{00716\ \textcolor{comment}{//\ \ \ \ \ 8bpp\ \ -\/>\ \ 8bpp}}
+\DoxyCodeLine{00717\ \textcolor{comment}{//\ \ \ \ \ 4bpp\ \ -\/>\ \ 4bpp\ (note:\ color\ translation\ depends\ on\ the\ 2\ sprites\ pallete\ colors)}}
+\DoxyCodeLine{00718\ \textcolor{comment}{//\ \ \ \ \ 1bpp\ \ -\/>\ \ 1bpp\ (note:\ color\ translation\ depends\ on\ the\ 2\ sprites\ bitmap\ colors)}}
+\DoxyCodeLine{00719\ }
+\DoxyCodeLine{00720\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::pushToSprite(\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\_eSprite}}\ *dspr,\ int32\_t\ x,\ int32\_t\ y)}
+\DoxyCodeLine{00721\ \{}
+\DoxyCodeLine{00722\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00723\ \ \ \textcolor{keywordflow}{if}\ (!dspr-\/>created())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00724\ }
+\DoxyCodeLine{00725\ \ \ \textcolor{comment}{//\ Check\ destination\ sprite\ compatibility}}
+\DoxyCodeLine{00726\ \ \ int8\_t\ ds\_bpp\ =\ dspr-\/>getColorDepth();}
+\DoxyCodeLine{00727\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16\ \&\&\ ds\_bpp\ !=\ 16\ \&\&\ ds\_bpp\ !=\ \ 8)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00728\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 8\ \&\&\ ds\_bpp\ !=\ \ 8)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00729\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 4\ \&\&\ ds\_bpp\ !=\ \ 4)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00730\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 1\ \&\&\ ds\_bpp\ !=\ \ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ dspr-\/>getSwapBytes();}
+\DoxyCodeLine{00733\ \ \ dspr-\/>setSwapBytes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00734\ \ \ dspr-\/>pushImage(x,\ y,\ \_dwidth,\ \_dheight,\ \_img,\ \_bpp);}
+\DoxyCodeLine{00735\ \ \ dspr-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00738\ \}}
+\DoxyCodeLine{00739\ }
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00742\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushToSprite}}
+\DoxyCodeLine{00743\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ the\ sprite\ to\ another\ sprite\ at\ x,\ y\ with\ transparent\ colour}}
+\DoxyCodeLine{00744\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00745\ \textcolor{comment}{//\ Note:\ The\ following\ sprite\ to\ sprite\ colour\ depths\ are\ currently\ supported:}}
+\DoxyCodeLine{00746\ \textcolor{comment}{//\ \ \ \ Source\ \ \ \ Destination}}
+\DoxyCodeLine{00747\ \textcolor{comment}{//\ \ \ \ 16bpp\ \ -\/>\ 16bpp}}
+\DoxyCodeLine{00748\ \textcolor{comment}{//\ \ \ \ 16bpp\ \ -\/>\ \ 8bpp}}
+\DoxyCodeLine{00749\ \textcolor{comment}{//\ \ \ \ \ 8bpp\ \ -\/>\ \ 8bpp}}
+\DoxyCodeLine{00750\ \textcolor{comment}{//\ \ \ \ \ 1bpp\ \ -\/>\ \ 1bpp}}
+\DoxyCodeLine{00751\ }
+\DoxyCodeLine{00752\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::pushToSprite(\mbox{\hyperlink{class_t_f_t__e_sprite}{TFT\_eSprite}}\ *dspr,\ int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ transp)}
+\DoxyCodeLine{00753\ \{}
+\DoxyCodeLine{00754\ \ \ \textcolor{keywordflow}{if}\ (\ !\_created\ \ ||\ !dspr-\/>\_created)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Check\ Sprites\ exist}}
+\DoxyCodeLine{00755\ }
+\DoxyCodeLine{00756\ \ \ \textcolor{comment}{//\ Check\ destination\ sprite\ compatibility}}
+\DoxyCodeLine{00757\ \ \ int8\_t\ ds\_bpp\ =\ dspr-\/>getColorDepth();}
+\DoxyCodeLine{00758\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16\ \&\&\ ds\_bpp\ !=\ 16\ \&\&\ ds\_bpp\ !=\ \ 8)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00759\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 8\ \&\&\ ds\_bpp\ !=\ \ 8)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00760\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 4\ ||\ ds\_bpp\ ==\ \ 4)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00761\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ \ 1\ \&\&\ ds\_bpp\ !=\ \ 1)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ dspr-\/>getSwapBytes();}
+\DoxyCodeLine{00764\ \ \ uint16\_t\ sline\_buffer[width()];}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ transp\ =\ transp>>8\ |\ transp<<8;}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ \ \ \textcolor{comment}{//\ Scan\ destination\ bounding\ box\ and\ fetch\ transformed\ pixels\ from\ source\ Sprite}}
+\DoxyCodeLine{00769\ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ ys\ =\ 0;\ ys\ <\ height();\ ys++)\ \{}
+\DoxyCodeLine{00770\ \ \ \ \ int32\_t\ ox\ =\ x;}
+\DoxyCodeLine{00771\ \ \ \ \ uint32\_t\ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xs\ =\ 0;\ xs\ <\ width();\ xs++)\ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ uint16\_t\ rp\ =\ 0;}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ rp\ =\ \_img[xs\ +\ ys\ *\ width()];}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ rp\ =\ readPixel(xs,\ ys);\ rp\ =\ rp>>8\ |\ rp<<8;\ \}}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \textcolor{comment}{//dspr-\/>drawPixel(xs,\ ys,\ rp);}}
+\DoxyCodeLine{00778\ }
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (transp\ ==\ rp)\ \{}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ \{}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ dspr-\/>pushImage(ox,\ y,\ pixel\_count,\ 1,\ sline\_buffer,\ \_bpp);}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ ox\ +=\ pixel\_count;}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ pixel\_count\ =\ 0;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ ox++;}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ sline\_buffer[pixel\_count++]\ =\ rp;}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00790\ \ \ \ \ \}}
+\DoxyCodeLine{00791\ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\_count)\ dspr-\/>pushImage(ox,\ y,\ pixel\_count,\ 1,\ sline\_buffer);}
+\DoxyCodeLine{00792\ \ \ \ \ y++;}
+\DoxyCodeLine{00793\ \ \ \}}
+\DoxyCodeLine{00794\ \ \ dspr-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00795\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00796\ \}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00800\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushSprite}}
+\DoxyCodeLine{00801\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Push\ a\ cropped\ sprite\ to\ the\ TFT\ at\ tx,\ ty}}
+\DoxyCodeLine{00802\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00803\ \textcolor{keywordtype}{bool}\ TFT\_eSprite::pushSprite(int32\_t\ tx,\ int32\_t\ ty,\ int32\_t\ sx,\ int32\_t\ sy,\ int32\_t\ sw,\ int32\_t\ sh)}
+\DoxyCodeLine{00804\ \{}
+\DoxyCodeLine{00805\ \ \ \textcolor{keywordflow}{if}\ (!\_created)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00806\ }
+\DoxyCodeLine{00807\ \ \ \textcolor{comment}{//\ Perform\ window\ boundary\ checks\ and\ crop\ if\ needed}}
+\DoxyCodeLine{00808\ \ \ setWindow(sx,\ sy,\ sx\ +\ sw\ -\/\ 1,\ sy\ +\ sh\ -\/\ 1);}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00810\ \ \ \textcolor{comment}{/*\ These\ global\ variables\ are\ now\ populated\ for\ the\ sprite}}
+\DoxyCodeLine{00811\ \textcolor{comment}{\ \ \_xs\ =\ x\ start\ coordinate}}
+\DoxyCodeLine{00812\ \textcolor{comment}{\ \ \_ys\ =\ y\ start\ coordinate}}
+\DoxyCodeLine{00813\ \textcolor{comment}{\ \ \_xe\ =\ x\ end\ coordinate\ (inclusive)}}
+\DoxyCodeLine{00814\ \textcolor{comment}{\ \ \_ye\ =\ y\ end\ coordinate\ (inclusive)}}
+\DoxyCodeLine{00815\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00816\ }
+\DoxyCodeLine{00817\ \ \ \textcolor{comment}{//\ Calculate\ new\ sprite\ window\ bounding\ box\ width\ and\ height}}
+\DoxyCodeLine{00818\ \ \ sw\ =\ \_xe\ -\/\ \_xs\ +\ 1;}
+\DoxyCodeLine{00819\ \ \ sh\ =\ \_ye\ -\/\ \_ys\ +\ 1;}
+\DoxyCodeLine{00820\ }
+\DoxyCodeLine{00821\ \ \ \textcolor{keywordflow}{if}\ (\_ys\ >=\ \_iheight)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00824\ \ \ \{}
+\DoxyCodeLine{00825\ \ \ \ \ \textcolor{keywordtype}{bool}\ oldSwapBytes\ =\ \_tft-\/>getSwapBytes();}
+\DoxyCodeLine{00826\ \ \ \ \ \_tft-\/>setSwapBytes(\textcolor{keyword}{false});}
+\DoxyCodeLine{00827\ }
+\DoxyCodeLine{00828\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ faster\ block\ copy\ to\ screen\ is\ possible}}
+\DoxyCodeLine{00829\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ sx\ ==\ 0\ \&\&\ sw\ ==\ \_dwidth)}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty,\ sw,\ sh,\ \_img\ +\ \_iwidth\ *\ \_ys\ );}
+\DoxyCodeLine{00831\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Render\ line\ by\ line}}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (sh-\/-\/)}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty++,\ sw,\ 1,\ \_img\ +\ \_xs\ +\ \_iwidth\ *\ \_ys++\ );}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \_tft-\/>setSwapBytes(oldSwapBytes);}
+\DoxyCodeLine{00836\ \ \ \}}
+\DoxyCodeLine{00837\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{00838\ \ \ \{}
+\DoxyCodeLine{00839\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ faster\ block\ copy\ to\ screen\ is\ possible}}
+\DoxyCodeLine{00840\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ sx\ ==\ 0\ \&\&\ sw\ ==\ \_dwidth)}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty,\ sw,\ sh,\ \_img8\ +\ \_iwidth\ *\ \_ys,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00842\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Render\ line\ by\ line}}
+\DoxyCodeLine{00843\ \ \ \ \ \textcolor{keywordflow}{while}\ (sh-\/-\/)}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty++,\ sw,\ 1,\ \_img8\ +\ \_xs\ +\ \_iwidth\ *\ \_ys++,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00845\ \ \ \}}
+\DoxyCodeLine{00846\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00847\ \ \ \{}
+\DoxyCodeLine{00848\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ faster\ block\ copy\ to\ screen\ is\ possible}}
+\DoxyCodeLine{00849\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ sx\ ==\ 0\ \&\&\ sw\ ==\ \_dwidth)}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty,\ sw,\ sh,\ \_img4\ +\ (\_iwidth>>1)\ *\ \_ys,\ \textcolor{keyword}{false},\ \_colorMap\ );}
+\DoxyCodeLine{00851\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Render\ line\ by\ line}}
+\DoxyCodeLine{00852\ \ \ \ \ \{}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ int32\_t\ ds\ =\ \_xs\&1;\ \textcolor{comment}{//\ Odd\ x\ start\ pixel}}
+\DoxyCodeLine{00854\ }
+\DoxyCodeLine{00855\ \ \ \ \ \ \ int32\_t\ de\ =\ 0;\ \ \ \ \ \textcolor{comment}{//\ Odd\ x\ end\ pixel}}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((sw\ >\ ds)\ \&\&\ (\_xe\&1))\ de\ =\ 1;}
+\DoxyCodeLine{00857\ }
+\DoxyCodeLine{00858\ \ \ \ \ \ \ uint32\_t\ dm\ =\ 0;\ \ \ \ \ \textcolor{comment}{//\ Midsection\ pixel\ count}}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (sw\ >\ (ds+de))\ dm\ =\ sw\ -\/\ ds\ -\/\ de;}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ sw-\/-\/;}
+\DoxyCodeLine{00861\ }
+\DoxyCodeLine{00862\ \ \ \ \ \ \ uint32\_t\ yp\ =\ (\_xs\ +\ ds\ +\ \_iwidth\ *\ \_ys)>>1;}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \_tft-\/>startWrite();}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (sh-\/-\/)}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ds)\ \_tft-\/>drawPixel(tx,\ ty,\ readPixel(\_xs,\ \_ys)\ );}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dm)\ \_tft-\/>pushImage(tx\ +\ ds,\ ty,\ dm,\ 1,\ \_img4\ +\ yp,\ \textcolor{keyword}{false},\ \_colorMap\ );}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (de)\ \_tft-\/>drawPixel(tx\ +\ sw,\ ty,\ readPixel(\_xe,\ \_ys)\ );}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \_ys++;}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ ty++;}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ yp\ +=\ (\_iwidth>>1);}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \_tft-\/>endWrite();}
+\DoxyCodeLine{00874\ \ \ \ \ \}}
+\DoxyCodeLine{00875\ \ \ \}}
+\DoxyCodeLine{00876\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ 1bpp}}
+\DoxyCodeLine{00877\ \ \ \{}
+\DoxyCodeLine{00878\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ a\ faster\ block\ copy\ to\ screen\ is\ possible}}
+\DoxyCodeLine{00879\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ sx\ ==\ 0\ \&\&\ sw\ ==\ \_dwidth)}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty,\ sw,\ sh,\ \_img8\ +\ (\_bitwidth>>3)\ *\ \_ys,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00881\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Render\ line\ by\ line}}
+\DoxyCodeLine{00882\ \ \ \ \ \{}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \_tft-\/>startWrite();}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (sh-\/-\/)}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \_tft-\/>pushImage(tx,\ ty++,\ sw,\ 1,\ \_img8\ +\ (\_bitwidth>>3)\ *\ \_ys++,\ (\textcolor{keywordtype}{bool})\textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \_tft-\/>endWrite();}
+\DoxyCodeLine{00889\ \ \ \ \ \}}
+\DoxyCodeLine{00890\ \ \ \}}
+\DoxyCodeLine{00891\ }
+\DoxyCodeLine{00892\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00893\ \}}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ }
+\DoxyCodeLine{00896\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00897\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ readPixelValue}}
+\DoxyCodeLine{00898\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Read\ the\ color\ map\ index\ of\ a\ pixel\ at\ defined\ coordinates}}
+\DoxyCodeLine{00899\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00900\ uint16\_t\ TFT\_eSprite::readPixelValue(int32\_t\ x,\ int32\_t\ y)}
+\DoxyCodeLine{00901\ \{}
+\DoxyCodeLine{00902\ \ \ \textcolor{keywordflow}{if}\ (\_vpOoB\ \ ||\ !\_created)\ \textcolor{keywordflow}{return}\ 0xFF;}
+\DoxyCodeLine{00903\ }
+\DoxyCodeLine{00904\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{00905\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{00906\ }
+\DoxyCodeLine{00907\ \ \ \textcolor{comment}{//\ Range\ checking}}
+\DoxyCodeLine{00908\ \ \ \textcolor{keywordflow}{if}\ ((x\ <\ \_vpX)\ ||\ (y\ <\ \_vpY)\ ||(x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return}\ 0xFF;}
+\DoxyCodeLine{00909\ }
+\DoxyCodeLine{00910\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00911\ \ \ \{}
+\DoxyCodeLine{00912\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ pixel\ colour}}
+\DoxyCodeLine{00913\ \ \ \ \ \textcolor{keywordflow}{return}\ readPixel(x\ -\/\ \_xDatum,\ y\ -\/\ \_yDatum);}
+\DoxyCodeLine{00914\ \ \ \}}
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{00917\ \ \ \{}
+\DoxyCodeLine{00918\ \ \ \ \ \textcolor{comment}{//\ Return\ the\ pixel\ byte\ value}}
+\DoxyCodeLine{00919\ \ \ \ \ \textcolor{keywordflow}{return}\ \_img8[x\ +\ y\ *\ \_iwidth];}
+\DoxyCodeLine{00920\ \ \ \}}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00923\ \ \ \{}
+\DoxyCodeLine{00924\ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >=\ \_dwidth)\ \textcolor{keywordflow}{return}\ 0xFF;}
+\DoxyCodeLine{00925\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_img4[((x+y*\_iwidth)>>1)]\ >>\ 4;\ \ \ \textcolor{comment}{//\ even\ index\ =\ bits\ 7\ ..\ 4}}
+\DoxyCodeLine{00927\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_img4[((x+y*\_iwidth)>>1)]\ \&\ 0x0F;\ \textcolor{comment}{//\ odd\ index\ =\ bits\ 3\ ..\ 0.}}
+\DoxyCodeLine{00929\ \ \ \}}
+\DoxyCodeLine{00930\ }
+\DoxyCodeLine{00931\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 1)}
+\DoxyCodeLine{00932\ \ \ \{}
+\DoxyCodeLine{00933\ \ \ \ \ \textcolor{comment}{//\ Note:\ \_dwidth\ and\ \_dheight\ bounds\ not\ checked\ (rounded\ up\ -\/iwidth\ and\ \_iheight\ used)}}
+\DoxyCodeLine{00934\ \ \ \ \ \textcolor{keywordflow}{if}\ (rotation\ ==\ 1)}
+\DoxyCodeLine{00935\ \ \ \ \ \{}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ x\ =\ \_dheight\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ y\ =\ tx;}
+\DoxyCodeLine{00939\ \ \ \ \ \}}
+\DoxyCodeLine{00940\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 2)}
+\DoxyCodeLine{00941\ \ \ \ \ \{}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ x\ =\ \_dwidth\ -\/\ x\ -\/\ 1;}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ y\ =\ \_dheight\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{00944\ \ \ \ \ \}}
+\DoxyCodeLine{00945\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 3)}
+\DoxyCodeLine{00946\ \ \ \ \ \{}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ x\ =\ y;}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ y\ =\ \_dwidth\ -\/\ tx\ -\/\ 1;}
+\DoxyCodeLine{00950\ \ \ \ \ \}}
+\DoxyCodeLine{00951\ \ \ \ \ \textcolor{comment}{//\ Return\ 1\ or\ 0}}
+\DoxyCodeLine{00952\ \ \ \ \ \textcolor{keywordflow}{return}\ (\_img8[(x\ +\ y\ *\ \_bitwidth)>>3]\ >>\ (7-\/(x\ \&\ 0x7)))\ \&\ 0x01;}
+\DoxyCodeLine{00953\ \ \ \}}
+\DoxyCodeLine{00954\ }
+\DoxyCodeLine{00955\ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00956\ \}}
+\DoxyCodeLine{00957\ }
+\DoxyCodeLine{00958\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00959\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ readPixel}}
+\DoxyCodeLine{00960\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Read\ 565\ colour\ of\ a\ pixel\ at\ defined\ coordinates}}
+\DoxyCodeLine{00961\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00962\ uint16\_t\ TFT\_eSprite::readPixel(int32\_t\ x,\ int32\_t\ y)}
+\DoxyCodeLine{00963\ \{}
+\DoxyCodeLine{00964\ \ \ \textcolor{keywordflow}{if}\ (\_vpOoB\ \ ||\ !\_created)\ \textcolor{keywordflow}{return}\ 0xFFFF;}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00966\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{00967\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{00968\ }
+\DoxyCodeLine{00969\ \ \ \textcolor{comment}{//\ Range\ checking}}
+\DoxyCodeLine{00970\ \ \ \textcolor{keywordflow}{if}\ ((x\ <\ \_vpX)\ ||\ (y\ <\ \_vpY)\ ||(x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return}\ 0xFFFF;}
+\DoxyCodeLine{00971\ }
+\DoxyCodeLine{00972\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{00973\ \ \ \{}
+\DoxyCodeLine{00974\ \ \ \ \ uint16\_t\ color\ =\ \_img[x\ +\ y\ *\ \_iwidth];}
+\DoxyCodeLine{00975\ \ \ \ \ \textcolor{keywordflow}{return}\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{00976\ \ \ \}}
+\DoxyCodeLine{00977\ }
+\DoxyCodeLine{00978\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{00979\ \ \ \{}
+\DoxyCodeLine{00980\ \ \ \ \ uint16\_t\ color\ =\ \_img8[x\ +\ y\ *\ \_iwidth];}
+\DoxyCodeLine{00981\ \ \ \ \ \textcolor{keywordflow}{if}\ (color\ !=\ 0)}
+\DoxyCodeLine{00982\ \ \ \ \ \{}
+\DoxyCodeLine{00983\ \ \ \ \ uint8\_t\ \ blue[]\ =\ \{0,\ 11,\ 21,\ 31\};}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ color\ =\ \ \ (color\ \&\ 0xE0)<<8\ |\ (color\ \&\ 0xC0)<<5}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ (color\ \&\ 0x1C)<<6\ |\ (color\ \&\ 0x1C)<<3}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ blue[color\ \&\ 0x03];}
+\DoxyCodeLine{00987\ \ \ \ \ \}}
+\DoxyCodeLine{00988\ \ \ \ \ \textcolor{keywordflow}{return}\ color;}
+\DoxyCodeLine{00989\ \ \ \}}
+\DoxyCodeLine{00990\ }
+\DoxyCodeLine{00991\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{00992\ \ \ \{}
+\DoxyCodeLine{00993\ \ \ \ \ \textcolor{keywordflow}{if}\ (x\ >=\ \_dwidth)\ \textcolor{keywordflow}{return}\ 0xFFFF;}
+\DoxyCodeLine{00994\ \ \ \ \ uint16\_t\ color;}
+\DoxyCodeLine{00995\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ color\ =\ \_colorMap[\_img4[((x+y*\_iwidth)>>1)]\ >>\ 4];\ \ \ \textcolor{comment}{//\ even\ index\ =\ bits\ 7\ ..\ 4}}
+\DoxyCodeLine{00997\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ color\ =\ \_colorMap[\_img4[((x+y*\_iwidth)>>1)]\ \&\ 0x0F];\ \textcolor{comment}{//\ odd\ index\ =\ bits\ 3\ ..\ 0.}}
+\DoxyCodeLine{00999\ \ \ \ \ \textcolor{keywordflow}{return}\ color;}
+\DoxyCodeLine{01000\ \ \ \}}
+\DoxyCodeLine{01001\ }
+\DoxyCodeLine{01002\ \ \ \textcolor{comment}{//\ Note:\ Must\ be\ 1bpp}}
+\DoxyCodeLine{01003\ \ \ \textcolor{comment}{//\ \_dwidth\ and\ \_dheight\ bounds\ not\ checked\ (rounded\ up\ -\/iwidth\ and\ \_iheight\ used)}}
+\DoxyCodeLine{01004\ \ \ \textcolor{keywordflow}{if}\ (rotation\ ==\ 1)}
+\DoxyCodeLine{01005\ \ \ \{}
+\DoxyCodeLine{01006\ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{01007\ \ \ \ \ x\ =\ \_dheight\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{01008\ \ \ \ \ y\ =\ tx;}
+\DoxyCodeLine{01009\ \ \ \}}
+\DoxyCodeLine{01010\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 2)}
+\DoxyCodeLine{01011\ \ \ \{}
+\DoxyCodeLine{01012\ \ \ \ \ x\ =\ \_dwidth\ -\/\ x\ -\/\ 1;}
+\DoxyCodeLine{01013\ \ \ \ \ y\ =\ \_dheight\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{01014\ \ \ \}}
+\DoxyCodeLine{01015\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 3)}
+\DoxyCodeLine{01016\ \ \ \{}
+\DoxyCodeLine{01017\ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{01018\ \ \ \ \ x\ =\ y;}
+\DoxyCodeLine{01019\ \ \ \ \ y\ =\ \_dwidth\ -\/\ tx\ -\/\ 1;}
+\DoxyCodeLine{01020\ \ \ \}}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ \ \ uint16\_t\ color\ =\ (\_img8[(x\ +\ y\ *\ \_bitwidth)>>3]\ <<\ (x\ \&\ 0x7))\ \&\ 0x80;}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \ \ \textcolor{keywordflow}{if}\ (color)\ \textcolor{keywordflow}{return}\ \_tft-\/>bitmap\_fg;}
+\DoxyCodeLine{01025\ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_tft-\/>bitmap\_bg;}
+\DoxyCodeLine{01026\ \}}
+\DoxyCodeLine{01027\ }
+\DoxyCodeLine{01028\ }
+\DoxyCodeLine{01029\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01030\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushImage}}
+\DoxyCodeLine{01031\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ push\ image\ into\ a\ defined\ area\ of\ a\ sprite}}
+\DoxyCodeLine{01032\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01033\ \textcolor{keywordtype}{void}\ \ TFT\_eSprite::pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data,\ uint8\_t\ sbpp)}
+\DoxyCodeLine{01034\ \{}
+\DoxyCodeLine{01035\ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{keyword}{nullptr}\ ||\ !\_created)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01036\ }
+\DoxyCodeLine{01037\ \ \ PI\_CLIP;}
+\DoxyCodeLine{01038\ }
+\DoxyCodeLine{01039\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ \textcolor{comment}{//\ Plot\ a\ 16\ bpp\ image\ into\ a\ 16\ bpp\ Sprite}}
+\DoxyCodeLine{01040\ \ \ \{}
+\DoxyCodeLine{01041\ \ \ \ \ \textcolor{comment}{//\ Pointer\ within\ original\ image}}
+\DoxyCodeLine{01042\ \ \ \ \ uint8\_t\ *ptro\ =\ (uint8\_t\ *)data\ +\ ((dx\ +\ dy\ *\ w)\ <<\ 1);}
+\DoxyCodeLine{01043\ \ \ \ \ \textcolor{comment}{//\ Pointer\ within\ sprite\ image}}
+\DoxyCodeLine{01044\ \ \ \ \ uint8\_t\ *ptrs\ =\ (uint8\_t\ *)\_img\ +\ ((x\ +\ y\ *\ \_iwidth)\ <<\ 1);}
+\DoxyCodeLine{01045\ }
+\DoxyCodeLine{01046\ \ \ \ \ \textcolor{keywordflow}{if}(\_swapBytes)}
+\DoxyCodeLine{01047\ \ \ \ \ \{}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dh-\/-\/)}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fast\ copy\ with\ a\ 1\ byte\ shift}}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ memcpy(ptrs+1,\ ptro,\ (dw<<1)\ -\/\ 1);}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Now\ correct\ just\ the\ even\ numbered\ bytes}}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ 0;\ xp\ <\ (dw<<1);\ xp+=2)}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ ptrs[xp]\ =\ ptro[xp+1];;}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ ptro\ +=\ w<<1;}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ ptrs\ +=\ \_iwidth<<1;}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01060\ \ \ \ \ \}}
+\DoxyCodeLine{01061\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01062\ \ \ \ \ \{}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dh-\/-\/)}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ memcpy(ptrs,\ ptro,\ dw<<1);}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ ptro\ +=\ w\ <<\ 1;}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ ptrs\ +=\ \_iwidth\ <<\ 1;}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01069\ \ \ \ \ \}}
+\DoxyCodeLine{01070\ \ \ \}}
+\DoxyCodeLine{01071\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8\ \&\&\ sbpp\ ==\ 8)\ \textcolor{comment}{//\ Plot\ a\ 8\ bpp\ image\ into\ a\ 8\ bpp\ Sprite}}
+\DoxyCodeLine{01072\ \ \ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \textcolor{comment}{//\ Pointer\ within\ original\ image}}
+\DoxyCodeLine{01074\ \ \ \ \ uint8\_t\ *ptro\ =\ (uint8\_t\ *)data\ +\ (dx\ +\ dy\ *\ w);}
+\DoxyCodeLine{01075\ \ \ \ \ \textcolor{comment}{//\ Pointer\ within\ sprite\ image}}
+\DoxyCodeLine{01076\ \ \ \ \ uint8\_t\ *ptrs\ =\ (uint8\_t\ *)\_img\ +\ (x\ +\ y\ *\ \_iwidth);}
+\DoxyCodeLine{01077\ }
+\DoxyCodeLine{01078\ \ \ \ \ \textcolor{keywordflow}{while}\ (dh-\/-\/)}
+\DoxyCodeLine{01079\ \ \ \ \ \{}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ memcpy(ptrs,\ ptro,\ dw);}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ ptro\ +=\ w;}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ ptrs\ +=\ \_iwidth;}
+\DoxyCodeLine{01083\ \ \ \ \ \}}
+\DoxyCodeLine{01084\ \ \ \}}
+\DoxyCodeLine{01085\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)\ \textcolor{comment}{//\ Plot\ a\ 16\ bpp\ image\ into\ a\ 8\ bpp\ Sprite}}
+\DoxyCodeLine{01086\ \ \ \{}
+\DoxyCodeLine{01087\ \ \ \ \ uint16\_t\ lastColor\ =\ 0;}
+\DoxyCodeLine{01088\ \ \ \ \ uint8\_t\ \ color8\ \ \ \ =\ 0;}
+\DoxyCodeLine{01089\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ yp\ =\ dy;\ yp\ <\ dy\ +\ dh;\ yp++)}
+\DoxyCodeLine{01090\ \ \ \ \ \{}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ int32\_t\ xyw\ =\ x\ +\ y\ *\ \_iwidth;}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ int32\_t\ dxypw\ =\ dx\ +\ yp\ *\ w;}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ dx;\ xp\ <\ dx\ +\ dw;\ xp++)}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ uint16\_t\ color\ =\ data[dxypw++];}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (color\ !=\ lastColor)\ \{}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ When\ data\ source\ is\ a\ sprite,\ the\ bytes\ are\ already\ swapped}}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\_swapBytes)\ color8\ =\ (uint8\_t)((color\ \&\ 0xE0)\ |\ (color\ \&\ 0x07)<<2\ |\ (color\ \&\ 0x1800)>>11);}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ color8\ =\ (uint8\_t)((color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ lastColor\ =\ color;}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \_img8[xyw++]\ =\ color8;}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01105\ \ \ \ \ \}}
+\DoxyCodeLine{01106\ \ \ \}}
+\DoxyCodeLine{01107\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01108\ \ \ \{}
+\DoxyCodeLine{01109\ \ \ \ \ \textcolor{comment}{//\ The\ image\ is\ assumed\ to\ be\ 4\ bit,\ where\ each\ byte\ corresponds\ to\ two\ pixels.}}
+\DoxyCodeLine{01110\ \ \ \ \ \textcolor{comment}{//\ much\ faster\ when\ aligned\ to\ a\ byte\ boundary,\ because\ the\ alternative\ is\ slower,\ requiring}}
+\DoxyCodeLine{01111\ \ \ \ \ \textcolor{comment}{//\ tedious\ bit\ operations.}}
+\DoxyCodeLine{01112\ }
+\DoxyCodeLine{01113\ \ \ \ \ \textcolor{keywordtype}{int}\ sWidth\ =\ (\_iwidth\ >>\ 1);}
+\DoxyCodeLine{01114\ \ \ \ \ uint8\_t\ *ptr\ =\ (uint8\_t\ *)data;}
+\DoxyCodeLine{01115\ }
+\DoxyCodeLine{01116\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0\ \&\&\ (dx\ \&\ 0x01)\ ==\ 0\ \&\&\ (dw\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01117\ \ \ \ \ \{}
+\DoxyCodeLine{01118\ \ \ \ \ \ \ x\ =\ (x\ >>\ 1)\ +\ y\ *\ sWidth;}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ dw\ =\ (dw\ >>\ 1);}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ dx\ =\ (dx\ >>\ 1)\ +\ dy\ *\ (w>>1);}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (dh-\/-\/)}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ memcpy(\_img4\ +\ x,\ ptr\ +\ dx,\ dw);}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ dx\ +=\ (w\ >>\ 1);}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ x\ +=\ sWidth;}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01127\ \ \ \ \ \}}
+\DoxyCodeLine{01128\ \ \ \ \ \textcolor{keywordflow}{else}\ \ \textcolor{comment}{//\ not\ optimized}}
+\DoxyCodeLine{01129\ \ \ \ \ \{}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ yp\ =\ dy;\ yp\ <\ dy\ +\ dh;\ yp++)}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ int32\_t\ ox\ =\ x;}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ dx;\ xp\ <\ dx\ +\ dw;\ xp++)}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \ \ uint32\_t\ color;}
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((xp\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \ \ \ \ color\ =\ (ptr[((xp+yp*w)>>1)]\ \&\ 0xF0)\ >>\ 4;\ \textcolor{comment}{//\ even\ index\ =\ bits\ 7\ ..\ 4}}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ color\ =\ ptr[((xp-\/1+yp*w)>>1)]\ \&\ 0x0F;\ \ \ \ \ \ \textcolor{comment}{//\ odd\ index\ =\ bits\ 3\ ..\ 0.}}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ drawPixel(ox,\ y,\ color);}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ ox++;}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01145\ \ \ \ \ \}}
+\DoxyCodeLine{01146\ \ \ \}}
+\DoxyCodeLine{01147\ }
+\DoxyCodeLine{01148\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ 1bpp}}
+\DoxyCodeLine{01149\ \ \ \{}
+\DoxyCodeLine{01150\ \ \ \ \ \textcolor{comment}{//\ Plot\ a\ 1bpp\ image\ into\ a\ 1bpp\ Sprite}}
+\DoxyCodeLine{01151\ \ \ \ \ uint32\_t\ ww\ =\ \ (w+7)>>3;\ \textcolor{comment}{//\ Width\ of\ source\ image\ line\ in\ bytes}}
+\DoxyCodeLine{01152\ \ \ \ \ uint8\_t\ *ptr\ =\ (uint8\_t\ *)data;}
+\DoxyCodeLine{01153\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ yp\ =\ dy;\ \ yp\ <\ dy\ +\ dh;\ yp++)}
+\DoxyCodeLine{01154\ \ \ \ \ \{}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ uint32\_t\ yw\ =\ yp\ *\ ww;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Byte\ starting\ the\ line\ containing\ source\ pixel}}
+\DoxyCodeLine{01156\ \ \ \ \ \ \ int32\_t\ ox\ =\ x;}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ dx;\ xp\ <\ dx\ +\ dw;\ xp++)}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ uint16\_t\ readPixel\ =\ (ptr[(xp>>3)\ +\ yw]\ \&\ (0x80\ >>\ (xp\ \&\ 0x7))\ );}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ drawPixel(ox++,\ y,\ readPixel);}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01163\ \ \ \ \ \}}
+\DoxyCodeLine{01164\ \ \ \}}
+\DoxyCodeLine{01165\ \}}
+\DoxyCodeLine{01166\ }
+\DoxyCodeLine{01167\ }
+\DoxyCodeLine{01168\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01169\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushImage}}
+\DoxyCodeLine{01170\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ push\ 565\ colour\ FLASH\ (PROGMEM)\ image\ into\ a\ defined\ area}}
+\DoxyCodeLine{01171\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01172\ \textcolor{keywordtype}{void}\ \ TFT\_eSprite::pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keyword}{const}\ uint16\_t\ *data)}
+\DoxyCodeLine{01173\ \{}
+\DoxyCodeLine{01174\ \textcolor{preprocessor}{\#ifdef\ ESP32}}
+\DoxyCodeLine{01175\ \ \ pushImage(x,\ y,\ w,\ h,\ (uint16\_t*)\ data);}
+\DoxyCodeLine{01176\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{01177\ \ \ \textcolor{comment}{//\ Partitioned\ memory\ FLASH\ processor}}
+\DoxyCodeLine{01178\ \ \ \textcolor{keywordflow}{if}\ (data\ ==\ \textcolor{keyword}{nullptr}\ ||\ !\_created)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01179\ }
+\DoxyCodeLine{01180\ \ \ PI\_CLIP;}
+\DoxyCodeLine{01181\ }
+\DoxyCodeLine{01182\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ \textcolor{comment}{//\ Plot\ a\ 16\ bpp\ image\ into\ a\ 16\ bpp\ Sprite}}
+\DoxyCodeLine{01183\ \ \ \{}
+\DoxyCodeLine{01184\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ yp\ =\ dy;\ yp\ <\ dy\ +\ dh;\ yp++)}
+\DoxyCodeLine{01185\ \ \ \ \ \{}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ int32\_t\ ox\ =\ x;}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ dx;\ xp\ <\ dx\ +\ dw;\ xp++)}
+\DoxyCodeLine{01188\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ uint16\_t\ color\ =\ pgm\_read\_word(data\ +\ xp\ +\ yp\ *\ w);}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\_swapBytes)\ color\ =\ color<<8\ |\ color>>8;}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \_img[ox\ +\ y\ *\ \_iwidth]\ =\ color;}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ ox++;}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01195\ \ \ \ \ \}}
+\DoxyCodeLine{01196\ \ \ \}}
+\DoxyCodeLine{01197\ }
+\DoxyCodeLine{01198\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)\ \textcolor{comment}{//\ Plot\ a\ 16\ bpp\ image\ into\ a\ 8\ bpp\ Sprite}}
+\DoxyCodeLine{01199\ \ \ \{}
+\DoxyCodeLine{01200\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ yp\ =\ dy;\ yp\ <\ dy\ +\ dh;\ yp++)}
+\DoxyCodeLine{01201\ \ \ \ \ \{}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ int32\_t\ ox\ =\ x;}
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ xp\ =\ dx;\ xp\ <\ dx\ +\ dw;\ xp++)}
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ uint16\_t\ color\ =\ pgm\_read\_word(data\ +\ xp\ +\ yp\ *\ w);}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\_swapBytes)\ color\ =\ color<<8\ |\ color>>8;}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \_img8[ox\ +\ y\ *\ \_iwidth]\ =\ (uint8\_t)((color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ ox++;}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01211\ \ \ \ \ \}}
+\DoxyCodeLine{01212\ \ \ \}}
+\DoxyCodeLine{01213\ }
+\DoxyCodeLine{01214\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01215\ \ \ \{}
+\DoxyCodeLine{01216\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ TFT\_eSPI\_DEBUG}}
+\DoxyCodeLine{01217\ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}TFT\_eSprite::pushImage(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ const\ uint16\_t\ *data)\ not\ implemented"{}});}
+\DoxyCodeLine{01218\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{01219\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01220\ \ \ \}}
+\DoxyCodeLine{01221\ }
+\DoxyCodeLine{01222\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Plot\ a\ 1bpp\ image\ into\ a\ 1bpp\ Sprite}}
+\DoxyCodeLine{01223\ \ \ \{}
+\DoxyCodeLine{01224\ \ \ \ \ x-\/=\ \_xDatum;\ \ \ \textcolor{comment}{//\ Remove\ offsets,\ drawPixel\ will\ add}}
+\DoxyCodeLine{01225\ \ \ \ \ y-\/=\ \_yDatum;}
+\DoxyCodeLine{01226\ \ \ \ \ uint16\_t\ bsw\ =\ \ (w+7)\ >>\ 3;\ \textcolor{comment}{//\ Width\ in\ bytes\ of\ source\ image\ line}}
+\DoxyCodeLine{01227\ \ \ \ \ uint8\_t\ *ptr\ =\ ((uint8\_t*)data)\ +\ dy\ *\ bsw;}
+\DoxyCodeLine{01228\ \ \ \ \ }
+\DoxyCodeLine{01229\ \ \ \ \ \textcolor{keywordflow}{while}\ (dh-\/-\/)\ \{}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ int32\_t\ odx\ =\ dx;}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ int32\_t\ ox\ \ =\ x;}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (odx\ <\ dx\ +\ dw)\ \{}
+\DoxyCodeLine{01233\ \ \ \ \ \ \ \ \ uint8\_t\ pbyte\ =\ pgm\_read\_byte(ptr\ +\ (odx>>3));}
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \ \ uint8\_t\ mask\ =\ 0x80\ >>\ (odx\ \&\ 7);}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (mask)\ \{}
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \ \ \ \ uint8\_t\ p\ =\ pbyte\ \&\ mask;}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ \ \ \ mask\ =\ mask\ >>\ 1;}
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ \ \ drawPixel(ox++,\ y,\ p);}
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \ \ odx++;}
+\DoxyCodeLine{01240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01241\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01242\ \ \ \ \ \ \ ptr\ +=\ bsw;}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01244\ \ \ \ \ \}}
+\DoxyCodeLine{01245\ \ \ \}}
+\DoxyCodeLine{01246\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ if\ ESP32\ check}}
+\DoxyCodeLine{01247\ \}}
+\DoxyCodeLine{01248\ }
+\DoxyCodeLine{01249\ }
+\DoxyCodeLine{01250\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01251\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setWindow}}
+\DoxyCodeLine{01252\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ the\ bounds\ of\ a\ window\ in\ the\ sprite}}
+\DoxyCodeLine{01253\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01254\ \textcolor{comment}{//\ Intentionally\ not\ constrained\ to\ viewport\ area,\ does\ not\ manage\ 1bpp\ rotations}}
+\DoxyCodeLine{01255\ \textcolor{keywordtype}{void}\ TFT\_eSprite::setWindow(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ x1,\ int32\_t\ y1)}
+\DoxyCodeLine{01256\ \{}
+\DoxyCodeLine{01257\ \ \ \textcolor{keywordflow}{if}\ (x0\ >\ x1)\ swap\_coord(x0,\ x1);}
+\DoxyCodeLine{01258\ \ \ \textcolor{keywordflow}{if}\ (y0\ >\ y1)\ swap\_coord(y0,\ y1);}
+\DoxyCodeLine{01259\ \ \ }
+\DoxyCodeLine{01260\ \ \ int32\_t\ w\ =\ width();}
+\DoxyCodeLine{01261\ \ \ int32\_t\ h\ =\ height();}
+\DoxyCodeLine{01262\ }
+\DoxyCodeLine{01263\ \ \ \textcolor{keywordflow}{if}\ ((x0\ >=\ w)\ ||\ (x1\ <\ 0)\ ||\ (y0\ >=\ h)\ ||\ (y1\ <\ 0))}
+\DoxyCodeLine{01264\ \ \ \{\ \textcolor{comment}{//\ Point\ to\ that\ extra\ "{}off\ screen"{}\ pixel}}
+\DoxyCodeLine{01265\ \ \ \ \ \_xs\ =\ 0;}
+\DoxyCodeLine{01266\ \ \ \ \ \_ys\ =\ \_dheight;}
+\DoxyCodeLine{01267\ \ \ \ \ \_xe\ =\ 0;}
+\DoxyCodeLine{01268\ \ \ \ \ \_ye\ =\ \_dheight;}
+\DoxyCodeLine{01269\ \ \ \}}
+\DoxyCodeLine{01270\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01271\ \ \ \{}
+\DoxyCodeLine{01272\ \ \ \ \ \textcolor{keywordflow}{if}\ (x0\ <\ 0)\ x0\ =\ 0;}
+\DoxyCodeLine{01273\ \ \ \ \ \textcolor{keywordflow}{if}\ (x1\ >=\ w)\ x1\ =\ w\ -\/\ 1;}
+\DoxyCodeLine{01274\ \ \ \ \ \textcolor{keywordflow}{if}\ (y0\ <\ 0)\ y0\ =\ 0;}
+\DoxyCodeLine{01275\ \ \ \ \ \textcolor{keywordflow}{if}\ (y1\ >=\ h)\ y1\ =\ h\ -\/\ 1;}
+\DoxyCodeLine{01276\ }
+\DoxyCodeLine{01277\ \ \ \ \ \_xs\ =\ x0;}
+\DoxyCodeLine{01278\ \ \ \ \ \_ys\ =\ y0;}
+\DoxyCodeLine{01279\ \ \ \ \ \_xe\ =\ x1;}
+\DoxyCodeLine{01280\ \ \ \ \ \_ye\ =\ y1;}
+\DoxyCodeLine{01281\ \ \ \}}
+\DoxyCodeLine{01282\ }
+\DoxyCodeLine{01283\ \ \ \_xptr\ =\ \_xs;}
+\DoxyCodeLine{01284\ \ \ \_yptr\ =\ \_ys;}
+\DoxyCodeLine{01285\ \}}
+\DoxyCodeLine{01286\ }
+\DoxyCodeLine{01287\ }
+\DoxyCodeLine{01288\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01289\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushColor}}
+\DoxyCodeLine{01290\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Send\ a\ new\ pixel\ to\ the\ set\ window}}
+\DoxyCodeLine{01291\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01292\ \textcolor{keywordtype}{void}\ TFT\_eSprite::pushColor(uint32\_t\ color)}
+\DoxyCodeLine{01293\ \{}
+\DoxyCodeLine{01294\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01295\ }
+\DoxyCodeLine{01296\ \ \ \textcolor{comment}{//\ Write\ the\ colour\ to\ RAM\ in\ set\ window}}
+\DoxyCodeLine{01297\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01298\ \ \ \ \ \_img\ [\_xptr\ +\ \_yptr\ *\ \_iwidth]\ =\ (uint16\_t)\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01299\ }
+\DoxyCodeLine{01300\ \ \ \textcolor{keywordflow}{else}\ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01301\ \ \ \ \ \_img8[\_xptr\ +\ \_yptr\ *\ \_iwidth]\ =\ (uint8\_t\ )((color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{01302\ }
+\DoxyCodeLine{01303\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01304\ \ \ \{}
+\DoxyCodeLine{01305\ \ \ \ \ uint8\_t\ c\ =\ (uint8\_t)color\ \&\ 0x0F;}
+\DoxyCodeLine{01306\ \ \ \ \ \textcolor{keywordflow}{if}\ ((\_xptr\ \&\ 0x01)\ ==\ 0)\ \{}
+\DoxyCodeLine{01307\ \ \ \ \ \ \ \_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ =\ (c\ <<\ 4)\ |\ (\_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ \&\ 0x0F);\ \ \textcolor{comment}{//\ new\ color\ is\ in\ bits\ 7\ ..\ 4}}
+\DoxyCodeLine{01308\ \ \ \ \ \}}
+\DoxyCodeLine{01309\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01310\ \ \ \ \ \ \ \_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ =\ (\_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ \&\ 0xF0)\ |\ c;\ \textcolor{comment}{//\ new\ color\ is\ the\ low\ bits}}
+\DoxyCodeLine{01311\ \ \ \ \ \}}
+\DoxyCodeLine{01312\ \ \ \}}
+\DoxyCodeLine{01313\ }
+\DoxyCodeLine{01314\ \ \ \textcolor{keywordflow}{else}\ drawPixel(\_xptr,\ \_yptr,\ color);}
+\DoxyCodeLine{01315\ }
+\DoxyCodeLine{01316\ \ \ \textcolor{comment}{//\ Increment\ x}}
+\DoxyCodeLine{01317\ \ \ \_xptr++;}
+\DoxyCodeLine{01318\ }
+\DoxyCodeLine{01319\ \ \ \textcolor{comment}{//\ Wrap\ on\ x\ and\ y\ to\ start,\ increment\ y\ if\ needed}}
+\DoxyCodeLine{01320\ \ \ \textcolor{keywordflow}{if}\ (\_xptr\ >\ \_xe)}
+\DoxyCodeLine{01321\ \ \ \{}
+\DoxyCodeLine{01322\ \ \ \ \ \_xptr\ =\ \_xs;}
+\DoxyCodeLine{01323\ \ \ \ \ \_yptr++;}
+\DoxyCodeLine{01324\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_yptr\ >\ \_ye)\ \_yptr\ =\ \_ys;}
+\DoxyCodeLine{01325\ \ \ \}}
+\DoxyCodeLine{01326\ }
+\DoxyCodeLine{01327\ \}}
+\DoxyCodeLine{01328\ }
+\DoxyCodeLine{01329\ }
+\DoxyCodeLine{01330\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01331\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushColor}}
+\DoxyCodeLine{01332\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Send\ a\ "{}len"{}\ new\ pixels\ to\ the\ set\ window}}
+\DoxyCodeLine{01333\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01334\ \textcolor{keywordtype}{void}\ TFT\_eSprite::pushColor(uint32\_t\ color,\ uint16\_t\ len)}
+\DoxyCodeLine{01335\ \{}
+\DoxyCodeLine{01336\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01337\ }
+\DoxyCodeLine{01338\ \ \ uint16\_t\ pixelColor;}
+\DoxyCodeLine{01339\ }
+\DoxyCodeLine{01340\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01341\ \ \ \ \ pixelColor\ =\ (uint16\_t)\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01342\ }
+\DoxyCodeLine{01343\ \ \ \textcolor{keywordflow}{else}\ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01344\ \ \ \ \ pixelColor\ =\ (color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3;}
+\DoxyCodeLine{01345\ }
+\DoxyCodeLine{01346\ \ \ \textcolor{keywordflow}{else}\ pixelColor\ =\ (uint16\_t)\ color;\ \textcolor{comment}{//\ for\ 1bpp\ or\ 4bpp}}
+\DoxyCodeLine{01347\ }
+\DoxyCodeLine{01348\ \ \ \textcolor{keywordflow}{while}(len-\/-\/)\ writeColor(pixelColor);}
+\DoxyCodeLine{01349\ \}}
+\DoxyCodeLine{01350\ }
+\DoxyCodeLine{01351\ }
+\DoxyCodeLine{01352\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01353\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ writeColor}}
+\DoxyCodeLine{01354\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ pixel\ with\ pre-\/formatted\ colour\ to\ the\ set\ window}}
+\DoxyCodeLine{01355\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01356\ \textcolor{keywordtype}{void}\ TFT\_eSprite::writeColor(uint16\_t\ color)}
+\DoxyCodeLine{01357\ \{}
+\DoxyCodeLine{01358\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01359\ }
+\DoxyCodeLine{01360\ \ \ \textcolor{comment}{//\ Write\ 16\ bit\ RGB\ 565\ encoded\ colour\ to\ RAM}}
+\DoxyCodeLine{01361\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ \_img\ [\_xptr\ +\ \_yptr\ *\ \_iwidth]\ =\ color;}
+\DoxyCodeLine{01362\ }
+\DoxyCodeLine{01363\ \ \ \textcolor{comment}{//\ Write\ 8\ bit\ RGB\ 332\ encoded\ colour\ to\ RAM}}
+\DoxyCodeLine{01364\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)\ \_img8[\_xptr\ +\ \_yptr\ *\ \_iwidth]\ =\ (uint8\_t)\ color;}
+\DoxyCodeLine{01365\ }
+\DoxyCodeLine{01366\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01367\ \ \ \{}
+\DoxyCodeLine{01368\ \ \ \ \ uint8\_t\ c\ =\ (uint8\_t)color\ \&\ 0x0F;}
+\DoxyCodeLine{01369\ \ \ \ \ \textcolor{keywordflow}{if}\ ((\_xptr\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ =\ (c\ <<\ 4)\ |\ (\_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ \&\ 0x0F);\ \ \textcolor{comment}{//\ new\ color\ is\ in\ bits\ 7\ ..\ 4}}
+\DoxyCodeLine{01371\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ =\ (\_img4[(\_xptr\ +\ \_yptr\ *\ \_iwidth)>>1]\ \&\ 0xF0)\ |\ c;\ \textcolor{comment}{//\ new\ color\ is\ the\ low\ bits\ (x\ is\ odd)}}
+\DoxyCodeLine{01373\ \ \ \}}
+\DoxyCodeLine{01374\ }
+\DoxyCodeLine{01375\ \ \ \textcolor{keywordflow}{else}\ drawPixel(\_xptr,\ \_yptr,\ color);}
+\DoxyCodeLine{01376\ }
+\DoxyCodeLine{01377\ \ \ \textcolor{comment}{//\ Increment\ x}}
+\DoxyCodeLine{01378\ \ \ \_xptr++;}
+\DoxyCodeLine{01379\ }
+\DoxyCodeLine{01380\ \ \ \textcolor{comment}{//\ Wrap\ on\ x\ and\ y\ to\ start,\ increment\ y\ if\ needed}}
+\DoxyCodeLine{01381\ \ \ \textcolor{keywordflow}{if}\ (\_xptr\ >\ \_xe)}
+\DoxyCodeLine{01382\ \ \ \{}
+\DoxyCodeLine{01383\ \ \ \ \ \_xptr\ =\ \_xs;}
+\DoxyCodeLine{01384\ \ \ \ \ \_yptr++;}
+\DoxyCodeLine{01385\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_yptr\ >\ \_ye)\ \_yptr\ =\ \_ys;}
+\DoxyCodeLine{01386\ \ \ \}}
+\DoxyCodeLine{01387\ \}}
+\DoxyCodeLine{01388\ }
+\DoxyCodeLine{01389\ }
+\DoxyCodeLine{01390\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01391\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setScrollRect}}
+\DoxyCodeLine{01392\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ scroll\ area\ within\ the\ sprite\ and\ the\ gap\ fill\ colour}}
+\DoxyCodeLine{01393\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01394\ \textcolor{comment}{//\ Intentionally\ not\ constrained\ to\ viewport\ area}}
+\DoxyCodeLine{01395\ \textcolor{keywordtype}{void}\ TFT\_eSprite::setScrollRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ color)}
+\DoxyCodeLine{01396\ \{}
+\DoxyCodeLine{01397\ \ \ \textcolor{keywordflow}{if}\ ((x\ >=\ \_iwidth)\ ||\ (y\ >=\ \_iheight)\ ||\ !\_created\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01398\ }
+\DoxyCodeLine{01399\ \ \ \textcolor{keywordflow}{if}\ (x\ <\ 0)\ \{\ w\ +=\ x;\ x\ =\ 0;\ \}}
+\DoxyCodeLine{01400\ \ \ \textcolor{keywordflow}{if}\ (y\ <\ 0)\ \{\ h\ +=\ y;\ y\ =\ 0;\ \}}
+\DoxyCodeLine{01401\ }
+\DoxyCodeLine{01402\ \ \ \textcolor{keywordflow}{if}\ ((x\ +\ w)\ >\ \_iwidth\ )\ w\ =\ \_iwidth\ \ -\/\ x;}
+\DoxyCodeLine{01403\ \ \ \textcolor{keywordflow}{if}\ ((y\ +\ h)\ >\ \_iheight)\ h\ =\ \_iheight\ -\/\ y;}
+\DoxyCodeLine{01404\ }
+\DoxyCodeLine{01405\ \ \ \textcolor{keywordflow}{if}\ (\ w\ <\ 1\ ||\ h\ <\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01406\ }
+\DoxyCodeLine{01407\ \ \ \_sx\ =\ x;}
+\DoxyCodeLine{01408\ \ \ \_sy\ =\ y;}
+\DoxyCodeLine{01409\ \ \ \_sw\ =\ w;}
+\DoxyCodeLine{01410\ \ \ \_sh\ =\ h;}
+\DoxyCodeLine{01411\ }
+\DoxyCodeLine{01412\ \ \ \_scolor\ =\ color;}
+\DoxyCodeLine{01413\ \}}
+\DoxyCodeLine{01414\ }
+\DoxyCodeLine{01415\ }
+\DoxyCodeLine{01416\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01417\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ scroll}}
+\DoxyCodeLine{01418\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Scroll\ dx,dy\ pixels,\ positive\ right,down,\ negative\ left,up}}
+\DoxyCodeLine{01419\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01420\ \textcolor{keywordtype}{void}\ TFT\_eSprite::scroll(int16\_t\ dx,\ int16\_t\ dy)}
+\DoxyCodeLine{01421\ \{}
+\DoxyCodeLine{01422\ \ \ \textcolor{keywordflow}{if}\ (abs(dx)\ >=\ \_sw\ ||\ abs(dy)\ >=\ \_sh)}
+\DoxyCodeLine{01423\ \ \ \{}
+\DoxyCodeLine{01424\ \ \ \ \ fillRect\ (\_sx,\ \_sy,\ \_sw,\ \_sh,\ \_scolor);}
+\DoxyCodeLine{01425\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01426\ \ \ \}}
+\DoxyCodeLine{01427\ }
+\DoxyCodeLine{01428\ \ \ \textcolor{comment}{//\ Fetch\ the\ scroll\ area\ width\ and\ height\ set\ by\ setScrollRect()}}
+\DoxyCodeLine{01429\ \ \ uint32\_t\ w\ \ =\ \_sw\ -\/\ abs(dx);\ \textcolor{comment}{//\ line\ width\ to\ copy}}
+\DoxyCodeLine{01430\ \ \ uint32\_t\ h\ \ =\ \_sh\ -\/\ abs(dy);\ \textcolor{comment}{//\ lines\ to\ copy}}
+\DoxyCodeLine{01431\ \ \ int32\_t\ iw\ \ =\ \_iwidth;\ \ \ \ \ \ \ \textcolor{comment}{//\ rounded\ up\ width\ of\ sprite}}
+\DoxyCodeLine{01432\ }
+\DoxyCodeLine{01433\ \ \ \textcolor{comment}{//\ Fetch\ the\ x,y\ origin\ set\ by\ setScrollRect()}}
+\DoxyCodeLine{01434\ \ \ uint32\_t\ tx\ =\ \_sx;\ \textcolor{comment}{//\ to\ x}}
+\DoxyCodeLine{01435\ \ \ uint32\_t\ fx\ =\ \_sx;\ \textcolor{comment}{//\ from\ x}}
+\DoxyCodeLine{01436\ \ \ uint32\_t\ ty\ =\ \_sy;\ \textcolor{comment}{//\ to\ y}}
+\DoxyCodeLine{01437\ \ \ uint32\_t\ fy\ =\ \_sy;\ \textcolor{comment}{//\ from\ y}}
+\DoxyCodeLine{01438\ }
+\DoxyCodeLine{01439\ \ \ \textcolor{comment}{//\ Adjust\ for\ x\ delta}}
+\DoxyCodeLine{01440\ \ \ \textcolor{keywordflow}{if}\ (dx\ <=\ 0)\ fx\ -\/=\ dx;}
+\DoxyCodeLine{01441\ \ \ \textcolor{keywordflow}{else}\ tx\ +=\ dx;}
+\DoxyCodeLine{01442\ }
+\DoxyCodeLine{01443\ \ \ \textcolor{comment}{//\ Adjust\ for\ y\ delta}}
+\DoxyCodeLine{01444\ \ \ \textcolor{keywordflow}{if}\ (dy\ <=\ 0)\ fy\ -\/=\ dy;}
+\DoxyCodeLine{01445\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01446\ \ \ \{\ \textcolor{comment}{//\ Scrolling\ down\ so\ start\ copy\ from\ bottom}}
+\DoxyCodeLine{01447\ \ \ \ \ ty\ =\ ty\ +\ \_sh\ -\/\ 1;\ \textcolor{comment}{//\ "{}To"{}\ pointer}}
+\DoxyCodeLine{01448\ \ \ \ \ iw\ =\ -\/iw;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pointer\ moves\ backwards}}
+\DoxyCodeLine{01449\ \ \ \ \ fy\ =\ ty\ -\/\ dy;\ \ \ \ \ \ \textcolor{comment}{//\ "{}From"{}\ pointer}}
+\DoxyCodeLine{01450\ \ \ \}}
+\DoxyCodeLine{01451\ }
+\DoxyCodeLine{01452\ \ \ \textcolor{comment}{//\ Calculate\ "{}from\ y"{}\ and\ "{}to\ y"{}\ pointers\ in\ RAM}}
+\DoxyCodeLine{01453\ \ \ uint32\_t\ fyp\ =\ fx\ +\ fy\ *\ \_iwidth;}
+\DoxyCodeLine{01454\ \ \ uint32\_t\ typ\ =\ tx\ +\ ty\ *\ \_iwidth;}
+\DoxyCodeLine{01455\ }
+\DoxyCodeLine{01456\ \ \ \textcolor{comment}{//\ Now\ move\ the\ pixels\ in\ RAM}}
+\DoxyCodeLine{01457\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01458\ \ \ \{}
+\DoxyCodeLine{01459\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01460\ \ \ \ \ \{\ \textcolor{comment}{//\ move\ pixel\ lines\ (to,\ from,\ byte\ count)}}
+\DoxyCodeLine{01461\ \ \ \ \ \ \ memmove(\ \_img\ +\ typ,\ \_img\ +\ fyp,\ w<<1);}
+\DoxyCodeLine{01462\ \ \ \ \ \ \ typ\ +=\ iw;}
+\DoxyCodeLine{01463\ \ \ \ \ \ \ fyp\ +=\ iw;}
+\DoxyCodeLine{01464\ \ \ \ \ \}}
+\DoxyCodeLine{01465\ \ \ \}}
+\DoxyCodeLine{01466\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01467\ \ \ \{}
+\DoxyCodeLine{01468\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01469\ \ \ \ \ \{\ \textcolor{comment}{//\ move\ pixel\ lines\ (to,\ from,\ byte\ count)}}
+\DoxyCodeLine{01470\ \ \ \ \ \ \ memmove(\ \_img8\ +\ typ,\ \_img8\ +\ fyp,\ w);}
+\DoxyCodeLine{01471\ \ \ \ \ \ \ typ\ +=\ iw;}
+\DoxyCodeLine{01472\ \ \ \ \ \ \ fyp\ +=\ iw;}
+\DoxyCodeLine{01473\ \ \ \ \ \}}
+\DoxyCodeLine{01474\ \ \ \}}
+\DoxyCodeLine{01475\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01476\ \ \ \{}
+\DoxyCodeLine{01477\ \ \ \ \ \textcolor{comment}{//\ could\ optimize\ for\ scrolling\ by\ even\ \#\ pixels\ using\ memove\ (later)}}
+\DoxyCodeLine{01478\ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ \ 0)\ \{\ tx\ +=\ w;\ fx\ +=\ w;\ \}\ \textcolor{comment}{//\ Start\ from\ right\ edge}}
+\DoxyCodeLine{01479\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01480\ \ \ \ \ \{\ \textcolor{comment}{//\ move\ pixels\ one\ by\ one}}
+\DoxyCodeLine{01481\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ xp\ =\ 0;\ xp\ <\ w;\ xp++)}
+\DoxyCodeLine{01482\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ <=\ 0)\ drawPixel(tx\ +\ xp,\ ty,\ readPixelValue(fx\ +\ xp,\ fy));}
+\DoxyCodeLine{01484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ \ 0)\ drawPixel(tx\ -\/\ xp,\ ty,\ readPixelValue(fx\ -\/\ xp,\ fy));}
+\DoxyCodeLine{01485\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01486\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dy\ <=\ 0)\ \ \{\ ty++;\ fy++;\ \}}
+\DoxyCodeLine{01487\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \{\ ty-\/-\/;\ fy-\/-\/;\ \}}
+\DoxyCodeLine{01488\ \ \ \ \ \}}
+\DoxyCodeLine{01489\ \ \ \}}
+\DoxyCodeLine{01490\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 1\ )}
+\DoxyCodeLine{01491\ \ \ \{}
+\DoxyCodeLine{01492\ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ \ 0)\ \{\ tx\ +=\ w;\ fx\ +=\ w;\ \}\ \textcolor{comment}{//\ Start\ from\ right\ edge}}
+\DoxyCodeLine{01493\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01494\ \ \ \ \ \{\ \textcolor{comment}{//\ move\ pixels\ one\ by\ one}}
+\DoxyCodeLine{01495\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ xp\ =\ 0;\ xp\ <\ w;\ xp++)}
+\DoxyCodeLine{01496\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ <=\ 0)\ drawPixel(tx\ +\ xp,\ ty,\ readPixelValue(fx\ +\ xp,\ fy));}
+\DoxyCodeLine{01498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ \ 0)\ drawPixel(tx\ -\/\ xp,\ ty,\ readPixelValue(fx\ -\/\ xp,\ fy));}
+\DoxyCodeLine{01499\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01500\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dy\ <=\ 0)\ \ \{\ ty++;\ fy++;\ \}}
+\DoxyCodeLine{01501\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \{\ ty-\/-\/;\ fy-\/-\/;\ \}}
+\DoxyCodeLine{01502\ \ \ \ \ \}}
+\DoxyCodeLine{01503\ \ \ \}}
+\DoxyCodeLine{01504\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return};\ \textcolor{comment}{//\ Not\ 1,\ 4,\ 8\ or\ 16\ bpp}}
+\DoxyCodeLine{01505\ }
+\DoxyCodeLine{01506\ \ \ \textcolor{comment}{//\ Fill\ the\ gap\ left\ by\ the\ scrolling}}
+\DoxyCodeLine{01507\ \ \ \textcolor{keywordflow}{if}\ (dx\ >\ 0)\ fillRect(\_sx,\ \_sy,\ dx,\ \_sh,\ \_scolor);}
+\DoxyCodeLine{01508\ \ \ \textcolor{keywordflow}{if}\ (dx\ <\ 0)\ fillRect(\_sx\ +\ \_sw\ +\ dx,\ \_sy,\ -\/dx,\ \_sh,\ \_scolor);}
+\DoxyCodeLine{01509\ \ \ \textcolor{keywordflow}{if}\ (dy\ >\ 0)\ fillRect(\_sx,\ \_sy,\ \_sw,\ dy,\ \_scolor);}
+\DoxyCodeLine{01510\ \ \ \textcolor{keywordflow}{if}\ (dy\ <\ 0)\ fillRect(\_sx,\ \_sy\ +\ \_sh\ +\ dy,\ \_sw,\ -\/dy,\ \_scolor);}
+\DoxyCodeLine{01511\ \}}
+\DoxyCodeLine{01512\ }
+\DoxyCodeLine{01513\ }
+\DoxyCodeLine{01514\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01515\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ fillSprite}}
+\DoxyCodeLine{01516\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Fill\ the\ whole\ sprite\ with\ defined\ colour}}
+\DoxyCodeLine{01517\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01518\ \textcolor{keywordtype}{void}\ TFT\_eSprite::fillSprite(uint32\_t\ color)}
+\DoxyCodeLine{01519\ \{}
+\DoxyCodeLine{01520\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01521\ }
+\DoxyCodeLine{01522\ \ \ \textcolor{comment}{//\ Use\ memset\ if\ possible\ as\ it\ is\ super\ fast}}
+\DoxyCodeLine{01523\ \ \ \textcolor{keywordflow}{if}(\_xDatum\ ==\ 0\ \&\&\ \_yDatum\ ==\ 0\ \ \&\&\ \ \_xWidth\ ==\ width())}
+\DoxyCodeLine{01524\ \ \ \{}
+\DoxyCodeLine{01525\ \ \ \ \ \textcolor{keywordflow}{if}(\_bpp\ ==\ 16)\ \{}
+\DoxyCodeLine{01526\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ (uint8\_t)color\ ==\ (uint8\_t)(color>>8)\ )\ \{}
+\DoxyCodeLine{01527\ \ \ \ \ \ \ \ \ memset(\_img,\ \ (uint8\_t)color,\ \_iwidth\ *\ \_yHeight\ *\ 2);}
+\DoxyCodeLine{01528\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01529\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ fillRect(\_vpX,\ \_vpY,\ \_xWidth,\ \_yHeight,\ color);}
+\DoxyCodeLine{01530\ \ \ \ \ \}}
+\DoxyCodeLine{01531\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01532\ \ \ \ \ \{}
+\DoxyCodeLine{01533\ \ \ \ \ \ \ color\ =\ (color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3;}
+\DoxyCodeLine{01534\ \ \ \ \ \ \ memset(\_img8,\ (uint8\_t)color,\ \_iwidth\ *\ \_yHeight);}
+\DoxyCodeLine{01535\ \ \ \ \ \}}
+\DoxyCodeLine{01536\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01537\ \ \ \ \ \{}
+\DoxyCodeLine{01538\ \ \ \ \ \ \ uint8\_t\ c\ =\ ((color\ \&\ 0x0F)\ |\ (((color\ \&\ 0x0F)\ <<\ 4)\ \&\ 0xF0));}
+\DoxyCodeLine{01539\ \ \ \ \ \ \ memset(\_img4,\ c,\ (\_iwidth\ *\ \_yHeight)\ >>\ 1);}
+\DoxyCodeLine{01540\ \ \ \ \ \}}
+\DoxyCodeLine{01541\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 1)}
+\DoxyCodeLine{01542\ \ \ \ \ \{}
+\DoxyCodeLine{01543\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(color)\ memset(\_img8,\ 0xFF,\ (\_bitwidth>>3)\ *\ \_dheight\ +\ 1);}
+\DoxyCodeLine{01544\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ memset(\_img8,\ 0x00,\ (\_bitwidth>>3)\ *\ \_dheight\ +\ 1);}
+\DoxyCodeLine{01545\ \ \ \ \ \}}
+\DoxyCodeLine{01546\ \ \ \}}
+\DoxyCodeLine{01547\ \ \ \textcolor{keywordflow}{else}\ fillRect(\_vpX\ -\/\ \_xDatum,\ \_vpY\ -\/\ \_yDatum,\ \_xWidth,\ \_yHeight,\ color);}
+\DoxyCodeLine{01548\ \}}
+\DoxyCodeLine{01549\ }
+\DoxyCodeLine{01550\ }
+\DoxyCodeLine{01551\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01552\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ width}}
+\DoxyCodeLine{01553\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Return\ the\ width\ of\ sprite}}
+\DoxyCodeLine{01554\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01555\ \textcolor{comment}{//\ Return\ the\ size\ of\ the\ display}}
+\DoxyCodeLine{01556\ int16\_t\ TFT\_eSprite::width(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{01557\ \{}
+\DoxyCodeLine{01558\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ )\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01559\ }
+\DoxyCodeLine{01560\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ >\ 1)\ \{}
+\DoxyCodeLine{01561\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_xWidth;}
+\DoxyCodeLine{01562\ \ \ \ \ \textcolor{keywordflow}{return}\ \_dwidth;}
+\DoxyCodeLine{01563\ \ \ \}}
+\DoxyCodeLine{01564\ }
+\DoxyCodeLine{01565\ \ \ \textcolor{keywordflow}{if}\ (rotation\ \&\ 1)\ \{}
+\DoxyCodeLine{01566\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_xWidth;}
+\DoxyCodeLine{01567\ \ \ \ \ \textcolor{keywordflow}{return}\ \_dheight;}
+\DoxyCodeLine{01568\ \ \ \}}
+\DoxyCodeLine{01569\ }
+\DoxyCodeLine{01570\ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_xWidth;}
+\DoxyCodeLine{01571\ \ \ \textcolor{keywordflow}{return}\ \_dwidth;}
+\DoxyCodeLine{01572\ \}}
+\DoxyCodeLine{01573\ }
+\DoxyCodeLine{01574\ }
+\DoxyCodeLine{01575\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01576\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ height}}
+\DoxyCodeLine{01577\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Return\ the\ height\ of\ sprite}}
+\DoxyCodeLine{01578\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01579\ int16\_t\ TFT\_eSprite::height(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{01580\ \{}
+\DoxyCodeLine{01581\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ )\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01582\ }
+\DoxyCodeLine{01583\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ >\ 1)\ \{}
+\DoxyCodeLine{01584\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_yHeight;}
+\DoxyCodeLine{01585\ \ \ \ \ \textcolor{keywordflow}{return}\ \_dheight;}
+\DoxyCodeLine{01586\ \ \ \}}
+\DoxyCodeLine{01587\ }
+\DoxyCodeLine{01588\ \ \ \textcolor{keywordflow}{if}\ (rotation\ \&\ 1)\ \{}
+\DoxyCodeLine{01589\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_yHeight;}
+\DoxyCodeLine{01590\ \ \ \ \ \textcolor{keywordflow}{return}\ \_dwidth;}
+\DoxyCodeLine{01591\ \ \ \}}
+\DoxyCodeLine{01592\ }
+\DoxyCodeLine{01593\ \ \ \textcolor{keywordflow}{if}\ (\_vpDatum)\ \textcolor{keywordflow}{return}\ \_yHeight;}
+\DoxyCodeLine{01594\ \ \ \textcolor{keywordflow}{return}\ \_dheight;}
+\DoxyCodeLine{01595\ \}}
+\DoxyCodeLine{01596\ }
+\DoxyCodeLine{01597\ }
+\DoxyCodeLine{01598\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01599\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setRotation}}
+\DoxyCodeLine{01600\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Rotate\ coordinate\ frame\ for\ 1bpp\ sprite}}
+\DoxyCodeLine{01601\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01602\ \textcolor{comment}{//\ Does\ nothing\ for\ 4,\ 8\ and\ 16\ bpp\ sprites.}}
+\DoxyCodeLine{01603\ \textcolor{keywordtype}{void}\ TFT\_eSprite::setRotation(uint8\_t\ r)}
+\DoxyCodeLine{01604\ \{}
+\DoxyCodeLine{01605\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ !=\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01606\ }
+\DoxyCodeLine{01607\ \ \ rotation\ =\ r;}
+\DoxyCodeLine{01608\ \ \ }
+\DoxyCodeLine{01609\ \ \ \textcolor{keywordflow}{if}\ (rotation\&1)\ \{}
+\DoxyCodeLine{01610\ \ \ \ \ resetViewport();}
+\DoxyCodeLine{01611\ \ \ \}}
+\DoxyCodeLine{01612\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01613\ \ \ \ \ resetViewport();}
+\DoxyCodeLine{01614\ \ \ \}}
+\DoxyCodeLine{01615\ \}}
+\DoxyCodeLine{01616\ }
+\DoxyCodeLine{01617\ }
+\DoxyCodeLine{01618\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01619\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getRotation}}
+\DoxyCodeLine{01620\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ rotation\ for\ 1bpp\ sprite}}
+\DoxyCodeLine{01621\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01622\ uint8\_t\ TFT\_eSprite::getRotation(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{01623\ \{}
+\DoxyCodeLine{01624\ \ \ \textcolor{keywordflow}{return}\ rotation;}
+\DoxyCodeLine{01625\ \}}
+\DoxyCodeLine{01626\ }
+\DoxyCodeLine{01627\ }
+\DoxyCodeLine{01628\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01629\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawPixel}}
+\DoxyCodeLine{01630\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ push\ a\ single\ pixel\ at\ an\ arbitrary\ position}}
+\DoxyCodeLine{01631\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01632\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawPixel(int32\_t\ x,\ int32\_t\ y,\ uint32\_t\ color)}
+\DoxyCodeLine{01633\ \{}
+\DoxyCodeLine{01634\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01635\ }
+\DoxyCodeLine{01636\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{01637\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{01638\ }
+\DoxyCodeLine{01639\ \ \ \textcolor{comment}{//\ Range\ checking}}
+\DoxyCodeLine{01640\ \ \ \textcolor{keywordflow}{if}\ ((x\ <\ \_vpX)\ ||\ (y\ <\ \_vpY)\ ||(x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01641\ }
+\DoxyCodeLine{01642\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01643\ \ \ \{}
+\DoxyCodeLine{01644\ \ \ \ \ color\ =\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01645\ \ \ \ \ \_img[x+y*\_iwidth]\ =\ (uint16\_t)\ color;}
+\DoxyCodeLine{01646\ \ \ \}}
+\DoxyCodeLine{01647\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01648\ \ \ \{}
+\DoxyCodeLine{01649\ \ \ \ \ \_img8[x+y*\_iwidth]\ =\ (uint8\_t)((color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{01650\ \ \ \}}
+\DoxyCodeLine{01651\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01652\ \ \ \{}
+\DoxyCodeLine{01653\ \ \ \ \ uint8\_t\ c\ =\ color\ \&\ 0x0F;}
+\DoxyCodeLine{01654\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ (x+y*\_iwidth)>>1;;}
+\DoxyCodeLine{01655\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0)\ \{}
+\DoxyCodeLine{01656\ \ \ \ \ \ \ \_img4[index]\ =\ (uint8\_t)((c\ <<\ 4)\ |\ (\_img4[index]\ \&\ 0x0F));}
+\DoxyCodeLine{01657\ \ \ \ \ \}}
+\DoxyCodeLine{01658\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01659\ \ \ \ \ \ \ \_img4[index]\ =\ \ (uint8\_t)(c\ |\ (\_img4[index]\ \&\ 0xF0));}
+\DoxyCodeLine{01660\ \ \ \ \ \}}
+\DoxyCodeLine{01661\ \ \ \}}
+\DoxyCodeLine{01662\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ 1\ bpp}}
+\DoxyCodeLine{01663\ \ \ \{}
+\DoxyCodeLine{01664\ \ \ \ \ \textcolor{keywordflow}{if}\ (rotation\ ==\ 1)}
+\DoxyCodeLine{01665\ \ \ \ \ \{}
+\DoxyCodeLine{01666\ \ \ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{01667\ \ \ \ \ \ \ x\ =\ \_dwidth\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{01668\ \ \ \ \ \ \ y\ =\ tx;}
+\DoxyCodeLine{01669\ \ \ \ \ \}}
+\DoxyCodeLine{01670\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 2)}
+\DoxyCodeLine{01671\ \ \ \ \ \{}
+\DoxyCodeLine{01672\ \ \ \ \ \ \ x\ =\ \_dwidth\ -\/\ x\ -\/\ 1;}
+\DoxyCodeLine{01673\ \ \ \ \ \ \ y\ =\ \_dheight\ -\/\ y\ -\/\ 1;}
+\DoxyCodeLine{01674\ \ \ \ \ \}}
+\DoxyCodeLine{01675\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (rotation\ ==\ 3)}
+\DoxyCodeLine{01676\ \ \ \ \ \{}
+\DoxyCodeLine{01677\ \ \ \ \ \ \ uint16\_t\ tx\ =\ x;}
+\DoxyCodeLine{01678\ \ \ \ \ \ \ x\ =\ y;}
+\DoxyCodeLine{01679\ \ \ \ \ \ \ y\ =\ \_dheight\ -\/\ tx\ -\/\ 1;}
+\DoxyCodeLine{01680\ \ \ \ \ \}}
+\DoxyCodeLine{01681\ }
+\DoxyCodeLine{01682\ \ \ \ \ \textcolor{keywordflow}{if}\ (color)\ \_img8[(x\ +\ y\ *\ \_bitwidth)>>3]\ |=\ \ (0x80\ >>\ (x\ \&\ 0x7));}
+\DoxyCodeLine{01683\ \ \ \ \ \textcolor{keywordflow}{else}\ \ \ \ \ \ \ \_img8[(x\ +\ y\ *\ \_bitwidth)>>3]\ \&=\ \string~(0x80\ >>\ (x\ \&\ 0x7));}
+\DoxyCodeLine{01684\ \ \ \}}
+\DoxyCodeLine{01685\ \}}
+\DoxyCodeLine{01686\ }
+\DoxyCodeLine{01687\ }
+\DoxyCodeLine{01688\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01689\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawLine}}
+\DoxyCodeLine{01690\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ line\ between\ 2\ arbitrary\ points}}
+\DoxyCodeLine{01691\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01692\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawLine(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ x1,\ int32\_t\ y1,\ uint32\_t\ color)}
+\DoxyCodeLine{01693\ \{}
+\DoxyCodeLine{01694\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01695\ }
+\DoxyCodeLine{01696\ \ \ \textcolor{comment}{//\_xDatum\ and\ \_yDatum\ Not\ added\ here,\ it\ is\ added\ by\ drawPixel\ \&\ drawFastxLine}}
+\DoxyCodeLine{01697\ }
+\DoxyCodeLine{01698\ \ \ \textcolor{keywordtype}{bool}\ steep\ =\ abs(y1\ -\/\ y0)\ >\ abs(x1\ -\/\ x0);}
+\DoxyCodeLine{01699\ \ \ \textcolor{keywordflow}{if}\ (steep)\ \{}
+\DoxyCodeLine{01700\ \ \ \ \ swap\_coord(x0,\ y0);}
+\DoxyCodeLine{01701\ \ \ \ \ swap\_coord(x1,\ y1);}
+\DoxyCodeLine{01702\ \ \ \}}
+\DoxyCodeLine{01703\ }
+\DoxyCodeLine{01704\ \ \ \textcolor{keywordflow}{if}\ (x0\ >\ x1)\ \{}
+\DoxyCodeLine{01705\ \ \ \ \ swap\_coord(x0,\ x1);}
+\DoxyCodeLine{01706\ \ \ \ \ swap\_coord(y0,\ y1);}
+\DoxyCodeLine{01707\ \ \ \}}
+\DoxyCodeLine{01708\ }
+\DoxyCodeLine{01709\ \ \ int32\_t\ dx\ =\ x1\ -\/\ x0,\ dy\ =\ abs(y1\ -\/\ y0);;}
+\DoxyCodeLine{01710\ }
+\DoxyCodeLine{01711\ \ \ int32\_t\ err\ =\ dx\ >>\ 1,\ ystep\ =\ -\/1,\ xs\ =\ x0,\ dlen\ =\ 0;}
+\DoxyCodeLine{01712\ }
+\DoxyCodeLine{01713\ \ \ \textcolor{keywordflow}{if}\ (y0\ <\ y1)\ ystep\ =\ 1;}
+\DoxyCodeLine{01714\ }
+\DoxyCodeLine{01715\ \ \ \textcolor{comment}{//\ Split\ into\ steep\ and\ not\ steep\ for\ FastH/V\ separation}}
+\DoxyCodeLine{01716\ \ \ \textcolor{keywordflow}{if}\ (steep)\ \{}
+\DoxyCodeLine{01717\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ x0\ <=\ x1;\ x0++)\ \{}
+\DoxyCodeLine{01718\ \ \ \ \ \ \ dlen++;}
+\DoxyCodeLine{01719\ \ \ \ \ \ \ err\ -\/=\ dy;}
+\DoxyCodeLine{01720\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (err\ <\ 0)\ \{}
+\DoxyCodeLine{01721\ \ \ \ \ \ \ \ \ err\ +=\ dx;}
+\DoxyCodeLine{01722\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dlen\ ==\ 1)\ drawPixel(y0,\ xs,\ color);}
+\DoxyCodeLine{01723\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ drawFastVLine(y0,\ xs,\ dlen,\ color);}
+\DoxyCodeLine{01724\ \ \ \ \ \ \ \ \ dlen\ =\ 0;\ y0\ +=\ ystep;\ xs\ =\ x0\ +\ 1;}
+\DoxyCodeLine{01725\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01726\ \ \ \ \ \}}
+\DoxyCodeLine{01727\ \ \ \ \ \textcolor{keywordflow}{if}\ (dlen)\ drawFastVLine(y0,\ xs,\ dlen,\ color);}
+\DoxyCodeLine{01728\ \ \ \}}
+\DoxyCodeLine{01729\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01730\ \ \ \{}
+\DoxyCodeLine{01731\ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ x0\ <=\ x1;\ x0++)\ \{}
+\DoxyCodeLine{01732\ \ \ \ \ \ \ dlen++;}
+\DoxyCodeLine{01733\ \ \ \ \ \ \ err\ -\/=\ dy;}
+\DoxyCodeLine{01734\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (err\ <\ 0)\ \{}
+\DoxyCodeLine{01735\ \ \ \ \ \ \ \ \ err\ +=\ dx;}
+\DoxyCodeLine{01736\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dlen\ ==\ 1)\ drawPixel(xs,\ y0,\ color);}
+\DoxyCodeLine{01737\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ drawFastHLine(xs,\ y0,\ dlen,\ color);}
+\DoxyCodeLine{01738\ \ \ \ \ \ \ \ \ dlen\ =\ 0;\ y0\ +=\ ystep;\ xs\ =\ x0\ +\ 1;}
+\DoxyCodeLine{01739\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01740\ \ \ \ \ \}}
+\DoxyCodeLine{01741\ \ \ \ \ \textcolor{keywordflow}{if}\ (dlen)\ drawFastHLine(xs,\ y0,\ dlen,\ color);}
+\DoxyCodeLine{01742\ \ \ \}}
+\DoxyCodeLine{01743\ \}}
+\DoxyCodeLine{01744\ }
+\DoxyCodeLine{01745\ }
+\DoxyCodeLine{01746\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01747\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawFastVLine}}
+\DoxyCodeLine{01748\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ vertical\ line}}
+\DoxyCodeLine{01749\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01750\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawFastVLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ h,\ uint32\_t\ color)}
+\DoxyCodeLine{01751\ \{}
+\DoxyCodeLine{01752\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01753\ }
+\DoxyCodeLine{01754\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{01755\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{01756\ }
+\DoxyCodeLine{01757\ \ \ \textcolor{comment}{//\ Clipping}}
+\DoxyCodeLine{01758\ \ \ \textcolor{keywordflow}{if}\ ((x\ <\ \_vpX)\ ||\ (x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01759\ }
+\DoxyCodeLine{01760\ \ \ \textcolor{keywordflow}{if}\ (y\ <\ \_vpY)\ \{\ h\ +=\ y\ -\/\ \_vpY;\ y\ =\ \_vpY;\ \}}
+\DoxyCodeLine{01761\ }
+\DoxyCodeLine{01762\ \ \ \textcolor{keywordflow}{if}\ ((y\ +\ h)\ >\ \_vpH)\ h\ =\ \_vpH\ -\/\ y;}
+\DoxyCodeLine{01763\ }
+\DoxyCodeLine{01764\ \ \ \textcolor{keywordflow}{if}\ (h\ <\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01765\ }
+\DoxyCodeLine{01766\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01767\ \ \ \{}
+\DoxyCodeLine{01768\ \ \ \ \ color\ =\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01769\ \ \ \ \ int32\_t\ yp\ =\ x\ +\ \_iwidth\ *\ y;}
+\DoxyCodeLine{01770\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \{\_img[yp]\ =\ (uint16\_t)\ color;\ yp\ +=\ \_iwidth;\}}
+\DoxyCodeLine{01771\ \ \ \}}
+\DoxyCodeLine{01772\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01773\ \ \ \{}
+\DoxyCodeLine{01774\ \ \ \ \ color\ =\ (color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3;}
+\DoxyCodeLine{01775\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \_img8[x\ +\ \_iwidth\ *\ y++]\ =\ (uint8\_t)\ color;}
+\DoxyCodeLine{01776\ \ \ \}}
+\DoxyCodeLine{01777\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01778\ \ \ \{}
+\DoxyCodeLine{01779\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01780\ \ \ \ \ \{}
+\DoxyCodeLine{01781\ \ \ \ \ \ \ uint8\_t\ c\ =\ (uint8\_t)\ (color\ \&\ 0xF)\ <<\ 4;}
+\DoxyCodeLine{01782\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \{}
+\DoxyCodeLine{01783\ \ \ \ \ \ \ \ \ \_img4[(x\ +\ \_iwidth\ *\ y)>>1]\ =\ (uint8\_t)\ (c\ |\ (\_img4[(x\ +\ \_iwidth\ *\ y)>>1]\ \&\ 0x0F));}
+\DoxyCodeLine{01784\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01785\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01786\ \ \ \ \ \}}
+\DoxyCodeLine{01787\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01788\ \ \ \ \ \ \ uint8\_t\ c\ =\ (uint8\_t)color\ \&\ 0xF;}
+\DoxyCodeLine{01789\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \{}
+\DoxyCodeLine{01790\ \ \ \ \ \ \ \ \ \_img4[(x\ +\ \_iwidth\ *\ y)>>1]\ =\ (uint8\_t)\ (c\ |\ (\_img4[(x\ +\ \_iwidth\ *\ y)>>1]\ \&\ 0xF0));\ \textcolor{comment}{//\ x\ is\ odd;\ new\ color\ goes\ into\ the\ low\ bits.}}
+\DoxyCodeLine{01791\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01792\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01793\ \ \ \ \ \}}
+\DoxyCodeLine{01794\ \ \ \}}
+\DoxyCodeLine{01795\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01796\ \ \ \{}
+\DoxyCodeLine{01797\ \ \ \ \ x\ -\/=\ \_xDatum;\ \textcolor{comment}{//\ Remove\ any\ offset\ as\ it\ will\ be\ added\ by\ drawPixel}}
+\DoxyCodeLine{01798\ \ \ \ \ y\ -\/=\ \_yDatum;}
+\DoxyCodeLine{01799\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01800\ \ \ \ \ \{}
+\DoxyCodeLine{01801\ \ \ \ \ \ \ drawPixel(x,\ y++,\ color);}
+\DoxyCodeLine{01802\ \ \ \ \ \}}
+\DoxyCodeLine{01803\ \ \ \}}
+\DoxyCodeLine{01804\ \}}
+\DoxyCodeLine{01805\ }
+\DoxyCodeLine{01806\ }
+\DoxyCodeLine{01807\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01808\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawFastHLine}}
+\DoxyCodeLine{01809\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ horizontal\ line}}
+\DoxyCodeLine{01810\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01811\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawFastHLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ uint32\_t\ color)}
+\DoxyCodeLine{01812\ \{}
+\DoxyCodeLine{01813\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01814\ }
+\DoxyCodeLine{01815\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{01816\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{01817\ }
+\DoxyCodeLine{01818\ \ \ \textcolor{comment}{//\ Clipping}}
+\DoxyCodeLine{01819\ \ \ \textcolor{keywordflow}{if}\ ((y\ <\ \_vpY)\ ||\ (x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01820\ }
+\DoxyCodeLine{01821\ \ \ \textcolor{keywordflow}{if}\ (x\ <\ \_vpX)\ \{\ w\ +=\ x\ -\/\ \_vpX;\ x\ =\ \_vpX;\ \}}
+\DoxyCodeLine{01822\ }
+\DoxyCodeLine{01823\ \ \ \textcolor{keywordflow}{if}\ ((x\ +\ w)\ >\ \_vpW)\ w\ =\ \_vpW\ -\/\ x;}
+\DoxyCodeLine{01824\ }
+\DoxyCodeLine{01825\ \ \ \textcolor{keywordflow}{if}\ (w\ <\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01826\ }
+\DoxyCodeLine{01827\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01828\ \ \ \{}
+\DoxyCodeLine{01829\ \ \ \ \ color\ =\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01830\ \ \ \ \ \textcolor{keywordflow}{while}\ (w-\/-\/)\ \_img[\_iwidth\ *\ y\ +\ x++]\ =\ (uint16\_t)\ color;}
+\DoxyCodeLine{01831\ \ \ \}}
+\DoxyCodeLine{01832\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01833\ \ \ \{}
+\DoxyCodeLine{01834\ \ \ \ \ color\ =\ (color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3;}
+\DoxyCodeLine{01835\ \ \ \ \ memset(\_img8+\_iwidth\ *\ y\ +\ x,\ (uint8\_t)color,\ w);}
+\DoxyCodeLine{01836\ \ \ \}}
+\DoxyCodeLine{01837\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01838\ \ \ \{}
+\DoxyCodeLine{01839\ \ \ \ \ uint8\_t\ c\ =\ (uint8\_t)color\ \&\ 0x0F;}
+\DoxyCodeLine{01840\ \ \ \ \ uint8\_t\ c2\ =\ (c\ |\ ((c\ <<\ 4)\ \&\ 0xF0));}
+\DoxyCodeLine{01841\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 1)}
+\DoxyCodeLine{01842\ \ \ \ \ \{}
+\DoxyCodeLine{01843\ \ \ \ \ \ \ drawPixel(x\ -\/\ \_xDatum,\ y\ -\/\ \_yDatum,\ color);}
+\DoxyCodeLine{01844\ \ \ \ \ \ \ x++;\ w-\/-\/;}
+\DoxyCodeLine{01845\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ <\ 1)}
+\DoxyCodeLine{01846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01847\ \ \ \ \ \}}
+\DoxyCodeLine{01848\ }
+\DoxyCodeLine{01849\ \ \ \ \ \textcolor{keywordflow}{if}\ (((w\ +\ x)\ \&\ 0x01)\ ==\ 1)}
+\DoxyCodeLine{01850\ \ \ \ \ \{}
+\DoxyCodeLine{01851\ \ \ \ \ \ \ \textcolor{comment}{//\ handle\ the\ extra\ one\ at\ the\ other\ end}}
+\DoxyCodeLine{01852\ \ \ \ \ \ \ drawPixel(x\ -\/\ \_xDatum\ +\ w\ -\/\ 1,\ y\ -\/\ \_yDatum,\ color);}
+\DoxyCodeLine{01853\ \ \ \ \ \ \ w-\/-\/;}
+\DoxyCodeLine{01854\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ <\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01855\ \ \ \ \ \}}
+\DoxyCodeLine{01856\ \ \ \ \ memset(\_img4\ +\ ((\_iwidth\ *\ y\ +\ x)\ >>\ 1),\ c2,\ (w\ >>\ 1));}
+\DoxyCodeLine{01857\ \ \ \}}
+\DoxyCodeLine{01858\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{01859\ \ \ \ \ x\ -\/=\ \_xDatum;\ \textcolor{comment}{//\ Remove\ any\ offset\ as\ it\ will\ be\ added\ by\ drawPixel}}
+\DoxyCodeLine{01860\ \ \ \ \ y\ -\/=\ \_yDatum;}
+\DoxyCodeLine{01861\ }
+\DoxyCodeLine{01862\ \ \ \ \ \textcolor{keywordflow}{while}\ (w-\/-\/)}
+\DoxyCodeLine{01863\ \ \ \ \ \{}
+\DoxyCodeLine{01864\ \ \ \ \ \ \ drawPixel(x++,\ y,\ color);}
+\DoxyCodeLine{01865\ \ \ \ \ \}}
+\DoxyCodeLine{01866\ \ \ \}}
+\DoxyCodeLine{01867\ \}}
+\DoxyCodeLine{01868\ }
+\DoxyCodeLine{01869\ }
+\DoxyCodeLine{01870\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01871\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ fillRect}}
+\DoxyCodeLine{01872\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ filled\ rectangle}}
+\DoxyCodeLine{01873\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01874\ \textcolor{keywordtype}{void}\ TFT\_eSprite::fillRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint32\_t\ color)}
+\DoxyCodeLine{01875\ \{}
+\DoxyCodeLine{01876\ \ \ \textcolor{keywordflow}{if}\ (!\_created\ ||\ \_vpOoB)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01877\ }
+\DoxyCodeLine{01878\ \ \ x+=\ \_xDatum;}
+\DoxyCodeLine{01879\ \ \ y+=\ \_yDatum;}
+\DoxyCodeLine{01880\ }
+\DoxyCodeLine{01881\ \ \ \textcolor{comment}{//\ Clipping}}
+\DoxyCodeLine{01882\ \ \ \textcolor{keywordflow}{if}\ ((x\ >=\ \_vpW)\ ||\ (y\ >=\ \_vpH))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01883\ }
+\DoxyCodeLine{01884\ \ \ \textcolor{keywordflow}{if}\ (x\ <\ \_vpX)\ \{\ w\ +=\ x\ -\/\ \_vpX;\ x\ =\ \_vpX;\ \}}
+\DoxyCodeLine{01885\ \ \ \textcolor{keywordflow}{if}\ (y\ <\ \_vpY)\ \{\ h\ +=\ y\ -\/\ \_vpY;\ y\ =\ \_vpY;\ \}}
+\DoxyCodeLine{01886\ }
+\DoxyCodeLine{01887\ \ \ \textcolor{keywordflow}{if}\ ((x\ +\ w)\ >\ \_vpW)\ w\ =\ \_vpW\ -\/\ x;}
+\DoxyCodeLine{01888\ \ \ \textcolor{keywordflow}{if}\ ((y\ +\ h)\ >\ \_vpH)\ h\ =\ \_vpH\ -\/\ y;}
+\DoxyCodeLine{01889\ }
+\DoxyCodeLine{01890\ \ \ \textcolor{keywordflow}{if}\ ((w\ <\ 1)\ ||\ (h\ <\ 1))\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01891\ }
+\DoxyCodeLine{01892\ \ \ int32\_t\ yp\ =\ \_iwidth\ *\ y\ +\ x;}
+\DoxyCodeLine{01893\ }
+\DoxyCodeLine{01894\ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)}
+\DoxyCodeLine{01895\ \ \ \{}
+\DoxyCodeLine{01896\ \ \ \ \ color\ =\ (color\ >>\ 8)\ |\ (color\ <<\ 8);}
+\DoxyCodeLine{01897\ \ \ \ \ uint32\_t\ iw\ =\ w;}
+\DoxyCodeLine{01898\ \ \ \ \ int32\_t\ ys\ =\ yp;}
+\DoxyCodeLine{01899\ \ \ \ \ \textcolor{keywordflow}{if}(h-\/-\/)\ \ \{\textcolor{keywordflow}{while}\ (iw-\/-\/)\ \_img[yp++]\ =\ (uint16\_t)\ color;\}}
+\DoxyCodeLine{01900\ \ \ \ \ yp\ =\ ys;}
+\DoxyCodeLine{01901\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01902\ \ \ \ \ \{}
+\DoxyCodeLine{01903\ \ \ \ \ \ \ yp\ +=\ \_iwidth;}
+\DoxyCodeLine{01904\ \ \ \ \ \ \ memcpy(\ \_img+yp,\ \_img+ys,\ w<<1);}
+\DoxyCodeLine{01905\ \ \ \ \ \}}
+\DoxyCodeLine{01906\ \ \ \}}
+\DoxyCodeLine{01907\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)}
+\DoxyCodeLine{01908\ \ \ \{}
+\DoxyCodeLine{01909\ \ \ \ \ color\ =\ (color\ \&\ 0xE000)>>8\ |\ (color\ \&\ 0x0700)>>6\ |\ (color\ \&\ 0x0018)>>3;}
+\DoxyCodeLine{01910\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01911\ \ \ \ \ \{}
+\DoxyCodeLine{01912\ \ \ \ \ \ \ memset(\_img8\ +\ yp,\ (uint8\_t)color,\ w);}
+\DoxyCodeLine{01913\ \ \ \ \ \ \ yp\ +=\ \_iwidth;}
+\DoxyCodeLine{01914\ \ \ \ \ \}}
+\DoxyCodeLine{01915\ \ \ \}}
+\DoxyCodeLine{01916\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 4)}
+\DoxyCodeLine{01917\ \ \ \{}
+\DoxyCodeLine{01918\ \ \ \ \ uint8\_t\ c1\ =\ (uint8\_t)color\ \&\ 0x0F;}
+\DoxyCodeLine{01919\ \ \ \ \ uint8\_t\ c2\ =\ c1\ |\ ((c1\ <<\ 4)\ \&\ 0xF0);}
+\DoxyCodeLine{01920\ \ \ \ \ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0\ \&\&\ (w\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01921\ \ \ \ \ \{}
+\DoxyCodeLine{01922\ \ \ \ \ \ \ yp\ =\ (yp\ >>\ 1);}
+\DoxyCodeLine{01923\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01924\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01925\ \ \ \ \ \ \ \ \ memset(\_img4\ +\ yp,\ c2,\ (w>>1));}
+\DoxyCodeLine{01926\ \ \ \ \ \ \ \ \ yp\ +=\ (\_iwidth\ >>\ 1);}
+\DoxyCodeLine{01927\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01928\ \ \ \ \ \}}
+\DoxyCodeLine{01929\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((x\ \&\ 0x01)\ ==\ 0)}
+\DoxyCodeLine{01930\ \ \ \ \ \{}
+\DoxyCodeLine{01931\ }
+\DoxyCodeLine{01932\ \ \ \ \ \ \ \textcolor{comment}{//\ same\ as\ above\ but\ you\ have\ a\ hangover\ on\ the\ right.}}
+\DoxyCodeLine{01933\ \ \ \ \ \ \ yp\ =\ (yp\ >>\ 1);}
+\DoxyCodeLine{01934\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01935\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01936\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ >\ 1)}
+\DoxyCodeLine{01937\ \ \ \ \ \ \ \ \ \ \ memset(\_img4\ +\ yp,\ c2,\ (w-\/1)>>1);}
+\DoxyCodeLine{01938\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ handle\ the\ rightmost\ pixel\ by\ calling\ drawPixel}}
+\DoxyCodeLine{01939\ \ \ \ \ \ \ \ \ drawPixel(x+w-\/1-\/\_xDatum,\ y+h-\/\_yDatum,\ c1);}
+\DoxyCodeLine{01940\ \ \ \ \ \ \ \ \ yp\ +=\ (\_iwidth\ >>\ 1);}
+\DoxyCodeLine{01941\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01942\ \ \ \ \ \}}
+\DoxyCodeLine{01943\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((w\ \&\ 0x01)\ ==\ 1)}
+\DoxyCodeLine{01944\ \ \ \ \ \{}
+\DoxyCodeLine{01945\ \ \ \ \ \ \ yp\ =\ (yp\ +\ 1)\ >>\ 1;}
+\DoxyCodeLine{01946\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \{}
+\DoxyCodeLine{01947\ \ \ \ \ \ \ \ \ drawPixel(x-\/\_xDatum,\ y+h-\/\_yDatum,\ color\ \&\ 0x0F);}
+\DoxyCodeLine{01948\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ >\ 1)}
+\DoxyCodeLine{01949\ \ \ \ \ \ \ \ \ \ \ memset(\_img4\ +\ yp,\ c2,\ (w-\/1)>>1);}
+\DoxyCodeLine{01950\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ same\ as\ above\ but\ you\ have\ a\ hangover\ on\ the\ left\ instead}}
+\DoxyCodeLine{01951\ \ \ \ \ \ \ \ \ yp\ +=\ (\_iwidth\ >>\ 1);}
+\DoxyCodeLine{01952\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01953\ \ \ \ \ \}}
+\DoxyCodeLine{01954\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01955\ \ \ \ \ \{}
+\DoxyCodeLine{01956\ \ \ \ \ \ \ yp\ =\ (yp\ +\ 1)\ >>\ 1;}
+\DoxyCodeLine{01957\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)\ \{}
+\DoxyCodeLine{01958\ \ \ \ \ \ \ \ \ drawPixel(x-\/\_xDatum,\ y+h-\/\_yDatum,\ color\ \&\ 0x0F);}
+\DoxyCodeLine{01959\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ >\ 1)\ drawPixel(x+w-\/1-\/\_xDatum,\ y+h-\/\_yDatum,\ color\ \&\ 0x0F);}
+\DoxyCodeLine{01960\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (w\ >\ 2)}
+\DoxyCodeLine{01961\ \ \ \ \ \ \ \ \ \ \ memset(\_img4\ +\ yp,\ c2,\ (w-\/2)>>1);}
+\DoxyCodeLine{01962\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maximal\ hacking,\ single\ pixels\ on\ left\ and\ right.}}
+\DoxyCodeLine{01963\ \ \ \ \ \ \ \ \ yp\ +=\ (\_iwidth\ >>\ 1);}
+\DoxyCodeLine{01964\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01965\ \ \ \ \ \}}
+\DoxyCodeLine{01966\ \ \ \}}
+\DoxyCodeLine{01967\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01968\ \ \ \{}
+\DoxyCodeLine{01969\ \ \ \ \ x\ -\/=\ \_xDatum;}
+\DoxyCodeLine{01970\ \ \ \ \ y\ -\/=\ \_yDatum;}
+\DoxyCodeLine{01971\ \ \ \ \ \textcolor{keywordflow}{while}\ (h-\/-\/)}
+\DoxyCodeLine{01972\ \ \ \ \ \{}
+\DoxyCodeLine{01973\ \ \ \ \ \ \ int32\_t\ ww\ =\ w;}
+\DoxyCodeLine{01974\ \ \ \ \ \ \ int32\_t\ xx\ =\ x;}
+\DoxyCodeLine{01975\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (ww-\/-\/)\ drawPixel(xx++,\ y,\ color);}
+\DoxyCodeLine{01976\ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{01977\ \ \ \ \ \}}
+\DoxyCodeLine{01978\ \ \ \}}
+\DoxyCodeLine{01979\ \}}
+\DoxyCodeLine{01980\ }
+\DoxyCodeLine{01981\ }
+\DoxyCodeLine{01982\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{01983\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawChar}}
+\DoxyCodeLine{01984\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ single\ character\ in\ the\ Adafruit\ GLCD\ or\ freefont}}
+\DoxyCodeLine{01985\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{01986\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawChar(int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ c,\ uint32\_t\ color,\ uint32\_t\ bg,\ uint8\_t\ size)}
+\DoxyCodeLine{01987\ \{}
+\DoxyCodeLine{01988\ \ \ \textcolor{keywordflow}{if}\ (\ \_vpOoB\ ||\ !\_created\ )\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01989\ }
+\DoxyCodeLine{01990\ \ \ \textcolor{keywordflow}{if}\ ((x\ >=\ \_vpW\ -\/\ \_xDatum)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ \textcolor{comment}{//\ Clip\ right}}
+\DoxyCodeLine{01991\ \ \ \ \ \ \ (y\ >=\ \_vpH\ -\/\ \_yDatum)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ \textcolor{comment}{//\ Clip\ bottom}}
+\DoxyCodeLine{01992\ \ \ \ \ \ \ ((x\ +\ 6\ *\ size\ -\/\ 1)\ <\ (\_vpX\ -\/\ \_xDatum))\ ||\ \textcolor{comment}{//\ Clip\ left}}
+\DoxyCodeLine{01993\ \ \ \ \ \ \ ((y\ +\ 8\ *\ size\ -\/\ 1)\ <\ (\_vpY\ -\/\ \_yDatum)))\ \ \ \textcolor{comment}{//\ Clip\ top}}
+\DoxyCodeLine{01994\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01995\ }
+\DoxyCodeLine{01996\ \ \ \textcolor{keywordflow}{if}\ (c\ <\ 32)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01997\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{01998\ \textcolor{comment}{//>>>>>>>>>>>>>>>>>>}}
+\DoxyCodeLine{01999\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02000\ \ \ \textcolor{keywordflow}{if}(!gfxFont)\ \{\ \textcolor{comment}{//\ 'Classic'\ built-\/in\ font}}
+\DoxyCodeLine{02001\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02002\ \textcolor{comment}{//>>>>>>>>>>>>>>>>>>}}
+\DoxyCodeLine{02003\ }
+\DoxyCodeLine{02004\ \ \ \textcolor{keywordtype}{bool}\ fillbg\ =\ (bg\ !=\ color);}
+\DoxyCodeLine{02005\ }
+\DoxyCodeLine{02006\ \ \ \textcolor{keywordflow}{if}\ ((size==1)\ \&\&\ fillbg)}
+\DoxyCodeLine{02007\ \ \ \{}
+\DoxyCodeLine{02008\ \ \ \ \ uint8\_t\ column[6];}
+\DoxyCodeLine{02009\ \ \ \ \ uint8\_t\ mask\ =\ 0x1;}
+\DoxyCodeLine{02010\ }
+\DoxyCodeLine{02011\ \ \ \ \ \textcolor{keywordflow}{for}\ (int8\_t\ i\ =\ 0;\ i\ <\ 5;\ i++\ )\ column[i]\ =\ pgm\_read\_byte(font\ +\ (c\ *\ 5)\ +\ i);}
+\DoxyCodeLine{02012\ \ \ \ \ column[5]\ =\ 0;}
+\DoxyCodeLine{02013\ }
+\DoxyCodeLine{02014\ \ \ \ \ int8\_t\ j,\ k;}
+\DoxyCodeLine{02015\ \ \ \ \ \textcolor{keywordflow}{for}\ (j\ =\ 0;\ j\ <\ 8;\ j++)\ \{}
+\DoxyCodeLine{02016\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (k\ =\ 0;\ k\ <\ 5;\ k++\ )\ \{}
+\DoxyCodeLine{02017\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (column[k]\ \&\ mask)\ \{}
+\DoxyCodeLine{02018\ \ \ \ \ \ \ \ \ \ \ drawPixel(x\ +\ k,\ y\ +\ j,\ color);}
+\DoxyCodeLine{02019\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02021\ \ \ \ \ \ \ \ \ \ \ drawPixel(x\ +\ k,\ y\ +\ j,\ bg);}
+\DoxyCodeLine{02022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02023\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02024\ }
+\DoxyCodeLine{02025\ \ \ \ \ \ \ mask\ <<=\ 1;}
+\DoxyCodeLine{02026\ }
+\DoxyCodeLine{02027\ \ \ \ \ \ \ drawPixel(x\ +\ k,\ y\ +\ j,\ bg);}
+\DoxyCodeLine{02028\ \ \ \ \ \}}
+\DoxyCodeLine{02029\ \ \ \}}
+\DoxyCodeLine{02030\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02031\ \ \ \{}
+\DoxyCodeLine{02032\ \ \ \ \ \textcolor{keywordflow}{for}\ (int8\_t\ i\ =\ 0;\ i\ <\ 6;\ i++\ )\ \{}
+\DoxyCodeLine{02033\ \ \ \ \ \ \ uint8\_t\ line;}
+\DoxyCodeLine{02034\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 5)}
+\DoxyCodeLine{02035\ \ \ \ \ \ \ \ \ line\ =\ 0x0;}
+\DoxyCodeLine{02036\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02037\ \ \ \ \ \ \ \ \ line\ =\ pgm\_read\_byte(font\ +\ (c\ *\ 5)\ +\ i);}
+\DoxyCodeLine{02038\ }
+\DoxyCodeLine{02039\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (size\ ==\ 1)\ \textcolor{comment}{//\ default\ size}}
+\DoxyCodeLine{02040\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int8\_t\ j\ =\ 0;\ j\ <\ 8;\ j++)\ \{}
+\DoxyCodeLine{02042\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x1)\ drawPixel(x\ +\ i,\ y\ +\ j,\ color);}
+\DoxyCodeLine{02043\ \ \ \ \ \ \ \ \ \ \ line\ >>=\ 1;}
+\DoxyCodeLine{02044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02045\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02046\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ \ \textcolor{comment}{//\ big\ size}}
+\DoxyCodeLine{02047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int8\_t\ j\ =\ 0;\ j\ <\ 8;\ j++)\ \{}
+\DoxyCodeLine{02048\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x1)\ fillRect(x\ +\ (i\ *\ size),\ y\ +\ (j\ *\ size),\ size,\ size,\ color);}
+\DoxyCodeLine{02049\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (fillbg)\ fillRect(x\ +\ i\ *\ size,\ y\ +\ j\ *\ size,\ size,\ size,\ bg);}
+\DoxyCodeLine{02050\ \ \ \ \ \ \ \ \ \ \ line\ >>=\ 1;}
+\DoxyCodeLine{02051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02052\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02053\ \ \ \ \ \}}
+\DoxyCodeLine{02054\ \ \ \}}
+\DoxyCodeLine{02055\ }
+\DoxyCodeLine{02056\ \textcolor{comment}{//>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+\DoxyCodeLine{02057\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02058\ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{comment}{//\ Custom\ font}}
+\DoxyCodeLine{02059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02060\ \textcolor{comment}{//>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+\DoxyCodeLine{02061\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ LOAD\_GLCD}}
+\DoxyCodeLine{02062\ }
+\DoxyCodeLine{02063\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02064\ \ \ \ \ \textcolor{comment}{//\ Filter\ out\ bad\ characters\ not\ present\ in\ font}}
+\DoxyCodeLine{02065\ \ \ \ \ \textcolor{keywordflow}{if}\ ((c\ >=\ pgm\_read\_word(\&gfxFont-\/>first))\ \&\&\ (c\ <=\ pgm\_read\_word(\&gfxFont-\/>last\ )))}
+\DoxyCodeLine{02066\ \ \ \ \ \{}
+\DoxyCodeLine{02067\ \textcolor{comment}{//>>>>>>>>>>>>>>>>>>>>>>>>>>>}}
+\DoxyCodeLine{02068\ }
+\DoxyCodeLine{02069\ \ \ \ \ \ \ c\ -\/=\ pgm\_read\_word(\&gfxFont-\/>first);}
+\DoxyCodeLine{02070\ \ \ \ \ \ \ GFXglyph\ *glyph\ \ =\ \&(((GFXglyph\ *)pgm\_read\_dword(\&gfxFont-\/>glyph))[c]);}
+\DoxyCodeLine{02071\ \ \ \ \ \ \ uint8\_t\ \ *bitmap\ =\ (uint8\_t\ *)pgm\_read\_dword(\&gfxFont-\/>bitmap);}
+\DoxyCodeLine{02072\ }
+\DoxyCodeLine{02073\ \ \ \ \ \ \ uint32\_t\ bo\ =\ pgm\_read\_word(\&glyph-\/>bitmapOffset);}
+\DoxyCodeLine{02074\ \ \ \ \ \ \ uint8\_t\ \ w\ \ =\ pgm\_read\_byte(\&glyph-\/>width),}
+\DoxyCodeLine{02075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ h\ \ =\ pgm\_read\_byte(\&glyph-\/>height);}
+\DoxyCodeLine{02076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//xa\ =\ pgm\_read\_byte(\&glyph-\/>xAdvance);}}
+\DoxyCodeLine{02077\ \ \ \ \ \ \ int8\_t\ \ \ xo\ =\ pgm\_read\_byte(\&glyph-\/>xOffset),}
+\DoxyCodeLine{02078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yo\ =\ pgm\_read\_byte(\&glyph-\/>yOffset);}
+\DoxyCodeLine{02079\ \ \ \ \ \ \ uint8\_t\ \ xx,\ yy,\ bits=0,\ bit=0;}
+\DoxyCodeLine{02080\ \ \ \ \ \ \ int16\_t\ \ xo16\ =\ 0,\ yo16\ =\ 0;}
+\DoxyCodeLine{02081\ }
+\DoxyCodeLine{02082\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(size\ >\ 1)\ \{}
+\DoxyCodeLine{02083\ \ \ \ \ \ \ \ \ xo16\ =\ xo;}
+\DoxyCodeLine{02084\ \ \ \ \ \ \ \ \ yo16\ =\ yo;}
+\DoxyCodeLine{02085\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02086\ }
+\DoxyCodeLine{02087\ \ \ \ \ \ \ uint16\_t\ hpc\ =\ 0;\ \textcolor{comment}{//\ Horizontal\ foreground\ pixel\ count}}
+\DoxyCodeLine{02088\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(yy=0;\ yy<h;\ yy++)\ \{}
+\DoxyCodeLine{02089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(xx=0;\ xx<w;\ xx++)\ \{}
+\DoxyCodeLine{02090\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bit\ ==\ 0)\ \{}
+\DoxyCodeLine{02091\ \ \ \ \ \ \ \ \ \ \ \ \ bits\ =\ pgm\_read\_byte(\&bitmap[bo++]);}
+\DoxyCodeLine{02092\ \ \ \ \ \ \ \ \ \ \ \ \ bit\ \ =\ 0x80;}
+\DoxyCodeLine{02093\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02094\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bits\ \&\ bit)\ hpc++;}
+\DoxyCodeLine{02095\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hpc)\ \{}
+\DoxyCodeLine{02097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(size\ ==\ 1)\ drawFastHLine(x+xo+xx-\/hpc,\ y+yo+yy,\ hpc,\ color);}
+\DoxyCodeLine{02098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ fillRect(x+(xo16+xx-\/hpc)*size,\ y+(yo16+yy)*size,\ size*hpc,\ size,\ color);}
+\DoxyCodeLine{02099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hpc=0;}
+\DoxyCodeLine{02100\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02101\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02102\ \ \ \ \ \ \ \ \ \ \ bit\ >>=\ 1;}
+\DoxyCodeLine{02103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ pixels\ for\ this\ line\ as\ we\ are\ about\ to\ increment\ yy}}
+\DoxyCodeLine{02105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hpc)\ \{}
+\DoxyCodeLine{02106\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(size\ ==\ 1)\ drawFastHLine(x+xo+xx-\/hpc,\ y+yo+yy,\ hpc,\ color);}
+\DoxyCodeLine{02107\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ fillRect(x+(xo16+xx-\/hpc)*size,\ y+(yo16+yy)*size,\ size*hpc,\ size,\ color);}
+\DoxyCodeLine{02108\ \ \ \ \ \ \ \ \ \ \ hpc=0;}
+\DoxyCodeLine{02109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02110\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02111\ \ \ \ \ \}}
+\DoxyCodeLine{02112\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02113\ }
+\DoxyCodeLine{02114\ }
+\DoxyCodeLine{02115\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{02116\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02117\ \ \ \}\ \textcolor{comment}{//\ End\ classic\ vs\ custom\ font}}
+\DoxyCodeLine{02118\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{02119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02120\ }
+\DoxyCodeLine{02121\ \}}
+\DoxyCodeLine{02122\ }
+\DoxyCodeLine{02123\ }
+\DoxyCodeLine{02124\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{02125\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawChar}}
+\DoxyCodeLine{02126\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ draw\ a\ unicode\ glyph\ onto\ the\ screen}}
+\DoxyCodeLine{02127\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{02128\ \ \ \textcolor{comment}{//\ TODO:\ Rationalise\ with\ TFT\_eSPI}}
+\DoxyCodeLine{02129\ \ \ \textcolor{comment}{//\ Any\ UTF-\/8\ decoding\ must\ be\ done\ before\ calling\ drawChar()}}
+\DoxyCodeLine{02130\ int16\_t\ TFT\_eSprite::drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y)}
+\DoxyCodeLine{02131\ \{}
+\DoxyCodeLine{02132\ \ \ \textcolor{keywordflow}{return}\ drawChar(uniCode,\ x,\ y,\ textfont);}
+\DoxyCodeLine{02133\ \}}
+\DoxyCodeLine{02134\ }
+\DoxyCodeLine{02135\ \ \ \textcolor{comment}{//\ Any\ UTF-\/8\ decoding\ must\ be\ done\ before\ calling\ drawChar()}}
+\DoxyCodeLine{02136\ int16\_t\ TFT\_eSprite::drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font)}
+\DoxyCodeLine{02137\ \{}
+\DoxyCodeLine{02138\ \ \ \textcolor{keywordflow}{if}\ (\_vpOoB\ ||\ !uniCode)\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{02139\ }
+\DoxyCodeLine{02140\ \ \ \textcolor{keywordflow}{if}\ (font==1)\ \{}
+\DoxyCodeLine{02141\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{02142\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02143\ \ \ \ \ drawChar(x,\ y,\ uniCode,\ textcolor,\ textbgcolor,\ textsize);}
+\DoxyCodeLine{02144\ \ \ \ \ \textcolor{keywordflow}{return}\ 6\ *\ textsize;}
+\DoxyCodeLine{02145\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{02146\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{02147\ \textcolor{preprocessor}{\ \ \#ifndef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02148\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{02149\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{02150\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02151\ }
+\DoxyCodeLine{02152\ \textcolor{preprocessor}{\#ifdef\ LOAD\_GFXFF}}
+\DoxyCodeLine{02153\ \ \ \ \ drawChar(x,\ y,\ uniCode,\ textcolor,\ textbgcolor,\ textsize);}
+\DoxyCodeLine{02154\ \ \ \ \ \textcolor{keywordflow}{if}(!gfxFont)\ \{\ \textcolor{comment}{//\ 'Classic'\ built-\/in\ font}}
+\DoxyCodeLine{02155\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ LOAD\_GLCD}}
+\DoxyCodeLine{02156\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 6\ *\ textsize;}
+\DoxyCodeLine{02157\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{02158\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{02159\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{02160\ \ \ \ \ \}}
+\DoxyCodeLine{02161\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02162\ \ \ \ \ \ \ \textcolor{keywordflow}{if}((uniCode\ >=\ pgm\_read\_word(\&gfxFont-\/>first))\ \&\&\ (uniCode\ <=\ pgm\_read\_word(\&gfxFont-\/>last)\ ))\ \{}
+\DoxyCodeLine{02163\ \ \ \ \ \ \ \ \ uint16\_t\ \ \ c2\ \ \ \ =\ uniCode\ -\/\ pgm\_read\_word(\&gfxFont-\/>first);}
+\DoxyCodeLine{02164\ \ \ \ \ \ \ \ \ GFXglyph\ *glyph\ =\ \&(((GFXglyph\ *)pgm\_read\_dword(\&gfxFont-\/>glyph))[c2]);}
+\DoxyCodeLine{02165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pgm\_read\_byte(\&glyph-\/>xAdvance)\ *\ textsize;}
+\DoxyCodeLine{02166\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02167\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{02169\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02170\ \ \ \ \ \}}
+\DoxyCodeLine{02171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02172\ \ \ \}}
+\DoxyCodeLine{02173\ }
+\DoxyCodeLine{02174\ \ \ \textcolor{keywordflow}{if}\ ((font>1)\ \&\&\ (font<9)\ \&\&\ ((uniCode\ <\ 32)\ ||\ (uniCode\ >\ 127)))\ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{02175\ }
+\DoxyCodeLine{02176\ \ \ int32\_t\ width\ \ =\ 0;}
+\DoxyCodeLine{02177\ \ \ int32\_t\ height\ =\ 0;}
+\DoxyCodeLine{02178\ \ \ uint32\_t\ flash\_address\ =\ 0;}
+\DoxyCodeLine{02179\ \ \ uniCode\ -\/=\ 32;}
+\DoxyCodeLine{02180\ }
+\DoxyCodeLine{02181\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT2}}
+\DoxyCodeLine{02182\ \ \ \textcolor{keywordflow}{if}\ (font\ ==\ 2)\ \{}
+\DoxyCodeLine{02183\ \ \ \ \ flash\_address\ =\ pgm\_read\_dword(\&chrtbl\_f16[uniCode]);}
+\DoxyCodeLine{02184\ \ \ \ \ width\ =\ pgm\_read\_byte(widtbl\_f16\ +\ uniCode);}
+\DoxyCodeLine{02185\ \ \ \ \ height\ =\ chr\_hgt\_f16;}
+\DoxyCodeLine{02186\ \ \ \}}
+\DoxyCodeLine{02187\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_RLE}}
+\DoxyCodeLine{02188\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02189\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{02190\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02191\ }
+\DoxyCodeLine{02192\ \textcolor{preprocessor}{\#ifdef\ LOAD\_RLE}}
+\DoxyCodeLine{02193\ \ \ \{}
+\DoxyCodeLine{02194\ \ \ \ \ \textcolor{keywordflow}{if}\ ((font>2)\ \&\&\ (font<9))\ \{}
+\DoxyCodeLine{02195\ \ \ \ \ \ \ flash\_address\ =\ pgm\_read\_dword(\ (\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*)(pgm\_read\_dword(\ \&(fontdata[font].chartbl\ )\ )\ +\ uniCode*\textcolor{keyword}{sizeof}(\textcolor{keywordtype}{void}\ *))\ );}
+\DoxyCodeLine{02196\ \ \ \ \ \ \ width\ =\ pgm\_read\_byte(\ (uint8\_t\ *)pgm\_read\_dword(\ \&(fontdata[font].widthtbl\ )\ )\ +\ uniCode\ );}
+\DoxyCodeLine{02197\ \ \ \ \ \ \ height=\ pgm\_read\_byte(\ \&fontdata[font].height\ );}
+\DoxyCodeLine{02198\ \ \ \ \ \}}
+\DoxyCodeLine{02199\ \ \ \}}
+\DoxyCodeLine{02200\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02201\ }
+\DoxyCodeLine{02202\ \ \ int32\_t\ xd\ =\ x\ +\ \_xDatum;}
+\DoxyCodeLine{02203\ \ \ int32\_t\ yd\ =\ y\ +\ \_yDatum;}
+\DoxyCodeLine{02204\ }
+\DoxyCodeLine{02205\ \ \ \textcolor{keywordflow}{if}\ ((xd\ +\ width\ *\ textsize\ <\ \_vpX\ ||\ xd\ >=\ \_vpW)\ \&\&\ (yd\ +\ height\ *\ textsize\ <\ \_vpY\ ||\ yd\ >=\ \_vpH))\ \textcolor{keywordflow}{return}\ width\ *\ textsize\ ;}
+\DoxyCodeLine{02206\ }
+\DoxyCodeLine{02207\ \ \ int32\_t\ w\ =\ width;}
+\DoxyCodeLine{02208\ \ \ int32\_t\ pX\ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{02209\ \ \ int32\_t\ pY\ \ \ \ \ \ =\ y;}
+\DoxyCodeLine{02210\ \ \ uint8\_t\ line\ =\ 0;}
+\DoxyCodeLine{02211\ \ \ \textcolor{keywordtype}{bool}\ clip\ =\ xd\ <\ \_vpX\ ||\ xd\ +\ width\ \ *\ textsize\ >=\ \_vpW\ ||\ yd\ <\ \_vpY\ ||\ yd\ +\ height\ *\ textsize\ >=\ \_vpH;}
+\DoxyCodeLine{02212\ }
+\DoxyCodeLine{02213\ \textcolor{preprocessor}{\#ifdef\ LOAD\_FONT2\ }\textcolor{comment}{//\ chop\ out\ code\ if\ we\ do\ not\ need\ it}}
+\DoxyCodeLine{02214\ \ \ \textcolor{keywordflow}{if}\ (font\ ==\ 2)\ \{}
+\DoxyCodeLine{02215\ \ \ \ \ w\ =\ w\ +\ 6;\ \textcolor{comment}{//\ Should\ be\ +\ 7\ but\ we\ need\ to\ compensate\ for\ width\ increment}}
+\DoxyCodeLine{02216\ \ \ \ \ w\ =\ w\ /\ 8;}
+\DoxyCodeLine{02217\ }
+\DoxyCodeLine{02218\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ i\ =\ 0;\ i\ <\ height;\ i++)}
+\DoxyCodeLine{02219\ \ \ \ \ \{}
+\DoxyCodeLine{02220\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textcolor\ !=\ textbgcolor)\ fillRect(x,\ pY,\ width\ *\ textsize,\ textsize,\ textbgcolor);}
+\DoxyCodeLine{02221\ }
+\DoxyCodeLine{02222\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ k\ =\ 0;\ k\ <\ w;\ k++)}
+\DoxyCodeLine{02223\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02224\ \ \ \ \ \ \ \ \ line\ =\ pgm\_read\_byte((uint8\_t\ *)flash\_address\ +\ w\ *\ i\ +\ k);}
+\DoxyCodeLine{02225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line)\ \{}
+\DoxyCodeLine{02226\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textsize\ ==\ 1)\ \{}
+\DoxyCodeLine{02227\ \ \ \ \ \ \ \ \ \ \ \ \ pX\ =\ x\ +\ k\ *\ 8;}
+\DoxyCodeLine{02228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x80)\ drawPixel(pX,\ pY,\ textcolor);}
+\DoxyCodeLine{02229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x40)\ drawPixel(pX\ +\ 1,\ pY,\ textcolor);}
+\DoxyCodeLine{02230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x20)\ drawPixel(pX\ +\ 2,\ pY,\ textcolor);}
+\DoxyCodeLine{02231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x10)\ drawPixel(pX\ +\ 3,\ pY,\ textcolor);}
+\DoxyCodeLine{02232\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x08)\ drawPixel(pX\ +\ 4,\ pY,\ textcolor);}
+\DoxyCodeLine{02233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x04)\ drawPixel(pX\ +\ 5,\ pY,\ textcolor);}
+\DoxyCodeLine{02234\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x02)\ drawPixel(pX\ +\ 6,\ pY,\ textcolor);}
+\DoxyCodeLine{02235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x01)\ drawPixel(pX\ +\ 7,\ pY,\ textcolor);}
+\DoxyCodeLine{02236\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02237\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02238\ \ \ \ \ \ \ \ \ \ \ \ \ pX\ =\ x\ +\ k\ *\ 8\ *\ textsize;}
+\DoxyCodeLine{02239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x80)\ fillRect(pX,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x40)\ fillRect(pX\ +\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x20)\ fillRect(pX\ +\ 2\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x10)\ fillRect(pX\ +\ 3\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x08)\ fillRect(pX\ +\ 4\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x04)\ fillRect(pX\ +\ 5\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x02)\ fillRect(pX\ +\ 6\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x01)\ fillRect(pX\ +\ 7\ *\ textsize,\ pY,\ textsize,\ textsize,\ textcolor);}
+\DoxyCodeLine{02247\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02249\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02250\ \ \ \ \ \ \ pY\ +=\ textsize;}
+\DoxyCodeLine{02251\ \ \ \ \ \}}
+\DoxyCodeLine{02252\ \ \ \}}
+\DoxyCodeLine{02253\ }
+\DoxyCodeLine{02254\ \textcolor{preprocessor}{\ \ \#ifdef\ LOAD\_RLE}}
+\DoxyCodeLine{02255\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02256\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{02257\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//FONT2}}
+\DoxyCodeLine{02258\ }
+\DoxyCodeLine{02259\ \textcolor{preprocessor}{\#ifdef\ LOAD\_RLE\ \ }\textcolor{comment}{//674\ bytes\ of\ code}}
+\DoxyCodeLine{02260\ \ \ \textcolor{comment}{//\ Font\ is\ not\ 2\ and\ hence\ is\ RLE\ encoded}}
+\DoxyCodeLine{02261\ \ \ \{}
+\DoxyCodeLine{02262\ \ \ \ \ w\ *=\ height;\ \textcolor{comment}{//\ Now\ w\ is\ total\ number\ of\ pixels\ in\ the\ character}}
+\DoxyCodeLine{02263\ \ \ \ \ int16\_t\ color\ =\ textcolor;}
+\DoxyCodeLine{02264\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ color\ =\ (textcolor\ >>\ 8)\ |\ (textcolor\ <<\ 8);}
+\DoxyCodeLine{02265\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)\ color\ =\ ((textcolor\ \&\ 0xE000)>>8\ |\ (textcolor\ \&\ 0x0700)>>6\ |\ (textcolor\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{02266\ }
+\DoxyCodeLine{02267\ \ \ \ \ int16\_t\ bgcolor\ =\ textbgcolor;}
+\DoxyCodeLine{02268\ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 16)\ bgcolor\ =\ (textbgcolor\ >>\ 8)\ |\ (textbgcolor\ <<\ 8);}
+\DoxyCodeLine{02269\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\_bpp\ ==\ 8)\ bgcolor\ =\ ((textbgcolor\ \&\ 0xE000)>>8\ |\ (textbgcolor\ \&\ 0x0700)>>6\ |\ (textbgcolor\ \&\ 0x0018)>>3);}
+\DoxyCodeLine{02270\ }
+\DoxyCodeLine{02271\ \ \ \ \ \textcolor{keywordflow}{if}\ (textcolor\ ==\ textbgcolor\ \&\&\ !clip\ \&\&\ \_bpp\ !=\ 1)\ \{}
+\DoxyCodeLine{02272\ \ \ \ \ \ \ int32\_t\ px\ =\ 0,\ py\ =\ pY;\ \textcolor{comment}{//\ To\ hold\ character\ block\ start\ and\ end\ column\ and\ row\ values}}
+\DoxyCodeLine{02273\ \ \ \ \ \ \ int32\_t\ pc\ =\ 0;\ \textcolor{comment}{//\ Pixel\ count}}
+\DoxyCodeLine{02274\ \ \ \ \ \ \ uint8\_t\ np\ =\ textsize\ *\ textsize;\ \textcolor{comment}{//\ Number\ of\ pixels\ in\ a\ drawn\ pixel}}
+\DoxyCodeLine{02275\ }
+\DoxyCodeLine{02276\ \ \ \ \ \ \ uint8\_t\ tnp\ =\ 0;\ \textcolor{comment}{//\ Temporary\ copy\ of\ np\ for\ while\ loop}}
+\DoxyCodeLine{02277\ \ \ \ \ \ \ uint8\_t\ ts\ =\ textsize\ -\/\ 1;\ \textcolor{comment}{//\ Temporary\ copy\ of\ textsize}}
+\DoxyCodeLine{02278\ \ \ \ \ \ \ \textcolor{comment}{//\ 16\ bit\ pixel\ count\ so\ maximum\ font\ size\ is\ equivalent\ to\ 180x180\ pixels\ in\ area}}
+\DoxyCodeLine{02279\ \ \ \ \ \ \ \textcolor{comment}{//\ w\ is\ total\ number\ of\ pixels\ to\ plot\ to\ fill\ character\ block}}
+\DoxyCodeLine{02280\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (pc\ <\ w)\ \{}
+\DoxyCodeLine{02281\ \ \ \ \ \ \ \ \ line\ =\ pgm\_read\_byte((uint8\_t\ *)flash\_address);}
+\DoxyCodeLine{02282\ \ \ \ \ \ \ \ \ flash\_address++;}
+\DoxyCodeLine{02283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x80)\ \{}
+\DoxyCodeLine{02284\ \ \ \ \ \ \ \ \ \ \ line\ \&=\ 0x7F;}
+\DoxyCodeLine{02285\ \ \ \ \ \ \ \ \ \ \ line++;}
+\DoxyCodeLine{02286\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ts)\ \{}
+\DoxyCodeLine{02287\ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ xd\ +\ textsize\ *\ (pc\ \%\ width);\ \textcolor{comment}{//\ Keep\ these\ px\ and\ py\ calculations\ outside\ the\ loop\ as\ they\ are\ slow}}
+\DoxyCodeLine{02288\ \ \ \ \ \ \ \ \ \ \ \ \ py\ =\ yd\ +\ textsize\ *\ (pc\ /\ width);}
+\DoxyCodeLine{02289\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02290\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02291\ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ xd\ +\ pc\ \%\ width;\ \textcolor{comment}{//\ Keep\ these\ px\ and\ py\ calculations\ outside\ the\ loop\ as\ they\ are\ slow}}
+\DoxyCodeLine{02292\ \ \ \ \ \ \ \ \ \ \ \ \ py\ =\ yd\ +\ pc\ /\ width;}
+\DoxyCodeLine{02293\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02294\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (line-\/-\/)\ \{\ \textcolor{comment}{//\ In\ this\ case\ the\ while(line-\/-\/)\ is\ faster}}
+\DoxyCodeLine{02295\ \ \ \ \ \ \ \ \ \ \ \ \ pc++;\ \textcolor{comment}{//\ This\ is\ faster\ than\ putting\ pc+=line\ before\ while()?}}
+\DoxyCodeLine{02296\ \ \ \ \ \ \ \ \ \ \ \ \ setWindow(px,\ py,\ px\ +\ ts,\ py\ +\ ts);}
+\DoxyCodeLine{02297\ }
+\DoxyCodeLine{02298\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (ts)\ \{}
+\DoxyCodeLine{02299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tnp\ =\ np;}
+\DoxyCodeLine{02300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (tnp-\/-\/)\ writeColor(color);}
+\DoxyCodeLine{02301\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ writeColor(color);}
+\DoxyCodeLine{02303\ }
+\DoxyCodeLine{02304\ \ \ \ \ \ \ \ \ \ \ \ \ px\ +=\ textsize;}
+\DoxyCodeLine{02305\ }
+\DoxyCodeLine{02306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (px\ >=\ (xd\ +\ width\ *\ textsize))\ \{}
+\DoxyCodeLine{02307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ xd;}
+\DoxyCodeLine{02308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ py\ +=\ textsize;}
+\DoxyCodeLine{02309\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02310\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02311\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02313\ \ \ \ \ \ \ \ \ \ \ line++;}
+\DoxyCodeLine{02314\ \ \ \ \ \ \ \ \ \ \ pc\ +=\ line;}
+\DoxyCodeLine{02315\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02316\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02317\ \ \ \ \ \}}
+\DoxyCodeLine{02318\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02319\ \ \ \ \ \ \ \textcolor{comment}{//\ Text\ colour\ !=\ background\ and\ textsize\ =\ 1\ and\ character\ is\ within\ viewport\ area}}
+\DoxyCodeLine{02320\ \ \ \ \ \ \ \textcolor{comment}{//\ so\ use\ faster\ drawing\ of\ characters\ and\ background\ using\ block\ write}}
+\DoxyCodeLine{02321\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textcolor\ !=\ textbgcolor\ \&\&\ textsize\ ==\ 1\ \&\&\ !clip\ \&\&\ \_bpp\ !=\ 1)}
+\DoxyCodeLine{02322\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02323\ \ \ \ \ \ \ \ \ setWindow(xd,\ yd,\ xd\ +\ width\ -\/\ 1,\ yd\ +\ height\ -\/\ 1);}
+\DoxyCodeLine{02324\ }
+\DoxyCodeLine{02325\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ font\ size\ is\ equivalent\ to\ 180x180\ pixels\ in\ area}}
+\DoxyCodeLine{02326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (w\ >\ 0)\ \{}
+\DoxyCodeLine{02327\ \ \ \ \ \ \ \ \ \ \ line\ =\ pgm\_read\_byte((uint8\_t\ *)flash\_address++);\ \textcolor{comment}{//\ 8\ bytes\ smaller\ when\ incrementing\ here}}
+\DoxyCodeLine{02328\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x80)\ \{}
+\DoxyCodeLine{02329\ \ \ \ \ \ \ \ \ \ \ \ \ line\ \&=\ 0x7F;}
+\DoxyCodeLine{02330\ \ \ \ \ \ \ \ \ \ \ \ \ line++;\ w\ -\/=\ line;}
+\DoxyCodeLine{02331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (line-\/-\/)\ writeColor(color);}
+\DoxyCodeLine{02332\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02333\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{02334\ \ \ \ \ \ \ \ \ \ \ \ \ line++;\ w\ -\/=\ line;}
+\DoxyCodeLine{02335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (line-\/-\/)\ writeColor(bgcolor);}
+\DoxyCodeLine{02336\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02338\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02339\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02340\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02341\ \ \ \ \ \ \ \ \ int32\_t\ px\ =\ 0,\ py\ =\ 0;\ \ \textcolor{comment}{//\ To\ hold\ character\ pixel\ coords}}
+\DoxyCodeLine{02342\ \ \ \ \ \ \ \ \ int32\_t\ tx\ =\ 0,\ ty\ =\ 0;\ \ \textcolor{comment}{//\ To\ hold\ character\ TFT\ pixel\ coords}}
+\DoxyCodeLine{02343\ \ \ \ \ \ \ \ \ int32\_t\ pc\ =\ 0;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pixel\ count}}
+\DoxyCodeLine{02344\ \ \ \ \ \ \ \ \ int32\_t\ pl\ =\ 0;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pixel\ line\ length}}
+\DoxyCodeLine{02345\ \ \ \ \ \ \ \ \ uint16\_t\ pcol\ =\ 0;\ \ \ \ \ \ \ \textcolor{comment}{//\ Pixel\ color}}
+\DoxyCodeLine{02346\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pf\ =\ \textcolor{keyword}{true};\ \ \ \ \ \ \textcolor{comment}{//\ Flag\ for\ plotting}}
+\DoxyCodeLine{02347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (pc\ <\ w)\ \{}
+\DoxyCodeLine{02348\ \ \ \ \ \ \ \ \ \ \ line\ =\ pgm\_read\_byte((uint8\_t\ *)flash\_address);}
+\DoxyCodeLine{02349\ \ \ \ \ \ \ \ \ \ \ flash\_address++;}
+\DoxyCodeLine{02350\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line\ \&\ 0x80)\ \{\ pcol\ =\ textcolor;\ line\ \&=\ 0x7F;\ pf\ =\ \textcolor{keyword}{true};\}}
+\DoxyCodeLine{02351\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{\ pcol\ =\ textbgcolor;\ \textcolor{keywordflow}{if}\ (textcolor\ ==\ textbgcolor)\ pf\ =\ \textcolor{keyword}{false};\}}
+\DoxyCodeLine{02352\ \ \ \ \ \ \ \ \ \ \ line++;}
+\DoxyCodeLine{02353\ \ \ \ \ \ \ \ \ \ \ px\ =\ pc\ \%\ width;}
+\DoxyCodeLine{02354\ \ \ \ \ \ \ \ \ \ \ tx\ =\ x\ +\ textsize\ *\ px;}
+\DoxyCodeLine{02355\ \ \ \ \ \ \ \ \ \ \ py\ =\ pc\ /\ width;}
+\DoxyCodeLine{02356\ \ \ \ \ \ \ \ \ \ \ ty\ =\ y\ +\ textsize\ *\ py;}
+\DoxyCodeLine{02357\ }
+\DoxyCodeLine{02358\ \ \ \ \ \ \ \ \ \ \ pl\ =\ 0;}
+\DoxyCodeLine{02359\ \ \ \ \ \ \ \ \ \ \ pc\ +=\ line;}
+\DoxyCodeLine{02360\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (line-\/-\/)\ \{}
+\DoxyCodeLine{02361\ \ \ \ \ \ \ \ \ \ \ \ \ pl++;}
+\DoxyCodeLine{02362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((px+pl)\ >=\ width)\ \{}
+\DoxyCodeLine{02363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pf)\ fillRect(tx,\ ty,\ pl\ *\ textsize,\ textsize,\ pcol);}
+\DoxyCodeLine{02364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pl\ =\ 0;}
+\DoxyCodeLine{02365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ px\ =\ 0;}
+\DoxyCodeLine{02366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tx\ =\ x;}
+\DoxyCodeLine{02367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ py\ ++;}
+\DoxyCodeLine{02368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ty\ +=\ textsize;}
+\DoxyCodeLine{02369\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02370\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02371\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pl\ \&\&\ pf)\ fillRect(tx,\ ty,\ pl\ *\ textsize,\ textsize,\ pcol);}
+\DoxyCodeLine{02372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02373\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02374\ \ \ \ \ \}}
+\DoxyCodeLine{02375\ \ \ \}}
+\DoxyCodeLine{02376\ \ \ \textcolor{comment}{//\ End\ of\ RLE\ font\ rendering}}
+\DoxyCodeLine{02377\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02378\ \ \ \textcolor{keywordflow}{return}\ width\ *\ textsize;\ \ \ \ \textcolor{comment}{//\ x\ +}}
+\DoxyCodeLine{02379\ \}}
+\DoxyCodeLine{02380\ }
+\DoxyCodeLine{02381\ }
+\DoxyCodeLine{02382\ \textcolor{preprocessor}{\#ifdef\ SMOOTH\_FONT}}
+\DoxyCodeLine{02383\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{02384\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawGlyph}}
+\DoxyCodeLine{02385\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ character\ to\ the\ sprite\ cursor\ position}}
+\DoxyCodeLine{02386\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{02387\ \textcolor{comment}{//}}
+\DoxyCodeLine{02388\ \textcolor{keywordtype}{void}\ TFT\_eSprite::drawGlyph(uint16\_t\ code)}
+\DoxyCodeLine{02389\ \{}
+\DoxyCodeLine{02390\ \ \ uint16\_t\ fg\ =\ textcolor;}
+\DoxyCodeLine{02391\ \ \ uint16\_t\ bg\ =\ textbgcolor;}
+\DoxyCodeLine{02392\ }
+\DoxyCodeLine{02393\ \ \ \textcolor{keywordflow}{if}\ (code\ <\ 0x21)}
+\DoxyCodeLine{02394\ \ \ \{}
+\DoxyCodeLine{02395\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ 0x20)\ \{}
+\DoxyCodeLine{02396\ \ \ \ \ \ \ cursor\_x\ +=\ gFont.spaceWidth;}
+\DoxyCodeLine{02397\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{02398\ \ \ \ \ \}}
+\DoxyCodeLine{02399\ }
+\DoxyCodeLine{02400\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{02401\ \ \ \ \ \ \ cursor\_x\ =\ 0;}
+\DoxyCodeLine{02402\ \ \ \ \ \ \ cursor\_y\ +=\ gFont.yAdvance;}
+\DoxyCodeLine{02403\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textwrapY\ \&\&\ (cursor\_y\ >=\ height()))\ cursor\_y\ =\ 0;}
+\DoxyCodeLine{02404\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{02405\ \ \ \ \ \}}
+\DoxyCodeLine{02406\ \ \ \}}
+\DoxyCodeLine{02407\ }
+\DoxyCodeLine{02408\ \ \ uint16\_t\ gNum\ =\ 0;}
+\DoxyCodeLine{02409\ \ \ \textcolor{keywordtype}{bool}\ found\ =\ getUnicodeIndex(code,\ \&gNum);}
+\DoxyCodeLine{02410\ }
+\DoxyCodeLine{02411\ \ \ \textcolor{keywordflow}{if}\ (found)}
+\DoxyCodeLine{02412\ \ \ \{}
+\DoxyCodeLine{02413\ }
+\DoxyCodeLine{02414\ \ \ \ \ \textcolor{keywordtype}{bool}\ newSprite\ =\ !\_created;}
+\DoxyCodeLine{02415\ }
+\DoxyCodeLine{02416\ \ \ \ \ \textcolor{keywordflow}{if}\ (newSprite)}
+\DoxyCodeLine{02417\ \ \ \ \ \{}
+\DoxyCodeLine{02418\ \ \ \ \ \ \ createSprite(gWidth[gNum],\ gFont.yAdvance);}
+\DoxyCodeLine{02419\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fg\ !=\ bg)\ fillSprite(bg);}
+\DoxyCodeLine{02420\ \ \ \ \ \ \ cursor\_x\ =\ -\/gdX[gNum];}
+\DoxyCodeLine{02421\ \ \ \ \ \ \ cursor\_y\ =\ 0;}
+\DoxyCodeLine{02422\ \ \ \ \ \}}
+\DoxyCodeLine{02423\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02424\ \ \ \ \ \{}
+\DoxyCodeLine{02425\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ textwrapX\ \&\&\ ((cursor\_x\ +\ gWidth[gNum]\ +\ gdX[gNum])\ >\ width()))\ \{}
+\DoxyCodeLine{02426\ \ \ \ \ \ \ \ \ cursor\_y\ +=\ gFont.yAdvance;}
+\DoxyCodeLine{02427\ \ \ \ \ \ \ \ \ cursor\_x\ =\ 0;}
+\DoxyCodeLine{02428\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02429\ }
+\DoxyCodeLine{02430\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ textwrapY\ \&\&\ ((cursor\_y\ +\ gFont.yAdvance)\ >\ height()))\ cursor\_y\ =\ 0;}
+\DoxyCodeLine{02431\ }
+\DoxyCodeLine{02432\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ cursor\_x\ ==\ 0)\ cursor\_x\ -\/=\ gdX[gNum];}
+\DoxyCodeLine{02433\ \ \ \ \ \}}
+\DoxyCodeLine{02434\ }
+\DoxyCodeLine{02435\ \ \ \ \ uint8\_t*\ pbuffer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{02436\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t*\ gPtr\ =\ (\textcolor{keyword}{const}\ uint8\_t*)\ gFont.gArray;}
+\DoxyCodeLine{02437\ }
+\DoxyCodeLine{02438\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{02439\ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{02440\ \ \ \ \ \ \ fontFile.seek(gBitmap[gNum],\ fs::SeekSet);\ \textcolor{comment}{//\ This\ is\ slow\ for\ a\ significant\ position\ shift!}}
+\DoxyCodeLine{02441\ \ \ \ \ \ \ pbuffer\ =\ \ (uint8\_t*)malloc(gWidth[gNum]);}
+\DoxyCodeLine{02442\ \ \ \ \ \}}
+\DoxyCodeLine{02443\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02444\ }
+\DoxyCodeLine{02445\ \ \ \ \ int16\_t\ \ xs\ =\ 0;}
+\DoxyCodeLine{02446\ \ \ \ \ uint16\_t\ dl\ =\ 0;}
+\DoxyCodeLine{02447\ \ \ \ \ uint8\_t\ pixel\ =\ 0;}
+\DoxyCodeLine{02448\ \ \ \ \ int32\_t\ cgy\ =\ cursor\_y\ +\ gFont.maxAscent\ -\/\ gdY[gNum];}
+\DoxyCodeLine{02449\ \ \ \ \ int32\_t\ cgx\ =\ cursor\_x\ +\ gdX[gNum];}
+\DoxyCodeLine{02450\ }
+\DoxyCodeLine{02451\ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ y\ =\ 0;\ y\ <\ gHeight[gNum];\ y++)}
+\DoxyCodeLine{02452\ \ \ \ \ \{}
+\DoxyCodeLine{02453\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{02454\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{02455\ \ \ \ \ \ \ \ \ fontFile.read(pbuffer,\ gWidth[gNum]);}
+\DoxyCodeLine{02456\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02457\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02458\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (int32\_t\ x\ =\ 0;\ x\ <\ gWidth[gNum];\ x++)}
+\DoxyCodeLine{02459\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02460\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{02461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{02462\ \ \ \ \ \ \ \ \ \ \ pixel\ =\ pbuffer[x];}
+\DoxyCodeLine{02463\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02465\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{02466\ \ \ \ \ \ \ \ \ pixel\ =\ pgm\_read\_byte(gPtr\ +\ gBitmap[gNum]\ +\ x\ +\ gWidth[gNum]\ *\ y);}
+\DoxyCodeLine{02467\ }
+\DoxyCodeLine{02468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel)}
+\DoxyCodeLine{02469\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02470\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\ !=\ 0xFF)}
+\DoxyCodeLine{02471\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{\ drawFastHLine(\ xs,\ y\ +\ cgy,\ dl,\ fg);\ dl\ =\ 0;\ \}}
+\DoxyCodeLine{02473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_bpp\ !=\ 1)\ \{}
+\DoxyCodeLine{02474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fg\ ==\ bg)\ drawPixel(x\ +\ cgx,\ y\ +\ cgy,\ alphaBlend(pixel,\ fg,\ readPixel(x\ +\ cgx,\ y\ +\ cgy)));}
+\DoxyCodeLine{02475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ drawPixel(x\ +\ cgx,\ y\ +\ cgy,\ alphaBlend(pixel,\ fg,\ bg));}
+\DoxyCodeLine{02476\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (pixel>127)\ drawPixel(x\ +\ cgx,\ y\ +\ cgy,\ fg);}
+\DoxyCodeLine{02478\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02479\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02480\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl==0)\ xs\ =\ x\ +\ cgx;}
+\DoxyCodeLine{02482\ \ \ \ \ \ \ \ \ \ \ \ \ dl++;}
+\DoxyCodeLine{02483\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02484\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02486\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02487\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{\ drawFastHLine(\ xs,\ y\ +\ cgy,\ dl,\ fg);\ dl\ =\ 0;\ \}}
+\DoxyCodeLine{02488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02489\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02490\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{\ drawFastHLine(\ xs,\ y\ +\ cgy,\ dl,\ fg);\ dl\ =\ 0;\ \}}
+\DoxyCodeLine{02491\ \ \ \ \ \}}
+\DoxyCodeLine{02492\ }
+\DoxyCodeLine{02493\ \ \ \ \ \textcolor{keywordflow}{if}\ (pbuffer)\ free(pbuffer);}
+\DoxyCodeLine{02494\ }
+\DoxyCodeLine{02495\ \ \ \ \ \textcolor{keywordflow}{if}\ (newSprite)}
+\DoxyCodeLine{02496\ \ \ \ \ \{}
+\DoxyCodeLine{02497\ \ \ \ \ \ \ pushSprite(cgx,\ cursor\_y);}
+\DoxyCodeLine{02498\ \ \ \ \ \ \ deleteSprite();}
+\DoxyCodeLine{02499\ \ \ \ \ \}}
+\DoxyCodeLine{02500\ \ \ \ \ cursor\_x\ +=\ gxAdvance[gNum];}
+\DoxyCodeLine{02501\ \ \ \}}
+\DoxyCodeLine{02502\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{02503\ \ \ \{}
+\DoxyCodeLine{02504\ \ \ \ \ \textcolor{comment}{//\ Not\ a\ Unicode\ in\ font\ so\ draw\ a\ rectangle\ and\ move\ on\ cursor}}
+\DoxyCodeLine{02505\ \ \ \ \ drawRect(cursor\_x,\ cursor\_y\ +\ gFont.maxAscent\ -\/\ gFont.ascent,\ gFont.spaceWidth,\ gFont.ascent,\ fg);}
+\DoxyCodeLine{02506\ \ \ \ \ cursor\_x\ +=\ gFont.spaceWidth\ +\ 1;}
+\DoxyCodeLine{02507\ \ \ \}}
+\DoxyCodeLine{02508\ \}}
+\DoxyCodeLine{02509\ }
+\DoxyCodeLine{02510\ }
+\DoxyCodeLine{02511\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{02512\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ printToSprite}}
+\DoxyCodeLine{02513\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ string\ to\ the\ sprite\ cursor\ position}}
+\DoxyCodeLine{02514\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{02515\ \textcolor{keywordtype}{void}\ TFT\_eSprite::printToSprite(String\ \textcolor{keywordtype}{string})}
+\DoxyCodeLine{02516\ \{}
+\DoxyCodeLine{02517\ \ \ \textcolor{keywordflow}{if}(!fontLoaded)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{02518\ \ \ printToSprite((\textcolor{keywordtype}{char}*)\textcolor{keywordtype}{string}.c\_str(),\ \textcolor{keywordtype}{string}.length());}
+\DoxyCodeLine{02519\ \}}
+\DoxyCodeLine{02520\ }
+\DoxyCodeLine{02521\ }
+\DoxyCodeLine{02522\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{02523\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ printToSprite}}
+\DoxyCodeLine{02524\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ string\ to\ the\ sprite\ cursor\ position}}
+\DoxyCodeLine{02525\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{02526\ \textcolor{keywordtype}{void}\ TFT\_eSprite::printToSprite(\textcolor{keywordtype}{char}\ *cbuffer,\ uint16\_t\ len)\ \textcolor{comment}{//String\ string)}}
+\DoxyCodeLine{02527\ \{}
+\DoxyCodeLine{02528\ \ \ \textcolor{keywordflow}{if}(!fontLoaded)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{02529\ }
+\DoxyCodeLine{02530\ \ \ uint16\_t\ n\ =\ 0;}
+\DoxyCodeLine{02531\ \ \ \textcolor{keywordtype}{bool}\ newSprite\ =\ !\_created;}
+\DoxyCodeLine{02532\ }
+\DoxyCodeLine{02533\ \ \ \textcolor{keywordflow}{if}\ (newSprite)}
+\DoxyCodeLine{02534\ \ \ \{}
+\DoxyCodeLine{02535\ \ \ \ \ int16\_t\ sWidth\ =\ 1;}
+\DoxyCodeLine{02536\ \ \ \ \ uint16\_t\ index\ =\ 0;}
+\DoxyCodeLine{02537\ }
+\DoxyCodeLine{02538\ \ \ \ \ \textcolor{keywordflow}{while}\ (n\ <\ len)}
+\DoxyCodeLine{02539\ \ \ \ \ \{}
+\DoxyCodeLine{02540\ \ \ \ \ \ \ uint16\_t\ unicode\ =\ decodeUTF8((uint8\_t*)cbuffer,\ \&n,\ len\ -\/\ n);}
+\DoxyCodeLine{02541\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getUnicodeIndex(unicode,\ \&index))}
+\DoxyCodeLine{02542\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{02543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ 0)\ sWidth\ -\/=\ gdX[index];}
+\DoxyCodeLine{02544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (n\ ==\ len-\/1)\ sWidth\ +=\ (\ gWidth[index]\ +\ gdX[index]);}
+\DoxyCodeLine{02545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ sWidth\ +=\ gxAdvance[index];}
+\DoxyCodeLine{02546\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{02547\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ sWidth\ +=\ gFont.spaceWidth\ +\ 1;}
+\DoxyCodeLine{02548\ \ \ \ \ \}}
+\DoxyCodeLine{02549\ }
+\DoxyCodeLine{02550\ \ \ \ \ createSprite(sWidth,\ gFont.yAdvance);}
+\DoxyCodeLine{02551\ }
+\DoxyCodeLine{02552\ \ \ \ \ \textcolor{keywordflow}{if}\ (textcolor\ !=\ textbgcolor)\ fillSprite(textbgcolor);}
+\DoxyCodeLine{02553\ \ \ \}}
+\DoxyCodeLine{02554\ }
+\DoxyCodeLine{02555\ \ \ n\ =\ 0;}
+\DoxyCodeLine{02556\ }
+\DoxyCodeLine{02557\ \ \ \textcolor{keywordflow}{while}\ (n\ <\ len)}
+\DoxyCodeLine{02558\ \ \ \{}
+\DoxyCodeLine{02559\ \ \ \ \ uint16\_t\ unicode\ =\ decodeUTF8((uint8\_t*)cbuffer,\ \&n,\ len\ -\/\ n);}
+\DoxyCodeLine{02560\ \ \ \ \ \textcolor{comment}{//Serial.print("{}Decoded\ Unicode\ =\ 0x"{});Serial.println(unicode,HEX);}}
+\DoxyCodeLine{02561\ \ \ \ \ \textcolor{comment}{//Serial.print("{}n\ =\ "{});Serial.println(n);}}
+\DoxyCodeLine{02562\ \ \ \ \ drawGlyph(unicode);}
+\DoxyCodeLine{02563\ \ \ \}}
+\DoxyCodeLine{02564\ }
+\DoxyCodeLine{02565\ \ \ \textcolor{keywordflow}{if}\ (newSprite)}
+\DoxyCodeLine{02566\ \ \ \{\ \textcolor{comment}{//\ The\ sprite\ had\ to\ be\ created\ so\ place\ at\ TFT\ cursor}}
+\DoxyCodeLine{02567\ \ \ \ \ pushSprite(\_tft-\/>cursor\_x,\ \_tft-\/>cursor\_y);}
+\DoxyCodeLine{02568\ \ \ \ \ deleteSprite();}
+\DoxyCodeLine{02569\ \ \ \}}
+\DoxyCodeLine{02570\ \}}
+\DoxyCodeLine{02571\ }
+\DoxyCodeLine{02572\ }
+\DoxyCodeLine{02573\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{02574\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ printToSprite}}
+\DoxyCodeLine{02575\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Print\ character\ in\ a\ Sprite,\ create\ sprite\ if\ needed}}
+\DoxyCodeLine{02576\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{02577\ int16\_t\ TFT\_eSprite::printToSprite(int16\_t\ x,\ int16\_t\ y,\ uint16\_t\ index)}
+\DoxyCodeLine{02578\ \{}
+\DoxyCodeLine{02579\ \ \ \textcolor{keywordtype}{bool}\ newSprite\ =\ !\_created;}
+\DoxyCodeLine{02580\ \ \ int16\_t\ sWidth\ =\ gWidth[index];}
+\DoxyCodeLine{02581\ }
+\DoxyCodeLine{02582\ \ \ \textcolor{keywordflow}{if}\ (newSprite)}
+\DoxyCodeLine{02583\ \ \ \{}
+\DoxyCodeLine{02584\ \ \ \ \ createSprite(sWidth,\ gFont.yAdvance);}
+\DoxyCodeLine{02585\ }
+\DoxyCodeLine{02586\ \ \ \ \ \textcolor{keywordflow}{if}\ (textcolor\ !=\ textbgcolor)\ fillSprite(textbgcolor);}
+\DoxyCodeLine{02587\ }
+\DoxyCodeLine{02588\ \ \ \ \ drawGlyph(gUnicode[index]);}
+\DoxyCodeLine{02589\ }
+\DoxyCodeLine{02590\ \ \ \ \ pushSprite(x\ +\ gdX[index],\ y,\ textbgcolor);}
+\DoxyCodeLine{02591\ \ \ \ \ deleteSprite();}
+\DoxyCodeLine{02592\ \ \ \}}
+\DoxyCodeLine{02593\ }
+\DoxyCodeLine{02594\ \ \ \textcolor{keywordflow}{else}\ drawGlyph(gUnicode[index]);}
+\DoxyCodeLine{02595\ }
+\DoxyCodeLine{02596\ \ \ \textcolor{keywordflow}{return}\ gxAdvance[index];}
+\DoxyCodeLine{02597\ \}}
+\DoxyCodeLine{02598\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

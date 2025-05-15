@@ -1,0 +1,200 @@
+\doxysection{linear\+Meter Class Reference}
+\hypertarget{classlinear_meter}{}\label{classlinear_meter}\index{linearMeter@{linearMeter}}
+
+
+Classe pour afficher une jauge linéaire sur écran TFT.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Jauge.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classlinear_meter_ade111fe33016af4f9d22fecee74176ed}{linear\+Meter}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlinear_meter_ae31a290e2fdcc379f124cab57b7f8e5a}{plot\+Linear}} (TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de}{tft}}, char \texorpdfstring{$\ast$}{*}label, int \mbox{\hyperlink{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc}{x}}, int \mbox{\hyperlink{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33}{y}})
+\begin{DoxyCompactList}\small\item\em Dessine la jauge linéaire à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlinear_meter_ad05efe2faea13ceab39c3a9cab401291}{plot\+Pointer}} (int value)
+\begin{DoxyCompactList}\small\item\em Déplace le curseur de la jauge à la valeur donnée. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classlinear_meter_a5f2e190b8261a98c97c2ea4e86670d54}{refresh}} ()
+\begin{DoxyCompactList}\small\item\em Rafraîchit l\textquotesingle{}affichage si la valeur a changé. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de}{tft}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. \end{DoxyCompactList}\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classlinear_meter_a5ac083a645d964373f022d03df4849c8}{name}}
+\begin{DoxyCompactList}\small\item\em Nom de la jauge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc}{x}}
+\begin{DoxyCompactList}\small\item\em Position X. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33}{y}}
+\begin{DoxyCompactList}\small\item\em Position Y. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlinear_meter_a07b3d34c383b22949d7d9f398e6d2aa1}{new\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Nouvelle valeur à afficher. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classlinear_meter_a4f6a7f253bdd17de45549df1fc71b8c0}{disable}}
+\begin{DoxyCompactList}\small\item\em Indique si la jauge est désactivée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classlinear_meter_a5b3b62a1d4b64d37cd49bec235dc4b90}{actual\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Valeur actuellement affichée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classlinear_meter_a5e71828ccbcb0d5ba708f9fdcdb748fa}{old\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Dernière valeur affichée. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour afficher une jauge linéaire sur écran TFT. 
+
+Permet de dessiner une jauge linéaire verticale avec curseur mobile et affichage de la valeur. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classlinear_meter_ade111fe33016af4f9d22fecee74176ed}\index{linearMeter@{linearMeter}!linearMeter@{linearMeter}}
+\index{linearMeter@{linearMeter}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{linearMeter()}{linearMeter()}}
+{\footnotesize\ttfamily \label{classlinear_meter_ade111fe33016af4f9d22fecee74176ed} 
+\mbox{\hyperlink{classlinear_meter}{linear\+Meter}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classlinear_meter_ae31a290e2fdcc379f124cab57b7f8e5a}\index{linearMeter@{linearMeter}!plotLinear@{plotLinear}}
+\index{plotLinear@{plotLinear}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{plotLinear()}{plotLinear()}}
+{\footnotesize\ttfamily \label{classlinear_meter_ae31a290e2fdcc379f124cab57b7f8e5a} 
+void plot\+Linear (\begin{DoxyParamCaption}\item[{TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}}]{tft}{, }\item[{char \texorpdfstring{$\ast$}{*}}]{label}{, }\item[{int}]{x}{, }\item[{int}]{y}{}\end{DoxyParamCaption})}
+
+
+
+Dessine la jauge linéaire à l\textquotesingle{}écran. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tft} & Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. \\
+\hline
+{\em label} & Nom de la jauge. \\
+\hline
+{\em x} & Position X. \\
+\hline
+{\em y} & Position Y. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlinear_meter_ad05efe2faea13ceab39c3a9cab401291}\index{linearMeter@{linearMeter}!plotPointer@{plotPointer}}
+\index{plotPointer@{plotPointer}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{plotPointer()}{plotPointer()}}
+{\footnotesize\ttfamily \label{classlinear_meter_ad05efe2faea13ceab39c3a9cab401291} 
+void plot\+Pointer (\begin{DoxyParamCaption}\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Déplace le curseur de la jauge à la valeur donnée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classlinear_meter_a5f2e190b8261a98c97c2ea4e86670d54}\index{linearMeter@{linearMeter}!refresh@{refresh}}
+\index{refresh@{refresh}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily \label{classlinear_meter_a5f2e190b8261a98c97c2ea4e86670d54} 
+void refresh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Rafraîchit l\textquotesingle{}affichage si la valeur a changé. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classlinear_meter_a5b3b62a1d4b64d37cd49bec235dc4b90}\index{linearMeter@{linearMeter}!actual\_value@{actual\_value}}
+\index{actual\_value@{actual\_value}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{actual\_value}{actual\_value}}
+{\footnotesize\ttfamily \label{classlinear_meter_a5b3b62a1d4b64d37cd49bec235dc4b90} 
+int actual\+\_\+value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valeur actuellement affichée. 
+
+\Hypertarget{classlinear_meter_a4f6a7f253bdd17de45549df1fc71b8c0}\index{linearMeter@{linearMeter}!disable@{disable}}
+\index{disable@{disable}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{disable}{disable}}
+{\footnotesize\ttfamily \label{classlinear_meter_a4f6a7f253bdd17de45549df1fc71b8c0} 
+bool disable}
+
+
+
+Indique si la jauge est désactivée. 
+
+\Hypertarget{classlinear_meter_a5ac083a645d964373f022d03df4849c8}\index{linearMeter@{linearMeter}!name@{name}}
+\index{name@{name}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classlinear_meter_a5ac083a645d964373f022d03df4849c8} 
+char\texorpdfstring{$\ast$}{*} name}
+
+
+
+Nom de la jauge. 
+
+\Hypertarget{classlinear_meter_a07b3d34c383b22949d7d9f398e6d2aa1}\index{linearMeter@{linearMeter}!new\_value@{new\_value}}
+\index{new\_value@{new\_value}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{new\_value}{new\_value}}
+{\footnotesize\ttfamily \label{classlinear_meter_a07b3d34c383b22949d7d9f398e6d2aa1} 
+int new\+\_\+value}
+
+
+
+Nouvelle valeur à afficher. 
+
+\Hypertarget{classlinear_meter_a5e71828ccbcb0d5ba708f9fdcdb748fa}\index{linearMeter@{linearMeter}!old\_value@{old\_value}}
+\index{old\_value@{old\_value}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{old\_value}{old\_value}}
+{\footnotesize\ttfamily \label{classlinear_meter_a5e71828ccbcb0d5ba708f9fdcdb748fa} 
+int old\+\_\+value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dernière valeur affichée. 
+
+\Hypertarget{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de}\index{linearMeter@{linearMeter}!tft@{tft}}
+\index{tft@{tft}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{tft}{tft}}
+{\footnotesize\ttfamily \label{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de} 
+TFT\+\_\+e\+SPI\texorpdfstring{$\ast$}{*} tft}
+
+
+
+Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. 
+
+\Hypertarget{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc}\index{linearMeter@{linearMeter}!x@{x}}
+\index{x@{x}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{x}{x}}
+{\footnotesize\ttfamily \label{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc} 
+int x}
+
+
+
+Position X. 
+
+\Hypertarget{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33}\index{linearMeter@{linearMeter}!y@{y}}
+\index{y@{y}!linearMeter@{linearMeter}}
+\doxysubsubsection{\texorpdfstring{y}{y}}
+{\footnotesize\ttfamily \label{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33} 
+int y}
+
+
+
+Position Y. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_jauge_8h}{Lib\+Jauge.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_jauge_8cpp}{Lib\+Jauge.\+cpp}}\end{DoxyCompactItemize}

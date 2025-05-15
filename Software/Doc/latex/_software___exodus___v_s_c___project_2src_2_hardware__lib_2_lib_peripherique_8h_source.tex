@@ -1,0 +1,83 @@
+\doxysection{Lib\+Peripherique.\+h}
+\hypertarget{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_peripherique_8h_source}{}\label{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_peripherique_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibPeripherique.h@{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibPeripherique.h}}
+\mbox{\hyperlink{_software___exodus___v_s_c___project_2src_2_hardware__lib_2_lib_peripherique_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ LibPeripherique\_h}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ LibPeripherique\_h}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_parent_device}{ParentDevice}}}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_parent_device_a70412923b2aa27f5c8ba85928987e1fa}{selectPinMultiplexeur}}(\textcolor{keywordtype}{int}\ pinChangeBin,\ \textcolor{keywordtype}{int}\ pin1\ ,\ \textcolor{keywordtype}{int}\ pin2,\ \textcolor{keywordtype}{int}\ pin3)\ =\ 0;}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_parent_device_adba88ce65b09d4bb95d08829667a3bb7}{setPin}}(\textcolor{keywordtype}{int}\ pin\ ,\ \textcolor{keywordtype}{bool}\ value);}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_parent_analog}{ParentAnalog}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_parent_analog_ae552b643fe387e80c2ad51fb0b3e6171}{analogReadAnyDevice}}(\textcolor{keywordtype}{int}\ pin)\ =\ 0;}
+\DoxyCodeLine{00048\ \};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_master_device}{MasterDevice}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_parent_device}{ParentDevice}}\ ,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}\ \{}
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_master_device_a32be1fd3159d9b0594fcd05317642bb4}{selectPinMultiplexeur}}(\textcolor{keywordtype}{int}\ pinChangeBin,\ \textcolor{keywordtype}{int}\ pin1\ ,\ \textcolor{keywordtype}{int}\ pin2,\ \textcolor{keywordtype}{int}\ pin3)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_master_device_af2dfab92bf775b86209d067fa7fb2283}{setPin}}(\textcolor{keywordtype}{int}\ pin\ ,\ \textcolor{keywordtype}{bool}\ value)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_master_device_af4319f99818e2035c55b6b201ab3f107}{analogReadAnyDevice}}(\textcolor{keywordtype}{int}\ pin)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00070\ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_registre}{Registre}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_parent_device}{ParentDevice}}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_registre_a0b422a331cad105c90faeb9ecc930cc1}{Registre}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_aba8248a3dd0439f8d4e27ee0df2e6141}{dataPin}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_ab2e5ef3b4b440a26e0f2e7f140c668d5}{clockPin}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_a41a9d44700e2a41d0108475ad57bedd0}{trigPin}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_abc56ec062a8cf91a86afa46e976c8438}{length}});}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_a271681dde4b8db1fed9e4e9118b3d7ea}{changeByte}}(\textcolor{keywordtype}{int}\ smallBinary,\textcolor{keywordtype}{int}\ lengthSmallBin,\ \textcolor{keywordtype}{int}\ position);}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_a537b8f2aced6b4b3b0c8fe65ae9eb9c0}{Refresh}}();}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_a87150c5bb93026ff1fc78d470b0a9315}{Begin}}();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_ad91c8c5f955de32f280aed72e651c570}{selectPinMultiplexeur}}(\textcolor{keywordtype}{int}\ pinChangeBin,\ \textcolor{keywordtype}{int}\ pin1\ ,\ \textcolor{keywordtype}{int}\ pin2,\ \textcolor{keywordtype}{int}\ pin3)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_acdafc152666b5422cd75835e88a21cf9}{setPin}}(\textcolor{keywordtype}{int}\ pin\ ,\ \textcolor{keywordtype}{bool}\ value)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_a12e4209e4632aae9295f1baffa45f715}{changeByteInOctet}}(\textcolor{keywordtype}{int}\ largeBinary,\ \textcolor{keywordtype}{int}\ smallBinary,\textcolor{keywordtype}{int}\ lengthSmallBin,\ \textcolor{keywordtype}{int}\ position);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_registre_a3c952f803ef6e018941da5171a162cdd}{sendBit}}(\textcolor{keywordtype}{int}\ binaryData);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_aba8248a3dd0439f8d4e27ee0df2e6141}{dataPin}};\ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_ab2e5ef3b4b440a26e0f2e7f140c668d5}{clockPin}};\ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_a41a9d44700e2a41d0108475ad57bedd0}{trigPin}};\ \ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_abc56ec062a8cf91a86afa46e976c8438}{length}};\ \ \ \ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_registre_a5446624de9fce03dc8a921bc4752f9dc}{dataNow}};\ \ \ }
+\DoxyCodeLine{00135\ \};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}}
+\DoxyCodeLine{00144\ \{}
+\DoxyCodeLine{00145\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{class_multiplexeur_addd55741c32fbe29f3c278b0479f7256}{Multiplexeur}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a152e796980ecb13905b4c55664db8c22}{S0}}\ ,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a8728e0940b04a214b1af263d775bc451}{S1}}\ ,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_aa34bd07bce275cb4eb2fd9c5e7e0027a}{S2}}\ ,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a2213c04364e719f7d3b348c26e99483c}{analogPin}}\ ,\ \mbox{\hyperlink{class_parent_device}{ParentDevice}}*\ parentSelec\ ,\ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_multiplexeur_a4838db7c5a7eb91ac87a7054a2cbb7f3}{parentAnalog}});}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a93688344e7d10ac36faa0b5da3a95c2b}{analogReadAnyDevice}}(\textcolor{keywordtype}{int}\ pin)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multiplexeur_ae1f48c4ba03792124be4e90e2b6aff62}{SelectPin}}(\textcolor{keywordtype}{int}\ pin);}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a152e796980ecb13905b4c55664db8c22}{S0}};\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a8728e0940b04a214b1af263d775bc451}{S1}};\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_aa34bd07bce275cb4eb2fd9c5e7e0027a}{S2}};\ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multiplexeur_a2213c04364e719f7d3b348c26e99483c}{analogPin}};\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \mbox{\hyperlink{class_parent_device}{ParentDevice}}*\ \mbox{\hyperlink{class_multiplexeur_a93ca3c0641a65f7d481fe83419dbe4fd}{parent}};\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_multiplexeur_a4838db7c5a7eb91ac87a7054a2cbb7f3}{parentAnalog}};\ }
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

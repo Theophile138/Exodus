@@ -1,0 +1,113 @@
+\doxysection{Capteur\+MPU6050 Class Reference}
+\hypertarget{class_capteur_m_p_u6050}{}\label{class_capteur_m_p_u6050}\index{CapteurMPU6050@{CapteurMPU6050}}
+
+
+Classe pour gérer un capteur MPU6050 (accéléromètre et gyroscope).  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Capteur.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_capteur_m_p_u6050_a222c2515883b97d058cbd36d7c391bb8}{Capteur\+MPU6050}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur du capteur MPU6050. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_capteur_m_p_u6050_ab0bdf5cca484fb2ba637c39384b27fb2}{begin}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le capteur MPU6050. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_capteur_m_p_u6050_ac6ff06d912faf0d270fe8e2ef05c347e}{get\+Acceleration}} (int16\+\_\+t \&ax, int16\+\_\+t \&ay, int16\+\_\+t \&az)
+\begin{DoxyCompactList}\small\item\em Récupère les valeurs d\textquotesingle{}accélération sur les trois axes. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_capteur_m_p_u6050_ad41e9c4eab2d58d7869623bb8840b334}{get\+Gyroscope}} (int16\+\_\+t \&gx, int16\+\_\+t \&gy, int16\+\_\+t \&gz)
+\begin{DoxyCompactList}\small\item\em Récupère les valeurs de rotation (gyroscope) sur les trois axes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+MPU6050 \mbox{\hyperlink{class_capteur_m_p_u6050_a88c170d7ee5608442cacbd97992d5ed8}{mpu}}
+\begin{DoxyCompactList}\small\item\em Instance du capteur MPU6050. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour gérer un capteur MPU6050 (accéléromètre et gyroscope). 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_capteur_m_p_u6050_a222c2515883b97d058cbd36d7c391bb8}\index{CapteurMPU6050@{CapteurMPU6050}!CapteurMPU6050@{CapteurMPU6050}}
+\index{CapteurMPU6050@{CapteurMPU6050}!CapteurMPU6050@{CapteurMPU6050}}
+\doxysubsubsection{\texorpdfstring{CapteurMPU6050()}{CapteurMPU6050()}}
+{\footnotesize\ttfamily \label{class_capteur_m_p_u6050_a222c2515883b97d058cbd36d7c391bb8} 
+\mbox{\hyperlink{class_capteur_m_p_u6050}{Capteur\+MPU6050}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur du capteur MPU6050. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_capteur_m_p_u6050_ab0bdf5cca484fb2ba637c39384b27fb2}\index{CapteurMPU6050@{CapteurMPU6050}!begin@{begin}}
+\index{begin@{begin}!CapteurMPU6050@{CapteurMPU6050}}
+\doxysubsubsection{\texorpdfstring{begin()}{begin()}}
+{\footnotesize\ttfamily \label{class_capteur_m_p_u6050_ab0bdf5cca484fb2ba637c39384b27fb2} 
+void begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise le capteur MPU6050. 
+
+\Hypertarget{class_capteur_m_p_u6050_ac6ff06d912faf0d270fe8e2ef05c347e}\index{CapteurMPU6050@{CapteurMPU6050}!getAcceleration@{getAcceleration}}
+\index{getAcceleration@{getAcceleration}!CapteurMPU6050@{CapteurMPU6050}}
+\doxysubsubsection{\texorpdfstring{getAcceleration()}{getAcceleration()}}
+{\footnotesize\ttfamily \label{class_capteur_m_p_u6050_ac6ff06d912faf0d270fe8e2ef05c347e} 
+void get\+Acceleration (\begin{DoxyParamCaption}\item[{int16\+\_\+t \&}]{ax}{, }\item[{int16\+\_\+t \&}]{ay}{, }\item[{int16\+\_\+t \&}]{az}{}\end{DoxyParamCaption})}
+
+
+
+Récupère les valeurs d\textquotesingle{}accélération sur les trois axes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em ax} & Référence pour la valeur d\textquotesingle{}accélération X. \\
+\hline
+{\em ay} & Référence pour la valeur d\textquotesingle{}accélération Y. \\
+\hline
+{\em az} & Référence pour la valeur d\textquotesingle{}accélération Z. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_capteur_m_p_u6050_ad41e9c4eab2d58d7869623bb8840b334}\index{CapteurMPU6050@{CapteurMPU6050}!getGyroscope@{getGyroscope}}
+\index{getGyroscope@{getGyroscope}!CapteurMPU6050@{CapteurMPU6050}}
+\doxysubsubsection{\texorpdfstring{getGyroscope()}{getGyroscope()}}
+{\footnotesize\ttfamily \label{class_capteur_m_p_u6050_ad41e9c4eab2d58d7869623bb8840b334} 
+void get\+Gyroscope (\begin{DoxyParamCaption}\item[{int16\+\_\+t \&}]{gx}{, }\item[{int16\+\_\+t \&}]{gy}{, }\item[{int16\+\_\+t \&}]{gz}{}\end{DoxyParamCaption})}
+
+
+
+Récupère les valeurs de rotation (gyroscope) sur les trois axes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gx} & Référence pour la valeur de rotation X. \\
+\hline
+{\em gy} & Référence pour la valeur de rotation Y. \\
+\hline
+{\em gz} & Référence pour la valeur de rotation Z. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_capteur_m_p_u6050_a88c170d7ee5608442cacbd97992d5ed8}\index{CapteurMPU6050@{CapteurMPU6050}!mpu@{mpu}}
+\index{mpu@{mpu}!CapteurMPU6050@{CapteurMPU6050}}
+\doxysubsubsection{\texorpdfstring{mpu}{mpu}}
+{\footnotesize\ttfamily \label{class_capteur_m_p_u6050_a88c170d7ee5608442cacbd97992d5ed8} 
+MPU6050 mpu\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Instance du capteur MPU6050. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_capteur_8h}{Lib\+Capteur.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_capteur_8cpp}{Lib\+Capteur.\+cpp}}\end{DoxyCompactItemize}

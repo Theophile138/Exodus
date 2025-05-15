@@ -1,0 +1,83 @@
+\doxysection{RM68140\+\_\+\+Init.\+h}
+\hypertarget{_r_m68140___init_8h_source}{}\label{_r_m68140___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68140\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/RM68140\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ RM68140\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ uses\ simple\ 8\ bit\ SPI\ writecommand()\ and\ writedata()\ functions}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ See\ ST7735\_Setup.h\ file\ for\ an\ alternative\ format}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Configure\ RM68140\ display}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ writecommand(TFT\_SLPOUT);}
+\DoxyCodeLine{00012\ \ \ \ \ delay(20);}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ writecommand(0xD0);}
+\DoxyCodeLine{00015\ \ \ \ \ writedata(0x07);}
+\DoxyCodeLine{00016\ \ \ \ \ writedata(0x42);}
+\DoxyCodeLine{00017\ \ \ \ \ writedata(0x18);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ writecommand(0xD1);}
+\DoxyCodeLine{00020\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00021\ \ \ \ \ writedata(0x07);}
+\DoxyCodeLine{00022\ \ \ \ \ writedata(0x10);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ writecommand(0xD2);}
+\DoxyCodeLine{00025\ \ \ \ \ writedata(0x01);}
+\DoxyCodeLine{00026\ \ \ \ \ writedata(0x02);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ writecommand(0xC0);}
+\DoxyCodeLine{00029\ \ \ \ \ writedata(0x10);}
+\DoxyCodeLine{00030\ \ \ \ \ writedata(0x3B);}
+\DoxyCodeLine{00031\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00032\ \ \ \ \ writedata(0x02);}
+\DoxyCodeLine{00033\ \ \ \ \ writedata(0x11);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ writecommand(0xC5);}
+\DoxyCodeLine{00036\ \ \ \ \ writedata(0x03);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ writecommand(0xC8);}
+\DoxyCodeLine{00039\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00040\ \ \ \ \ writedata(0x32);}
+\DoxyCodeLine{00041\ \ \ \ \ writedata(0x36);}
+\DoxyCodeLine{00042\ \ \ \ \ writedata(0x45);}
+\DoxyCodeLine{00043\ \ \ \ \ writedata(0x06);}
+\DoxyCodeLine{00044\ \ \ \ \ writedata(0x16);}
+\DoxyCodeLine{00045\ \ \ \ \ writedata(0x37);}
+\DoxyCodeLine{00046\ \ \ \ \ writedata(0x75);}
+\DoxyCodeLine{00047\ \ \ \ \ writedata(0x77);}
+\DoxyCodeLine{00048\ \ \ \ \ writedata(0x54);}
+\DoxyCodeLine{00049\ \ \ \ \ writedata(0x0C);}
+\DoxyCodeLine{00050\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00053\ \ \ \ \ writedata(0x0A);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ writecommand(0x3A);}
+\DoxyCodeLine{00056\ \ \ \ \ writedata(0x55);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ writecommand(TFT\_CASET);}
+\DoxyCodeLine{00059\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00060\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00061\ \ \ \ \ writedata(0x01);}
+\DoxyCodeLine{00062\ \ \ \ \ writedata(0x3F);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ writecommand(TFT\_PASET);}
+\DoxyCodeLine{00065\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00066\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00067\ \ \ \ \ writedata(0x01);}
+\DoxyCodeLine{00068\ \ \ \ \ writedata(0xDF);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00071\ \ \ \ \ writecommand(TFT\_DISPON);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ delay(25);}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ End\ of\ RM68140\ display\ configuration}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+
+\end{DoxyCode}

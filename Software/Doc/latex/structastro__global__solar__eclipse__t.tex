@@ -1,0 +1,83 @@
+\doxysection{astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t Struct Reference}
+\hypertarget{structastro__global__solar__eclipse__t}{}\label{structastro__global__solar__eclipse__t}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+
+
+Reports the time and geographic location of the peak of a solar eclipse.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__global__solar__eclipse__t_ac07f4704d5221504baa66ddca71bcad5}{status}}
+\item 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t \mbox{\hyperlink{structastro__global__solar__eclipse__t_aaa6fdf25e806f460ce7766b872f39dda}{kind}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__global__solar__eclipse__t_a8926a76de8dbb38bf01b8bff48fc950a}{peak}}
+\item 
+double \mbox{\hyperlink{structastro__global__solar__eclipse__t_a6fc8d37d5b60eeb9cc0d60e4145a1fd3}{distance}}
+\item 
+double \mbox{\hyperlink{structastro__global__solar__eclipse__t_a34dc668e7903c10a8b49a5ca7c7e8cef}{latitude}}
+\item 
+double \mbox{\hyperlink{structastro__global__solar__eclipse__t_a7e6e6a56ab89d394e72f96ef0054485f}{longitude}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reports the time and geographic location of the peak of a solar eclipse. 
+
+Returned by Astronomy\+\_\+\+Search\+Global\+Solar\+Eclipse or Astronomy\+\_\+\+Next\+Global\+Solar\+Eclipse to report information about a solar eclipse event. If a solar eclipse is found, {\ttfamily status} holds {\ttfamily ASTRO\+\_\+\+SUCCESS} and {\ttfamily kind}, {\ttfamily peak}, and {\ttfamily distance} have valid values. The {\ttfamily latitude} and {\ttfamily longitude} are set only for total and annular eclipses (see more below). If {\ttfamily status} holds any value other than {\ttfamily ASTRO\+\_\+\+SUCCESS}, it is an error code; in that case, {\ttfamily kind} holds {\ttfamily ECLIPSE\+\_\+\+NONE} and all the other fields are undefined.
+
+Field {\ttfamily peak} holds the date and time of the peak of the eclipse, defined as the instant when the axis of the Moon\textquotesingle{}s shadow cone passes closest to the Earth\textquotesingle{}s center.
+
+The eclipse is classified as partial, annular, or total, depending on the maximum amount of the Sun\textquotesingle{}s disc obscured, as seen at the peak location on the surface of the Earth.
+
+The {\ttfamily kind} field thus holds {\ttfamily ECLIPSE\+\_\+\+PARTIAL}, {\ttfamily ECLIPSE\+\_\+\+ANNULAR}, or {\ttfamily ECLIPSE\+\_\+\+TOTAL}. A total eclipse is when the peak observer sees the Sun completely blocked by the Moon. An annular eclipse is like a total eclipse, but the Moon is too far from the Earth\textquotesingle{}s surface to completely block the Sun; instead, the Sun takes on a ring-\/shaped appearance. A partial eclipse is when the Moon blocks part of the Sun\textquotesingle{}s disc, but nobody on the Earth observes either a total or annular eclipse.
+
+If {\ttfamily kind} is {\ttfamily ECLIPSE\+\_\+\+TOTAL} or {\ttfamily ECLIPSE\+\_\+\+ANNULAR}, the {\ttfamily latitude} and {\ttfamily longitude} fields give the geographic coordinates of the center of the Moon\textquotesingle{}s shadow projected onto the daytime side of the Earth at the instant of the eclipse\textquotesingle{}s peak. If {\ttfamily kind} has any other value, {\ttfamily latitude} and {\ttfamily longitude} are undefined and should not be used. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__global__solar__eclipse__t_a6fc8d37d5b60eeb9cc0d60e4145a1fd3}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!distance@{distance}}
+\index{distance@{distance}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{distance}{distance}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_a6fc8d37d5b60eeb9cc0d60e4145a1fd3} 
+double astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::distance}
+
+The distance between the Sun/\+Moon shadow axis and the center of the Earth, in kilometers. \Hypertarget{structastro__global__solar__eclipse__t_aaa6fdf25e806f460ce7766b872f39dda}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!kind@{kind}}
+\index{kind@{kind}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_aaa6fdf25e806f460ce7766b872f39dda} 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::kind}
+
+The type of solar eclipse found. \Hypertarget{structastro__global__solar__eclipse__t_a34dc668e7903c10a8b49a5ca7c7e8cef}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!latitude@{latitude}}
+\index{latitude@{latitude}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{latitude}{latitude}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_a34dc668e7903c10a8b49a5ca7c7e8cef} 
+double astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::latitude}
+
+The geographic latitude at the center of the peak eclipse shadow. \Hypertarget{structastro__global__solar__eclipse__t_a7e6e6a56ab89d394e72f96ef0054485f}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!longitude@{longitude}}
+\index{longitude@{longitude}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{longitude}{longitude}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_a7e6e6a56ab89d394e72f96ef0054485f} 
+double astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::longitude}
+
+The geographic longitude at the center of the peak eclipse shadow. \Hypertarget{structastro__global__solar__eclipse__t_a8926a76de8dbb38bf01b8bff48fc950a}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!peak@{peak}}
+\index{peak@{peak}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{peak}{peak}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_a8926a76de8dbb38bf01b8bff48fc950a} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::peak}
+
+The date and time of the eclipse at its peak. \Hypertarget{structastro__global__solar__eclipse__t_ac07f4704d5221504baa66ddca71bcad5}\index{astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}!status@{status}}
+\index{status@{status}!astro\_global\_solar\_eclipse\_t@{astro\_global\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__global__solar__eclipse__t_ac07f4704d5221504baa66ddca71bcad5} 
+astro\+\_\+status\+\_\+t astro\+\_\+global\+\_\+solar\+\_\+eclipse\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

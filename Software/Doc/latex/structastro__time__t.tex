@@ -1,0 +1,79 @@
+\doxysection{astro\+\_\+time\+\_\+t Struct Reference}
+\hypertarget{structastro__time__t}{}\label{structastro__time__t}\index{astro\_time\_t@{astro\_time\_t}}
+
+
+A date and time used for astronomical calculations.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{structastro__time__t_a0874edc886a134a3a09ed3c1e4c41d24}{ut}}
+\begin{DoxyCompactList}\small\item\em UT1/\+UTC number of days since noon on January 1, 2000. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{structastro__time__t_a7efe42a250b382ca1052fd4ae5da4d8d}{tt}}
+\begin{DoxyCompactList}\small\item\em Terrestrial Time days since noon on January 1, 2000. \end{DoxyCompactList}\item 
+\Hypertarget{structastro__time__t_a1daf4ea6e4bc7991cc9a204645eac5e8}\label{structastro__time__t_a1daf4ea6e4bc7991cc9a204645eac5e8} 
+double {\bfseries psi}
+\begin{DoxyCompactList}\small\item\em For internal use only. Used to optimize Earth tilt calculations. \end{DoxyCompactList}\item 
+\Hypertarget{structastro__time__t_a5143fb2fa0c35eef45a919e8709684d5}\label{structastro__time__t_a5143fb2fa0c35eef45a919e8709684d5} 
+double {\bfseries eps}
+\begin{DoxyCompactList}\small\item\em For internal use only. Used to optimize Earth tilt calculations. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A date and time used for astronomical calculations. 
+
+This type is of fundamental importance to Astronomy Engine. It is used to represent dates and times for all astronomical calculations. It is also included in the values returned by many Astronomy Engine functions.
+
+To create a valid \doxylink{structastro__time__t}{astro\+\_\+time\+\_\+t} value from scratch, call Astronomy\+\_\+\+Make\+Time (for a given calendar date and time) or Astronomy\+\_\+\+Current\+Time (for the system\textquotesingle{}s current date and time).
+
+To adjust an existing \doxylink{structastro__time__t}{astro\+\_\+time\+\_\+t} by a certain real number of days, call Astronomy\+\_\+\+Add\+Days.
+
+The \doxylink{structastro__time__t}{astro\+\_\+time\+\_\+t} type contains {\ttfamily ut} to represent Universal Time (UT1/\+UTC) and {\ttfamily tt} to represent Terrestrial Time (TT, also known as {\itshape ephemeris time}). The difference {\ttfamily tt-\/ut} is known as {\itshape {$\Delta$}T}, and is obtained from a model provided by the \href{http://maia.usno.navy.mil/ser7/}{\texttt{ United States Naval Observatory}}.
+
+Both {\ttfamily tt} and {\ttfamily ut} are necessary for performing different astronomical calculations. Indeed, certain calculations (such as rise/set times) require both time scales. See the documentation for the {\ttfamily ut} and {\ttfamily tt} fields for more detailed information.
+
+In cases where \doxylink{structastro__time__t}{astro\+\_\+time\+\_\+t} is included in a structure returned by a function that can fail, the astro\+\_\+status\+\_\+t field {\ttfamily status} will contain a value other than {\ttfamily ASTRO\+\_\+\+SUCCESS}; in that case the {\ttfamily ut} and {\ttfamily tt} will hold {\ttfamily NAN} (not a number). In general, when there is an error code stored in a struct field {\ttfamily status}, the caller should ignore all other values in that structure, including the {\ttfamily ut} and {\ttfamily tt} inside \doxylink{structastro__time__t}{astro\+\_\+time\+\_\+t}. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__time__t_a7efe42a250b382ca1052fd4ae5da4d8d}\index{astro\_time\_t@{astro\_time\_t}!tt@{tt}}
+\index{tt@{tt}!astro\_time\_t@{astro\_time\_t}}
+\doxysubsubsection{\texorpdfstring{tt}{tt}}
+{\footnotesize\ttfamily \label{structastro__time__t_a7efe42a250b382ca1052fd4ae5da4d8d} 
+double astro\+\_\+time\+\_\+t\+::tt}
+
+
+
+Terrestrial Time days since noon on January 1, 2000. 
+
+Terrestrial Time is an atomic time scale defined as a number of days since noon on January 1, 2000. In this system, days are not based on Earth rotations, but instead by the number of elapsed \href{https://physics.nist.gov/cuu/Units/second.html}{\texttt{ SI seconds}} divided by 86400. Unlike {\ttfamily ut}, {\ttfamily tt} increases uniformly without adjustments for changes in the Earth\textquotesingle{}s rotation.
+
+The value in {\ttfamily tt} is used for calculations of movements not involving the Earth\textquotesingle{}s rotation, such as the orbits of planets around the Sun, or the Moon around the Earth.
+
+Historically, Terrestrial Time has also been known by the term {\itshape Ephemeris Time} (ET). \Hypertarget{structastro__time__t_a0874edc886a134a3a09ed3c1e4c41d24}\index{astro\_time\_t@{astro\_time\_t}!ut@{ut}}
+\index{ut@{ut}!astro\_time\_t@{astro\_time\_t}}
+\doxysubsubsection{\texorpdfstring{ut}{ut}}
+{\footnotesize\ttfamily \label{structastro__time__t_a0874edc886a134a3a09ed3c1e4c41d24} 
+double astro\+\_\+time\+\_\+t\+::ut}
+
+
+
+UT1/\+UTC number of days since noon on January 1, 2000. 
+
+The floating point number of days of Universal Time since noon UTC January 1, 2000. Astronomy Engine approximates UTC and UT1 as being the same thing, although they are not exactly equivalent; UTC and UT1 can disagree by up to {$\pm$}0.\+9 seconds. This approximation is sufficient for the accuracy requirements of Astronomy Engine.
+
+Universal Time Coordinate (UTC) is the international standard for legal and civil timekeeping and replaces the older Greenwich Mean Time (GMT) standard. UTC is kept in sync with unpredictable observed changes in the Earth\textquotesingle{}s rotation by occasionally adding leap seconds as needed.
+
+UT1 is an idealized time scale based on observed rotation of the Earth, which gradually slows down in an unpredictable way over time, due to tidal drag by the Moon and Sun, large scale weather events like hurricanes, and internal seismic and convection effects. Conceptually, UT1 drifts from atomic time continuously and erratically, whereas UTC is adjusted by a scheduled whole number of leap seconds as needed.
+
+The value in {\ttfamily ut} is appropriate for any calculation involving the Earth\textquotesingle{}s rotation, such as calculating rise/set times, culumination, and anything involving apparent sidereal time.
+
+Before the era of atomic timekeeping, days based on the Earth\textquotesingle{}s rotation were often known as {\itshape mean solar days}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

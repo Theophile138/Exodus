@@ -1,0 +1,106 @@
+\doxysection{Setup27\+\_\+\+RPi\+\_\+\+ST7796\+\_\+\+ESP32.\+h}
+\hypertarget{_setup27___r_pi___s_t7796___e_s_p32_8h_source}{}\label{_setup27___r_pi___s_t7796___e_s_p32_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup27\_RPi\_ST7796\_ESP32.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup27\_RPi\_ST7796\_ESP32.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ USER\ DEFINED\ SETTINGS}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ \ Set\ driver\ type,\ fonts\ to\ be\ loaded,\ pins\ used\ and\ SPI\ control\ method\ etc}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ \ See\ the\ User\_Setup\_Select.h\ file\ if\ you\ wish\ to\ be\ able\ to\ define\ multiple}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ \ setups\ and\ then\ easily\ select\ which\ setup\ file\ is\ used\ by\ the\ compiler.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ \ If\ this\ file\ is\ edited\ correctly\ then\ all\ the\ library\ example\ sketches\ should}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ \ run\ without\ the\ need\ to\ make\ any\ more\ changes\ for\ a\ particular\ hardware\ setup!}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Section\ 0.\ Call\ up\ the\ right\ driver\ file\ and\ any\ options\ for\ it}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Display\ type\ -\/\ \ only\ define\ if\ RPi\ display}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ RPI\_DISPLAY\_TYPE}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Only\ define\ one\ driver}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ST7796\_DRIVER}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Section\ 1.\ Define\ the\ pins\ that\ are\ used\ to\ interface\ with\ the\ display\ here}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ >>>>>\ EDIT\ THE\ PIN\ NUMBERS\ IN\ THE\ LINES\ FOLLOWING\ TO\ SUIT\ YOUR\ ESP32\ SETUP\ \ \ <<<<<}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ The\ ESP32\ hardware\ SPI\ can\ be\ mapped\ to\ any\ pins,\ these\ are\ the\ recommended\ default}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 19}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 23}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 15\ \ \ }\textcolor{comment}{//\ Chip\ select\ control\ pin}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ \ 2\ \ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 4\ \ \ }\textcolor{comment}{//\ Reset\ pin\ (could\ connect\ to\ RST\ pin)}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\#define\ TFT\_RST\ \ -\/1\ //\ Set\ TFT\_RST\ to\ -\/1\ if\ display\ RESET\ is\ connected\ to\ ESP32\ board\ RST}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TOUCH\_CS\ 22\ \ \ \ \ }\textcolor{comment}{//\ Chip\ select\ pin\ (T\_CS)\ of\ touch\ screen}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Section\ 2.\ Not\ used\ for\ ESP32}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Section\ 3.\ Define\ the\ fonts\ that\ are\ to\ be\ used\ here}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Comment\ out\ the\ \#defines\ below\ with\ //\ to\ stop\ that\ font\ being\ loaded}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ The\ ESP8366\ and\ ESP32\ have\ plenty\ of\ memory\ so\ commenting\ out\ fonts\ is\ not}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ normally\ necessary.\ If\ all\ fonts\ are\ loaded\ the\ extra\ FLASH\ space\ required\ is}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ about\ 17Kbytes.\ To\ save\ FLASH\ space\ only\ enable\ the\ fonts\ you\ need!}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\#define\ LOAD\_FONT8N\ //\ Font\ 8.\ Alternative\ to\ Font\ 8\ above,\ slightly\ narrower,\ so\ 3\ digits\ fit\ a\ 160\ pixel\ TFT}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ Comment\ out\ the\ \#define\ below\ to\ stop\ the\ SPIFFS\ filing\ system\ and\ smooth\ font\ code\ being\ loaded}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ this\ will\ save\ \string~20kbytes\ of\ FLASH}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ Section\ 4.\ Not\ used}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ Section\ 5.\ Other\ options}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ Define\ the\ SPI\ clock\ frequency,\ this\ affects\ the\ graphics\ rendering\ speed.\ Too}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ fast\ and\ the\ TFT\ driver\ will\ not\ keep\ up\ and\ display\ corruption\ appears.}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ With\ an\ RPi\ ST7796\ MH4.0\ display\ 80MHz\ is\ OK\ for\ ESP32,\ 40MHz\ maximum\ for\ ESP8266}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \#define\ SPI\_FREQUENCY\ \ 20000000}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \#define\ SPI\_FREQUENCY\ \ 40000000}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \#define\ SPI\_FREQUENCY\ \ 80000000}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ The\ ESP32\ has\ 2\ free\ SPI\ ports\ i.e.\ VSPI\ and\ HSPI,\ the\ VSPI\ is\ the\ default.}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ If\ the\ VSPI\ port\ is\ in\ use\ and\ pins\ are\ not\ accessible\ (e.g.\ TTGO\ T-\/Beam)}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ then\ uncomment\ the\ following\ line:}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\#define\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ The\ XPT2046\ requires\ a\ lower\ SPI\ clock\ rate\ of\ 2.5MHz\ so\ we\ define\ that\ here:}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\ \ \ \#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000}}
+
+\end{DoxyCode}

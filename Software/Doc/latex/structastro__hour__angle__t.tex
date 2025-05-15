@@ -1,0 +1,51 @@
+\doxysection{astro\+\_\+hour\+\_\+angle\+\_\+t Struct Reference}
+\hypertarget{structastro__hour__angle__t}{}\label{structastro__hour__angle__t}\index{astro\_hour\_angle\_t@{astro\_hour\_angle\_t}}
+
+
+Information about a celestial body crossing a specific hour angle.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__hour__angle__t_ac410b728be11fc8bb31c971b275309e4}{status}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__hour__angle__t_aa7a75ac99b4133967ea4e62330535d34}{time}}
+\item 
+\mbox{\hyperlink{structastro__horizon__t}{astro\+\_\+horizon\+\_\+t}} \mbox{\hyperlink{structastro__hour__angle__t_a7e6b30b3c23dc2dacb3bb80b09ef205e}{hor}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Information about a celestial body crossing a specific hour angle. 
+
+Returned by the function Astronomy\+\_\+\+Search\+Hour\+Angle to report information about a celestial body crossing a certain hour angle as seen by a specified topocentric observer. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__hour__angle__t_a7e6b30b3c23dc2dacb3bb80b09ef205e}\index{astro\_hour\_angle\_t@{astro\_hour\_angle\_t}!hor@{hor}}
+\index{hor@{hor}!astro\_hour\_angle\_t@{astro\_hour\_angle\_t}}
+\doxysubsubsection{\texorpdfstring{hor}{hor}}
+{\footnotesize\ttfamily \label{structastro__hour__angle__t_a7e6b30b3c23dc2dacb3bb80b09ef205e} 
+\mbox{\hyperlink{structastro__horizon__t}{astro\+\_\+horizon\+\_\+t}} astro\+\_\+hour\+\_\+angle\+\_\+t\+::hor}
+
+Apparent coordinates of the body at the time it crosses the specified hour angle. \Hypertarget{structastro__hour__angle__t_ac410b728be11fc8bb31c971b275309e4}\index{astro\_hour\_angle\_t@{astro\_hour\_angle\_t}!status@{status}}
+\index{status@{status}!astro\_hour\_angle\_t@{astro\_hour\_angle\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__hour__angle__t_ac410b728be11fc8bb31c971b275309e4} 
+astro\+\_\+status\+\_\+t astro\+\_\+hour\+\_\+angle\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__hour__angle__t_aa7a75ac99b4133967ea4e62330535d34}\index{astro\_hour\_angle\_t@{astro\_hour\_angle\_t}!time@{time}}
+\index{time@{time}!astro\_hour\_angle\_t@{astro\_hour\_angle\_t}}
+\doxysubsubsection{\texorpdfstring{time}{time}}
+{\footnotesize\ttfamily \label{structastro__hour__angle__t_aa7a75ac99b4133967ea4e62330535d34} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+hour\+\_\+angle\+\_\+t\+::time}
+
+The date and time when the body crosses the specified hour angle. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

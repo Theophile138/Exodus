@@ -1,0 +1,90 @@
+\doxysection{ILI9225\+\_\+\+Defines.\+h}
+\hypertarget{_i_l_i9225___defines_8h_source}{}\label{_i_l_i9225___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Change\ the\ width\ and\ height\ if\ required\ (defined\ in\ portrait\ mode)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ or\ use\ the\ constructor\ to\ over-\/ride\ defaults}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 176}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 220}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ 0x28}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ 0}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ 0}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_CASET1\ \ \ \ \ ILI9225\_HORIZONTAL\_WINDOW\_ADDR2}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_CASET2\ \ \ \ \ ILI9225\_HORIZONTAL\_WINDOW\_ADDR1}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_PASET1\ \ \ \ \ ILI9225\_VERTICAL\_WINDOW\_ADDR2}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TFT\_PASET2\ \ \ \ \ ILI9225\_VERTICAL\_WINDOW\_ADDR1}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TFT\_RAM\_ADDR1\ \ ILI9225\_RAM\_ADDR\_SET1}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TFT\_RAM\_ADDR2\ \ ILI9225\_RAM\_ADDR\_SET2}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ \ \ \ ILI9225\_GRAM\_DATA\_REG}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_BGR\ 0x10}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_RGB\ 0x00}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#ifdef\ TFT\_RGB\_ORDER}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_RGB\_ORDER\ ==\ 1)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_RGB}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_BGR}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_BGR}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ Not\ used}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ 0x00}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ 0x00}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ 0x00}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ 0x00}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{/*\ ILI9225\ Registers\ */}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ILI9225\_DRIVER\_OUTPUT\_CTRL\ \ \ \ \ \ 0x01\ \ }\textcolor{comment}{//\ Driver\ Output\ Control}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ILI9225\_LCD\_AC\_DRIVING\_CTRL\ \ \ \ \ 0x02\ \ }\textcolor{comment}{//\ LCD\ AC\ Driving\ Control}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ILI9225\_ENTRY\_MODE\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x03\ \ }\textcolor{comment}{//\ Entry\ Mode}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ILI9225\_DISP\_CTRL1\ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x07\ \ }\textcolor{comment}{//\ Display\ Control\ 1}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ILI9225\_BLANK\_PERIOD\_CTRL1\ \ \ \ \ \ 0x08\ \ }\textcolor{comment}{//\ Blank\ Period\ Control}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ILI9225\_FRAME\_CYCLE\_CTRL\ \ \ \ \ \ \ \ 0x0B\ \ }\textcolor{comment}{//\ Frame\ Cycle\ Control}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ILI9225\_INTERFACE\_CTRL\ \ \ \ \ \ \ \ \ \ 0x0C\ \ }\textcolor{comment}{//\ Interface\ Control}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ILI9225\_OSC\_CTRL\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0F\ \ }\textcolor{comment}{//\ Osc\ Control}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ILI9225\_POWER\_CTRL1\ \ \ \ \ \ \ \ \ \ \ \ \ 0x10\ \ }\textcolor{comment}{//\ Power\ Control\ 1}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ILI9225\_POWER\_CTRL2\ \ \ \ \ \ \ \ \ \ \ \ \ 0x11\ \ }\textcolor{comment}{//\ Power\ Control\ 2}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ ILI9225\_POWER\_CTRL3\ \ \ \ \ \ \ \ \ \ \ \ \ 0x12\ \ }\textcolor{comment}{//\ Power\ Control\ 3}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ ILI9225\_POWER\_CTRL4\ \ \ \ \ \ \ \ \ \ \ \ \ 0x13\ \ }\textcolor{comment}{//\ Power\ Control\ 4}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ ILI9225\_POWER\_CTRL5\ \ \ \ \ \ \ \ \ \ \ \ \ 0x14\ \ }\textcolor{comment}{//\ Power\ Control\ 5}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ILI9225\_VCI\_RECYCLING\ \ \ \ \ \ \ \ \ \ \ 0x15\ \ }\textcolor{comment}{//\ VCI\ Recycling}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ILI9225\_RAM\_ADDR\_SET1\ \ \ \ \ \ \ \ \ \ \ 0x20\ \ }\textcolor{comment}{//\ Horizontal\ GRAM\ Address\ Set}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ ILI9225\_RAM\_ADDR\_SET2\ \ \ \ \ \ \ \ \ \ \ 0x21\ \ }\textcolor{comment}{//\ Vertical\ GRAM\ Address\ Set}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ ILI9225\_GRAM\_DATA\_REG\ \ \ \ \ \ \ \ \ \ \ 0x22\ \ }\textcolor{comment}{//\ GRAM\ Data\ Register}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ ILI9225\_GATE\_SCAN\_CTRL\ \ \ \ \ \ \ \ \ \ 0x30\ \ }\textcolor{comment}{//\ Gate\ Scan\ Control\ Register}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ ILI9225\_VERTICAL\_SCROLL\_CTRL1\ \ \ 0x31\ \ }\textcolor{comment}{//\ Vertical\ Scroll\ Control\ 1\ Register}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ ILI9225\_VERTICAL\_SCROLL\_CTRL2\ \ \ 0x32\ \ }\textcolor{comment}{//\ Vertical\ Scroll\ Control\ 2\ Register}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ILI9225\_VERTICAL\_SCROLL\_CTRL3\ \ \ 0x33\ \ }\textcolor{comment}{//\ Vertical\ Scroll\ Control\ 3\ Register}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ ILI9225\_PARTIAL\_DRIVING\_POS1\ \ \ \ 0x34\ \ }\textcolor{comment}{//\ Partial\ Driving\ Position\ 1\ Register}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ ILI9225\_PARTIAL\_DRIVING\_POS2\ \ \ \ 0x35\ \ }\textcolor{comment}{//\ Partial\ Driving\ Position\ 2\ Register}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ ILI9225\_HORIZONTAL\_WINDOW\_ADDR1\ 0x36\ \ }\textcolor{comment}{//\ Horizontal\ Address\ Start\ Position}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ ILI9225\_HORIZONTAL\_WINDOW\_ADDR2\ 0x37\ \ }\textcolor{comment}{//\ Horizontal\ Address\ End\ Position}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ ILI9225\_VERTICAL\_WINDOW\_ADDR1\ \ \ 0x38\ \ }\textcolor{comment}{//\ Vertical\ Address\ Start\ Position}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ ILI9225\_VERTICAL\_WINDOW\_ADDR2\ \ \ 0x39\ \ }\textcolor{comment}{//\ Vertical\ Address\ End\ Position}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL1\ \ \ \ \ \ \ \ \ \ \ \ \ 0x50\ \ }\textcolor{comment}{//\ Gamma\ Control\ 1}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL2\ \ \ \ \ \ \ \ \ \ \ \ \ 0x51\ \ }\textcolor{comment}{//\ Gamma\ Control\ 2}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL3\ \ \ \ \ \ \ \ \ \ \ \ \ 0x52\ \ }\textcolor{comment}{//\ Gamma\ Control\ 3}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL4\ \ \ \ \ \ \ \ \ \ \ \ \ 0x53\ \ }\textcolor{comment}{//\ Gamma\ Control\ 4}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL5\ \ \ \ \ \ \ \ \ \ \ \ \ 0x54\ \ }\textcolor{comment}{//\ Gamma\ Control\ 5}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL6\ \ \ \ \ \ \ \ \ \ \ \ \ 0x55\ \ }\textcolor{comment}{//\ Gamma\ Control\ 6}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL7\ \ \ \ \ \ \ \ \ \ \ \ \ 0x56\ \ }\textcolor{comment}{//\ Gamma\ Control\ 7}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL8\ \ \ \ \ \ \ \ \ \ \ \ \ 0x57\ \ }\textcolor{comment}{//\ Gamma\ Control\ 8}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL9\ \ \ \ \ \ \ \ \ \ \ \ \ 0x58\ \ }\textcolor{comment}{//\ Gamma\ Control\ 9}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ ILI9225\_GAMMA\_CTRL10\ \ \ \ \ \ \ \ \ \ \ \ 0x59\ \ }\textcolor{comment}{//\ Gamma\ Control\ 10}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x00\ }\textcolor{comment}{//\ Not\ used\ unless\ commandlist\ invoked}}
+\DoxyCodeLine{00084\ }
+
+\end{DoxyCode}

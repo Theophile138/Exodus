@@ -1,0 +1,183 @@
+\doxysection{Multiplexeur Class Reference}
+\hypertarget{class_multiplexeur}{}\label{class_multiplexeur}\index{Multiplexeur@{Multiplexeur}}
+
+
+Classe pour piloter un multiplexeur analogique (ex \+: CD4051).  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Peripherique.\+h$>$}
+
+Inheritance diagram for Multiplexeur\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_multiplexeur}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_multiplexeur_a9947b5d3495033070a7bcbaa626dd600}{Multiplexeur}} (int \mbox{\hyperlink{class_multiplexeur_a744b7428aab61259a746a82608e07dd0}{S0}}, int \mbox{\hyperlink{class_multiplexeur_a221a8165d63062901375ab4827d32cfc}{S1}}, int \mbox{\hyperlink{class_multiplexeur_a1802954b3de8e84a689424e0379859a0}{S2}}, int \mbox{\hyperlink{class_multiplexeur_ac980a12cabd1d7c5bde8f3b443d0c164}{analog\+Pin}}, \mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*}parent\+Selec, \mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_multiplexeur_a4172396a8ef069c048d11cb11ef047c7}{parent\+Analog}})
+\begin{DoxyCompactList}\small\item\em Constructeur du multiplexeur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_multiplexeur_a83f2a28db1123d2b9e73a0ca9e52b1ce}{analog\+Read\+Any\+Device}} (int pin) override
+\begin{DoxyCompactList}\small\item\em Lit la valeur analogique d\textquotesingle{}un canal donné.    \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_multiplexeur_ada9e81ffc18d75583ad26ccbb2f59c9d}{Select\+Pin}} (int pin)
+\begin{DoxyCompactList}\small\item\em Sélectionne un canal du multiplexeur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_multiplexeur_a744b7428aab61259a746a82608e07dd0}{S0}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S0. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_multiplexeur_a221a8165d63062901375ab4827d32cfc}{S1}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S1. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_multiplexeur_a1802954b3de8e84a689424e0379859a0}{S2}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S2. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_multiplexeur_ac980a12cabd1d7c5bde8f3b443d0c164}{analog\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin analogique pour la lecture. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_multiplexeur_abb124dcf86b8bbee3fd9376884db1eb9}{parent}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le parent pour la sélection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_multiplexeur_a4172396a8ef069c048d11cb11ef047c7}{parent\+Analog}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le parent pour la lecture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour piloter un multiplexeur analogique (ex \+: CD4051). 
+
+Permet de sélectionner une entrée et de lire sa valeur via un multiplexeur. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_multiplexeur_a9947b5d3495033070a7bcbaa626dd600}\index{Multiplexeur@{Multiplexeur}!Multiplexeur@{Multiplexeur}}
+\index{Multiplexeur@{Multiplexeur}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{Multiplexeur()}{Multiplexeur()}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a9947b5d3495033070a7bcbaa626dd600} 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}} (\begin{DoxyParamCaption}\item[{int}]{S0}{, }\item[{int}]{S1}{, }\item[{int}]{S2}{, }\item[{int}]{analog\+Pin}{, }\item[{\mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*}}]{parent\+Selec}{, }\item[{\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*}}]{parent\+Analog}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur du multiplexeur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em S0} & Pin de sélection S0. \\
+\hline
+{\em S1} & Pin de sélection S1. \\
+\hline
+{\em S2} & Pin de sélection S2. \\
+\hline
+{\em analog\+Pin} & Pin analogique de lecture. \\
+\hline
+{\em parent\+Selec} & Pointeur vers l\textquotesingle{}objet \doxylink{class_parent_device}{Parent\+Device} pour la sélection. \\
+\hline
+{\em parent\+Analog} & Pointeur vers l\textquotesingle{}objet \doxylink{class_parent_analog}{Parent\+Analog} pour la lecture. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_multiplexeur_a83f2a28db1123d2b9e73a0ca9e52b1ce}\index{Multiplexeur@{Multiplexeur}!analogReadAnyDevice@{analogReadAnyDevice}}
+\index{analogReadAnyDevice@{analogReadAnyDevice}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{analogReadAnyDevice()}{analogReadAnyDevice()}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a83f2a28db1123d2b9e73a0ca9e52b1ce} 
+int analog\+Read\+Any\+Device (\begin{DoxyParamCaption}\item[{int}]{pin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Lit la valeur analogique d\textquotesingle{}un canal donné.    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du canal à lire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valeur analogique lue.    
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_parent_analog_a5e73de9dc55604826785e88045310739}{Parent\+Analog}}.
+
+\Hypertarget{class_multiplexeur_ada9e81ffc18d75583ad26ccbb2f59c9d}\index{Multiplexeur@{Multiplexeur}!SelectPin@{SelectPin}}
+\index{SelectPin@{SelectPin}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{SelectPin()}{SelectPin()}}
+{\footnotesize\ttfamily \label{class_multiplexeur_ada9e81ffc18d75583ad26ccbb2f59c9d} 
+void Select\+Pin (\begin{DoxyParamCaption}\item[{int}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Sélectionne un canal du multiplexeur. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du canal à sélectionner. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_multiplexeur_ac980a12cabd1d7c5bde8f3b443d0c164}\index{Multiplexeur@{Multiplexeur}!analogPin@{analogPin}}
+\index{analogPin@{analogPin}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{analogPin}{analogPin}}
+{\footnotesize\ttfamily \label{class_multiplexeur_ac980a12cabd1d7c5bde8f3b443d0c164} 
+int analog\+Pin\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin analogique pour la lecture. 
+
+\Hypertarget{class_multiplexeur_abb124dcf86b8bbee3fd9376884db1eb9}\index{Multiplexeur@{Multiplexeur}!parent@{parent}}
+\index{parent@{parent}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \label{class_multiplexeur_abb124dcf86b8bbee3fd9376884db1eb9} 
+\mbox{\hyperlink{class_parent_device}{Parent\+Device}}\texorpdfstring{$\ast$}{*} parent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers le parent pour la sélection. 
+
+\Hypertarget{class_multiplexeur_a4172396a8ef069c048d11cb11ef047c7}\index{Multiplexeur@{Multiplexeur}!parentAnalog@{parentAnalog}}
+\index{parentAnalog@{parentAnalog}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{parentAnalog}{parentAnalog}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a4172396a8ef069c048d11cb11ef047c7} 
+\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}}\texorpdfstring{$\ast$}{*} parent\+Analog\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers le parent pour la lecture. 
+
+\Hypertarget{class_multiplexeur_a744b7428aab61259a746a82608e07dd0}\index{Multiplexeur@{Multiplexeur}!S0@{S0}}
+\index{S0@{S0}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{S0}{S0}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a744b7428aab61259a746a82608e07dd0} 
+int S0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin de sélection S0. 
+
+\Hypertarget{class_multiplexeur_a221a8165d63062901375ab4827d32cfc}\index{Multiplexeur@{Multiplexeur}!S1@{S1}}
+\index{S1@{S1}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{S1}{S1}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a221a8165d63062901375ab4827d32cfc} 
+int S1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin de sélection S1. 
+
+\Hypertarget{class_multiplexeur_a1802954b3de8e84a689424e0379859a0}\index{Multiplexeur@{Multiplexeur}!S2@{S2}}
+\index{S2@{S2}!Multiplexeur@{Multiplexeur}}
+\doxysubsubsection{\texorpdfstring{S2}{S2}}
+{\footnotesize\ttfamily \label{class_multiplexeur_a1802954b3de8e84a689424e0379859a0} 
+int S2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin de sélection S2. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8h}{Lib\+Peripherique.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8cpp}{Lib\+Peripherique.\+cpp}}\end{DoxyCompactItemize}

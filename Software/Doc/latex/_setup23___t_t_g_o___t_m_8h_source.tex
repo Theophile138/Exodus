@@ -1,0 +1,46 @@
+\doxysection{Setup23\+\_\+\+TTGO\+\_\+\+TM.\+h}
+\hypertarget{_setup23___t_t_g_o___t_m_8h_source}{}\label{_setup23___t_t_g_o___t_m_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup23\_TTGO\_TM.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup23\_TTGO\_TM.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Setup\ for\ the\ TTGO\ TM\ (Music)\ ESP32\ board\ with\ 2.4"{}\ ST7789V\ display}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ST7789\_DRIVER}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ TFT\_SDA\_READ\ }\textcolor{comment}{//\ Read\ from\ display,\ it\ only\ provides\ an\ SDA\ pin}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 19\ \ }\textcolor{comment}{//\ Must\ be\ defined\ even\ though\ it\ is\ not\ used}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 23\ \ }\textcolor{comment}{//\ Connected\ to\ display\ SDA\ line}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 05}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 16}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ 17}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 240}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 320}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\#define\ TFT\_RGB\_ORDER\ TFT\_RGB\ \ //\ Colour\ order\ Red-\/Green-\/Blue}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TFT\_RGB\_ORDER\ TFT\_BGR\ }\textcolor{comment}{//\ Colour\ order\ Blue-\/Green-\/Red}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Black\ and\ white\ swap\ option}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\#define\ TFT\_INVERSION\_ON}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TFT\_INVERSION\_OFF}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 40000000\ \ \ \ \ }\textcolor{comment}{//\ This\ display\ also\ seems\ to\ work\ reliably\ at\ 80MHz}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 80000000}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 6000000\ }\textcolor{comment}{//\ 6\ MHz\ is\ the\ maximum\ SPI\ read\ speed\ for\ the\ ST7789V}}
+
+\end{DoxyCode}

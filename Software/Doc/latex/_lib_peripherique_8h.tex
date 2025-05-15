@@ -1,0 +1,26 @@
+\doxysection{Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\+Lib\+Peripherique.h File Reference}
+\hypertarget{_lib_peripherique_8h}{}\label{_lib_peripherique_8h}\index{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibPeripherique.h@{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibPeripherique.h}}
+
+
+Classes pour gérer les multiplexeurs et registres pour d\textquotesingle{}augmenter la capacité I/O de l\textquotesingle{}ESP.  
+
+
+{\ttfamily \#include "{}Arduino.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_parent_device}{Parent\+Device}}
+\begin{DoxyCompactList}\small\item\em Interface pour les périphériques pouvant être sélectionnés par un multiplexeur ou contrôlés par un registre. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_parent_analog}{Parent\+Analog}}
+\begin{DoxyCompactList}\small\item\em Interface pour les périphériques capables de lire une valeur analogique. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_master_device}{Master\+Device}}
+\begin{DoxyCompactList}\small\item\em Implémente \doxylink{class_parent_device}{Parent\+Device} et \doxylink{class_parent_analog}{Parent\+Analog} pour gérer directement les pins du microcontrôleur. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_registre}{Registre}}
+\begin{DoxyCompactList}\small\item\em Classe pour piloter un registre. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}
+\begin{DoxyCompactList}\small\item\em Classe pour piloter un multiplexeur analogique (ex \+: CD4051). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classes pour gérer les multiplexeurs et registres pour d\textquotesingle{}augmenter la capacité I/O de l\textquotesingle{}ESP. 
+

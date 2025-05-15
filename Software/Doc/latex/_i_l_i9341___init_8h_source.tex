@@ -1,0 +1,254 @@
+\doxysection{ILI9341\+\_\+\+Init.\+h}
+\hypertarget{_i_l_i9341___init_8h_source}{}\label{_i_l_i9341___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9341\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9341\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ILI9341\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ uses\ simple\ 8\ bit\ SPI\ writecommand()\ and\ writedata()\ functions}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ See\ ST7735\_Setup.h\ file\ for\ an\ alternative\ format}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#if\ defined\ (ILI9341\_DRIVER)}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ writecommand(0xEF);}
+\DoxyCodeLine{00011\ \ \ writedata(0x03);}
+\DoxyCodeLine{00012\ \ \ writedata(0x80);}
+\DoxyCodeLine{00013\ \ \ writedata(0x02);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ writecommand(0xCF);}
+\DoxyCodeLine{00016\ \ \ writedata(0x00);}
+\DoxyCodeLine{00017\ \ \ writedata(0XC1);}
+\DoxyCodeLine{00018\ \ \ writedata(0X30);}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ writecommand(0xED);}
+\DoxyCodeLine{00021\ \ \ writedata(0x64);}
+\DoxyCodeLine{00022\ \ \ writedata(0x03);}
+\DoxyCodeLine{00023\ \ \ writedata(0X12);}
+\DoxyCodeLine{00024\ \ \ writedata(0X81);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ writecommand(0xE8);}
+\DoxyCodeLine{00027\ \ \ writedata(0x85);}
+\DoxyCodeLine{00028\ \ \ writedata(0x00);}
+\DoxyCodeLine{00029\ \ \ writedata(0x78);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ writecommand(0xCB);}
+\DoxyCodeLine{00032\ \ \ writedata(0x39);}
+\DoxyCodeLine{00033\ \ \ writedata(0x2C);}
+\DoxyCodeLine{00034\ \ \ writedata(0x00);}
+\DoxyCodeLine{00035\ \ \ writedata(0x34);}
+\DoxyCodeLine{00036\ \ \ writedata(0x02);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ writecommand(0xF7);}
+\DoxyCodeLine{00039\ \ \ writedata(0x20);}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ writecommand(0xEA);}
+\DoxyCodeLine{00042\ \ \ writedata(0x00);}
+\DoxyCodeLine{00043\ \ \ writedata(0x00);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ writecommand(ILI9341\_PWCTR1);\ \ \ \ \textcolor{comment}{//Power\ control}}
+\DoxyCodeLine{00046\ \ \ writedata(0x23);\ \ \ \textcolor{comment}{//VRH[5:0]}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ writecommand(ILI9341\_PWCTR2);\ \ \ \ \textcolor{comment}{//Power\ control}}
+\DoxyCodeLine{00049\ \ \ writedata(0x10);\ \ \ \textcolor{comment}{//SAP[2:0];BT[3:0]}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ writecommand(ILI9341\_VMCTR1);\ \ \ \ \textcolor{comment}{//VCM\ control}}
+\DoxyCodeLine{00052\ \ \ writedata(0x3e);}
+\DoxyCodeLine{00053\ \ \ writedata(0x28);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ writecommand(ILI9341\_VMCTR2);\ \ \ \ \textcolor{comment}{//VCM\ control2}}
+\DoxyCodeLine{00056\ \ \ writedata(0x86);\ \ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ writecommand(ILI9341\_MADCTL);\ \ \ \ \textcolor{comment}{//\ Memory\ Access\ Control}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#ifdef\ M5STACK}}
+\DoxyCodeLine{00060\ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);\ \textcolor{comment}{//\ Rotation\ 0\ (portrait\ mode)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00062\ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);\ \textcolor{comment}{//\ Rotation\ 0\ (portrait\ mode)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ writecommand(ILI9341\_PIXFMT);}
+\DoxyCodeLine{00066\ \ \ writedata(0x55);}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ writecommand(ILI9341\_FRMCTR1);}
+\DoxyCodeLine{00069\ \ \ writedata(0x00);}
+\DoxyCodeLine{00070\ \ \ writedata(0x13);\ \textcolor{comment}{//\ 0x18\ 79Hz,\ 0x1B\ default\ 70Hz,\ 0x13\ 100Hz}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ writecommand(ILI9341\_DFUNCTR);\ \ \ \ \textcolor{comment}{//\ Display\ Function\ Control}}
+\DoxyCodeLine{00073\ \ \ writedata(0x08);}
+\DoxyCodeLine{00074\ \ \ writedata(0x82);}
+\DoxyCodeLine{00075\ \ \ writedata(0x27);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ writecommand(0xF2);\ \ \ \ \textcolor{comment}{//\ 3Gamma\ Function\ Disable}}
+\DoxyCodeLine{00078\ \ \ writedata(0x00);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ writecommand(ILI9341\_GAMMASET);\ \ \ \ \textcolor{comment}{//Gamma\ curve\ selected}}
+\DoxyCodeLine{00081\ \ \ writedata(0x01);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ writecommand(ILI9341\_GMCTRP1);\ \ \ \ \textcolor{comment}{//Set\ Gamma}}
+\DoxyCodeLine{00084\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00085\ \ \ writedata(0x31);}
+\DoxyCodeLine{00086\ \ \ writedata(0x2B);}
+\DoxyCodeLine{00087\ \ \ writedata(0x0C);}
+\DoxyCodeLine{00088\ \ \ writedata(0x0E);}
+\DoxyCodeLine{00089\ \ \ writedata(0x08);}
+\DoxyCodeLine{00090\ \ \ writedata(0x4E);}
+\DoxyCodeLine{00091\ \ \ writedata(0xF1);}
+\DoxyCodeLine{00092\ \ \ writedata(0x37);}
+\DoxyCodeLine{00093\ \ \ writedata(0x07);}
+\DoxyCodeLine{00094\ \ \ writedata(0x10);}
+\DoxyCodeLine{00095\ \ \ writedata(0x03);}
+\DoxyCodeLine{00096\ \ \ writedata(0x0E);}
+\DoxyCodeLine{00097\ \ \ writedata(0x09);}
+\DoxyCodeLine{00098\ \ \ writedata(0x00);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ writecommand(ILI9341\_GMCTRN1);\ \ \ \ \textcolor{comment}{//Set\ Gamma}}
+\DoxyCodeLine{00101\ \ \ writedata(0x00);}
+\DoxyCodeLine{00102\ \ \ writedata(0x0E);}
+\DoxyCodeLine{00103\ \ \ writedata(0x14);}
+\DoxyCodeLine{00104\ \ \ writedata(0x03);}
+\DoxyCodeLine{00105\ \ \ writedata(0x11);}
+\DoxyCodeLine{00106\ \ \ writedata(0x07);}
+\DoxyCodeLine{00107\ \ \ writedata(0x31);}
+\DoxyCodeLine{00108\ \ \ writedata(0xC1);}
+\DoxyCodeLine{00109\ \ \ writedata(0x48);}
+\DoxyCodeLine{00110\ \ \ writedata(0x08);}
+\DoxyCodeLine{00111\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00112\ \ \ writedata(0x0C);}
+\DoxyCodeLine{00113\ \ \ writedata(0x31);}
+\DoxyCodeLine{00114\ \ \ writedata(0x36);}
+\DoxyCodeLine{00115\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ writecommand(ILI9341\_SLPOUT);\ \ \ \ \textcolor{comment}{//Exit\ Sleep}}
+\DoxyCodeLine{00118\ \ }
+\DoxyCodeLine{00119\ \ \ end\_tft\_write();}
+\DoxyCodeLine{00120\ \ \ delay(120);}
+\DoxyCodeLine{00121\ \ \ begin\_tft\_write();}
+\DoxyCodeLine{00122\ \ \ }
+\DoxyCodeLine{00123\ \ \ writecommand(ILI9341\_DISPON);\ \ \ \ \textcolor{comment}{//Display\ on}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#elif\ defined\ (ILI9341\_2\_DRIVER)\ }\textcolor{comment}{//\ Alternative\ init\ sequence,\ see\ https://github.com/Bodmer/TFT\_eSPI/issues/1172}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ writecommand(0xCF);}
+\DoxyCodeLine{00131\ writedata(0x00);}
+\DoxyCodeLine{00132\ writedata(0XC1);}
+\DoxyCodeLine{00133\ writedata(0X30);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ writecommand(0xED);}
+\DoxyCodeLine{00136\ writedata(0x64);}
+\DoxyCodeLine{00137\ writedata(0x03);}
+\DoxyCodeLine{00138\ writedata(0X12);}
+\DoxyCodeLine{00139\ writedata(0X81);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ writecommand(0xE8);}
+\DoxyCodeLine{00142\ writedata(0x85);}
+\DoxyCodeLine{00143\ writedata(0x00);}
+\DoxyCodeLine{00144\ writedata(0x78);}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ writecommand(0xCB);}
+\DoxyCodeLine{00147\ writedata(0x39);}
+\DoxyCodeLine{00148\ writedata(0x2C);}
+\DoxyCodeLine{00149\ writedata(0x00);}
+\DoxyCodeLine{00150\ writedata(0x34);}
+\DoxyCodeLine{00151\ writedata(0x02);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ writecommand(0xF7);}
+\DoxyCodeLine{00154\ writedata(0x20);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ writecommand(0xEA);}
+\DoxyCodeLine{00157\ writedata(0x00);}
+\DoxyCodeLine{00158\ writedata(0x00);}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ writecommand(ILI9341\_PWCTR1);\ \textcolor{comment}{//Power\ control}}
+\DoxyCodeLine{00161\ writedata(0x10);\ \textcolor{comment}{//VRH[5:0]}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ writecommand(ILI9341\_PWCTR2);\ \textcolor{comment}{//Power\ control}}
+\DoxyCodeLine{00164\ writedata(0x00);\ \textcolor{comment}{//SAP[2:0];BT[3:0]}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ writecommand(ILI9341\_VMCTR1);\ \textcolor{comment}{//VCM\ control}}
+\DoxyCodeLine{00167\ writedata(0x30);}
+\DoxyCodeLine{00168\ writedata(0x30);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ writecommand(ILI9341\_VMCTR2);\ \textcolor{comment}{//VCM\ control2}}
+\DoxyCodeLine{00171\ writedata(0xB7);\ \textcolor{comment}{//-\/-\/}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ writecommand(ILI9341\_PIXFMT);}
+\DoxyCodeLine{00174\ writedata(0x55);}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ writecommand(0x36);\ \textcolor{comment}{//\ Memory\ Access\ Control}}
+\DoxyCodeLine{00177\ writedata(0x08);\ \textcolor{comment}{//\ Rotation\ 0\ (portrait\ mode)}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ writecommand(ILI9341\_FRMCTR1);}
+\DoxyCodeLine{00180\ writedata(0x00);}
+\DoxyCodeLine{00181\ writedata(0x1A);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ writecommand(ILI9341\_DFUNCTR);\ \textcolor{comment}{//\ Display\ Function\ Control}}
+\DoxyCodeLine{00184\ writedata(0x08);}
+\DoxyCodeLine{00185\ writedata(0x82);}
+\DoxyCodeLine{00186\ writedata(0x27);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ writecommand(0xF2);\ \textcolor{comment}{//\ 3Gamma\ Function\ Disable}}
+\DoxyCodeLine{00189\ writedata(0x00);}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ writecommand(0x26);\ \textcolor{comment}{//Gamma\ curve\ selected}}
+\DoxyCodeLine{00192\ writedata(0x01);}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ writecommand(0xE0);\ \textcolor{comment}{//Set\ Gamma}}
+\DoxyCodeLine{00195\ writedata(0x0F);}
+\DoxyCodeLine{00196\ writedata(0x2A);}
+\DoxyCodeLine{00197\ writedata(0x28);}
+\DoxyCodeLine{00198\ writedata(0x08);}
+\DoxyCodeLine{00199\ writedata(0x0E);}
+\DoxyCodeLine{00200\ writedata(0x08);}
+\DoxyCodeLine{00201\ writedata(0x54);}
+\DoxyCodeLine{00202\ writedata(0xA9);}
+\DoxyCodeLine{00203\ writedata(0x43);}
+\DoxyCodeLine{00204\ writedata(0x0A);}
+\DoxyCodeLine{00205\ writedata(0x0F);}
+\DoxyCodeLine{00206\ writedata(0x00);}
+\DoxyCodeLine{00207\ writedata(0x00);}
+\DoxyCodeLine{00208\ writedata(0x00);}
+\DoxyCodeLine{00209\ writedata(0x00);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ writecommand(0XE1);\ \textcolor{comment}{//Set\ Gamma}}
+\DoxyCodeLine{00212\ writedata(0x00);}
+\DoxyCodeLine{00213\ writedata(0x15);}
+\DoxyCodeLine{00214\ writedata(0x17);}
+\DoxyCodeLine{00215\ writedata(0x07);}
+\DoxyCodeLine{00216\ writedata(0x11);}
+\DoxyCodeLine{00217\ writedata(0x06);}
+\DoxyCodeLine{00218\ writedata(0x2B);}
+\DoxyCodeLine{00219\ writedata(0x56);}
+\DoxyCodeLine{00220\ writedata(0x3C);}
+\DoxyCodeLine{00221\ writedata(0x05);}
+\DoxyCodeLine{00222\ writedata(0x10);}
+\DoxyCodeLine{00223\ writedata(0x0F);}
+\DoxyCodeLine{00224\ writedata(0x3F);}
+\DoxyCodeLine{00225\ writedata(0x3F);}
+\DoxyCodeLine{00226\ writedata(0x0F);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ writecommand(0x2B);}
+\DoxyCodeLine{00229\ writedata(0x00);}
+\DoxyCodeLine{00230\ writedata(0x00);}
+\DoxyCodeLine{00231\ writedata(0x01);}
+\DoxyCodeLine{00232\ writedata(0x3f);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ writecommand(0x2A);}
+\DoxyCodeLine{00235\ writedata(0x00);}
+\DoxyCodeLine{00236\ writedata(0x00);}
+\DoxyCodeLine{00237\ writedata(0x00);}
+\DoxyCodeLine{00238\ writedata(0xef);}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ writecommand(ILI9341\_SLPOUT);\ \textcolor{comment}{//Exit\ Sleep}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ end\_tft\_write();}
+\DoxyCodeLine{00243\ delay(120);}
+\DoxyCodeLine{00244\ begin\_tft\_write();}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ writecommand(ILI9341\_DISPON);\ \textcolor{comment}{//Display\ on}}
+\DoxyCodeLine{00247\ \}}
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

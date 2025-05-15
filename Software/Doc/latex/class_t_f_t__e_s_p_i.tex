@@ -1,0 +1,650 @@
+\doxysection{TFT\+\_\+e\+SPI Class Reference}
+\hypertarget{class_t_f_t__e_s_p_i}{}\label{class_t_f_t__e_s_p_i}\index{TFT\_eSPI@{TFT\_eSPI}}
+Inheritance diagram for TFT\+\_\+e\+SPI\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_t_f_t__e_s_p_i}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_t_f_t__e_s_p_i_1_1font_metrics}{font\+Metrics}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7cdfdcf8a886a5f6763973586fe0c114}\label{class_t_f_t__e_s_p_i_a7cdfdcf8a886a5f6763973586fe0c114} 
+{\bfseries TFT\+\_\+e\+SPI} (int16\+\_\+t \+\_\+W=TFT\+\_\+\+WIDTH, int16\+\_\+t \+\_\+H=TFT\+\_\+\+HEIGHT)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ac1711f9f8fd650f62e34646a5719b71a}\label{class_t_f_t__e_s_p_i_ac1711f9f8fd650f62e34646a5719b71a} 
+void {\bfseries init} (uint8\+\_\+t tc=TAB\+\_\+\+COLOUR)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a6e26f012665305efd444c4ed79664f76}\label{class_t_f_t__e_s_p_i_a6e26f012665305efd444c4ed79664f76} 
+void {\bfseries begin} (uint8\+\_\+t tc=TAB\+\_\+\+COLOUR)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ac9b7b55ce3bdecc003152235b7e9d699}\label{class_t_f_t__e_s_p_i_ac9b7b55ce3bdecc003152235b7e9d699} 
+virtual void {\bfseries draw\+Pixel} (int32\+\_\+t x, int32\+\_\+t y, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab61792831f3c3f18884462041155712d}\label{class_t_f_t__e_s_p_i_ab61792831f3c3f18884462041155712d} 
+virtual void {\bfseries draw\+Char} (int32\+\_\+t x, int32\+\_\+t y, uint16\+\_\+t c, uint32\+\_\+t color, uint32\+\_\+t bg, uint8\+\_\+t size)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab4fd6cc8fe7c8f39ddd030648fbfad09}\label{class_t_f_t__e_s_p_i_ab4fd6cc8fe7c8f39ddd030648fbfad09} 
+virtual void {\bfseries draw\+Line} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t xe, int32\+\_\+t ye, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_af11df47ee3c7e80db9d9651c7d8a5d4a}\label{class_t_f_t__e_s_p_i_af11df47ee3c7e80db9d9651c7d8a5d4a} 
+virtual void {\bfseries draw\+Fast\+VLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a445260442b606ce7701e6cb9027e71ef}\label{class_t_f_t__e_s_p_i_a445260442b606ce7701e6cb9027e71ef} 
+virtual void {\bfseries draw\+Fast\+HLine} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a396d94e14e68ac09e2c7263b70f5c336}\label{class_t_f_t__e_s_p_i_a396d94e14e68ac09e2c7263b70f5c336} 
+virtual void {\bfseries fill\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aff0b2649b112e0fda61648e380b733af}\label{class_t_f_t__e_s_p_i_aff0b2649b112e0fda61648e380b733af} 
+virtual int16\+\_\+t {\bfseries draw\+Char} (uint16\+\_\+t uni\+Code, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a6098b03bc47678c44060e868729fa24c}\label{class_t_f_t__e_s_p_i_a6098b03bc47678c44060e868729fa24c} 
+virtual int16\+\_\+t {\bfseries draw\+Char} (uint16\+\_\+t uni\+Code, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a50bbb5130e3457dab21059d53f99c435}\label{class_t_f_t__e_s_p_i_a50bbb5130e3457dab21059d53f99c435} 
+virtual int16\+\_\+t {\bfseries height} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_af5f083021fcab6431d2cd4ec6fb167a3}\label{class_t_f_t__e_s_p_i_af5f083021fcab6431d2cd4ec6fb167a3} 
+virtual int16\+\_\+t {\bfseries width} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a704d0885e998bf206d7cad6eb2d88d17}\label{class_t_f_t__e_s_p_i_a704d0885e998bf206d7cad6eb2d88d17} 
+void {\bfseries set\+Rotation} (uint8\+\_\+t r)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ac866ce875d207709a2cdeff1f19e7b08}\label{class_t_f_t__e_s_p_i_ac866ce875d207709a2cdeff1f19e7b08} 
+uint8\+\_\+t {\bfseries get\+Rotation} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_af7127b316d6d721bf20193e484b19b36}\label{class_t_f_t__e_s_p_i_af7127b316d6d721bf20193e484b19b36} 
+void {\bfseries invert\+Display} (bool i)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a770285f780f834fae2de91d04eb0fa30}\label{class_t_f_t__e_s_p_i_a770285f780f834fae2de91d04eb0fa30} 
+void {\bfseries set\+Addr\+Window} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t w, int32\+\_\+t h)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab0c77efb53634ede28e47991f8f0a4af}\label{class_t_f_t__e_s_p_i_ab0c77efb53634ede28e47991f8f0a4af} 
+void {\bfseries set\+Window} (int32\+\_\+t xs, int32\+\_\+t ys, int32\+\_\+t xe, int32\+\_\+t ye)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a6111123803cd4a4f5d047a40822940dd}\label{class_t_f_t__e_s_p_i_a6111123803cd4a4f5d047a40822940dd} 
+void {\bfseries set\+Viewport} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, bool vp\+Datum=true)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad9c6f1d2a4a2d0cc775d8a08b05a25ee}\label{class_t_f_t__e_s_p_i_ad9c6f1d2a4a2d0cc775d8a08b05a25ee} 
+bool {\bfseries check\+Viewport} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a97bf810606f2193786b0b926e7b7906a}\label{class_t_f_t__e_s_p_i_a97bf810606f2193786b0b926e7b7906a} 
+int32\+\_\+t {\bfseries get\+ViewportX} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a929d87cbdaf75a913ec9a1349aa6e282}\label{class_t_f_t__e_s_p_i_a929d87cbdaf75a913ec9a1349aa6e282} 
+int32\+\_\+t {\bfseries get\+ViewportY} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a78105d3bb7980fa3a95f72cb69041958}\label{class_t_f_t__e_s_p_i_a78105d3bb7980fa3a95f72cb69041958} 
+int32\+\_\+t {\bfseries get\+Viewport\+Width} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a22424441ba06b4f756293dc189e56491}\label{class_t_f_t__e_s_p_i_a22424441ba06b4f756293dc189e56491} 
+int32\+\_\+t {\bfseries get\+Viewport\+Height} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a087d6ee37866f284ca63c60b8979fc4b}\label{class_t_f_t__e_s_p_i_a087d6ee37866f284ca63c60b8979fc4b} 
+bool {\bfseries get\+Viewport\+Datum} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9ea37a99a73b31783b7cd83e4fe4ba33}\label{class_t_f_t__e_s_p_i_a9ea37a99a73b31783b7cd83e4fe4ba33} 
+void {\bfseries frame\+Viewport} (uint16\+\_\+t color, int32\+\_\+t w)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a84ffba51928c13384eb5e52b5262648d}\label{class_t_f_t__e_s_p_i_a84ffba51928c13384eb5e52b5262648d} 
+void {\bfseries reset\+Viewport} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a102d06f0be6ea1c90075b152bcebf164}\label{class_t_f_t__e_s_p_i_a102d06f0be6ea1c90075b152bcebf164} 
+void {\bfseries push\+Color} (uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a970d079b0d4f0c7ead1214e55b11a8e6}\label{class_t_f_t__e_s_p_i_a970d079b0d4f0c7ead1214e55b11a8e6} 
+void {\bfseries push\+Color} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a084862d0c08adced337a853ea87006c8}\label{class_t_f_t__e_s_p_i_a084862d0c08adced337a853ea87006c8} 
+void {\bfseries push\+Colors} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len, bool swap=true)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a98bac91d32aa2de97b2cc46848a270c1}\label{class_t_f_t__e_s_p_i_a98bac91d32aa2de97b2cc46848a270c1} 
+void {\bfseries push\+Colors} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a73a41958fd582759734cb4b074a248a9}\label{class_t_f_t__e_s_p_i_a73a41958fd582759734cb4b074a248a9} 
+void {\bfseries push\+Block} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a2079ee9e556ed5d56e9169072b271236}\label{class_t_f_t__e_s_p_i_a2079ee9e556ed5d56e9169072b271236} 
+void {\bfseries push\+Pixels} (const void \texorpdfstring{$\ast$}{*}data\+\_\+in, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a8fd916300706054536322308b2be8bf8}\label{class_t_f_t__e_s_p_i_a8fd916300706054536322308b2be8bf8} 
+uint16\+\_\+t {\bfseries read\+Pixel} (int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a164ebbe272cb0bf06e33324a8de0f934}\label{class_t_f_t__e_s_p_i_a164ebbe272cb0bf06e33324a8de0f934} 
+void {\bfseries fill\+Screen} (uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad2db8dc61019270b0d00f955852ab04a}\label{class_t_f_t__e_s_p_i_ad2db8dc61019270b0d00f955852ab04a} 
+void {\bfseries draw\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a87809d375c6aab657b26b61c2365ae15}\label{class_t_f_t__e_s_p_i_a87809d375c6aab657b26b61c2365ae15} 
+void {\bfseries draw\+Round\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, int32\+\_\+t radius, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa8e92f8f15a6a170581b5675b52842de}\label{class_t_f_t__e_s_p_i_aa8e92f8f15a6a170581b5675b52842de} 
+void {\bfseries fill\+Round\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, int32\+\_\+t radius, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a87056f5fb4d92f90b68bed86afa59776}\label{class_t_f_t__e_s_p_i_a87056f5fb4d92f90b68bed86afa59776} 
+void {\bfseries draw\+Circle} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab7fd06d934beaa2e3fc36daf56ea7b0b}\label{class_t_f_t__e_s_p_i_ab7fd06d934beaa2e3fc36daf56ea7b0b} 
+void {\bfseries draw\+Circle\+Helper} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint8\+\_\+t cornername, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a510006e39c159fab8682f464d7446d0d}\label{class_t_f_t__e_s_p_i_a510006e39c159fab8682f464d7446d0d} 
+void {\bfseries fill\+Circle} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a053f4acc522e7133ad680316578ee32f}\label{class_t_f_t__e_s_p_i_a053f4acc522e7133ad680316578ee32f} 
+void {\bfseries fill\+Circle\+Helper} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t r, uint8\+\_\+t cornername, int32\+\_\+t delta, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab52c349b0acd2594bcde61d30024bd58}\label{class_t_f_t__e_s_p_i_ab52c349b0acd2594bcde61d30024bd58} 
+void {\bfseries draw\+Ellipse} (int16\+\_\+t x, int16\+\_\+t y, int32\+\_\+t rx, int32\+\_\+t ry, uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a00d3b424481c86a655547ef65229eee2}\label{class_t_f_t__e_s_p_i_a00d3b424481c86a655547ef65229eee2} 
+void {\bfseries fill\+Ellipse} (int16\+\_\+t x, int16\+\_\+t y, int32\+\_\+t rx, int32\+\_\+t ry, uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1f074ba1859930419f3f9ca5b4234174}\label{class_t_f_t__e_s_p_i_a1f074ba1859930419f3f9ca5b4234174} 
+void {\bfseries draw\+Triangle} (int32\+\_\+t x1, int32\+\_\+t y1, int32\+\_\+t x2, int32\+\_\+t y2, int32\+\_\+t x3, int32\+\_\+t y3, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a929e0468ddc7bad0c5a9d5bf6ca73dbc}\label{class_t_f_t__e_s_p_i_a929e0468ddc7bad0c5a9d5bf6ca73dbc} 
+void {\bfseries fill\+Triangle} (int32\+\_\+t x1, int32\+\_\+t y1, int32\+\_\+t x2, int32\+\_\+t y2, int32\+\_\+t x3, int32\+\_\+t y3, uint32\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aaed2b1e3936f75521eb52d14cd90040a}\label{class_t_f_t__e_s_p_i_aaed2b1e3936f75521eb52d14cd90040a} 
+void {\bfseries set\+Swap\+Bytes} (bool swap)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab3ab665b1adacd0ab45e0262b4482735}\label{class_t_f_t__e_s_p_i_ab3ab665b1adacd0ab45e0262b4482735} 
+bool {\bfseries get\+Swap\+Bytes} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a220cca0e8fd3e315b371913e4b49921f}\label{class_t_f_t__e_s_p_i_a220cca0e8fd3e315b371913e4b49921f} 
+void {\bfseries draw\+Bitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae3c51cc333f24b4b9a6df7cdda3bb103}\label{class_t_f_t__e_s_p_i_ae3c51cc333f24b4b9a6df7cdda3bb103} 
+void {\bfseries draw\+Bitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a8b04e4013bde1a202fdb2342864b87fa}\label{class_t_f_t__e_s_p_i_a8b04e4013bde1a202fdb2342864b87fa} 
+void {\bfseries draw\+XBitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a18736963dd7d864462df145cbf2b8ea7}\label{class_t_f_t__e_s_p_i_a18736963dd7d864462df145cbf2b8ea7} 
+void {\bfseries draw\+XBitmap} (int16\+\_\+t x, int16\+\_\+t y, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}bitmap, int16\+\_\+t w, int16\+\_\+t h, uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a69edc8301fe7d98c23c80185985f33a5}\label{class_t_f_t__e_s_p_i_a69edc8301fe7d98c23c80185985f33a5} 
+void {\bfseries set\+Bitmap\+Color} (uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aea248b4c54af49e2a3e9a341d112a9bc}\label{class_t_f_t__e_s_p_i_aea248b4c54af49e2a3e9a341d112a9bc} 
+void {\bfseries set\+Pivot} (int16\+\_\+t x, int16\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a94d880dc795759bceccf53288831e407}\label{class_t_f_t__e_s_p_i_a94d880dc795759bceccf53288831e407} 
+int16\+\_\+t {\bfseries get\+PivotX} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4afe1578f517d9fb5c588a83c65f2cf1}\label{class_t_f_t__e_s_p_i_a4afe1578f517d9fb5c588a83c65f2cf1} 
+int16\+\_\+t {\bfseries get\+PivotY} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a649cf36051b22eef042b5cba80d2024a}\label{class_t_f_t__e_s_p_i_a649cf36051b22eef042b5cba80d2024a} 
+void {\bfseries read\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a348f50fbe76376f3efe13f5c58ca0b51}\label{class_t_f_t__e_s_p_i_a348f50fbe76376f3efe13f5c58ca0b51} 
+void {\bfseries push\+Rect} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4139bc7d52824a600be1074c47377174}\label{class_t_f_t__e_s_p_i_a4139bc7d52824a600be1074c47377174} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a474c49328d45f7bdf4e37e4fb488d536}\label{class_t_f_t__e_s_p_i_a474c49328d45f7bdf4e37e4fb488d536} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t transparent)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a0e8e17ebefbd49e9b7b7ef32e77e0eab}\label{class_t_f_t__e_s_p_i_a0e8e17ebefbd49e9b7b7ef32e77e0eab} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t transparent)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a87b16bbccfa37ae73e049bbcfd90e72a}\label{class_t_f_t__e_s_p_i_a87b16bbccfa37ae73e049bbcfd90e72a} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a345e29c1ee0b6a7646dfc4b0385bbefb}\label{class_t_f_t__e_s_p_i_a345e29c1ee0b6a7646dfc4b0385bbefb} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, bool bpp8=true, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_afe83efdae5bf6473071fabde51d217d4}\label{class_t_f_t__e_s_p_i_afe83efdae5bf6473071fabde51d217d4} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, uint8\+\_\+t transparent, bool bpp8=true, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a678d1b3e2a298869648729b70db95e56}\label{class_t_f_t__e_s_p_i_a678d1b3e2a298869648729b70db95e56} 
+void {\bfseries push\+Image} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, const uint8\+\_\+t \texorpdfstring{$\ast$}{*}data, bool bpp8, uint16\+\_\+t \texorpdfstring{$\ast$}{*}cmap=nullptr)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a795d16ee2cfcf83680ca806d5ea69a1c}\label{class_t_f_t__e_s_p_i_a795d16ee2cfcf83680ca806d5ea69a1c} 
+void {\bfseries read\+Rect\+RGB} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint8\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9adb74990785112275b812526ccdd0de}\label{class_t_f_t__e_s_p_i_a9adb74990785112275b812526ccdd0de} 
+int16\+\_\+t {\bfseries draw\+Number} (long int\+Number, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a2a7538741e91476ad0f6f856d21ea214}\label{class_t_f_t__e_s_p_i_a2a7538741e91476ad0f6f856d21ea214} 
+int16\+\_\+t {\bfseries draw\+Number} (long int\+Number, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9ccf04417380ba6f7b36b7d91728bda9}\label{class_t_f_t__e_s_p_i_a9ccf04417380ba6f7b36b7d91728bda9} 
+int16\+\_\+t {\bfseries draw\+Float} (float float\+Number, uint8\+\_\+t decimal, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa80d4ae78c506dfd42dd4bf3e391e4db}\label{class_t_f_t__e_s_p_i_aa80d4ae78c506dfd42dd4bf3e391e4db} 
+int16\+\_\+t {\bfseries draw\+Float} (float float\+Number, uint8\+\_\+t decimal, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa1f9adfd557c469ca283f4e0382b3db8}\label{class_t_f_t__e_s_p_i_aa1f9adfd557c469ca283f4e0382b3db8} 
+int16\+\_\+t {\bfseries draw\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a61e27eea68d4c507ce0c7e4636e880c4}\label{class_t_f_t__e_s_p_i_a61e27eea68d4c507ce0c7e4636e880c4} 
+int16\+\_\+t {\bfseries draw\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3bf2d98a43aaaf61792f4d51ab4b6b4e}\label{class_t_f_t__e_s_p_i_a3bf2d98a43aaaf61792f4d51ab4b6b4e} 
+int16\+\_\+t {\bfseries draw\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7f1cdcc792fe9fa9b4e72650c73cbcfc}\label{class_t_f_t__e_s_p_i_a7f1cdcc792fe9fa9b4e72650c73cbcfc} 
+int16\+\_\+t {\bfseries draw\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a299740f92e904e410ab86522dea16291}\label{class_t_f_t__e_s_p_i_a299740f92e904e410ab86522dea16291} 
+int16\+\_\+t {\bfseries draw\+Centre\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae8a4692ef0851bb72ab9cb46bca1b0c6}\label{class_t_f_t__e_s_p_i_ae8a4692ef0851bb72ab9cb46bca1b0c6} 
+int16\+\_\+t {\bfseries draw\+Right\+String} (const char \texorpdfstring{$\ast$}{*}string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4ef50707549130c30c2829b00a9b384c}\label{class_t_f_t__e_s_p_i_a4ef50707549130c30c2829b00a9b384c} 
+int16\+\_\+t {\bfseries draw\+Centre\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3648e38a36d8878ebc4ffdfacaad5623}\label{class_t_f_t__e_s_p_i_a3648e38a36d8878ebc4ffdfacaad5623} 
+int16\+\_\+t {\bfseries draw\+Right\+String} (const String \&string, int32\+\_\+t x, int32\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a59d65236e6512213c1aa3b11c22daf9a}\label{class_t_f_t__e_s_p_i_a59d65236e6512213c1aa3b11c22daf9a} 
+void {\bfseries set\+Cursor} (int16\+\_\+t x, int16\+\_\+t y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_afebbe7e2ec05e63dfa237f7d92e4b2af}\label{class_t_f_t__e_s_p_i_afebbe7e2ec05e63dfa237f7d92e4b2af} 
+void {\bfseries set\+Cursor} (int16\+\_\+t x, int16\+\_\+t y, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a84b74c428d2b5452831ea10f40c0c12e}\label{class_t_f_t__e_s_p_i_a84b74c428d2b5452831ea10f40c0c12e} 
+int16\+\_\+t {\bfseries get\+CursorX} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ac2602514a3310e470db73f13acbd77b7}\label{class_t_f_t__e_s_p_i_ac2602514a3310e470db73f13acbd77b7} 
+int16\+\_\+t {\bfseries get\+CursorY} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a5584888df80cec9bedd479a3129afa8e}\label{class_t_f_t__e_s_p_i_a5584888df80cec9bedd479a3129afa8e} 
+void {\bfseries set\+Text\+Color} (uint16\+\_\+t color)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad2ce44c48ecf3aa4ccca32ae6b36c31a}\label{class_t_f_t__e_s_p_i_ad2ce44c48ecf3aa4ccca32ae6b36c31a} 
+void {\bfseries set\+Text\+Color} (uint16\+\_\+t fgcolor, uint16\+\_\+t bgcolor)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7787fc9abe86723df8bc0114cd5a75f2}\label{class_t_f_t__e_s_p_i_a7787fc9abe86723df8bc0114cd5a75f2} 
+void {\bfseries set\+Text\+Size} (uint8\+\_\+t size)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a86ccf0a6f6fdb724698f63e4d51a44f9}\label{class_t_f_t__e_s_p_i_a86ccf0a6f6fdb724698f63e4d51a44f9} 
+void {\bfseries set\+Text\+Wrap} (bool wrapX, bool wrapY=false)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a5898e6bc395c5e9575b8c11185a3a1c6}\label{class_t_f_t__e_s_p_i_a5898e6bc395c5e9575b8c11185a3a1c6} 
+void {\bfseries set\+Text\+Datum} (uint8\+\_\+t datum)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9c2164f2c87478f039aef2171f284b62}\label{class_t_f_t__e_s_p_i_a9c2164f2c87478f039aef2171f284b62} 
+uint8\+\_\+t {\bfseries get\+Text\+Datum} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a056ac69265120e7278c5fd2c6a82745a}\label{class_t_f_t__e_s_p_i_a056ac69265120e7278c5fd2c6a82745a} 
+void {\bfseries set\+Text\+Padding} (uint16\+\_\+t x\+\_\+width)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a32f02f320719ad0fd43634661607c611}\label{class_t_f_t__e_s_p_i_a32f02f320719ad0fd43634661607c611} 
+uint16\+\_\+t {\bfseries get\+Text\+Padding} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4ae0dffb3f182e44d36e6e071523b9ac}\label{class_t_f_t__e_s_p_i_a4ae0dffb3f182e44d36e6e071523b9ac} 
+void {\bfseries set\+Free\+Font} (const GFXfont \texorpdfstring{$\ast$}{*}f=NULL)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a743bbb785155edac74778483f6add723}\label{class_t_f_t__e_s_p_i_a743bbb785155edac74778483f6add723} 
+void {\bfseries set\+Text\+Font} (uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7e68feebd7818d5517afcf45b6beb58a}\label{class_t_f_t__e_s_p_i_a7e68feebd7818d5517afcf45b6beb58a} 
+int16\+\_\+t {\bfseries text\+Width} (const char \texorpdfstring{$\ast$}{*}string, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a48ae273a33843fc0f42c2619f4b76c7c}\label{class_t_f_t__e_s_p_i_a48ae273a33843fc0f42c2619f4b76c7c} 
+int16\+\_\+t {\bfseries text\+Width} (const char \texorpdfstring{$\ast$}{*}string)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_acc016d0148ba168de6882e86cd2555b0}\label{class_t_f_t__e_s_p_i_acc016d0148ba168de6882e86cd2555b0} 
+int16\+\_\+t {\bfseries text\+Width} (const String \&string, uint8\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7ca1695f155de0fe6fa0c8071eaf41f9}\label{class_t_f_t__e_s_p_i_a7ca1695f155de0fe6fa0c8071eaf41f9} 
+int16\+\_\+t {\bfseries text\+Width} (const String \&string)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a8f5192c500d5f8946f777f57ece4c85c}\label{class_t_f_t__e_s_p_i_a8f5192c500d5f8946f777f57ece4c85c} 
+int16\+\_\+t {\bfseries font\+Height} (int16\+\_\+t font)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab6296fa4e5b3bbd6da402917982eef93}\label{class_t_f_t__e_s_p_i_ab6296fa4e5b3bbd6da402917982eef93} 
+int16\+\_\+t {\bfseries font\+Height} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a2ea46a3de741a024dee5f32cc1fe6f86}\label{class_t_f_t__e_s_p_i_a2ea46a3de741a024dee5f32cc1fe6f86} 
+uint16\+\_\+t {\bfseries decode\+UTF8} (uint8\+\_\+t \texorpdfstring{$\ast$}{*}buf, uint16\+\_\+t \texorpdfstring{$\ast$}{*}index, uint16\+\_\+t remaining)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1a51de96f8f39f0a8328f7282611cf16}\label{class_t_f_t__e_s_p_i_a1a51de96f8f39f0a8328f7282611cf16} 
+uint16\+\_\+t {\bfseries decode\+UTF8} (uint8\+\_\+t c)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae6a0943c1df84a5896e671e167128ba7}\label{class_t_f_t__e_s_p_i_ae6a0943c1df84a5896e671e167128ba7} 
+size\+\_\+t {\bfseries write} (uint8\+\_\+t)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_af24e1cb26d6c2630b5471d72e05fc20d}\label{class_t_f_t__e_s_p_i_af24e1cb26d6c2630b5471d72e05fc20d} 
+void {\bfseries set\+Callback} (get\+Color\+Callback get\+Col)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_acb82b1a3b8d3873925b8c09ea5ef9357}\label{class_t_f_t__e_s_p_i_acb82b1a3b8d3873925b8c09ea5ef9357} 
+uint16\+\_\+t {\bfseries fonts\+Loaded} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a679769f1e8bbb455c376b2aff2f918a2}\label{class_t_f_t__e_s_p_i_a679769f1e8bbb455c376b2aff2f918a2} 
+void {\bfseries spiwrite} (uint8\+\_\+t)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a70f03617d1c7804d9d17777f433cc517}\label{class_t_f_t__e_s_p_i_a70f03617d1c7804d9d17777f433cc517} 
+void {\bfseries writecommand} (uint8\+\_\+t c)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa641de20ac42a7a571dd80427f7aae27}\label{class_t_f_t__e_s_p_i_aa641de20ac42a7a571dd80427f7aae27} 
+void {\bfseries writedata} (uint8\+\_\+t d)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aeb340b526fc5c73c43e96ec8a5c95e2a}\label{class_t_f_t__e_s_p_i_aeb340b526fc5c73c43e96ec8a5c95e2a} 
+void {\bfseries command\+List} (const uint8\+\_\+t \texorpdfstring{$\ast$}{*}addr)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a61952c9b4420de11f4b8e598f7fd1ccb}\label{class_t_f_t__e_s_p_i_a61952c9b4420de11f4b8e598f7fd1ccb} 
+uint8\+\_\+t {\bfseries readcommand8} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a38711ce09372b56447f91e29c0c9e0a5}\label{class_t_f_t__e_s_p_i_a38711ce09372b56447f91e29c0c9e0a5} 
+uint16\+\_\+t {\bfseries readcommand16} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aaa2959540cf68b0c5cad82a4a13a139e}\label{class_t_f_t__e_s_p_i_aaa2959540cf68b0c5cad82a4a13a139e} 
+uint32\+\_\+t {\bfseries readcommand32} (uint8\+\_\+t cmd\+\_\+function, uint8\+\_\+t index=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3c8f1d068af35091737d21b71a0be5d3}\label{class_t_f_t__e_s_p_i_a3c8f1d068af35091737d21b71a0be5d3} 
+uint16\+\_\+t {\bfseries color565} (uint8\+\_\+t red, uint8\+\_\+t green, uint8\+\_\+t blue)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a117a60c905191300e2b35fa14081bd52}\label{class_t_f_t__e_s_p_i_a117a60c905191300e2b35fa14081bd52} 
+uint16\+\_\+t {\bfseries color8to16} (uint8\+\_\+t color332)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa18c5bf92b22703888375430a22585f8}\label{class_t_f_t__e_s_p_i_aa18c5bf92b22703888375430a22585f8} 
+uint8\+\_\+t {\bfseries color16to8} (uint16\+\_\+t color565)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a41c17d2aea0ba40460b383da21070501}\label{class_t_f_t__e_s_p_i_a41c17d2aea0ba40460b383da21070501} 
+uint32\+\_\+t {\bfseries color16to24} (uint16\+\_\+t color565)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a47e5d41c2fc296bdf338d3f0dda156a8}\label{class_t_f_t__e_s_p_i_a47e5d41c2fc296bdf338d3f0dda156a8} 
+uint32\+\_\+t {\bfseries color24to16} (uint32\+\_\+t color888)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4c73d024addf032e19d9d23b96278a34}\label{class_t_f_t__e_s_p_i_a4c73d024addf032e19d9d23b96278a34} 
+uint16\+\_\+t {\bfseries alpha\+Blend} (uint8\+\_\+t alpha, uint16\+\_\+t fgc, uint16\+\_\+t bgc)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa595b0533772524b8e5c859d7b779b44}\label{class_t_f_t__e_s_p_i_aa595b0533772524b8e5c859d7b779b44} 
+uint16\+\_\+t {\bfseries alpha\+Blend} (uint8\+\_\+t alpha, uint16\+\_\+t fgc, uint16\+\_\+t bgc, uint8\+\_\+t dither)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_abec9b66eb109e9f7b488467eb29cfefb}\label{class_t_f_t__e_s_p_i_abec9b66eb109e9f7b488467eb29cfefb} 
+uint32\+\_\+t {\bfseries alpha\+Blend24} (uint8\+\_\+t alpha, uint32\+\_\+t fgc, uint32\+\_\+t bgc, uint8\+\_\+t dither=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a2ac93f8c25b4d5b5b0ba4017d42bb765}\label{class_t_f_t__e_s_p_i_a2ac93f8c25b4d5b5b0ba4017d42bb765} 
+bool {\bfseries init\+DMA} (bool ctrl\+\_\+cs=false)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1cdf869a94bd817b189668292989467e}\label{class_t_f_t__e_s_p_i_a1cdf869a94bd817b189668292989467e} 
+void {\bfseries de\+Init\+DMA} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a297baa25999cf5504a30807d5b5f7df0}\label{class_t_f_t__e_s_p_i_a297baa25999cf5504a30807d5b5f7df0} 
+void {\bfseries push\+Image\+DMA} (int32\+\_\+t x, int32\+\_\+t y, int32\+\_\+t w, int32\+\_\+t h, uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint16\+\_\+t \texorpdfstring{$\ast$}{*}buffer=nullptr)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a191062950ab229f7d706391d908475bc}\label{class_t_f_t__e_s_p_i_a191062950ab229f7d706391d908475bc} 
+void {\bfseries push\+Pixels\+DMA} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}image, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a8804f9ff6b6082742a6bd04aadbab94c}\label{class_t_f_t__e_s_p_i_a8804f9ff6b6082742a6bd04aadbab94c} 
+bool {\bfseries dma\+Busy} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa62b9d312085a124415d36bff8245846}\label{class_t_f_t__e_s_p_i_aa62b9d312085a124415d36bff8245846} 
+void {\bfseries dma\+Wait} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a38a00dc2d24e7dd20f9665b4b097f69f}\label{class_t_f_t__e_s_p_i_a38a00dc2d24e7dd20f9665b4b097f69f} 
+void {\bfseries start\+Write} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9873646e6d46a61b5dbf35204d1134b6}\label{class_t_f_t__e_s_p_i_a9873646e6d46a61b5dbf35204d1134b6} 
+void {\bfseries write\+Color} (uint16\+\_\+t color, uint32\+\_\+t len)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad3d29f3555f178fd485d55c8763a8d84}\label{class_t_f_t__e_s_p_i_ad3d29f3555f178fd485d55c8763a8d84} 
+void {\bfseries end\+Write} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab60508a98b0642e2412bff8f9b064ad7}\label{class_t_f_t__e_s_p_i_ab60508a98b0642e2412bff8f9b064ad7} 
+void {\bfseries set\+Attribute} (uint8\+\_\+t id=0, uint8\+\_\+t a=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a55d96a8971a668763a4e85a5c80b057f}\label{class_t_f_t__e_s_p_i_a55d96a8971a668763a4e85a5c80b057f} 
+uint8\+\_\+t {\bfseries get\+Attribute} (uint8\+\_\+t id=0)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae6c7a4e829adc9a900df53818d020df2}\label{class_t_f_t__e_s_p_i_ae6c7a4e829adc9a900df53818d020df2} 
+void {\bfseries get\+Setup} (\mbox{\hyperlink{structsetup__t}{setup\+\_\+t}} \&tft\+\_\+settings)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa29c9dd9763c23b63cb95a7bd08bd4ca}\label{class_t_f_t__e_s_p_i_aa29c9dd9763c23b63cb95a7bd08bd4ca} 
+uint8\+\_\+t {\bfseries get\+Touch\+Raw} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3f424fc6f931eff00a43178b63801f92}\label{class_t_f_t__e_s_p_i_a3f424fc6f931eff00a43178b63801f92} 
+uint16\+\_\+t {\bfseries get\+Touch\+RawZ} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a167ccf4672627aedeff43f82d10f9cb2}\label{class_t_f_t__e_s_p_i_a167ccf4672627aedeff43f82d10f9cb2} 
+void {\bfseries convert\+Raw\+XY} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aafc299a946760bc85e18020e18130b2c}\label{class_t_f_t__e_s_p_i_aafc299a946760bc85e18020e18130b2c} 
+uint8\+\_\+t {\bfseries get\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}x, uint16\+\_\+t \texorpdfstring{$\ast$}{*}y, uint16\+\_\+t threshold=600)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a17fccd5bfce464f32647a496e99eb0af}\label{class_t_f_t__e_s_p_i_a17fccd5bfce464f32647a496e99eb0af} 
+void {\bfseries calibrate\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data, uint32\+\_\+t color\+\_\+fg, uint32\+\_\+t color\+\_\+bg, uint8\+\_\+t size)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7cc046fddcc27611297607c232a3a741}\label{class_t_f_t__e_s_p_i_a7cc046fddcc27611297607c232a3a741} 
+void {\bfseries set\+Touch} (uint16\+\_\+t \texorpdfstring{$\ast$}{*}data)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a93dd6295b9a4467b0bba17a121fc7b28}\label{class_t_f_t__e_s_p_i_a93dd6295b9a4467b0bba17a121fc7b28} 
+void {\bfseries load\+Font} (const uint8\+\_\+t array\mbox{[}$\,$\mbox{]})
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae6bc6b4827f8161d81d87e8f4e37d5b9}\label{class_t_f_t__e_s_p_i_ae6bc6b4827f8161d81d87e8f4e37d5b9} 
+void {\bfseries load\+Font} (String font\+Name, bool flash=true)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a263e3adc71be80db15a350d03d2ceb26}\label{class_t_f_t__e_s_p_i_a263e3adc71be80db15a350d03d2ceb26} 
+void {\bfseries unload\+Font} (void)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aff9381d7c342155820aae447011c90bb}\label{class_t_f_t__e_s_p_i_aff9381d7c342155820aae447011c90bb} 
+bool {\bfseries get\+Unicode\+Index} (uint16\+\_\+t unicode, uint16\+\_\+t \texorpdfstring{$\ast$}{*}index)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1c3cd605c6128a02bf2c467e6083a57f}\label{class_t_f_t__e_s_p_i_a1c3cd605c6128a02bf2c467e6083a57f} 
+virtual void {\bfseries draw\+Glyph} (uint16\+\_\+t code)
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa312673ee395dcc1138f6f42bf2d5674}\label{class_t_f_t__e_s_p_i_aa312673ee395dcc1138f6f42bf2d5674} 
+void {\bfseries show\+Font} (uint32\+\_\+t td)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab282d581ded21d701256780452cec816}\label{class_t_f_t__e_s_p_i_ab282d581ded21d701256780452cec816} 
+static SPIClass \& {\bfseries get\+SPIinstance} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9a961ccab91fb497a2ccb5833efdeef2}\label{class_t_f_t__e_s_p_i_a9a961ccab91fb497a2ccb5833efdeef2} 
+bool {\bfseries DMA\+\_\+\+Enabled} = false
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a39405780561963cd54e8e57c7f03b57f}\label{class_t_f_t__e_s_p_i_a39405780561963cd54e8e57c7f03b57f} 
+uint8\+\_\+t {\bfseries spi\+Busy\+Check} = 0
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aba4472132b8a82147a3f1f899e84bbcb}\label{class_t_f_t__e_s_p_i_aba4472132b8a82147a3f1f899e84bbcb} 
+uint32\+\_\+t {\bfseries textcolor}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a69accc533541f5a3ef11794b3777289b}\label{class_t_f_t__e_s_p_i_a69accc533541f5a3ef11794b3777289b} 
+uint32\+\_\+t {\bfseries textbgcolor}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3b563a159928fb4bbcb45631f24368be}\label{class_t_f_t__e_s_p_i_a3b563a159928fb4bbcb45631f24368be} 
+uint32\+\_\+t {\bfseries bitmap\+\_\+fg}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ae25780474bd3cbeaf29c257a7bce5959}\label{class_t_f_t__e_s_p_i_ae25780474bd3cbeaf29c257a7bce5959} 
+uint32\+\_\+t {\bfseries bitmap\+\_\+bg}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1e0357cb922dee1d277c323e2c998dd4}\label{class_t_f_t__e_s_p_i_a1e0357cb922dee1d277c323e2c998dd4} 
+uint8\+\_\+t {\bfseries textfont}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a41c5426a21b2fbb1525057a12f8dedc7}\label{class_t_f_t__e_s_p_i_a41c5426a21b2fbb1525057a12f8dedc7} 
+uint8\+\_\+t {\bfseries textsize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7f7545c23ec9fe838b1643aaf5dc6914}\label{class_t_f_t__e_s_p_i_a7f7545c23ec9fe838b1643aaf5dc6914} 
+uint8\+\_\+t {\bfseries textdatum}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a8283eb84f85faf4950dfe9f3e7729bce}\label{class_t_f_t__e_s_p_i_a8283eb84f85faf4950dfe9f3e7729bce} 
+uint8\+\_\+t {\bfseries rotation}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a376bce8b8c7ce203e138d92113f72a3d}\label{class_t_f_t__e_s_p_i_a376bce8b8c7ce203e138d92113f72a3d} 
+uint8\+\_\+t {\bfseries decoder\+State} = 0
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7da4d95083480cd48dd9c2397fcae011}\label{class_t_f_t__e_s_p_i_a7da4d95083480cd48dd9c2397fcae011} 
+uint16\+\_\+t {\bfseries decoder\+Buffer}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa017eb985af2030ff408f7e0ba1cee0a}\label{class_t_f_t__e_s_p_i_aa017eb985af2030ff408f7e0ba1cee0a} 
+\mbox{\hyperlink{struct_t_f_t__e_s_p_i_1_1font_metrics}{font\+Metrics}} {\bfseries g\+Font} = \{ nullptr, 0, 0, 0, 0, 0, 0, 0 \}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a257f5246e09202645c0a093e7f093553}\label{class_t_f_t__e_s_p_i_a257f5246e09202645c0a093e7f093553} 
+uint16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Unicode} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3ce5cfc4ace047367ee9c6eb77be10d9}\label{class_t_f_t__e_s_p_i_a3ce5cfc4ace047367ee9c6eb77be10d9} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Height} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a407fee1090cba7a41012073402ca1a5a}\label{class_t_f_t__e_s_p_i_a407fee1090cba7a41012073402ca1a5a} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Width} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_abef8a7a20aa68e3c8e689d59f4dc5631}\label{class_t_f_t__e_s_p_i_abef8a7a20aa68e3c8e689d59f4dc5631} 
+uint8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gx\+Advance} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ac1e468205405eda66ae98f90d6d9fb3c}\label{class_t_f_t__e_s_p_i_ac1e468205405eda66ae98f90d6d9fb3c} 
+int16\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gdY} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a540f6553f20f26ea011e5dea84746472}\label{class_t_f_t__e_s_p_i_a540f6553f20f26ea011e5dea84746472} 
+int8\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries gdX} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a77bb852595f4890e02eeb8e603e58237}\label{class_t_f_t__e_s_p_i_a77bb852595f4890e02eeb8e603e58237} 
+uint32\+\_\+t \texorpdfstring{$\ast$}{*} {\bfseries g\+Bitmap} = NULL
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1a122913357042492808667d05c0fde8}\label{class_t_f_t__e_s_p_i_a1a122913357042492808667d05c0fde8} 
+bool {\bfseries font\+Loaded} = false
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa731df5c152bbfdec38a5ecdfd957a63}\label{class_t_f_t__e_s_p_i_aa731df5c152bbfdec38a5ecdfd957a63} 
+bool {\bfseries font\+File} = true
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad5111f6e35280de7211207b40c26b34c}\label{class_t_f_t__e_s_p_i_ad5111f6e35280de7211207b40c26b34c} 
+int32\+\_\+t {\bfseries \+\_\+init\+\_\+width}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7dccd02c91afb7590d6643779eb62688}\label{class_t_f_t__e_s_p_i_a7dccd02c91afb7590d6643779eb62688} 
+int32\+\_\+t {\bfseries \+\_\+init\+\_\+height}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a9ea391e39ee2a6cb9e34a0a71ee0c1d7}\label{class_t_f_t__e_s_p_i_a9ea391e39ee2a6cb9e34a0a71ee0c1d7} 
+int32\+\_\+t {\bfseries \+\_\+width}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aa08f32fb52db626757103025a72d423b}\label{class_t_f_t__e_s_p_i_aa08f32fb52db626757103025a72d423b} 
+int32\+\_\+t {\bfseries \+\_\+height}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ab55fcf56fe4ad7a72d89fdfe33b66666}\label{class_t_f_t__e_s_p_i_ab55fcf56fe4ad7a72d89fdfe33b66666} 
+int32\+\_\+t {\bfseries addr\+\_\+row}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a353d94d630acfd8727b938bfb67e5de0}\label{class_t_f_t__e_s_p_i_a353d94d630acfd8727b938bfb67e5de0} 
+int32\+\_\+t {\bfseries addr\+\_\+col}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a27c531c7ee179e0761991d49893999e8}\label{class_t_f_t__e_s_p_i_a27c531c7ee179e0761991d49893999e8} 
+int16\+\_\+t {\bfseries \+\_\+x\+Pivot}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_acb68ee2e57a3cde1ad70a6abbbf80e43}\label{class_t_f_t__e_s_p_i_acb68ee2e57a3cde1ad70a6abbbf80e43} 
+int16\+\_\+t {\bfseries \+\_\+y\+Pivot}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a3995a14a9db1f6beef4831a16277bfcd}\label{class_t_f_t__e_s_p_i_a3995a14a9db1f6beef4831a16277bfcd} 
+int32\+\_\+t {\bfseries \+\_\+vpX}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a179c7397d74f6380ece57c5313075545}\label{class_t_f_t__e_s_p_i_a179c7397d74f6380ece57c5313075545} 
+int32\+\_\+t {\bfseries \+\_\+vpY}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a28657871d4a2637cfb1b882f30ffa5ff}\label{class_t_f_t__e_s_p_i_a28657871d4a2637cfb1b882f30ffa5ff} 
+int32\+\_\+t {\bfseries \+\_\+vpW}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a963119eee4ebb06887c3adc426ba0063}\label{class_t_f_t__e_s_p_i_a963119eee4ebb06887c3adc426ba0063} 
+int32\+\_\+t {\bfseries \+\_\+vpH}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4cf9fa4c6603a4ec976af897edfce310}\label{class_t_f_t__e_s_p_i_a4cf9fa4c6603a4ec976af897edfce310} 
+int32\+\_\+t {\bfseries \+\_\+x\+Datum}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a607e1d74e28e183e5d3934dd99739e7c}\label{class_t_f_t__e_s_p_i_a607e1d74e28e183e5d3934dd99739e7c} 
+int32\+\_\+t {\bfseries \+\_\+y\+Datum}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a4f159c48957c99c13fdeda6689a11ab6}\label{class_t_f_t__e_s_p_i_a4f159c48957c99c13fdeda6689a11ab6} 
+int32\+\_\+t {\bfseries \+\_\+x\+Width}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a462146e8906b8ef217dc3044a4d16b2f}\label{class_t_f_t__e_s_p_i_a462146e8906b8ef217dc3044a4d16b2f} 
+int32\+\_\+t {\bfseries \+\_\+y\+Height}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aae13dcd86b1b9f046334a7b450d7b641}\label{class_t_f_t__e_s_p_i_aae13dcd86b1b9f046334a7b450d7b641} 
+bool {\bfseries \+\_\+vp\+Datum}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a52a7713ff8b6c02fe2685152707dbd75}\label{class_t_f_t__e_s_p_i_a52a7713ff8b6c02fe2685152707dbd75} 
+bool {\bfseries \+\_\+vp\+OoB}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a272695b2f9ebd28cc90b0197f49780df}\label{class_t_f_t__e_s_p_i_a272695b2f9ebd28cc90b0197f49780df} 
+int32\+\_\+t {\bfseries cursor\+\_\+x}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a31f1b4654b9c56f2ac36e1837973d4fe}\label{class_t_f_t__e_s_p_i_a31f1b4654b9c56f2ac36e1837973d4fe} 
+int32\+\_\+t {\bfseries cursor\+\_\+y}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a319b053b9ddb7bc72338b4ce08ffe6e7}\label{class_t_f_t__e_s_p_i_a319b053b9ddb7bc72338b4ce08ffe6e7} 
+int32\+\_\+t {\bfseries padX}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7667df2b3403dfd9b925f25604a7b07d}\label{class_t_f_t__e_s_p_i_a7667df2b3403dfd9b925f25604a7b07d} 
+uint32\+\_\+t {\bfseries fontsloaded}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a7cd6b64040b99fcbe6ae42f300893740}\label{class_t_f_t__e_s_p_i_a7cd6b64040b99fcbe6ae42f300893740} 
+uint8\+\_\+t {\bfseries glyph\+\_\+ab}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad6977c27f301912fa876a6ac3cb09ae9}\label{class_t_f_t__e_s_p_i_ad6977c27f301912fa876a6ac3cb09ae9} 
+uint8\+\_\+t {\bfseries glyph\+\_\+bb}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_afe3bbe5f4473c64ee5e3b259194eb71a}\label{class_t_f_t__e_s_p_i_afe3bbe5f4473c64ee5e3b259194eb71a} 
+bool {\bfseries is\+Digits}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a151be89b1760a7e8b6784a1dd9fcc483}\label{class_t_f_t__e_s_p_i_a151be89b1760a7e8b6784a1dd9fcc483} 
+bool {\bfseries textwrapX}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_ad8eaf67adb0f26b0c809a8744016745a}\label{class_t_f_t__e_s_p_i_ad8eaf67adb0f26b0c809a8744016745a} 
+bool {\bfseries textwrapY}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_abe2bf42acb3da9d3b841169fc92c47dd}\label{class_t_f_t__e_s_p_i_abe2bf42acb3da9d3b841169fc92c47dd} 
+bool {\bfseries \+\_\+swap\+Bytes}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a2853a02fd79169f15cbc2020bc2e46d4}\label{class_t_f_t__e_s_p_i_a2853a02fd79169f15cbc2020bc2e46d4} 
+bool {\bfseries locked}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a00449ff2b017869930ac0abea57f7c3b}\label{class_t_f_t__e_s_p_i_a00449ff2b017869930ac0abea57f7c3b} 
+bool {\bfseries in\+Transaction}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1238890a7778e95a822dac233d5a895d}\label{class_t_f_t__e_s_p_i_a1238890a7778e95a822dac233d5a895d} 
+bool {\bfseries lock\+Transaction}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a56e1cb17702748cc079ca5bdfbaf47bd}\label{class_t_f_t__e_s_p_i_a56e1cb17702748cc079ca5bdfbaf47bd} 
+bool {\bfseries \+\_\+booted}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aef6bd1f026016ad671cb55cd6148e9ae}\label{class_t_f_t__e_s_p_i_aef6bd1f026016ad671cb55cd6148e9ae} 
+bool {\bfseries \+\_\+cp437}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_aeacf6b420ddc9e34fab6bf9d6dac6aea}\label{class_t_f_t__e_s_p_i_aeacf6b420ddc9e34fab6bf9d6dac6aea} 
+bool {\bfseries \+\_\+utf8}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_acee44e8fd3db396b40334b20280c1778}\label{class_t_f_t__e_s_p_i_acee44e8fd3db396b40334b20280c1778} 
+bool {\bfseries \+\_\+psram\+\_\+enable}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a132f6999bf3e8cd28f76ba54d20da762}\label{class_t_f_t__e_s_p_i_a132f6999bf3e8cd28f76ba54d20da762} 
+uint32\+\_\+t {\bfseries \+\_\+last\+Color}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a1c6859d3922b0c3127b13daa08530010}\label{class_t_f_t__e_s_p_i_a1c6859d3922b0c3127b13daa08530010} 
+GFXfont \texorpdfstring{$\ast$}{*} {\bfseries gfx\+Font}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_t_f_t__e_s_p_i_a51051b4946e2a7886c5017287a3c360c}\label{class_t_f_t__e_s_p_i_a51051b4946e2a7886c5017287a3c360c} 
+class {\bfseries TFT\+\_\+e\+Sprite}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/TFT\+\_\+e\+SPI.\+h\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Extensions/Smooth\+\_\+font.\+cpp\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Extensions/Touch.\+cpp\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Processors/TFT\+\_\+e\+SPI\+\_\+\+ESP32.\+c\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Processors/TFT\+\_\+e\+SPI\+\_\+\+ESP8266.\+c\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Processors/TFT\+\_\+e\+SPI\+\_\+\+Generic.\+c\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Processors/TFT\+\_\+e\+SPI\+\_\+\+RP2040.\+c\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/\+Processors/TFT\+\_\+e\+SPI\+\_\+\+STM32.\+c\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/TFT\+\_\+e\+SPI.\+cpp\end{DoxyCompactItemize}
