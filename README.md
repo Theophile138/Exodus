@@ -4,5 +4,5 @@
 
 [Documentation du code](./Software/Doc/html/index.html)
 
-![Logo FabLab](.Images/LogoFABLAB.png)
-![Logo DVB](./Images/LogoDVB.svg)
+<img src="./Images/LogoFABLAB.png" alt="Logo FabLab" width="150"/>
+<img src="./Images/LogoDVB.svg" alt="Logo DVB" width="150"/>
