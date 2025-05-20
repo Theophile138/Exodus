@@ -81,6 +81,9 @@ class Screen {
          */
         void (*run)(Screen*);
 
+        static void emptyFunction(Screen*) {} ///< Fonction vide par défaut pour les callbacks
+
+
         // --- Callbacks pour les boutons ---
         static void leftOnclick(Screen* Scr);    ///< Callback pour le bouton gauche
         static void rightOnclick(Screen* Scr);   ///< Callback pour le bouton droit

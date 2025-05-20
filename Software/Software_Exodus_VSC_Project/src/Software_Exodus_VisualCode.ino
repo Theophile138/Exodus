@@ -45,11 +45,11 @@ void setup() {
 
   myScreen.Select_Menu_init();
 
-  Time_screen = millis();
+  Time_screen = millis(); ///< Temps de l'initialisation de l'écran
   
-  Time_config = micros();
+  Time_config = micros(); ///< Temps de l'initialisation de la config
 
-  Time = millis();
+  Time = millis(); ///< Temps global
 
   total_time1 = 0;
   iteration1 = 0;
@@ -60,10 +60,11 @@ void setup() {
 
 void loop() 
 {
-	if (millis() - Time_screen > 20){
-		Time_screen = millis();
-		myScreen.run(&myScreen);
-		total_time1 = total_time1 + (millis() - Time_screen);
+	// Verifie si la derniere fois qu'on a mis à jour l'écran c'était il y a plus de 20ms
+	if (millis() - Time_screen > 20){ 
+		Time_screen = millis(); // Met à jour la dernière fois qu'on a mis à jour l'écran
+		myScreen.run(&myScreen); // Appelle la fonction de mise à jour de l'écran
+		total_time1 = total_time1 + (millis() - Time_screen); 
 		iteration1 ++;
 	}
 
@@ -138,7 +139,7 @@ void Task2(){
 
 	/// qu'on remplacera par :
 	/// Version capteur réel (activer ça plus tard)
-	float pression = configTest1::value6;
+	// float pression = configTest1::value6;
 
     float angle = map(pression, 0, 4095, 0, 180);
     angle = constrain(angle, 0, 180);

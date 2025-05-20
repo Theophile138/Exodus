@@ -9,6 +9,8 @@
 
 #endif
 
+
+
 Extend_Card::Extend_Card() 
 {
   myEsp32 = new MasterDevice(); // crée parent ici un esp32

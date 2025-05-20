@@ -46,17 +46,17 @@ public:
   static void run();
 
   // --- Configuration du registre à décalage ---
-  static const int Reg1DataPin;   ///< Pin de données du registre à décalage
-  static const int Reg1ClockPin;  ///< Pin d'horloge du registre à décalage
-  static const int Reg1TrigPin;   ///< Pin de validation (latch) du registre à décalage
-  static const int Reg1Length;    ///< Taille du registre à décalage (en bits)
+  static const int Reg1DataPin = 25;   ///< Pin de données du registre à décalage
+  static const int Reg1ClockPin = 26;  ///< Pin d'horloge du registre à décalage
+  static const int Reg1TrigPin = 27;   ///< Pin de validation (latch) du registre à décalage
+  static const int Reg1Length = 16;    ///< Taille du registre à décalage (en bits)
   static Registre* monRegistre1;  ///< Pointeur vers l'objet Registre
 
   // --- Configuration du multiplexeur ---
-  static const int Multiplex1PinA;   ///< Pin analogique de lecture du multiplexeur
-  static const int Multiplex1PinS0;  ///< Pin de sélection S0 du multiplexeur (contrôlé par le registre)
-  static const int Multiplex1PinS1;  ///< Pin de sélection S1 du multiplexeur (contrôlé par le registre)
-  static const int Multiplex1PinS2;  ///< Pin de sélection S2 du multiplexeur (contrôlé par le registre)
+  static const int Multiplex1PinA = 36;   ///< Pin analogique de lecture du multiplexeur
+  static const int Multiplex1PinS0 = 2;  ///< Pin de sélection S0 du multiplexeur (contrôlé par le registre)
+  static const int Multiplex1PinS1 = 1;  ///< Pin de sélection S1 du multiplexeur (contrôlé par le registre)
+  static const int Multiplex1PinS2 = 0;  ///< Pin de sélection S2 du multiplexeur (contrôlé par le registre)
   static MasterDevice* myEsp32;      ///< Pointeur vers l'objet MasterDevice (ESP32)
   static Multiplexeur* monMultiplex1;///< Pointeur vers l'objet Multiplexeur
 

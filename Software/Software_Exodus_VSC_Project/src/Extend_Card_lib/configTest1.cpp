@@ -39,6 +39,7 @@ int configTest1::value4 = 0;
 int configTest1::value5 = 0;
 int configTest1::value6 = 0;
 
+
 #if defined(ESP32)
 
 void configTest1::init(Screen* scr) 

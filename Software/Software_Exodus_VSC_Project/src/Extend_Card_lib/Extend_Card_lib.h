@@ -52,26 +52,26 @@ class Extend_Card {
 
     // --- Registre à décalage ---
 
-    static const int Reg1DataPin;   ///< Pin de données du registre à décalage (ESP32)
-    static const int Reg1ClockPin;  ///< Pin d'horloge du registre à décalage (ESP32)
-    static const int Reg1TrigPin;   ///< Pin de validation (latch) du registre à décalage (ESP32)
-    static const int Reg1Length;    ///< Taille du registre à décalage (en bits)
+    static const int Reg1DataPin = 25;   ///< Pin de données du registre à décalage (ESP32)
+    static const int Reg1ClockPin = 26;  ///< Pin d'horloge du registre à décalage (ESP32)
+    static const int Reg1TrigPin = 27;   ///< Pin de validation (latch) du registre à décalage (ESP32)
+    static const int Reg1Length = 16;    ///< Taille du registre à décalage (en bits)
     Registre* monRegistre1;         ///< Pointeur vers l'objet Registre
 
     // --- Multiplexeur 1 ---
 
-    static const int Multiplex1PinA;   ///< Pin analogique de lecture du multiplexeur 1
-    static const int Multiplex1PinS0;  ///< Pin de sélection S0 du multiplexeur 1
-    static const int Multiplex1PinS1;  ///< Pin de sélection S1 du multiplexeur 1
-    static const int Multiplex1PinS2;  ///< Pin de sélection S2 du multiplexeur 1
+    static const int Multiplex1PinA = 36;   ///< Pin analogique de lecture du multiplexeur 1
+    static const int Multiplex1PinS0 = 2;  ///< Pin de sélection S0 du multiplexeur 1
+    static const int Multiplex1PinS1 = 1;  ///< Pin de sélection S1 du multiplexeur 1
+    static const int Multiplex1PinS2 = 0;  ///< Pin de sélection S2 du multiplexeur 1
     Multiplexeur* monMultiplex1;       ///< Pointeur vers l'objet Multiplexeur 1
 
     // --- Multiplexeur 2 (en cascade) ---
 
-    static const int Multiplex2PinA;   ///< Pin analogique de lecture du multiplexeur 2 (sur le multiplexeur 1)
-    static const int Multiplex2PinS0;  ///< Pin de sélection S0 du multiplexeur 2
-    static const int Multiplex2PinS1;  ///< Pin de sélection S1 du multiplexeur 2
-    static const int Multiplex2PinS2;  ///< Pin de sélection S2 du multiplexeur 2
+    static const int Multiplex2PinA = 0;   ///< Pin analogique de lecture du multiplexeur 2 (sur le multiplexeur 1)
+    static const int Multiplex2PinS0 = 5;  ///< Pin de sélection S0 du multiplexeur 2
+    static const int Multiplex2PinS1 = 4;  ///< Pin de sélection S1 du multiplexeur 2
+    static const int Multiplex2PinS2 = 3;  ///< Pin de sélection S2 du multiplexeur 2
     Multiplexeur* monMultiplex2;       ///< Pointeur vers l'objet Multiplexeur 2
 };
 
