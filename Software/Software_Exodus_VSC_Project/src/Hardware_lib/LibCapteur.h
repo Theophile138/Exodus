@@ -7,7 +7,7 @@
 #define LibCapteur_h
 
 #include <Wire.h>       ///< Nécessaire pour la communication I2C
-#include "C:\Users\pablo\.platformio\packages\framework-arduinoespressif32\libraries\mpu6050-master\src\MPU6050.h"    ///< Nécessaire pour la classe MPU6050
+#include "MPU6050.h"    ///< Nécessaire pour la classe MPU6050
 #include "LibPeripherique.h"
 #include "../Extend_Card_lib/Extend_Card_lib.h"
 

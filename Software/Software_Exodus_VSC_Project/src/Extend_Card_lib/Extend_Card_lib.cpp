@@ -25,4 +25,5 @@ void Extend_Card::digitalWrite(int pin , bool value){
 
 int Extend_Card::analogRead(int pin){
   monMultiplex1->analogReadAnyDevice(pin);
-}  
+  return monMultiplex1->analogReadAnyDevice(pin);
+}

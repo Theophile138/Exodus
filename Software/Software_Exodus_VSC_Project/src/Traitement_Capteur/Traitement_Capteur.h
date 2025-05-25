@@ -42,7 +42,6 @@ class Capteur_De_Force {
     void (*action_low)(Capteur_De_Force*);
 
   private: 
-<<<<<<< HEAD
     Capteur* Force1;
     Capteur* Force2;
     
@@ -56,12 +55,6 @@ class Capteur_De_Force {
 
     int highValue;
     int lowValue;
-=======
-    Capteur* Force1;           ///< Pointeur vers le premier capteur de force
-    Capteur* Force2;           ///< Pointeur vers le second capteur de force (ou nullptr si non utilisé)
-    int nbr_capteur;           ///< Nombre total de capteurs gérés
-    int nbr_active_capteur;    ///< Nombre de capteurs actuellement actifs
->>>>>>> 64172503fe8c3dd0eca10ceefabb9015c6460387
 };
 
 #endif
