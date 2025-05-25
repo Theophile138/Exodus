@@ -1,0 +1,113 @@
+\doxysection{ST7796\+\_\+\+Init.\+h}
+\hypertarget{_s_t7796___init_8h_source}{}\label{_s_t7796___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7796\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7796\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ST7796\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ uses\ simple\ 8\ bit\ SPI\ writecommand()\ and\ writedata()\ functions}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ See\ ST7735\_Setup.h\ file\ for\ an\ alternative\ format}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0}}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ writecommand(0x01);\ \textcolor{comment}{//Software\ reset}}
+\DoxyCodeLine{00013\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ writecommand(0x11);\ \textcolor{comment}{//Sleep\ exit\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00016\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ writecommand(0xF0);\ \textcolor{comment}{//Command\ Set\ control\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00019\ \ \ \ \ writedata(0xC3);\ \ \ \ \textcolor{comment}{//Enable\ extension\ command\ 2\ partI}}
+\DoxyCodeLine{00020\ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ writecommand(0xF0);\ \textcolor{comment}{//Command\ Set\ control\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00022\ \ \ \ \ writedata(0x96);\ \ \ \ \textcolor{comment}{//Enable\ extension\ command\ 2\ partII}}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ writecommand(0x36);\ \textcolor{comment}{//Memory\ Data\ Access\ Control\ MX,\ MY,\ RGB\ mode\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00025\ \ \ \ \ writedata(0x48);\ \ \ \ \textcolor{comment}{//X-\/Mirror,\ Top-\/Left\ to\ right-\/Buttom,\ RGB\ \ }}
+\DoxyCodeLine{00026\ \ \ \ \ }
+\DoxyCodeLine{00027\ \ \ \ \ writecommand(0x3A);\ \textcolor{comment}{//Interface\ Pixel\ Format\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00028\ \ \ \ \ writedata(0x55);\ \ \ \ \textcolor{comment}{//Control\ interface\ color\ format\ set\ to\ 16}}
+\DoxyCodeLine{00029\ \ \ \ \ }
+\DoxyCodeLine{00030\ \ \ \ \ }
+\DoxyCodeLine{00031\ \ \ \ \ writecommand(0xB4);\ \textcolor{comment}{//Column\ inversion\ }}
+\DoxyCodeLine{00032\ \ \ \ \ writedata(0x01);\ \ \ \ \textcolor{comment}{//1-\/dot\ inversion}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ writecommand(0xB6);\ \textcolor{comment}{//Display\ Function\ Control}}
+\DoxyCodeLine{00035\ \ \ \ \ writedata(0x80);\ \ \ \ \textcolor{comment}{//Bypass}}
+\DoxyCodeLine{00036\ \ \ \ \ writedata(0x02);\ \ \ \ \textcolor{comment}{//Source\ Output\ Scan\ from\ S1\ to\ S960,\ Gate\ Output\ scan\ from\ G1\ to\ G480,\ scan\ cycle=2}}
+\DoxyCodeLine{00037\ \ \ \ \ writedata(0x3B);\ \ \ \ \textcolor{comment}{//LCD\ Drive\ Line=8*(59+1)}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ writecommand(0xE8);\ \textcolor{comment}{//Display\ Output\ Ctrl\ Adjust}}
+\DoxyCodeLine{00041\ \ \ \ \ writedata(0x40);}
+\DoxyCodeLine{00042\ \ \ \ \ writedata(0x8A);\ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00044\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00045\ \ \ \ \ writedata(0x29);\ \ \ \ \textcolor{comment}{//Source\ eqaulizing\ period\ time=\ 22.5\ us}}
+\DoxyCodeLine{00046\ \ \ \ \ writedata(0x19);\ \ \ \ \textcolor{comment}{//Timing\ for\ "{}Gate\ start"{}=25\ (Tclk)}}
+\DoxyCodeLine{00047\ \ \ \ \ writedata(0xA5);\ \ \ \ \textcolor{comment}{//Timing\ for\ "{}Gate\ End"{}=37\ (Tclk),\ Gate\ driver\ EQ\ function\ ON}}
+\DoxyCodeLine{00048\ \ \ \ \ writedata(0x33);}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ writecommand(0xC1);\ \textcolor{comment}{//Power\ control2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00051\ \ \ \ \ writedata(0x06);\ \ \ \ \textcolor{comment}{//VAP(GVDD)=3.85+(\ vcom+vcom\ offset),\ VAN(GVCL)=-\/3.85+(\ vcom+vcom\ offset)}}
+\DoxyCodeLine{00052\ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ writecommand(0xC2);\ \textcolor{comment}{//Power\ control\ 3\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00054\ \ \ \ \ writedata(0xA7);\ \ \ \ \textcolor{comment}{//Source\ driving\ current\ level=low,\ Gamma\ driving\ current\ level=High}}
+\DoxyCodeLine{00055\ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ writecommand(0xC5);\ \textcolor{comment}{//VCOM\ Control}}
+\DoxyCodeLine{00057\ \ \ \ \ writedata(0x18);\ \ \ \ \textcolor{comment}{//VCOM=0.9}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00060\ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{comment}{//ST7796\ Gamma\ Sequence}}
+\DoxyCodeLine{00062\ \ \ \ \ writecommand(0xE0);\ \textcolor{comment}{//Gamma"{}+"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00063\ \ \ \ \ writedata(0xF0);}
+\DoxyCodeLine{00064\ \ \ \ \ writedata(0x09);\ }
+\DoxyCodeLine{00065\ \ \ \ \ writedata(0x0b);}
+\DoxyCodeLine{00066\ \ \ \ \ writedata(0x06);\ }
+\DoxyCodeLine{00067\ \ \ \ \ writedata(0x04);}
+\DoxyCodeLine{00068\ \ \ \ \ writedata(0x15);\ }
+\DoxyCodeLine{00069\ \ \ \ \ writedata(0x2F);}
+\DoxyCodeLine{00070\ \ \ \ \ writedata(0x54);\ }
+\DoxyCodeLine{00071\ \ \ \ \ writedata(0x42);}
+\DoxyCodeLine{00072\ \ \ \ \ writedata(0x3C);\ }
+\DoxyCodeLine{00073\ \ \ \ \ writedata(0x17);}
+\DoxyCodeLine{00074\ \ \ \ \ writedata(0x14);}
+\DoxyCodeLine{00075\ \ \ \ \ writedata(0x18);\ }
+\DoxyCodeLine{00076\ \ \ \ \ writedata(0x1B);\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ writecommand(0xE1);\ \textcolor{comment}{//Gamma"{}-\/"{}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00079\ \ \ \ \ writedata(0xE0);}
+\DoxyCodeLine{00080\ \ \ \ \ writedata(0x09);\ }
+\DoxyCodeLine{00081\ \ \ \ \ writedata(0x0B);}
+\DoxyCodeLine{00082\ \ \ \ \ writedata(0x06);\ }
+\DoxyCodeLine{00083\ \ \ \ \ writedata(0x04);}
+\DoxyCodeLine{00084\ \ \ \ \ writedata(0x03);\ }
+\DoxyCodeLine{00085\ \ \ \ \ writedata(0x2B);}
+\DoxyCodeLine{00086\ \ \ \ \ writedata(0x43);\ }
+\DoxyCodeLine{00087\ \ \ \ \ writedata(0x42);}
+\DoxyCodeLine{00088\ \ \ \ \ writedata(0x3B);\ }
+\DoxyCodeLine{00089\ \ \ \ \ writedata(0x16);}
+\DoxyCodeLine{00090\ \ \ \ \ writedata(0x14);}
+\DoxyCodeLine{00091\ \ \ \ \ writedata(0x17);\ }
+\DoxyCodeLine{00092\ \ \ \ \ writedata(0x1B);}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ delay(120);}
+\DoxyCodeLine{00095\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ writecommand(0xF0);\ \textcolor{comment}{//Command\ Set\ control\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00097\ \ \ \ \ writedata(0x3C);\ \ \ \ \textcolor{comment}{//Disable\ extension\ command\ 2\ partI}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ writecommand(0xF0);\ \textcolor{comment}{//Command\ Set\ control\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00100\ \ \ \ \ writedata(0x69);\ \ \ \ \textcolor{comment}{//Disable\ extension\ command\ 2\ partII}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ end\_tft\_write();}
+\DoxyCodeLine{00103\ \ \ delay(120);}
+\DoxyCodeLine{00104\ \ \ begin\_tft\_write();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ writecommand(0x29);\ \textcolor{comment}{//Display\ on\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00107\ \}}
+
+\end{DoxyCode}

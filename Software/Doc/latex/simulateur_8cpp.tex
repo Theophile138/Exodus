@@ -1,0 +1,44 @@
+\doxysection{Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/simulateur.cpp File Reference}
+\hypertarget{simulateur_8cpp}{}\label{simulateur_8cpp}\index{Software\_Exodus\_VSC\_Project/simulateur.cpp@{Software\_Exodus\_VSC\_Project/simulateur.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$chrono$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+float \mbox{\hyperlink{simulateur_8cpp_a55460c4dc172dab2f60b1e2f0bf23bed}{map\+Float}} (float x, float in\+\_\+min, float in\+\_\+max, float out\+\_\+min, float out\+\_\+max)
+\item 
+float \mbox{\hyperlink{simulateur_8cpp_a5abba0668631daa92b4bf18304bcfe42}{constrain\+Float}} (float x, float a, float b)
+\item 
+float \mbox{\hyperlink{simulateur_8cpp_acba56407ef14269dbfb44be3ebf07197}{simulate\+Pression}} (int step)
+\item 
+int \mbox{\hyperlink{simulateur_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{simulateur_8cpp_a5abba0668631daa92b4bf18304bcfe42}\index{simulateur.cpp@{simulateur.cpp}!constrainFloat@{constrainFloat}}
+\index{constrainFloat@{constrainFloat}!simulateur.cpp@{simulateur.cpp}}
+\doxysubsubsection{\texorpdfstring{constrainFloat()}{constrainFloat()}}
+{\footnotesize\ttfamily \label{simulateur_8cpp_a5abba0668631daa92b4bf18304bcfe42} 
+float constrain\+Float (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{a}{, }\item[{float}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{simulateur_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{simulateur.cpp@{simulateur.cpp}!main@{main}}
+\index{main@{main}!simulateur.cpp@{simulateur.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{simulateur_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{simulateur_8cpp_a55460c4dc172dab2f60b1e2f0bf23bed}\index{simulateur.cpp@{simulateur.cpp}!mapFloat@{mapFloat}}
+\index{mapFloat@{mapFloat}!simulateur.cpp@{simulateur.cpp}}
+\doxysubsubsection{\texorpdfstring{mapFloat()}{mapFloat()}}
+{\footnotesize\ttfamily \label{simulateur_8cpp_a55460c4dc172dab2f60b1e2f0bf23bed} 
+float map\+Float (\begin{DoxyParamCaption}\item[{float}]{x}{, }\item[{float}]{in\+\_\+min}{, }\item[{float}]{in\+\_\+max}{, }\item[{float}]{out\+\_\+min}{, }\item[{float}]{out\+\_\+max}{}\end{DoxyParamCaption})}
+
+\Hypertarget{simulateur_8cpp_acba56407ef14269dbfb44be3ebf07197}\index{simulateur.cpp@{simulateur.cpp}!simulatePression@{simulatePression}}
+\index{simulatePression@{simulatePression}!simulateur.cpp@{simulateur.cpp}}
+\doxysubsubsection{\texorpdfstring{simulatePression()}{simulatePression()}}
+{\footnotesize\ttfamily \label{simulateur_8cpp_acba56407ef14269dbfb44be3ebf07197} 
+float simulate\+Pression (\begin{DoxyParamCaption}\item[{int}]{step}{}\end{DoxyParamCaption})}
+

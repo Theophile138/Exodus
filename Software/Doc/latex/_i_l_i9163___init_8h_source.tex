@@ -1,0 +1,47 @@
+\doxysection{ILI9163\+\_\+\+Init.\+h}
+\hypertarget{_i_l_i9163___init_8h_source}{}\label{_i_l_i9163___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9163\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9163\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ILI9163\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ is\ in\ a\ format\ accecpted\ by\ the\ commandList()\ function}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ which\ reduces\ FLASH\ space,\ but\ on\ an\ ESP8266\ there\ is\ plenty\ available!}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ See\ ILI9341\_Setup.h\ file\ for\ an\ alternative\ simpler\ format}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Initialization\ commands\ for\ ILI9163\ screens}}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ ILI9163\_cmds[]\ PROGMEM\ =}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ 17,\ \ \ \ \textcolor{comment}{//\ 17\ commands\ follow}}
+\DoxyCodeLine{00014\ \ \ \ \ 0x01,\ \ 0\ +\ TFT\_INIT\_DELAY,\ 120,\ \ \textcolor{comment}{//\ Software\ reset}}
+\DoxyCodeLine{00015\ \ \ \ \ 0x11,\ \ 0\ +\ TFT\_INIT\_DELAY,\ 5,\ \ \ \ \textcolor{comment}{//\ Exit\ sleep\ mode}}
+\DoxyCodeLine{00016\ \ \ \ \ 0x3A,\ \ 1,\ 0x05,\ \textcolor{comment}{//\ Set\ pixel\ format}}
+\DoxyCodeLine{00017\ \ \ \ \ 0x26,\ \ 1,\ 0x04,\ \textcolor{comment}{//\ Set\ Gamma\ curve\ 3}}
+\DoxyCodeLine{00018\ \ \ \ \ 0xF2,\ \ 1,\ 0x01,\ \textcolor{comment}{//\ Gamma\ adjustment\ enabled}}
+\DoxyCodeLine{00019\ \ \ \ \ 0xE0,\ 15,\ 0x3F,\ 0x25,\ 0x1C,\ 0x1E,\ 0x20,\ 0x12,\ 0x2A,\ 0x90,}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x24,\ 0x11,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \textcolor{comment}{//\ Positive\ Gamma}}
+\DoxyCodeLine{00021\ \ \ \ \ 0xE1,\ 15,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x05,\ 0x00,\ 0x15,0xA7,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x3D,\ 0x18,\ 0x25,\ 0x2A,\ 0x2B,\ 0x2B,\ 0x3A,\ \textcolor{comment}{//\ Negative\ Gamma}}
+\DoxyCodeLine{00023\ \ \ \ \ 0xB1,\ \ 2,\ 0x08,\ 0x08,\ \textcolor{comment}{//\ Frame\ rate\ control\ 1}}
+\DoxyCodeLine{00024\ \ \ \ \ 0xB4,\ \ 1,\ 0x07,\ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ inversion}}
+\DoxyCodeLine{00025\ \ \ \ \ 0xC0,\ \ 2,\ 0x0A,\ 0x02,\ \textcolor{comment}{//\ Power\ control\ 1}}
+\DoxyCodeLine{00026\ \ \ \ \ 0xC1,\ \ 1,\ 0x02,\ \ \ \ \ \ \ \textcolor{comment}{//\ Power\ control\ 2}}
+\DoxyCodeLine{00027\ \ \ \ \ 0xC5,\ \ 2,\ 0x50,\ 0x5B,\ \textcolor{comment}{//\ Vcom\ control\ 1}}
+\DoxyCodeLine{00028\ \ \ \ \ 0xC7,\ \ 1,\ 0x40,\ \ \ \ \ \ \ \textcolor{comment}{//\ Vcom\ offset}}
+\DoxyCodeLine{00029\ \ \ \ \ 0x2A,\ \ 4,\ 0x00,\ 0x00,\ 0x00,\ 0x7F,\ \textcolor{comment}{//\ Set\ column\ address}}
+\DoxyCodeLine{00030\ \ \ \ \ 0x2B,\ \ 4\ +\ TFT\_INIT\_DELAY,\ 0x00,\ 0x00,\ 0x00,\ 0x9F,\ 250,\ \textcolor{comment}{//\ Set\ page\ address}}
+\DoxyCodeLine{00031\ \ \ \ \ 0x36,\ \ 1,\ 0xC8,\ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ address\ mode}}
+\DoxyCodeLine{00032\ \ \ \ \ 0x29,\ \ 0,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ display\ on}}
+\DoxyCodeLine{00033\ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ commandList(ILI9163\_cmds);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00041\ \}}
+
+\end{DoxyCode}

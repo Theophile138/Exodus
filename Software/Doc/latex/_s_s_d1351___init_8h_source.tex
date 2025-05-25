@@ -1,0 +1,41 @@
+\doxysection{SSD1351\+\_\+\+Init.\+h}
+\hypertarget{_s_s_d1351___init_8h_source}{}\label{_s_s_d1351___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1351\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \{}
+\DoxyCodeLine{00002\ \ \ writecommand(0xFD);\ \textcolor{comment}{//\ COMMANDLOCK}}
+\DoxyCodeLine{00003\ \ \ writedata(0x12);}
+\DoxyCodeLine{00004\ \ \ writecommand(0xFD);\ \textcolor{comment}{//\ COMMANDLOCK}}
+\DoxyCodeLine{00005\ \ \ writedata(0xB1);}
+\DoxyCodeLine{00006\ \ \ writecommand(0xAE);\ \textcolor{comment}{//\ DISPLAYOFF}}
+\DoxyCodeLine{00007\ \ \ writecommand(0xB3);\ \textcolor{comment}{//\ CLOCKDIV}}
+\DoxyCodeLine{00008\ \ \ writedata(0xF1);}
+\DoxyCodeLine{00009\ \ \ writecommand(0xCA);\ \textcolor{comment}{//\ MUXRATIO}}
+\DoxyCodeLine{00010\ \ \ writedata(127);}
+\DoxyCodeLine{00011\ \ \ writecommand(0xA2);\ \textcolor{comment}{//\ DISPLAYOFFSET}}
+\DoxyCodeLine{00012\ \ \ writedata(0x00);}
+\DoxyCodeLine{00013\ \ \ writecommand(0xB5);\ \textcolor{comment}{//\ SETGPIO}}
+\DoxyCodeLine{00014\ \ \ writedata(0x00);}
+\DoxyCodeLine{00015\ \ \ writecommand(0xAB);\ \textcolor{comment}{//\ FUNCTIONSELECT}}
+\DoxyCodeLine{00016\ \ \ writedata(0x01);}
+\DoxyCodeLine{00017\ \ \ writecommand(0xB1);\ \textcolor{comment}{//\ PRECHARGE}}
+\DoxyCodeLine{00018\ \ \ writedata(0x32);}
+\DoxyCodeLine{00019\ \ \ writecommand(0xBE);\ \textcolor{comment}{//\ VCOMH}}
+\DoxyCodeLine{00020\ \ \ writedata(0x05);}
+\DoxyCodeLine{00021\ \ \ writecommand(0xA6);\ \textcolor{comment}{//\ NORMALDISPLAY}}
+\DoxyCodeLine{00022\ \ \ writecommand(0xC1);\ \textcolor{comment}{//\ CONTRASTABC}}
+\DoxyCodeLine{00023\ \ \ writedata(0xC8);}
+\DoxyCodeLine{00024\ \ \ writedata(0x80);}
+\DoxyCodeLine{00025\ \ \ writedata(0xC8);}
+\DoxyCodeLine{00026\ \ \ writecommand(0xC7);\ \textcolor{comment}{//\ CONTRASTMASTER}}
+\DoxyCodeLine{00027\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00028\ \ \ writecommand(0xB4);\ \textcolor{comment}{//\ SETVSL}}
+\DoxyCodeLine{00029\ \ \ writedata(0xA0);}
+\DoxyCodeLine{00030\ \ \ writedata(0xB5);}
+\DoxyCodeLine{00031\ \ \ writedata(0x55);}
+\DoxyCodeLine{00032\ \ \ writecommand(0xB6);\ \textcolor{comment}{//\ PRECHARGE2}}
+\DoxyCodeLine{00033\ \ \ writedata(0x01);}
+\DoxyCodeLine{00034\ \ \ writecommand(0xAF);\ \textcolor{comment}{//\ DISPLAYON}}
+\DoxyCodeLine{00035\ \}}
+
+\end{DoxyCode}

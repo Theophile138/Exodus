@@ -1,0 +1,78 @@
+\doxysection{Lib\+Jauge.\+h}
+\hypertarget{_lib_jauge_8h_source}{}\label{_lib_jauge_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibJauge.h@{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibJauge.h}}
+\mbox{\hyperlink{_lib_jauge_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibJauge\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibJauge\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <TFT\_eSPI.h>}\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_GREY\ 0x5AEB\ \ \ \ \ \ }}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ KEY\_TEXTSIZE\ 1\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classanalog_meters_a17973a4c2059543f3d44a92c403d31cd}{analogMeters}}\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classanalog_meters_a17973a4c2059543f3d44a92c403d31cd}{analogMeters}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classanalog_meters_a90fdd45529ad7ad51fe8df4bc0e50ab3}{drawAnalogMeters}}(TFT\_eSPI*\ \mbox{\hyperlink{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de}{tft}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a7759b29e7af15459632645dc7cbb059b}{positionX}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a1a668795d324254281b152fdc17d7cac}{positionY}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc}{mideNumber}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7}{minGreenLimite}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a017f5b272f44acd188807da017620b60}{maxGreenLimite}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da}{minOrangeLimite}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06}{maxOrangeLimite}},\ String\ \mbox{\hyperlink{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2}{unit}});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classanalog_meters_a32fef871d51999055ae88991a9897bcd}{plotNeedle}}(\textcolor{keywordtype}{int}\ value,\ \textcolor{keywordtype}{byte}\ ms\_delay);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_ad12fc34ce789bce6c8a05d8a17138534}{height}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a07b3d34c383b22949d7d9f398e6d2aa1}{new\_value}};\ \ \ \ \ \ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classanalog_meters_a5f2e190b8261a98c97c2ea4e86670d54}{refresh}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a5b3b62a1d4b64d37cd49bec235dc4b90}{actual\_value}};\ \ \ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Variables\ internes\ pour\ l'affichage\ de\ la\ jauge}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{classanalog_meters_a720cdf623f5ff1fda42791dd081109d7}{ltx}}\ =\ 0;\ \ \ \ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{classanalog_meters_acd79b6ea0185b719bf9cd9621784b177}{osx}}\ =\ 120,\ \mbox{\hyperlink{classanalog_meters_a9e2f4da2e1da4c6e78a7add5ffcda0e8}{osy}}\ =\ 120;\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ uint32\_t\ \mbox{\hyperlink{classanalog_meters_ac989f7520de779a62b0d73a4f1488f7c}{updateTime}}\ =\ 0;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a81a0dbe30bf978e5cf928c986bca39b1}{old\_analog}}\ =\ \ -\/999;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc}{mideNumber}}\ =\ 50;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7}{minGreenLimite}}\ =\ -\/50;\ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a017f5b272f44acd188807da017620b60}{maxGreenLimite}}\ =\ -\/25;\ \ \ \ \ \ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da}{minOrangeLimite}}\ =\ 25;\ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06}{maxOrangeLimite}}\ =\ 50;\ \ \ \ \ \ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a7759b29e7af15459632645dc7cbb059b}{positionX}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classanalog_meters_a1a668795d324254281b152fdc17d7cac}{positionY}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ String\ \mbox{\hyperlink{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2}{unit}}\ =\ \textcolor{stringliteral}{"{}\%\ Force"{}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ TFT\_eSPI*\ \mbox{\hyperlink{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de}{tft}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classlinear_meter_ade111fe33016af4f9d22fecee74176ed}{linearMeter}}\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlinear_meter_ade111fe33016af4f9d22fecee74176ed}{linearMeter}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlinear_meter_ae31a290e2fdcc379f124cab57b7f8e5a}{plotLinear}}(TFT\_eSPI*\ \mbox{\hyperlink{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de}{tft}},\ \textcolor{keywordtype}{char}\ *label,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc}{x}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33}{y}});}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlinear_meter_ad05efe2faea13ceab39c3a9cab401291}{plotPointer}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classlinear_meter_a5f2e190b8261a98c97c2ea4e86670d54}{refresh}}();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ TFT\_eSPI*\ \mbox{\hyperlink{classlinear_meter_ad4b71e124dca192cc08cf144e2a824de}{tft}};\ \ \ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classlinear_meter_a5ac083a645d964373f022d03df4849c8}{name}};\ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a6150e0515f7202e2fb518f7206ed97dc}{x}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a0a2f84ed7838f07779ae24c5a9086d33}{y}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a07b3d34c383b22949d7d9f398e6d2aa1}{new\_value}};\ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classlinear_meter_a4f6a7f253bdd17de45549df1fc71b8c0}{disable}};\ \ \ \ }
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a5b3b62a1d4b64d37cd49bec235dc4b90}{actual\_value}};\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classlinear_meter_a5e71828ccbcb0d5ba708f9fdcdb748fa}{old\_value}};\ \ \ \ }
+\DoxyCodeLine{00125\ \};}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

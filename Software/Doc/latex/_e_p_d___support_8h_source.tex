@@ -1,0 +1,123 @@
+\doxysection{EPD\+\_\+\+Support.\+h}
+\hypertarget{_e_p_d___support_8h_source}{}\label{_e_p_d___support_8h_source}\index{lib/TFT\_eSPI-\/master/examples/ePaper/Floyd\_Steinberg/EPD\_Support.h@{lib/TFT\_eSPI-\/master/examples/ePaper/Floyd\_Steinberg/EPD\_Support.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*\ \ Support\ definitions\ and\ functions\ for\ ePaper\ examples}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ These\ tailor\ the\ library\ and\ screen\ settings}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ \ Must\ be\ a\ header\ file\ to\ ensure\ \#defines\ are\ established\ first}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *\ \ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ \ Created\ by\ Bodmer\ 30/3/18\ for\ TFT\_eSPI\ library:}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ \ https://github.com/Bodmer/TFT\_eSPI}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ EPD\_WIDTH\ and\ EPD\_HEIGHT\ are\ automatically\ defined\ here\ based\ on\ the\ library\ selected}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ For\ 2\ colour\ ePaper\ displays\ create\ one\ frame\ pointer\ in\ sketch:}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ uint8\_t*\ framePtr;}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ For\ 3\ colour\ ePaper\ displays\ create\ two\ frame\ pointers\ in\ sketch:}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ \ uint8\_t*\ blackFramePtr;}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ \ uint8\_t*\ redFramePtr;}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ \ Call\ this\ function\ to\ update\ whole\ display:}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ \ updateDisplay();}}
+\DoxyCodeLine{00021\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Install\ the\ ePaper\ library\ for\ your\ own\ display\ size\ and\ type}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ from\ here:}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ https://github.com/Bodmer/EPD\_Libraries}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ Define\ which\ colour\ values\ are\ paper\ and\ ink}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#if\ defined\ (EPD2IN7B\_H)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \#define\ COLORED\ \ \ \ \ 1\ }\textcolor{comment}{//\ EPD2IN7B\ is\ opposite\ to\ all\ others!}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \#define\ UNCOLORED\ \ \ 0}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \#define\ COLORED\ \ \ \ \ 0}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \#define\ UNCOLORED\ \ \ 1}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Define\ the\ width\ and\ height\ of\ the\ different\ displays}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#if\ defined\ (EPD1IN54\_H)\ ||\ defined\ (EPD1IN54B\_H)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 200\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 5000\ bytes}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 200}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT\ \ \ \ \ \ \ \ lut\_full\_update}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#elif\ defined\ (EPD1IN54C\_H)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 152\ }\textcolor{comment}{//\ 2\ frame\ buffers\ of\ 2888\ bytes\ each}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 152}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#elif\ defined\ (EPD2IN7\_H)\ ||\ defined\ (EPD2IN7B\_H)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 176\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 5808\ bytes}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 264}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#elif\ defined\ (EPD2IN9\_H)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 128\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 4736\ bytes}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 296}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT\ \ \ \ \ \ \ \ lut\_full\_update}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#elif\ defined\ (EPD2IN9B\_H)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 128\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 4736\ bytes}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 296}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#elif\ defined\ (EPD2IN13\_H)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 122\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 4000\ bytes}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 250}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT\ \ \ \ \ \ \ \ lut\_full\_update}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#elif\ defined\ (EPD2IN13B\_H)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 104\ }\textcolor{comment}{//\ 2\ frame\ buffers\ of\ 2756\ bytes\ each}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 212}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#elif\ defined\ (EPD4IN2\_H)\ ||\ defined\ (EPD4IN2B\_H)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 400\ }\textcolor{comment}{//\ Frame\ buffer\ is\ 15000\ bytes}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 300}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ ESP8266\ has\ just\ enough\ RAM\ for\ a\ 2\ color\ 7.5"{}\ display\ full\ screen\ buffer}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ ESP32\ has\ just\ enough\ RAM\ for\ 2\ or\ 3\ color\ 7.5"{}\ display}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ (Without\ using\ partial\ screen\ updates)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#elif\ defined\ (EPD7IN5\_H)\ ||\ defined\ (EPD7IN5B\_H)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \#define\ EPD\_WIDTH\ \ \ \ \ \ \ 640\ \ }\textcolor{comment}{//\ 2\ colour\ frame\ buffer\ is\ 30720\ bytes}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ \#define\ EPD\_HEIGHT\ \ \ \ \ \ 384\ \ }\textcolor{comment}{//\ 2\ colour\ frame\ buffer\ is\ 61440\ bytes}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \#define\ INIT\_LUT}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \#\ error\ "{}Selected\ ePaper\ library\ is\ not\ supported"{}}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ Update\ display\ -\/\ different\ displays\ have\ different\ function\ names\ in\ the\ default}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ Waveshare\ libraries\ \ :-\/(}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#if\ defined\ (EPD1IN54B\_H)\ ||\ defined(EPD1IN54C\_H)\ ||\ defined(EPD2IN13B\_H)\ ||\ defined(EPD2IN7B\_H)\ ||\ defined(EPD2IN9B\_H)\ ||\ defined(EPD4IN2\_H)}}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordtype}{void}\ updateDisplay(uint8\_t*\ blackFrame\ =\ blackFramePtr,\ uint8\_t*\ redFrame\ =\ redFramePtr)}
+\DoxyCodeLine{00102\ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ ePaper.DisplayFrame(blackFrame,\ redFrame);\ \ \textcolor{comment}{//\ Update\ 3\ colour\ display}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{void}\ updateDisplay(uint8\_t*\ blackFrame\ =\ framePtr)}
+\DoxyCodeLine{00106\ \ \ \{}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \#if\ defined\ (EPD2IN7\_H)\ ||\ defined(EPD4IN2\_H)}}
+\DoxyCodeLine{00108\ \ \ \ \ ePaper.DisplayFrame(blackFrame);\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ 2\ color\ display}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \#elif\ defined\ (EPD1IN54\_H)\ ||\ defined(EPD2IN13\_H)\ ||\ defined(EPD2IN9\_H)}}
+\DoxyCodeLine{00111\ \ \ \ \ ePaper.SetFrameMemory(blackFrame);}
+\DoxyCodeLine{00112\ \ \ \ \ ePaper.DisplayFrame();\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ 2\ color\ display}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \ \ \#\ error\ "{}Selected\ ePaper\ library\ is\ not\ supported"{}}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00117\ \}}
+
+\end{DoxyCode}

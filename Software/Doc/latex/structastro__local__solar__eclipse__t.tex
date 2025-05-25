@@ -1,0 +1,87 @@
+\doxysection{astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t Struct Reference}
+\hypertarget{structastro__local__solar__eclipse__t}{}\label{structastro__local__solar__eclipse__t}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+
+
+Information about a solar eclipse as seen by an observer at a given time and geographic location.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__local__solar__eclipse__t_a7c5a3c1e11e8bd03b97010e318a9094c}{status}}
+\item 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t \mbox{\hyperlink{structastro__local__solar__eclipse__t_aeb9b8710cbb8b5e07aa536ed37ea5e78}{kind}}
+\item 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} \mbox{\hyperlink{structastro__local__solar__eclipse__t_a9e2fd074d0262a60771893f7d841804c}{partial\+\_\+begin}}
+\item 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} \mbox{\hyperlink{structastro__local__solar__eclipse__t_a4843dca508a4b3745d1823d353e553f1}{total\+\_\+begin}}
+\item 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} \mbox{\hyperlink{structastro__local__solar__eclipse__t_af64124eff02df3b23226792b04f20210}{peak}}
+\item 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} \mbox{\hyperlink{structastro__local__solar__eclipse__t_a0c9e2d53694932c86454f0346cc76ff4}{total\+\_\+end}}
+\item 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} \mbox{\hyperlink{structastro__local__solar__eclipse__t_a75b63c025e4e2c3434057eb0b6879a40}{partial\+\_\+end}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Information about a solar eclipse as seen by an observer at a given time and geographic location. 
+
+Returned by Astronomy\+\_\+\+Search\+Local\+Solar\+Eclipse or Astronomy\+\_\+\+Next\+Local\+Solar\+Eclipse to report information about a solar eclipse as seen at a given geographic location. If a solar eclipse is found, {\ttfamily status} holds {\ttfamily ASTRO\+\_\+\+SUCCESS} and the other fields are set. If {\ttfamily status} holds any other value, it is an error code and the other fields are undefined.
+
+When a solar eclipse is found, it is classified as partial, annular, or total. The {\ttfamily kind} field thus holds {\ttfamily ECLIPSE\+\_\+\+PARTIAL}, {\ttfamily ECLIPSE\+\_\+\+ANNULAR}, or {\ttfamily ECLIPSE\+\_\+\+TOTAL}. A partial solar eclipse is when the Moon does not line up directly enough with the Sun to completely block the Sun\textquotesingle{}s light from reaching the observer. An annular eclipse occurs when the Moon\textquotesingle{}s disc is completely visible against the Sun but the Moon is too far away to completely block the Sun\textquotesingle{}s light; this leaves the Sun with a ring-\/like appearance. A total eclipse occurs when the Moon is close enough to the Earth and aligned with the Sun just right to completely block all sunlight from reaching the observer.
+
+There are 5 "{}event"{} fields, each of which contains a time and a solar altitude. Field {\ttfamily peak} holds the date and time of the center of the eclipse, when it is at its peak. The fields {\ttfamily partial\+\_\+begin} and {\ttfamily partial\+\_\+end} are always set, and indicate when the eclipse begins/ends. If the eclipse reaches totality or becomes annular, {\ttfamily total\+\_\+begin} and {\ttfamily total\+\_\+end} indicate when the total/annular phase begins/ends. When an event field is valid, the caller must also check its {\ttfamily altitude} field to see whether the Sun is above the horizon at that time. See astro\+\_\+eclipse\+\_\+kind\+\_\+t for more information. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__local__solar__eclipse__t_aeb9b8710cbb8b5e07aa536ed37ea5e78}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!kind@{kind}}
+\index{kind@{kind}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_aeb9b8710cbb8b5e07aa536ed37ea5e78} 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::kind}
+
+The type of solar eclipse found\+: {\ttfamily ECLIPSE\+\_\+\+PARTIAL}, {\ttfamily ECLIPSE\+\_\+\+ANNULAR}, or {\ttfamily ECLIPSE\+\_\+\+TOTAL}. \Hypertarget{structastro__local__solar__eclipse__t_a9e2fd074d0262a60771893f7d841804c}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!partial\_begin@{partial\_begin}}
+\index{partial\_begin@{partial\_begin}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{partial\_begin}{partial\_begin}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_a9e2fd074d0262a60771893f7d841804c} 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::partial\+\_\+begin}
+
+The time and Sun altitude at the beginning of the eclipse. \Hypertarget{structastro__local__solar__eclipse__t_a75b63c025e4e2c3434057eb0b6879a40}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!partial\_end@{partial\_end}}
+\index{partial\_end@{partial\_end}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{partial\_end}{partial\_end}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_a75b63c025e4e2c3434057eb0b6879a40} 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::partial\+\_\+end}
+
+The time and Sun altitude at the end of the eclipse. \Hypertarget{structastro__local__solar__eclipse__t_af64124eff02df3b23226792b04f20210}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!peak@{peak}}
+\index{peak@{peak}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{peak}{peak}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_af64124eff02df3b23226792b04f20210} 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::peak}
+
+The time and Sun altitude when the eclipse reaches its peak. \Hypertarget{structastro__local__solar__eclipse__t_a7c5a3c1e11e8bd03b97010e318a9094c}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!status@{status}}
+\index{status@{status}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_a7c5a3c1e11e8bd03b97010e318a9094c} 
+astro\+\_\+status\+\_\+t astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__local__solar__eclipse__t_a4843dca508a4b3745d1823d353e553f1}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!total\_begin@{total\_begin}}
+\index{total\_begin@{total\_begin}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{total\_begin}{total\_begin}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_a4843dca508a4b3745d1823d353e553f1} 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::total\+\_\+begin}
+
+If this is an annular or a total eclipse, the time and Sun altitude when annular/total phase begins; otherwise invalid. \Hypertarget{structastro__local__solar__eclipse__t_a0c9e2d53694932c86454f0346cc76ff4}\index{astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}!total\_end@{total\_end}}
+\index{total\_end@{total\_end}!astro\_local\_solar\_eclipse\_t@{astro\_local\_solar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{total\_end}{total\_end}}
+{\footnotesize\ttfamily \label{structastro__local__solar__eclipse__t_a0c9e2d53694932c86454f0346cc76ff4} 
+\mbox{\hyperlink{structastro__eclipse__event__t}{astro\+\_\+eclipse\+\_\+event\+\_\+t}} astro\+\_\+local\+\_\+solar\+\_\+eclipse\+\_\+t\+::total\+\_\+end}
+
+If this is an annular or a total eclipse, the time and Sun altitude when annular/total phase ends; otherwise invalid. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

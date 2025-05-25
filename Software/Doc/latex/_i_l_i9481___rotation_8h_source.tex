@@ -1,0 +1,33 @@
+\doxysection{ILI9481\+\_\+\+Rotation.\+h}
+\hypertarget{_i_l_i9481___rotation_8h_source}{}\label{_i_l_i9481___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9481\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9481\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ILI9481\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;}
+\DoxyCodeLine{00005\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00006\ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00007\ \ \ \ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_SS);}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \_width\ \ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \_height\ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00010\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00011\ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00012\ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_BGR);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \_width\ \ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \_height\ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00016\ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00017\ \ \ \ \ \ writedata(TFT\_MAD\_BGR\ |\ TFT\_MAD\_GS);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \_width\ \ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \_height\ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00021\ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00022\ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_BGR\ |\ TFT\_MAD\_SS\ |\ TFT\_MAD\_GS);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \_width\ \ =\ TFT\_HEIGHT;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \_height\ =\ TFT\_WIDTH;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00026\ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ }
+
+\end{DoxyCode}

@@ -1,0 +1,86 @@
+\doxysection{ST7789\+\_\+2\+\_\+\+Rotation.\+h}
+\hypertarget{_s_t7789__2___rotation_8h_source}{}\label{_s_t7789__2___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7789\_2\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7789\_2\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ST7789\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;}
+\DoxyCodeLine{00005\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ Portrait}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_init\_width\ ==\ 135)}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ colstart\ =\ 52;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ rowstart\ =\ 40;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ Landscape\ (Portrait\ +\ 90)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_init\_width\ ==\ 135)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ colstart\ =\ 40;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ rowstart\ =\ 53;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ Inverter\ portrait}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_init\_width\ ==\ 135)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ colstart\ =\ 53;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ rowstart\ =\ 40;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ rowstart\ =\ 80;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ Inverted\ landscape}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifdef\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\_init\_width\ ==\ 135)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ colstart\ =\ 40;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ rowstart\ =\ 52;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ colstart\ =\ 80;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00080\ \ \ \}}
+
+\end{DoxyCode}

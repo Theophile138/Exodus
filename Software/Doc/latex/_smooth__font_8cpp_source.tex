@@ -1,0 +1,526 @@
+\doxysection{Smooth\+\_\+font.\+cpp}
+\hypertarget{_smooth__font_8cpp_source}{}\label{_smooth__font_8cpp_source}\index{lib/TFT\_eSPI-\/master/Extensions/Smooth\_font.cpp@{lib/TFT\_eSPI-\/master/Extensions/Smooth\_font.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \textcolor{comment}{//\ Coded\ by\ Bodmer\ 10/2/18,\ see\ license\ in\ root\ directory.}}
+\DoxyCodeLine{00002\ \ \textcolor{comment}{//\ This\ is\ part\ of\ the\ TFT\_eSPI\ class\ and\ is\ associated\ with\ anti-\/aliased\ font\ functions}}
+\DoxyCodeLine{00003\ \ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ New\ anti-\/aliased\ (smoothed)\ font\ functions\ added\ below}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00010\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ loadFont}}
+\DoxyCodeLine{00011\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ loads\ parameters\ from\ a\ font\ vlw\ array\ in\ memory}}
+\DoxyCodeLine{00012\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{void}\ TFT\_eSPI::loadFont(\textcolor{keyword}{const}\ uint8\_t\ array[])}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keywordflow}{if}\ (array\ ==\ \textcolor{keyword}{nullptr})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00016\ \ \ fontPtr\ =\ (uint8\_t*)\ array;}
+\DoxyCodeLine{00017\ \ \ loadFont(\textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00018\ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00021\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00022\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ loadFont}}
+\DoxyCodeLine{00023\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ loads\ parameters\ from\ a\ font\ vlw\ file}}
+\DoxyCodeLine{00024\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ TFT\_eSPI::loadFont(String\ fontName,\ fs::FS\ \&ffs)}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ fontFS\ =\ ffs;}
+\DoxyCodeLine{00028\ \ \ loadFont(fontName,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00029\ \}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00033\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ loadFont}}
+\DoxyCodeLine{00034\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ loads\ parameters\ from\ a\ font\ vlw\ file}}
+\DoxyCodeLine{00035\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}\ TFT\_eSPI::loadFont(String\ fontName,\ \textcolor{keywordtype}{bool}\ flash)}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ The\ vlw\ font\ format\ does\ not\ appear\ to\ be\ documented\ anywhere,\ so\ some\ reverse}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ engineering\ has\ been\ applied!}}
+\DoxyCodeLine{00041\ \textcolor{comment}{}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ Header\ of\ vlw\ file\ comprises\ 6\ uint32\_t\ parameters\ (24\ bytes\ total):}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ \ \ \ 1.\ The\ gCount\ (number\ of\ character\ glyphs)}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ \ \ \ 2.\ A\ version\ number\ (0xB\ =\ 11\ for\ the\ one\ I\ am\ using)}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ 3.\ The\ font\ size\ (in\ points,\ not\ pixels)}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ 4.\ Deprecated\ mboxY\ parameter\ (typically\ set\ to\ 0)}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ 5.\ Ascent\ in\ pixels\ from\ baseline\ to\ top\ of\ "{}d"{}}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ \ 6.\ Descent\ in\ pixels\ from\ baseline\ to\ bottom\ of\ "{}p"{}}}
+\DoxyCodeLine{00049\ \textcolor{comment}{}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ Next\ are\ gCount\ sets\ of\ values\ for\ each\ glyph,\ each\ set\ comprises\ 7\ int32t\ parameters\ (28\ bytes):}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ 1.\ Glyph\ Unicode\ stored\ as\ a\ 32\ bit\ value}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ 2.\ Height\ of\ bitmap\ bounding\ box}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ \ \ \ 3.\ Width\ of\ bitmap\ bounding\ box}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ \ 4.\ gxAdvance\ for\ cursor\ (setWidth\ in\ Processing)}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ \ 5.\ dY\ =\ distance\ from\ cursor\ baseline\ to\ top\ of\ glyph\ bitmap\ (signed\ value\ +ve\ =\ up)}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ \ 6.\ dX\ =\ distance\ from\ cursor\ to\ left\ side\ of\ glyph\ bitmap\ (signed\ value\ -\/ve\ =\ left)}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ \ 7.\ padding\ value,\ typically\ 0}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ The\ bitmaps\ start\ next\ at\ 24\ +\ (28\ *\ gCount)\ bytes\ from\ the\ start\ of\ the\ file.}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ Each\ pixel\ is\ 1\ byte,\ an\ 8\ bit\ Alpha\ value\ which\ represents\ the\ transparency\ from}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ 0xFF\ foreground\ colour,\ 0x00\ background.\ The\ sketch\ uses\ a\ linear\ interpolation}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ \ between\ the\ foreground\ and\ background\ RGB\ component\ colours.\ e.g.}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ pixelRed\ =\ ((fgRed\ *\ alpha)\ +\ (bgRed\ *\ (255\ -\/\ alpha))/255}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ To\ gain\ a\ performance\ advantage\ fixed\ point\ arithmetic\ is\ used\ with\ rounding\ and}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ division\ by\ 256\ (shift\ right\ 8\ bits\ is\ faster).}}
+\DoxyCodeLine{00066\ \textcolor{comment}{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ After\ the\ bitmaps\ is:}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ \ \ 1\ byte\ for\ font\ name\ string\ length\ (excludes\ null)}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ a\ zero\ terminated\ character\ string\ giving\ the\ font\ name}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ \ 1\ byte\ for\ Postscript\ name\ string\ length}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ \ a\ zero/one\ terminated\ character\ string\ giving\ the\ font\ name}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ \ \ last\ byte\ is\ 0\ for\ non-\/anti-\/aliased\ and\ 1\ for\ anti-\/aliased\ (smoothed)}}
+\DoxyCodeLine{00073\ \textcolor{comment}{}}
+\DoxyCodeLine{00074\ \textcolor{comment}{}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ Glyph\ bitmap\ example\ is:}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ //\ Cursor\ coordinate\ positions\ for\ this\ and\ next\ character\ are\ marked\ by\ 'C'}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ //\ C<-\/-\/-\/-\/-\/-\/-\/\ gxAdvance\ -\/-\/-\/-\/-\/-\/-\/>C\ \ gxAdvance\ is\ how\ far\ to\ move\ cursor\ for\ next\ glyph\ cursor\ position}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ ascent\ is\ top\ of\ "{}d"{},\ descent\ is\ bottom\ of\ "{}p"{}}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ \ //\ +-\/-\/\ gdX\ -\/-\/+\ \ \ \ \ \ \ \ \ \ \ \ \ ascent}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ \ \ \ \ \ \ +-\/-\/\ gWidth-\/-\/+\ \ \ \ \ |\ \ \ gdX\ is\ offset\ to\ left\ edge\ of\ glyph\ bitmap}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ +\ \ \ \ \ x@.........@x\ \ +\ \ |\ \ \ gdX\ may\ be\ negative\ e.g.\ italic\ "{}y"{}\ tail\ extending\ to\ left\ of}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ @@.........@@\ \ |\ \ |\ \ \ cursor\ position,\ plot\ top\ left\ corner\ of\ bitmap\ at\ (cursorX\ +\ gdX)}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ @@.........@@\ gdY\ |\ \ \ gWidth\ and\ gHeight\ are\ glyph\ bitmap\ dimensions}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ .@@@.....@@@@\ \ |\ \ |}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ //\ |\ gHeight\ ....@@@@@..@@\ \ +\ \ +\ \ \ \ <-\/-\/\ baseline}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ ...........@@\ \ \ \ \ |}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ ...........@@\ \ \ \ \ |\ \ \ gdY\ is\ the\ offset\ to\ the\ top\ edge\ of\ the\ bitmap}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ |\ \ \ \ \ .@@.......@@.\ descent\ plot\ top\ edge\ of\ bitmap\ at\ (cursorY\ +\ yAdvance\ -\/\ gdY)}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ +\ \ \ \ \ x..@@@@@@@..x\ \ \ \ \ |\ \ \ x\ marks\ the\ corner\ pixels\ of\ the\ bitmap}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ //\ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ //\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+\ \ \ yAdvance\ is\ y\ delta\ for\ the\ next\ line,\ font\ size\ or\ (ascent\ +\ descent)}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ //\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ some\ fonts\ can\ overlay\ in\ y\ direction\ so\ may\ need\ a\ user\ adjust\ value}}
+\DoxyCodeLine{00094\ \textcolor{comment}{}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ */}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordflow}{if}\ (fontLoaded)\ unloadFont();}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordflow}{if}\ (fontName\ ==\ \textcolor{stringliteral}{"{}"{}})\ fs\_font\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00101\ \ \ \textcolor{keywordflow}{else}\ \{\ fontPtr\ =\ \textcolor{keyword}{nullptr};\ fs\_font\ =\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ spiffs\ =\ flash;\ \textcolor{comment}{//\ true\ if\ font\ is\ in\ SPIFFS}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordflow}{if}(spiffs)\ fontFS\ =\ SPIFFS;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Avoid\ a\ crash\ on\ the\ ESP32\ if\ the\ file\ does\ not\ exist}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordflow}{if}\ (fontFS.exists(\textcolor{stringliteral}{"{}/"{}}\ +\ fontName\ +\ \textcolor{stringliteral}{"{}.vlw"{}})\ ==\ \textcolor{keyword}{false})\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ Serial.println(\textcolor{stringliteral}{"{}Font\ file\ "{}}\ +\ fontName\ +\ \textcolor{stringliteral}{"{}\ not\ found!"{}});}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ fontFile\ =\ fontFS.open(\ \textcolor{stringliteral}{"{}/"{}}\ +\ fontName\ +\ \textcolor{stringliteral}{"{}.vlw"{}},\ \textcolor{stringliteral}{"{}r"{}});}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordflow}{if}(!fontFile)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ fontFile.seek(0,\ fs::SeekSet);}
+\DoxyCodeLine{00119\ \ \ \}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ Avoid\ unused\ varaible\ warning}}
+\DoxyCodeLine{00122\ \ \ fontName\ =\ fontName;}
+\DoxyCodeLine{00123\ \ \ flash\ =\ flash;}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ gFont.gArray\ \ \ =\ (\textcolor{keyword}{const}\ uint8\_t*)fontPtr;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ gFont.gCount\ \ \ =\ (uint16\_t)readInt32();\ \textcolor{comment}{//\ glyph\ count\ in\ file}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ readInt32();\ \textcolor{comment}{//\ vlw\ encoder\ version\ -\/\ discard}}
+\DoxyCodeLine{00130\ \ \ gFont.yAdvance\ =\ (uint16\_t)readInt32();\ \textcolor{comment}{//\ Font\ size\ in\ points,\ not\ pixels}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ readInt32();\ \textcolor{comment}{//\ discard}}
+\DoxyCodeLine{00132\ \ \ gFont.ascent\ \ \ =\ (uint16\_t)readInt32();\ \textcolor{comment}{//\ top\ of\ "{}d"{}}}
+\DoxyCodeLine{00133\ \ \ gFont.descent\ \ =\ (uint16\_t)readInt32();\ \textcolor{comment}{//\ bottom\ of\ "{}p"{}}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \textcolor{comment}{//\ These\ next\ gFont\ values\ might\ be\ updated\ when\ the\ Metrics\ are\ fetched}}
+\DoxyCodeLine{00136\ \ \ gFont.maxAscent\ \ =\ gFont.ascent;\ \ \ \textcolor{comment}{//\ Determined\ from\ metrics}}
+\DoxyCodeLine{00137\ \ \ gFont.maxDescent\ =\ gFont.descent;\ \ \textcolor{comment}{//\ Determined\ from\ metrics}}
+\DoxyCodeLine{00138\ \ \ gFont.yAdvance\ \ \ =\ gFont.ascent\ +\ gFont.descent;}
+\DoxyCodeLine{00139\ \ \ gFont.spaceWidth\ =\ gFont.yAdvance\ /\ 4;\ \ \textcolor{comment}{//\ Guess\ at\ space\ width}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ fontLoaded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{comment}{//\ Fetch\ the\ metrics\ for\ each\ glyph}}
+\DoxyCodeLine{00144\ \ \ loadMetrics();}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00149\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ loadMetrics}}
+\DoxyCodeLine{00150\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ the\ metrics\ for\ each\ glyph\ and\ store\ in\ RAM}}
+\DoxyCodeLine{00151\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\#define\ SHOW\_ASCENT\_DESCENT}}
+\DoxyCodeLine{00153\ \textcolor{keywordtype}{void}\ TFT\_eSPI::loadMetrics(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \ \ uint32\_t\ headerPtr\ =\ 24;}
+\DoxyCodeLine{00156\ \ \ uint32\_t\ bitmapPtr\ =\ headerPtr\ +\ gFont.gCount\ *\ 28;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#if\ defined\ (ESP32)\ \&\&\ defined\ (CONFIG\_SPIRAM\_SUPPORT)}}
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordflow}{if}\ (\ psramFound()\ )}
+\DoxyCodeLine{00160\ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ gUnicode\ \ =\ (uint16\_t*)ps\_malloc(\ gFont.gCount\ *\ 2);\ \textcolor{comment}{//\ Unicode\ 16\ bit\ Basic\ Multilingual\ Plane\ (0-\/FFFF)}}
+\DoxyCodeLine{00162\ \ \ \ \ gHeight\ \ \ =\ \ (uint8\_t*)ps\_malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ Height\ of\ glyph}}
+\DoxyCodeLine{00163\ \ \ \ \ gWidth\ \ \ \ =\ \ (uint8\_t*)ps\_malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ Width\ of\ glyph}}
+\DoxyCodeLine{00164\ \ \ \ \ gxAdvance\ =\ \ (uint8\_t*)ps\_malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ xAdvance\ -\/\ to\ move\ x\ cursor}}
+\DoxyCodeLine{00165\ \ \ \ \ gdY\ \ \ \ \ \ \ =\ \ (int16\_t*)ps\_malloc(\ gFont.gCount\ *\ 2);\ \textcolor{comment}{//\ offset\ from\ bitmap\ top\ edge\ from\ lowest\ point\ in\ any\ character}}
+\DoxyCodeLine{00166\ \ \ \ \ gdX\ \ \ \ \ \ \ =\ \ \ (int8\_t*)ps\_malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ offset\ for\ bitmap\ left\ edge\ relative\ to\ cursor\ X}}
+\DoxyCodeLine{00167\ \ \ \ \ gBitmap\ \ \ =\ (uint32\_t*)ps\_malloc(\ gFont.gCount\ *\ 4);\ \textcolor{comment}{//\ seek\ pointer\ to\ glyph\ bitmap\ in\ the\ file}}
+\DoxyCodeLine{00168\ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00171\ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ gUnicode\ \ =\ (uint16\_t*)malloc(\ gFont.gCount\ *\ 2);\ \textcolor{comment}{//\ Unicode\ 16\ bit\ Basic\ Multilingual\ Plane\ (0-\/FFFF)}}
+\DoxyCodeLine{00173\ \ \ \ \ gHeight\ \ \ =\ \ (uint8\_t*)malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ Height\ of\ glyph}}
+\DoxyCodeLine{00174\ \ \ \ \ gWidth\ \ \ \ =\ \ (uint8\_t*)malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ Width\ of\ glyph}}
+\DoxyCodeLine{00175\ \ \ \ \ gxAdvance\ =\ \ (uint8\_t*)malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ xAdvance\ -\/\ to\ move\ x\ cursor}}
+\DoxyCodeLine{00176\ \ \ \ \ gdY\ \ \ \ \ \ \ =\ \ (int16\_t*)malloc(\ gFont.gCount\ *\ 2);\ \textcolor{comment}{//\ offset\ from\ bitmap\ top\ edge\ from\ lowest\ point\ in\ any\ character}}
+\DoxyCodeLine{00177\ \ \ \ \ gdX\ \ \ \ \ \ \ =\ \ \ (int8\_t*)malloc(\ gFont.gCount\ );\ \ \ \ \textcolor{comment}{//\ offset\ for\ bitmap\ left\ edge\ relative\ to\ cursor\ X}}
+\DoxyCodeLine{00178\ \ \ \ \ gBitmap\ \ \ =\ (uint32\_t*)malloc(\ gFont.gCount\ *\ 4);\ \textcolor{comment}{//\ seek\ pointer\ to\ glyph\ bitmap\ in\ the\ file}}
+\DoxyCodeLine{00179\ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#ifdef\ SHOW\_ASCENT\_DESCENT}}
+\DoxyCodeLine{00182\ \ \ Serial.print(\textcolor{stringliteral}{"{}ascent\ \ =\ "{}});\ Serial.println(gFont.ascent);}
+\DoxyCodeLine{00183\ \ \ Serial.print(\textcolor{stringliteral}{"{}descent\ =\ "{}});\ Serial.println(gFont.descent);}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00187\ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ fontFile.seek(headerPtr,\ fs::SeekSet);}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ uint16\_t\ gNum\ =\ 0;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \textcolor{keywordflow}{while}\ (gNum\ <\ gFont.gCount)}
+\DoxyCodeLine{00193\ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ gUnicode[gNum]\ \ =\ (uint16\_t)readInt32();\ \textcolor{comment}{//\ Unicode\ code\ point\ value}}
+\DoxyCodeLine{00195\ \ \ \ \ gHeight[gNum]\ \ \ =\ \ (uint8\_t)readInt32();\ \textcolor{comment}{//\ Height\ of\ glyph}}
+\DoxyCodeLine{00196\ \ \ \ \ gWidth[gNum]\ \ \ \ =\ \ (uint8\_t)readInt32();\ \textcolor{comment}{//\ Width\ of\ glyph}}
+\DoxyCodeLine{00197\ \ \ \ \ gxAdvance[gNum]\ =\ \ (uint8\_t)readInt32();\ \textcolor{comment}{//\ xAdvance\ -\/\ to\ move\ x\ cursor}}
+\DoxyCodeLine{00198\ \ \ \ \ gdY[gNum]\ \ \ \ \ \ \ =\ \ (int16\_t)readInt32();\ \textcolor{comment}{//\ y\ delta\ from\ baseline}}
+\DoxyCodeLine{00199\ \ \ \ \ gdX[gNum]\ \ \ \ \ \ \ =\ \ \ (int8\_t)readInt32();\ \textcolor{comment}{//\ x\ delta\ from\ cursor}}
+\DoxyCodeLine{00200\ \ \ \ \ readInt32();\ \textcolor{comment}{//\ ignored}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//Serial.print("{}Unicode\ =\ 0x"{});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print("{},\ gHeight\ \ =\ "{});\ Serial.println(gHeight[gNum]);}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//Serial.print("{}Unicode\ =\ 0x"{});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print("{},\ gWidth\ \ =\ "{});\ Serial.println(gWidth[gNum]);}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//Serial.print("{}Unicode\ =\ 0x"{});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print("{},\ gxAdvance\ \ =\ "{});\ Serial.println(gxAdvance[gNum]);}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//Serial.print("{}Unicode\ =\ 0x"{});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print("{},\ gdY\ \ =\ "{});\ Serial.println(gdY[gNum]);}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ Different\ glyph\ sets\ have\ different\ ascent\ values\ not\ always\ based\ on\ "{}d"{},\ so\ we\ could\ get}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{comment}{//\ the\ maximum\ glyph\ ascent\ by\ checking\ all\ characters.\ BUT\ this\ method\ can\ generate\ bad\ values}}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ for\ non-\/existant\ glyphs,\ so\ we\ will\ reply\ on\ processing\ for\ the\ value\ and\ disable\ this\ code\ for\ now...}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ \ \ \ if\ (gdY[gNum]\ >\ gFont.maxAscent)}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ \ //\ Try\ to\ avoid\ UTF\ coding\ values\ and\ characters\ that\ tend\ to\ give\ duff\ values}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ \ if\ (((gUnicode[gNum]\ >\ 0x20)\ \&\&\ (gUnicode[gNum]\ <\ 0x7F))\ ||\ (gUnicode[gNum]\ >\ 0xA0))}}
+\DoxyCodeLine{00215\ \textcolor{comment}{\ \ \ \ \ \ \{}}
+\DoxyCodeLine{00216\ \textcolor{comment}{\ \ \ \ \ \ \ \ gFont.maxAscent\ \ \ =\ gdY[gNum];}}
+\DoxyCodeLine{00217\ \textcolor{comment}{\#ifdef\ SHOW\_ASCENT\_DESCENT}}
+\DoxyCodeLine{00218\ \textcolor{comment}{\ \ \ \ \ \ \ \ Serial.print("{}Unicode\ =\ 0x"{});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print("{},\ maxAscent\ \ =\ "{});\ Serial.println(gFont.maxAscent);}}
+\DoxyCodeLine{00219\ \textcolor{comment}{\#endif}}
+\DoxyCodeLine{00220\ \textcolor{comment}{\ \ \ \ \ \ \}}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{comment}{//\ Different\ glyph\ sets\ have\ different\ descent\ values\ not\ always\ based\ on\ "{}p"{},\ so\ get\ maximum\ glyph\ descent}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordflow}{if}\ (((int16\_t)gHeight[gNum]\ -\/\ (int16\_t)gdY[gNum])\ >\ gFont.maxDescent)}
+\DoxyCodeLine{00226\ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \textcolor{comment}{//\ Avoid\ UTF\ coding\ values\ and\ characters\ that\ tend\ to\ give\ duff\ values}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (((gUnicode[gNum]\ >\ 0x20)\ \&\&\ (gUnicode[gNum]\ <\ 0xA0)\ \&\&\ (gUnicode[gNum]\ !=\ 0x7F))\ ||\ (gUnicode[gNum]\ >\ 0xFF))}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ gFont.maxDescent\ \ \ =\ gHeight[gNum]\ -\/\ gdY[gNum];}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\#ifdef\ SHOW\_ASCENT\_DESCENT}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ Serial.print(\textcolor{stringliteral}{"{}Unicode\ =\ 0x"{}});\ Serial.print(gUnicode[gNum],\ HEX);\ Serial.print(\textcolor{stringliteral}{"{},\ maxDescent\ =\ "{}});\ Serial.println(gHeight[gNum]\ -\/\ gdY[gNum]);}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ gBitmap[gNum]\ =\ bitmapPtr;}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ bitmapPtr\ +=\ gWidth[gNum]\ *\ gHeight[gNum];}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ gNum++;}
+\DoxyCodeLine{00242\ \ \ \ \ yield();}
+\DoxyCodeLine{00243\ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ gFont.yAdvance\ =\ gFont.maxAscent\ +\ gFont.maxDescent;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ gFont.spaceWidth\ =\ (gFont.ascent\ +\ gFont.descent)\ *\ 2/7;\ \ \textcolor{comment}{//\ Guess\ at\ space\ width}}
+\DoxyCodeLine{00248\ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00252\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ deleteMetrics}}
+\DoxyCodeLine{00253\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Delete\ the\ old\ glyph\ metrics\ and\ free\ up\ the\ memory}}
+\DoxyCodeLine{00254\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00255\ \textcolor{keywordtype}{void}\ TFT\_eSPI::unloadFont(\ \textcolor{keywordtype}{void}\ )}
+\DoxyCodeLine{00256\ \{}
+\DoxyCodeLine{00257\ \ \ \textcolor{keywordflow}{if}\ (gUnicode)}
+\DoxyCodeLine{00258\ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ free(gUnicode);}
+\DoxyCodeLine{00260\ \ \ \ \ gUnicode\ =\ NULL;}
+\DoxyCodeLine{00261\ \ \ \}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \textcolor{keywordflow}{if}\ (gHeight)}
+\DoxyCodeLine{00264\ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ free(gHeight);}
+\DoxyCodeLine{00266\ \ \ \ \ gHeight\ =\ NULL;}
+\DoxyCodeLine{00267\ \ \ \}}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \textcolor{keywordflow}{if}\ (gWidth)}
+\DoxyCodeLine{00270\ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ free(gWidth);}
+\DoxyCodeLine{00272\ \ \ \ \ gWidth\ =\ NULL;}
+\DoxyCodeLine{00273\ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \textcolor{keywordflow}{if}\ (gxAdvance)}
+\DoxyCodeLine{00276\ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ free(gxAdvance);}
+\DoxyCodeLine{00278\ \ \ \ \ gxAdvance\ =\ NULL;}
+\DoxyCodeLine{00279\ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \textcolor{keywordflow}{if}\ (gdY)}
+\DoxyCodeLine{00282\ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ free(gdY);}
+\DoxyCodeLine{00284\ \ \ \ \ gdY\ =\ NULL;}
+\DoxyCodeLine{00285\ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \textcolor{keywordflow}{if}\ (gdX)}
+\DoxyCodeLine{00288\ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ free(gdX);}
+\DoxyCodeLine{00290\ \ \ \ \ gdX\ =\ NULL;}
+\DoxyCodeLine{00291\ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \textcolor{keywordflow}{if}\ (gBitmap)}
+\DoxyCodeLine{00294\ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ free(gBitmap);}
+\DoxyCodeLine{00296\ \ \ \ \ gBitmap\ =\ NULL;}
+\DoxyCodeLine{00297\ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ gFont.gArray\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00302\ \ \ \textcolor{keywordflow}{if}\ (fs\_font\ \&\&\ fontFile)\ fontFile.close();}
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ fontLoaded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00306\ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00310\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ readInt32}}
+\DoxyCodeLine{00311\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ a\ 32\ bit\ integer\ from\ the\ font\ file}}
+\DoxyCodeLine{00312\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00313\ uint32\_t\ TFT\_eSPI::readInt32(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ uint32\_t\ val\ =\ 0;}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00318\ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{00319\ \ \ \ \ val\ |=\ fontFile.read()\ <<\ 24;}
+\DoxyCodeLine{00320\ \ \ \ \ val\ |=\ fontFile.read()\ <<\ 16;}
+\DoxyCodeLine{00321\ \ \ \ \ val\ |=\ fontFile.read()\ <<\ 8;}
+\DoxyCodeLine{00322\ \ \ \ \ val\ |=\ fontFile.read();}
+\DoxyCodeLine{00323\ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00326\ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ val\ |=\ pgm\_read\_byte(fontPtr++)\ <<\ 24;}
+\DoxyCodeLine{00328\ \ \ \ \ val\ |=\ pgm\_read\_byte(fontPtr++)\ <<\ 16;}
+\DoxyCodeLine{00329\ \ \ \ \ val\ |=\ pgm\_read\_byte(fontPtr++)\ <<\ 8;}
+\DoxyCodeLine{00330\ \ \ \ \ val\ |=\ pgm\_read\_byte(fontPtr++);}
+\DoxyCodeLine{00331\ \ \ \}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \ \ \textcolor{keywordflow}{return}\ val;}
+\DoxyCodeLine{00334\ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00338\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getUnicodeIndex}}
+\DoxyCodeLine{00339\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Get\ the\ font\ file\ index\ of\ a\ Unicode\ character}}
+\DoxyCodeLine{00340\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00341\ \textcolor{keywordtype}{bool}\ TFT\_eSPI::getUnicodeIndex(uint16\_t\ unicode,\ uint16\_t\ *index)}
+\DoxyCodeLine{00342\ \{}
+\DoxyCodeLine{00343\ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ gFont.gCount;\ i++)}
+\DoxyCodeLine{00344\ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordflow}{if}\ (gUnicode[i]\ ==\ unicode)}
+\DoxyCodeLine{00346\ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ *index\ =\ i;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00352\ \}}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00356\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ drawGlyph}}
+\DoxyCodeLine{00357\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ character\ to\ the\ TFT\ cursor\ position}}
+\DoxyCodeLine{00358\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00359\ \textcolor{comment}{//\ Expects\ file\ to\ be\ open}}
+\DoxyCodeLine{00360\ \textcolor{keywordtype}{void}\ TFT\_eSPI::drawGlyph(uint16\_t\ code)}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ uint16\_t\ fg\ =\ textcolor;}
+\DoxyCodeLine{00363\ \ \ uint16\_t\ bg\ =\ textbgcolor;}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \textcolor{keywordflow}{if}\ (code\ <\ 0x21)}
+\DoxyCodeLine{00366\ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ 0x20)\ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \textcolor{comment}{//if\ (fg!=bg)\ fillRect(cursor\_x,\ cursor\_y,\ gFont.spaceWidth,\ gFont.yAdvance,\ bg);}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ cursor\_x\ +=\ gFont.spaceWidth;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00371\ \ \ \ \ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordflow}{if}\ (code\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})\ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ cursor\_x\ =\ 0;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ cursor\_y\ +=\ gFont.yAdvance;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (textwrapY\ \&\&\ (cursor\_y\ >=\ height()))\ cursor\_y\ =\ 0;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00378\ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \}}
+\DoxyCodeLine{00380\ }
+\DoxyCodeLine{00381\ \ \ uint16\_t\ gNum\ =\ 0;}
+\DoxyCodeLine{00382\ \ \ \textcolor{keywordtype}{bool}\ found\ =\ getUnicodeIndex(code,\ \&gNum);}
+\DoxyCodeLine{00383\ \ \ }
+\DoxyCodeLine{00384\ \ \ \textcolor{keywordflow}{if}\ (found)}
+\DoxyCodeLine{00385\ \ \ \{}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordflow}{if}\ (textwrapX\ \&\&\ (cursor\_x\ +\ gWidth[gNum]\ +\ gdX[gNum]\ >\ width()))}
+\DoxyCodeLine{00388\ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ cursor\_y\ +=\ gFont.yAdvance;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ cursor\_x\ =\ 0;}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{if}\ (textwrapY\ \&\&\ ((cursor\_y\ +\ gFont.yAdvance)\ >=\ height()))\ cursor\_y\ =\ 0;}
+\DoxyCodeLine{00393\ \ \ \ \ \textcolor{keywordflow}{if}\ (cursor\_x\ ==\ 0)\ cursor\_x\ -\/=\ gdX[gNum];}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ uint8\_t*\ pbuffer\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t*\ gPtr\ =\ (\textcolor{keyword}{const}\ uint8\_t*)\ gFont.gArray;}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00399\ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)}
+\DoxyCodeLine{00400\ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ fontFile.seek(gBitmap[gNum],\ fs::SeekSet);\ \textcolor{comment}{//\ This\ is\ taking\ >30ms\ for\ a\ significant\ position\ shift}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ pbuffer\ =\ \ (uint8\_t*)malloc(gWidth[gNum]);}
+\DoxyCodeLine{00403\ \ \ \ \ \}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ int16\_t\ cy\ =\ cursor\_y\ +\ gFont.maxAscent\ -\/\ gdY[gNum];}
+\DoxyCodeLine{00407\ \ \ \ \ int16\_t\ cx\ =\ cursor\_x\ +\ gdX[gNum];}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ int16\_t\ \ xs\ =\ cx;}
+\DoxyCodeLine{00410\ \ \ \ \ uint32\_t\ dl\ =\ 0;}
+\DoxyCodeLine{00411\ \ \ \ \ uint8\_t\ pixel;}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \ \ startWrite();\ \textcolor{comment}{//\ Avoid\ slow\ ESP32\ transaction\ overhead\ for\ every\ pixel}}
+\DoxyCodeLine{00414\ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{comment}{//if\ (fg!=bg)\ fillRect(cursor\_x,\ cursor\_y,\ gxAdvance[gNum],\ gFont.yAdvance,\ bg);}}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ gHeight[gNum];\ y++)}
+\DoxyCodeLine{00418\ \ \ \ \ \{}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (spiffs)}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ fontFile.read(pbuffer,\ gWidth[gNum]);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.println("{}SPIFFS"{});}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ endWrite();\ \ \ \ \textcolor{comment}{//\ Release\ SPI\ for\ SD\ card\ transaction}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ fontFile.read(pbuffer,\ gWidth[gNum]);}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ startWrite();\ \ \textcolor{comment}{//\ Re-\/start\ SPI\ for\ TFT\ transaction}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Serial.println("{}Not\ SPIFFS"{});}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ gWidth[gNum];\ x++)}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (fs\_font)\ pixel\ =\ pbuffer[x];}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ pixel\ =\ pgm\_read\_byte(gPtr\ +\ gBitmap[gNum]\ +\ x\ +\ gWidth[gNum]\ *\ y);}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel)}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (pixel\ !=\ 0xFF)}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl==1)\ drawPixel(xs,\ y\ +\ cy,\ fg);}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ drawFastHLine(\ xs,\ y\ +\ cy,\ dl,\ fg);}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dl\ =\ 0;}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (getColor)\ bg\ =\ getColor(x\ +\ cx,\ y\ +\ cy);}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ drawPixel(x\ +\ cx,\ y\ +\ cy,\ alphaBlend(pixel,\ fg,\ bg));}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl==0)\ xs\ =\ x\ +\ cx;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ dl++;}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{\ drawFastHLine(\ xs,\ y\ +\ cy,\ dl,\ fg);\ dl\ =\ 0;\ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (dl)\ \{\ drawFastHLine(\ xs,\ y\ +\ cy,\ dl,\ fg);\ dl\ =\ 0;\ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \}}
+\DoxyCodeLine{00468\ }
+\DoxyCodeLine{00469\ \ \ \ \ \textcolor{keywordflow}{if}\ (pbuffer)\ free(pbuffer);}
+\DoxyCodeLine{00470\ \ \ \ \ cursor\_x\ +=\ gxAdvance[gNum];}
+\DoxyCodeLine{00471\ \ \ \ \ endWrite();}
+\DoxyCodeLine{00472\ \ \ \}}
+\DoxyCodeLine{00473\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00474\ \ \ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{comment}{//\ Not\ a\ Unicode\ in\ font\ so\ draw\ a\ rectangle\ and\ move\ on\ cursor}}
+\DoxyCodeLine{00476\ \ \ \ \ drawRect(cursor\_x,\ cursor\_y\ +\ gFont.maxAscent\ -\/\ gFont.ascent,\ gFont.spaceWidth,\ gFont.ascent,\ fg);}
+\DoxyCodeLine{00477\ \ \ \ \ cursor\_x\ +=\ gFont.spaceWidth\ +\ 1;}
+\DoxyCodeLine{00478\ \ \ \}}
+\DoxyCodeLine{00479\ \}}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00482\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ showFont}}
+\DoxyCodeLine{00483\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Page\ through\ all\ characters\ in\ font,\ td\ ms\ between\ screens}}
+\DoxyCodeLine{00484\ \textcolor{comment}{*************************************************************************************x*/}}
+\DoxyCodeLine{00485\ \textcolor{keywordtype}{void}\ TFT\_eSPI::showFont(uint32\_t\ td)}
+\DoxyCodeLine{00486\ \{}
+\DoxyCodeLine{00487\ \ \ \textcolor{keywordflow}{if}(!fontLoaded)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \ \ int16\_t\ cursorX\ =\ width();\ \textcolor{comment}{//\ Force\ start\ of\ new\ page\ to\ initialise\ cursor}}
+\DoxyCodeLine{00490\ \ \ int16\_t\ cursorY\ =\ height();\textcolor{comment}{//\ for\ the\ first\ character}}
+\DoxyCodeLine{00491\ \ \ uint32\_t\ timeDelay\ =\ 0;\ \ \ \ \textcolor{comment}{//\ No\ delay\ before\ first\ page}}
+\DoxyCodeLine{00492\ }
+\DoxyCodeLine{00493\ \ \ fillScreen(textbgcolor);}
+\DoxyCodeLine{00494\ \ \ }
+\DoxyCodeLine{00495\ \ \ \textcolor{keywordflow}{for}\ (uint16\_t\ i\ =\ 0;\ i\ <\ gFont.gCount;\ i++)}
+\DoxyCodeLine{00496\ \ \ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{comment}{//\ Check\ if\ this\ will\ need\ a\ new\ screen}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{if}\ (cursorX\ +\ gdX[i]\ +\ gWidth[i]\ >=\ width())\ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ cursorX\ =\ -\/gdX[i];}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ cursorY\ +=\ gFont.yAdvance;}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cursorY\ +\ gFont.maxAscent\ +\ gFont.descent\ >=\ height())\ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ cursorX\ =\ -\/gdX[i];}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ cursorY\ =\ 0;}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ delay(timeDelay);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ timeDelay\ =\ td;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ fillScreen(textbgcolor);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ setCursor(cursorX,\ cursorY);}
+\DoxyCodeLine{00512\ \ \ \ \ drawGlyph(gUnicode[i]);}
+\DoxyCodeLine{00513\ \ \ \ \ cursorX\ +=\ gxAdvance[i];}
+\DoxyCodeLine{00514\ \ \ \ \ \textcolor{comment}{//cursorX\ +=\ \ printToSprite(\ cursorX,\ cursorY,\ i\ );}}
+\DoxyCodeLine{00515\ \ \ \ \ yield();}
+\DoxyCodeLine{00516\ \ \ \}}
+\DoxyCodeLine{00517\ }
+\DoxyCodeLine{00518\ \ \ delay(timeDelay);}
+\DoxyCodeLine{00519\ \ \ fillScreen(textbgcolor);}
+\DoxyCodeLine{00520\ \ \ \textcolor{comment}{//fontFile.close();}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \}}
+
+\end{DoxyCode}

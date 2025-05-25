@@ -1,0 +1,67 @@
+\doxysection{astro\+\_\+constellation\+\_\+t Struct Reference}
+\hypertarget{structastro__constellation__t}{}\label{structastro__constellation__t}\index{astro\_constellation\_t@{astro\_constellation\_t}}
+
+
+Reports the constellation that a given celestial point lies within.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__constellation__t_aef08004a37bc82f413a31b181f0fcb4e}{status}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structastro__constellation__t_adf279760c3793e3eaf579aa681672858}{symbol}}
+\item 
+const char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structastro__constellation__t_a46d00a69c51bf5e6396bf1da2cfae13e}{name}}
+\item 
+double \mbox{\hyperlink{structastro__constellation__t_a1316a97f0ce4741d8d594102ce97a931}{ra\+\_\+1875}}
+\item 
+double \mbox{\hyperlink{structastro__constellation__t_a7691968ec78ab4f692f8eac2be7606ff}{dec\+\_\+1875}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reports the constellation that a given celestial point lies within. 
+
+The Astronomy\+\_\+\+Constellation function returns this struct to report which constellation corresponds with a given point in the sky. Constellations are defined with respect to the B1875 equatorial system per IAU standard. Although {\ttfamily Astronomy.\+Constellation} requires J2000 equatorial coordinates, the struct contains converted B1875 coordinates for reference. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__constellation__t_a7691968ec78ab4f692f8eac2be7606ff}\index{astro\_constellation\_t@{astro\_constellation\_t}!dec\_1875@{dec\_1875}}
+\index{dec\_1875@{dec\_1875}!astro\_constellation\_t@{astro\_constellation\_t}}
+\doxysubsubsection{\texorpdfstring{dec\_1875}{dec\_1875}}
+{\footnotesize\ttfamily \label{structastro__constellation__t_a7691968ec78ab4f692f8eac2be7606ff} 
+double astro\+\_\+constellation\+\_\+t\+::dec\+\_\+1875}
+
+Declination expressed in B1875 coordinates. \Hypertarget{structastro__constellation__t_a46d00a69c51bf5e6396bf1da2cfae13e}\index{astro\_constellation\_t@{astro\_constellation\_t}!name@{name}}
+\index{name@{name}!astro\_constellation\_t@{astro\_constellation\_t}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{structastro__constellation__t_a46d00a69c51bf5e6396bf1da2cfae13e} 
+const char\texorpdfstring{$\ast$}{*} astro\+\_\+constellation\+\_\+t\+::name}
+
+Full name of constellation, e.\+g. "{}\+Orion"{}. \Hypertarget{structastro__constellation__t_a1316a97f0ce4741d8d594102ce97a931}\index{astro\_constellation\_t@{astro\_constellation\_t}!ra\_1875@{ra\_1875}}
+\index{ra\_1875@{ra\_1875}!astro\_constellation\_t@{astro\_constellation\_t}}
+\doxysubsubsection{\texorpdfstring{ra\_1875}{ra\_1875}}
+{\footnotesize\ttfamily \label{structastro__constellation__t_a1316a97f0ce4741d8d594102ce97a931} 
+double astro\+\_\+constellation\+\_\+t\+::ra\+\_\+1875}
+
+Right ascension expressed in B1875 coordinates. \Hypertarget{structastro__constellation__t_aef08004a37bc82f413a31b181f0fcb4e}\index{astro\_constellation\_t@{astro\_constellation\_t}!status@{status}}
+\index{status@{status}!astro\_constellation\_t@{astro\_constellation\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__constellation__t_aef08004a37bc82f413a31b181f0fcb4e} 
+astro\+\_\+status\+\_\+t astro\+\_\+constellation\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__constellation__t_adf279760c3793e3eaf579aa681672858}\index{astro\_constellation\_t@{astro\_constellation\_t}!symbol@{symbol}}
+\index{symbol@{symbol}!astro\_constellation\_t@{astro\_constellation\_t}}
+\doxysubsubsection{\texorpdfstring{symbol}{symbol}}
+{\footnotesize\ttfamily \label{structastro__constellation__t_adf279760c3793e3eaf579aa681672858} 
+const char\texorpdfstring{$\ast$}{*} astro\+\_\+constellation\+\_\+t\+::symbol}
+
+3-\/character mnemonic symbol for the constellation, e.\+g. "{}\+Ori"{}. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

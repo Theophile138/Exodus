@@ -1,0 +1,77 @@
+\doxysection{Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\+Lib\+Screen.h File Reference}
+\hypertarget{_lib_screen_8h}{}\label{_lib_screen_8h}\index{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibScreen.h@{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibScreen.h}}
+
+
+Déclaration de la classe \doxylink{class_screen}{Screen} pour la gestion de l\textquotesingle{}affichage, des boutons et des jauges sur écran TFT tactile.  
+
+
+{\ttfamily \#include $<$TFT\+\_\+e\+SPI.\+h$>$}\newline
+{\ttfamily \#include $<$SPI.\+h$>$}\newline
+{\ttfamily \#include "{}Lib\+Jauge.\+h"{}}\newline
+{\ttfamily \#include "{}FS.\+h"{}}\newline
+{\ttfamily \#include "{}Lib\+Button.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_screen}{Screen}}
+\begin{DoxyCompactList}\small\item\em Classe principale pour gérer l\textquotesingle{}affichage, les boutons et les jauges sur un écran TFT tactile. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_lib_screen_8h_a2cd109632a6dcccaa80b43561b1ab700}{SCREEN\+\_\+\+WIDTH}}~240
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Bibliothèque spécifique pour écrans TFT \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_lib_screen_8h_a6974d08a74da681b3957b2fead2608b8}{SCREEN\+\_\+\+HEIGHT}}~320
+\begin{DoxyCompactList}\small\item\em Hauteur de l\textquotesingle{}écran TFT. \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_lib_screen_8h_a636997a0ed80c973edf7210ba55f9eef}{CALIBRATION\+\_\+\+FILE}}~"{}/Touch\+Cal\+Data1"{}
+\begin{DoxyCompactList}\small\item\em Nom du fichier de calibration tactile (SPIFFS) \end{DoxyCompactList}\item 
+\#define \mbox{\hyperlink{_lib_screen_8h_a69345605114a271fc264352b0b8ea07e}{REPEAT\+\_\+\+CAL}}~false
+\begin{DoxyCompactList}\small\item\em Mettre à true pour forcer la calibration à chaque démarrage. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Déclaration de la classe \doxylink{class_screen}{Screen} pour la gestion de l\textquotesingle{}affichage, des boutons et des jauges sur écran TFT tactile. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{_lib_screen_8h_a636997a0ed80c973edf7210ba55f9eef}\index{LibScreen.h@{LibScreen.h}!CALIBRATION\_FILE@{CALIBRATION\_FILE}}
+\index{CALIBRATION\_FILE@{CALIBRATION\_FILE}!LibScreen.h@{LibScreen.h}}
+\doxysubsubsection{\texorpdfstring{CALIBRATION\_FILE}{CALIBRATION\_FILE}}
+{\footnotesize\ttfamily \label{_lib_screen_8h_a636997a0ed80c973edf7210ba55f9eef} 
+\#define CALIBRATION\+\_\+\+FILE~"{}/Touch\+Cal\+Data1"{}}
+
+
+
+Nom du fichier de calibration tactile (SPIFFS) 
+
+\Hypertarget{_lib_screen_8h_a69345605114a271fc264352b0b8ea07e}\index{LibScreen.h@{LibScreen.h}!REPEAT\_CAL@{REPEAT\_CAL}}
+\index{REPEAT\_CAL@{REPEAT\_CAL}!LibScreen.h@{LibScreen.h}}
+\doxysubsubsection{\texorpdfstring{REPEAT\_CAL}{REPEAT\_CAL}}
+{\footnotesize\ttfamily \label{_lib_screen_8h_a69345605114a271fc264352b0b8ea07e} 
+\#define REPEAT\+\_\+\+CAL~false}
+
+
+
+Mettre à true pour forcer la calibration à chaque démarrage. 
+
+\Hypertarget{_lib_screen_8h_a6974d08a74da681b3957b2fead2608b8}\index{LibScreen.h@{LibScreen.h}!SCREEN\_HEIGHT@{SCREEN\_HEIGHT}}
+\index{SCREEN\_HEIGHT@{SCREEN\_HEIGHT}!LibScreen.h@{LibScreen.h}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_HEIGHT}{SCREEN\_HEIGHT}}
+{\footnotesize\ttfamily \label{_lib_screen_8h_a6974d08a74da681b3957b2fead2608b8} 
+\#define SCREEN\+\_\+\+HEIGHT~320}
+
+
+
+Hauteur de l\textquotesingle{}écran TFT. 
+
+\Hypertarget{_lib_screen_8h_a2cd109632a6dcccaa80b43561b1ab700}\index{LibScreen.h@{LibScreen.h}!SCREEN\_WIDTH@{SCREEN\_WIDTH}}
+\index{SCREEN\_WIDTH@{SCREEN\_WIDTH}!LibScreen.h@{LibScreen.h}}
+\doxysubsubsection{\texorpdfstring{SCREEN\_WIDTH}{SCREEN\_WIDTH}}
+{\footnotesize\ttfamily \label{_lib_screen_8h_a2cd109632a6dcccaa80b43561b1ab700} 
+\#define SCREEN\+\_\+\+WIDTH~240}
+
+
+
+\texorpdfstring{$<$}{<} Bibliothèque spécifique pour écrans TFT 
+
+Largeur de l\textquotesingle{}écran TFT 

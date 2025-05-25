@@ -1,0 +1,184 @@
+\doxysection{Sprite.\+h}
+\hypertarget{_sprite_8h_source}{}\label{_sprite_8h_source}\index{lib/TFT\_eSPI-\/master/Extensions/Sprite.h@{lib/TFT\_eSPI-\/master/Extensions/Sprite.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ The\ following\ class\ creates\ Sprites\ in\ RAM,\ graphics\ can\ then\ be\ drawn\ in\ the\ Sprite}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ and\ rendered\ quickly\ onto\ the\ TFT\ screen.\ The\ class\ inherits\ the\ graphics\ functions}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ from\ the\ TFT\_eSPI\ class.\ Some\ functions\ are\ overridden\ by\ this\ class\ so\ that\ the}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ graphics\ are\ written\ to\ the\ Sprite\ rather\ than\ the\ TFT.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }TFT\_eSprite\ :\ \textcolor{keyword}{public}\ TFT\_eSPI\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \textcolor{keyword}{explicit}\ TFT\_eSprite(TFT\_eSPI\ *tft);}
+\DoxyCodeLine{00013\ \ \ \string~TFT\_eSprite(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ a\ sprite\ of\ width\ x\ height\ pixels,\ return\ a\ pointer\ to\ the\ RAM\ area}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sketch\ can\ cast\ returned\ value\ to\ (uint16\_t*)\ for\ 16\ bit\ depth\ if\ needed}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RAM\ required\ is:}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ -\/\ 1\ bit\ per\ pixel\ for\ 1\ bit\ colour\ depth}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ -\/\ 1\ nibble\ per\ pixel\ for\ 4\ bit\ colour}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ -\/\ 1\ byte\ per\ pixel\ for\ 8\ bit\ colour}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ -\/\ 2\ bytes\ per\ pixel\ for\ 16\ bit\ color\ depth}}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{void}*\ \ \ \ createSprite(int16\_t\ width,\ int16\_t\ height,\ uint8\_t\ frames\ =\ 1);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ a\ pointer\ to\ the\ sprite\ or\ nullptr\ if\ not\ created,\ user\ must\ cast\ to\ pointer\ type}}
+\DoxyCodeLine{00025\ \ \ \textcolor{keywordtype}{void}*\ \ \ \ getPointer(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ true\ if\ sprite\ has\ been\ created}}
+\DoxyCodeLine{00028\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ created(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Delete\ the\ sprite\ to\ free\ up\ the\ RAM}}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ deleteSprite(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Select\ the\ frame\ buffer\ for\ graphics\ write\ (for\ 2\ colour\ ePaper\ and\ DMA\ toggle\ buffer)}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Returns\ a\ pointer\ to\ the\ Sprite\ frame\ buffer}}
+\DoxyCodeLine{00035\ \ \ \textcolor{keywordtype}{void}*\ \ \ \ frameBuffer(int8\_t\ f);}
+\DoxyCodeLine{00036\ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ or\ get\ the\ colour\ depth\ to\ 4,\ 8\ or\ 16\ bits.\ Can\ be\ used\ to\ change\ depth\ an\ existing}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sprite,\ but\ clears\ it\ to\ black,\ returns\ a\ new\ pointer\ if\ sprite\ is\ re-\/created.}}
+\DoxyCodeLine{00039\ \ \ \textcolor{keywordtype}{void}*\ \ \ \ setColorDepth(int8\_t\ b);}
+\DoxyCodeLine{00040\ \ \ int8\_t\ \ \ getColorDepth(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ palette\ for\ a\ 4\ bit\ depth\ sprite.\ \ Only\ the\ first\ 16\ colours\ in\ the\ map\ are\ used.}}
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ createPalette(uint16\_t\ *palette\ =\ \textcolor{keyword}{nullptr},\ uint8\_t\ colors\ =\ 16);\ \ \ \ \ \ \ \textcolor{comment}{//\ Palette\ in\ RAM}}
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ createPalette(\textcolor{keyword}{const}\ uint16\_t\ *palette\ =\ \textcolor{keyword}{nullptr},\ uint8\_t\ colors\ =\ 16);\ \textcolor{comment}{//\ Palette\ in\ FLASH}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ a\ single\ palette\ index\ to\ the\ given\ color}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setPaletteColor(uint8\_t\ index,\ uint16\_t\ color);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ color\ at\ the\ given\ palette\ index}}
+\DoxyCodeLine{00050\ \ \ uint16\_t\ getPaletteColor(uint8\_t\ index);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ foreground\ and\ background\ colours\ for\ 1\ bit\ per\ pixel\ Sprite}}
+\DoxyCodeLine{00053\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setBitmapColor(uint16\_t\ fg,\ uint16\_t\ bg);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawPixel(int32\_t\ x,\ int32\_t\ y,\ uint32\_t\ color);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawChar(int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ c,\ uint32\_t\ color,\ uint32\_t\ bg,\ uint8\_t\ font),}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ Sprite\ with\ a\ colour}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ fillSprite(uint32\_t\ color),}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Define\ a\ window\ to\ push\ 16\ bit\ colour\ pixels\ into\ in\ a\ raster\ order}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Colours\ are\ converted\ to\ the\ set\ Sprite\ colour\ bit\ depth}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ setWindow(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ x1,\ int32\_t\ y1),}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ color\ (aka\ singe\ pixel)\ to\ the\ screen}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ pushColor(uint32\_t\ color),}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ len\ colors\ (pixels)\ to\ the\ screen}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ pushColor(uint32\_t\ color,\ uint16\_t\ len),}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ pixel\ preformatted\ as\ a\ 8\ or\ 16\ bit\ colour\ (avoids\ conversion\ overhead)}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ writeColor(uint16\_t\ color),}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ scroll\ zone,\ top\ left\ corner\ at\ x,y\ with\ defined\ width\ and\ height}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ colour\ (optional,\ black\ is\ default)\ is\ used\ to\ fill\ the\ gap\ after\ the\ scroll}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ setScrollRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ color\ =\ TFT\_BLACK),}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Scroll\ the\ defined\ zone\ dx,dy\ pixels.\ Negative\ values\ left,up,\ positive\ right,down}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ dy\ is\ optional\ (default\ is\ then\ no\ up/down\ scroll).}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ The\ sprite\ coordinate\ frame\ does\ not\ move\ because\ pixels\ are\ moved}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ scroll(int16\_t\ dx,\ int16\_t\ dy\ =\ 0),}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ lines}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ drawLine(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ x1,\ int32\_t\ y1,\ uint32\_t\ color),}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ drawFastVLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ h,\ uint32\_t\ color),}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ drawFastHLine(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ uint32\_t\ color),}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fill\ a\ rectangular\ area\ with\ a\ color\ (aka\ draw\ a\ filled\ rectangle)}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ fillRect(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint32\_t\ color);}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ the\ coordinate\ rotation\ of\ the\ Sprite\ (for\ 1bpp\ Sprites\ only)}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note:\ this\ uses\ coordinate\ rotation\ and\ is\ primarily\ for\ ePaper\ which\ does\ not\ support}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CGRAM\ rotation\ (like\ TFT\ drivers\ do)\ within\ the\ displays\ internal\ hardware}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ setRotation(uint8\_t\ rotation);}
+\DoxyCodeLine{00092\ \ \ uint8\_t\ \ getRotation(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ rotated\ copy\ of\ Sprite\ to\ TFT\ with\ optional\ transparent\ colour}}
+\DoxyCodeLine{00095\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pushRotated(int16\_t\ angle,\ uint32\_t\ transp\ =\ 0x00FFFFFF);\ \ \ \textcolor{comment}{//\ Using\ fixed\ point\ maths}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ rotated\ copy\ of\ Sprite\ to\ another\ different\ Sprite\ with\ optional\ transparent\ colour}}
+\DoxyCodeLine{00097\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pushRotated(TFT\_eSprite\ *spr,\ int16\_t\ angle,\ uint32\_t\ transp\ =\ 0x00FFFFFF);\ \ \ \textcolor{comment}{//\ Using\ fixed\ point\ maths}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ TFT\ bounding\ box\ for\ a\ rotated\ copy\ of\ this\ Sprite}}
+\DoxyCodeLine{00100\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ getRotatedBounds(int16\_t\ angle,\ int16\_t\ *min\_x,\ int16\_t\ *min\_y,\ int16\_t\ *max\_x,\ int16\_t\ *max\_y);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ the\ destination\ Sprite\ bounding\ box\ for\ a\ rotated\ copy\ of\ this\ Sprite}}
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ getRotatedBounds(TFT\_eSprite\ *spr,\ int16\_t\ angle,\ int16\_t\ *min\_x,\ int16\_t\ *min\_y,}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ *max\_x,\ int16\_t\ *max\_y);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bounding\ box\ support\ function}}
+\DoxyCodeLine{00105\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ getRotatedBounds(int16\_t\ angle,\ int16\_t\ w,\ int16\_t\ h,\ int16\_t\ xp,\ int16\_t\ yp,}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ int16\_t\ *min\_x,\ int16\_t\ *min\_y,\ int16\_t\ *max\_x,\ int16\_t\ *max\_y);}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ the\ colour\ of\ a\ pixel\ at\ x,y\ and\ return\ value\ in\ 565\ format\ }}
+\DoxyCodeLine{00109\ \ \ uint16\_t\ readPixel(int32\_t\ x0,\ int32\_t\ y0);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ the\ numerical\ value\ of\ the\ pixel\ at\ x,y\ (used\ when\ scrolling)}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 16bpp\ =\ colour,\ 8bpp\ =\ byte,\ 4bpp\ =\ colour\ index,\ 1bpp\ =\ 1\ or\ 0}}
+\DoxyCodeLine{00113\ \ \ uint16\_t\ readPixelValue(int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ an\ image\ (colour\ bitmap)\ to\ the\ sprite.}}
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t\ *data,\ uint8\_t\ sbpp\ =\ 0);}
+\DoxyCodeLine{00117\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushImage(int32\_t\ x0,\ int32\_t\ y0,\ int32\_t\ w,\ int32\_t\ h,\ \textcolor{keyword}{const}\ uint16\_t\ *data);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ the\ sprite\ to\ the\ TFT\ screen,\ this\ fn\ calls\ pushImage()\ in\ the\ TFT\ class.}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Optionally\ a\ "{}transparent"{}\ colour\ can\ be\ defined,\ pixels\ of\ that\ colour\ will\ not\ be\ rendered}}
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushSprite(int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00122\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ pushSprite(int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ transparent);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ a\ windowed\ area\ of\ the\ sprite\ to\ the\ TFT\ at\ tx,\ ty}}
+\DoxyCodeLine{00125\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pushSprite(int32\_t\ tx,\ int32\_t\ ty,\ int32\_t\ sx,\ int32\_t\ sy,\ int32\_t\ sw,\ int32\_t\ sh);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Push\ the\ sprite\ to\ another\ sprite\ at\ x,y.\ This\ fn\ calls\ pushImage()\ in\ the\ destination\ sprite\ (dspr)\ class.}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ >>>>>>\ \ Using\ a\ transparent\ color\ is\ not\ supported\ at\ the\ moment\ \ <<<<<<}}
+\DoxyCodeLine{00129\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pushToSprite(TFT\_eSprite\ *dspr,\ int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ pushToSprite(TFT\_eSprite\ *dspr,\ int32\_t\ x,\ int32\_t\ y,\ uint16\_t\ transparent);}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ int16\_t\ \ drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y,\ uint8\_t\ font),}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ drawChar(uint16\_t\ uniCode,\ int32\_t\ x,\ int32\_t\ y);}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Return\ the\ width\ and\ height\ of\ the\ sprite}}
+\DoxyCodeLine{00136\ \ \ int16\_t\ \ width(\textcolor{keywordtype}{void}),}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ height(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Functions\ associated\ with\ anti-\/aliased\ fonts}}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ drawGlyph(uint16\_t\ code);}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ printToSprite(String\ \textcolor{keywordtype}{string});}
+\DoxyCodeLine{00142\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ printToSprite(\textcolor{keywordtype}{char}\ *cbuffer,\ uint16\_t\ len);}
+\DoxyCodeLine{00143\ \ \ int16\_t\ \ printToSprite(int16\_t\ x,\ int16\_t\ y,\ uint16\_t\ index);}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ TFT\_eSPI\ *\_tft;}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reserve\ memory\ for\ the\ Sprite\ and\ return\ a\ pointer}}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordtype}{void}*\ \ \ \ callocSprite(int16\_t\ width,\ int16\_t\ height,\ uint8\_t\ frames\ =\ 1);}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ uint8\_t\ \ \_bpp;\ \ \ \ \ \textcolor{comment}{//\ bits\ per\ pixel\ (1,\ 8\ or\ 16)}}
+\DoxyCodeLine{00155\ \ \ uint16\_t\ *\_img;\ \ \ \ \textcolor{comment}{//\ pointer\ to\ 16\ bit\ sprite}}
+\DoxyCodeLine{00156\ \ \ uint8\_t\ \ *\_img8;\ \ \ \textcolor{comment}{//\ pointer\ to\ \ 8\ bit\ sprite\ frame\ 1\ or\ frame\ 2}}
+\DoxyCodeLine{00157\ \ \ uint8\_t\ \ *\_img4;\ \ \ \textcolor{comment}{//\ pointer\ to\ \ 4\ bit\ sprite\ (uses\ color\ map)}}
+\DoxyCodeLine{00158\ \ \ uint8\_t\ \ *\_img8\_1;\ \textcolor{comment}{//\ pointer\ to\ frame\ 1}}
+\DoxyCodeLine{00159\ \ \ uint8\_t\ \ *\_img8\_2;\ \textcolor{comment}{//\ pointer\ to\ frame\ 2}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ uint16\_t\ *\_colorMap;\ \textcolor{comment}{//\ color\ map:\ 16\ entries,\ used\ with\ 4\ bit\ color\ map.}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ int32\_t\ \ \_sinra;}
+\DoxyCodeLine{00164\ \ \ int32\_t\ \ \_cosra;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_created;\ \ \ \ \textcolor{comment}{//\ A\ Sprite\ has\ been\ created\ and\ memory\ reserved}}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \_gFont\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ int32\_t\ \ \_xs,\ \_ys,\ \_xe,\ \_ye,\ \_xptr,\ \_yptr;\ \textcolor{comment}{//\ for\ setWindow}}
+\DoxyCodeLine{00170\ \ \ int32\_t\ \ \_sx,\ \_sy;\ \textcolor{comment}{//\ x,y\ for\ scroll\ zone}}
+\DoxyCodeLine{00171\ \ \ uint32\_t\ \_sw,\ \_sh;\ \textcolor{comment}{//\ w,h\ for\ scroll\ zone}}
+\DoxyCodeLine{00172\ \ \ uint32\_t\ \_scolor;\ \ \textcolor{comment}{//\ gap\ fill\ colour\ for\ scroll\ zone}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ int32\_t\ \ \_iwidth,\ \_iheight;\ \textcolor{comment}{//\ Sprite\ memory\ image\ bit\ width\ and\ height\ (swapped\ during\ rotations)}}
+\DoxyCodeLine{00175\ \ \ int32\_t\ \ \_dwidth,\ \_dheight;\ \textcolor{comment}{//\ Real\ display\ width\ and\ height\ (for\ <8bpp\ Sprites)}}
+\DoxyCodeLine{00176\ \ \ int32\_t\ \ \_bitwidth;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sprite\ image\ bit\ width\ for\ drawPixel\ (for\ <8bpp\ Sprites,\ not\ swapped)}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \};}
+
+\end{DoxyCode}

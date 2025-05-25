@@ -1,0 +1,67 @@
+\doxysection{Smooth\+\_\+font.\+h}
+\hypertarget{_smooth__font_8h_source}{}\label{_smooth__font_8h_source}\index{lib/TFT\_eSPI-\/master/Extensions/Smooth\_font.h@{lib/TFT\_eSPI-\/master/Extensions/Smooth\_font.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \ \textcolor{comment}{//\ Coded\ by\ Bodmer\ 10/2/18,\ see\ license\ in\ root\ directory.}}
+\DoxyCodeLine{00002\ \ \textcolor{comment}{//\ This\ is\ part\ of\ the\ TFT\_eSPI\ class\ and\ is\ associated\ with\ anti-\/aliased\ font\ functions}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \textcolor{comment}{//\ These\ are\ for\ the\ new\ antialiased\ fonts}}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ loadFont(\textcolor{keyword}{const}\ uint8\_t\ array[]);}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00009\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ loadFont(String\ fontName,\ fs::FS\ \&ffs);}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00011\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ loadFont(String\ fontName,\ \textcolor{keywordtype}{bool}\ flash\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00012\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ unloadFont(\ \textcolor{keywordtype}{void}\ );}
+\DoxyCodeLine{00013\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ getUnicodeIndex(uint16\_t\ unicode,\ uint16\_t\ *index);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ drawGlyph(uint16\_t\ code);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ showFont(uint32\_t\ td);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \textcolor{comment}{//\ This\ is\ for\ the\ whole\ font}}
+\DoxyCodeLine{00020\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00021\ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{const}\ uint8\_t*\ gArray;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//array\ start\ pointer}}
+\DoxyCodeLine{00023\ \ \ \ \ uint16\_t\ gCount;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Total\ number\ of\ characters}}
+\DoxyCodeLine{00024\ \ \ \ \ uint16\_t\ yAdvance;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Line\ advance}}
+\DoxyCodeLine{00025\ \ \ \ \ uint16\_t\ spaceWidth;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Width\ of\ a\ space\ character}}
+\DoxyCodeLine{00026\ \ \ \ \ int16\_t\ \ ascent;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Height\ of\ top\ of\ 'd'\ above\ baseline,\ other\ characters\ may\ be\ taller}}
+\DoxyCodeLine{00027\ \ \ \ \ int16\_t\ \ descent;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Offset\ to\ bottom\ of\ 'p',\ other\ characters\ may\ have\ a\ larger\ descent}}
+\DoxyCodeLine{00028\ \ \ \ \ uint16\_t\ maxAscent;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ ascent\ found\ in\ font}}
+\DoxyCodeLine{00029\ \ \ \ \ uint16\_t\ maxDescent;\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Maximum\ descent\ found\ in\ font}}
+\DoxyCodeLine{00030\ \ \ \}\ \mbox{\hyperlink{structfont_metrics}{fontMetrics}};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \mbox{\hyperlink{structfont_metrics}{fontMetrics}}\ gFont\ =\ \{\ \textcolor{keyword}{nullptr},\ 0,\ 0,\ 0,\ 0,\ 0,\ 0,\ 0\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ These\ are\ for\ the\ metrics\ for\ each\ individual\ glyph\ (so\ we\ don't\ need\ to\ seek\ this\ in\ file\ and\ waste\ time)}}
+\DoxyCodeLine{00035\ \ \ uint16\_t*\ gUnicode\ =\ NULL;\ \ \textcolor{comment}{//UTF-\/16\ code,\ the\ codes\ are\ searched\ so\ do\ not\ need\ to\ be\ sequential}}
+\DoxyCodeLine{00036\ \ \ uint8\_t*\ \ gHeight\ =\ NULL;\ \ \ \textcolor{comment}{//cheight}}
+\DoxyCodeLine{00037\ \ \ uint8\_t*\ \ gWidth\ =\ NULL;\ \ \ \ \textcolor{comment}{//cwidth}}
+\DoxyCodeLine{00038\ \ \ uint8\_t*\ \ gxAdvance\ =\ NULL;\ \textcolor{comment}{//setWidth}}
+\DoxyCodeLine{00039\ \ \ int16\_t*\ \ gdY\ =\ NULL;\ \ \ \ \ \ \ \textcolor{comment}{//topExtent}}
+\DoxyCodeLine{00040\ \ \ int8\_t*\ \ \ gdX\ =\ NULL;\ \ \ \ \ \ \ \textcolor{comment}{//leftExtent}}
+\DoxyCodeLine{00041\ \ \ uint32\_t*\ gBitmap\ =\ NULL;\ \ \ \textcolor{comment}{//file\ pointer\ to\ greyscale\ bitmap}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ fontLoaded\ =\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ Flags\ when\ a\ anti-\/aliased\ font\ is\ loaded}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#ifdef\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00046\ \ \ fs::File\ fontFile;}
+\DoxyCodeLine{00047\ \ \ fs::FS\ \ \ \&fontFS\ \ =\ SPIFFS;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ spiffs\ \ \ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ fs\_font\ =\ \textcolor{keyword}{false};\ \ \ \ \textcolor{comment}{//\ For\ ESP32/8266\ use\ smooth\ font\ file\ or\ FLASH\ (PROGMEM)\ array}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ fontFile\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ loadMetrics(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00058\ \ \ uint32\_t\ readInt32(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ uint8\_t*\ fontPtr\ =\ \textcolor{keyword}{nullptr};}
+\DoxyCodeLine{00061\ }
+
+\end{DoxyCode}

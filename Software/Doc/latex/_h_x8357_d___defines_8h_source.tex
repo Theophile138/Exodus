@@ -1,0 +1,92 @@
+\doxysection{HX8357\+D\+\_\+\+Defines.\+h}
+\hypertarget{_h_x8357_d___defines_8h_source}{}\label{_h_x8357_d___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/HX8357D\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Change\ the\ width\ and\ height\ if\ required\ (defined\ in\ portrait\ mode)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ or\ use\ the\ constructor\ to\ over-\/ride\ defaults}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 320}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 480}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x80\ }\textcolor{comment}{//\ Not\ used\ unless\ commandlist\ invoked}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPar.cpp}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ 0x01}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_SLPIN\ \ \ 0x10}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_SLPOUT\ \ 0x11}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ 0x20}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ 0x21}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TFT\_DISPOFF\ 0x28}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TFT\_DISPON\ \ 0x29}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ \ \ 0x2A}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ \ \ 0x2B}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ 0x2C}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ 0x2E}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ TFT\_MADCTL\ \ 0x36}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MY\ \ 0x80}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MX\ \ 0x40}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MV\ \ 0x20}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_ML\ \ 0x10}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_RGB\ 0x00}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_BGR\ 0x08}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MH\ \ 0x04}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_SS\ \ 0x02}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_GS\ \ 0x01}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ 0x00\ }\textcolor{comment}{//\ ILI9341\ only,\ indexed\ control\ register\ read}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ HX8357\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ HX8357\_SWRESET\ 0x01}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ HX8357\_RDDID\ \ \ 0x04}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ HX8357\_RDDST\ \ \ 0x09}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ HX8357\_RDPOWMODE\ \ 0x0A}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ HX8357\_RDMADCTL\ \ 0x0B}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ HX8357\_RDCOLMOD\ \ 0x0C}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ HX8357\_RDDIM\ \ 0x0D}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ HX8357\_RDDSDR\ \ 0x0F}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ HX8357\_SLPIN\ \ \ 0x10}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ HX8357\_SLPOUT\ \ 0x11}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ HX8357\_INVOFF\ \ 0x20}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ HX8357\_INVON\ \ \ 0x21}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ HX8357\_DISPOFF\ 0x28}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ HX8357\_DISPON\ \ 0x29}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ HX8357\_CASET\ \ \ 0x2A}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ HX8357\_PASET\ \ \ 0x2B}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ HX8357\_RAMWR\ \ \ 0x2C}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ HX8357\_RAMRD\ \ \ 0x2E}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ HX8357\_TEON\ \ 0x35}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ HX8357\_TEARLINE\ \ 0x44}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ HX8357\_MADCTL\ \ 0x36}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ HX8357\_COLMOD\ \ 0x3A}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ HX8357\_SETOSC\ 0xB0}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ HX8357\_SETPWR1\ 0xB1}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ HX8357\_SETRGB\ 0xB3}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ HX8357D\_SETCOM\ \ 0xB6}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ HX8357D\_SETCYC\ \ 0xB4}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ HX8357D\_SETC\ 0xB9}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ HX8357D\_SETSTBA\ 0xC0}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ HX8357\_SETPANEL\ \ 0xCC}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ HX8357D\_SETGAMMA\ 0xE0}}
+
+\end{DoxyCode}

@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['raisearm_0',['RaiseArm',['../class_driver_motor.html#ab347c7d6a3d29b4673c35a6582b078b9',1,'DriverMotor']]],
+  ['refresh_1',['Refresh',['../class_registre.html#ac3c6292a931287d34f6e353524a6a3d0',1,'Registre']]],
+  ['refresh_2',['refresh',['../classanalog_meters.html#a5f2e190b8261a98c97c2ea4e86670d54',1,'analogMeters::refresh()'],['../classlinear_meter.html#a5f2e190b8261a98c97c2ea4e86670d54',1,'linearMeter::refresh()']]],
+  ['refreshtouch_3',['refreshTouch',['../class_button.html#a75b33b927f84cbaaeb8c188fa57baee7',1,'Button']]],
+  ['reg1clockpin_4',['Reg1ClockPin',['../classconfig_test1.html#a2d4923328f18e2ee43c131a3579d537f',1,'configTest1::Reg1ClockPin'],['../class_extend___card.html#a2d4923328f18e2ee43c131a3579d537f',1,'Extend_Card::Reg1ClockPin']]],
+  ['reg1datapin_5',['Reg1DataPin',['../classconfig_test1.html#aa242eff4c3c0c61e117e0066c1f83efb',1,'configTest1::Reg1DataPin'],['../class_extend___card.html#aa242eff4c3c0c61e117e0066c1f83efb',1,'Extend_Card::Reg1DataPin']]],
+  ['reg1length_6',['Reg1Length',['../classconfig_test1.html#af7b3a71ad2688b0aa95c947f11573757',1,'configTest1::Reg1Length'],['../class_extend___card.html#af7b3a71ad2688b0aa95c947f11573757',1,'Extend_Card::Reg1Length']]],
+  ['reg1trigpin_7',['Reg1TrigPin',['../classconfig_test1.html#a263b5a6260904fb2c66535b31869d1dc',1,'configTest1::Reg1TrigPin'],['../class_extend___card.html#a263b5a6260904fb2c66535b31869d1dc',1,'Extend_Card::Reg1TrigPin']]],
+  ['registre_8',['Registre',['../class_registre.html',1,'Registre'],['../class_registre.html#a32a022237e99bb421a0db3d3c590eeac',1,'Registre::Registre()']]],
+  ['renderbutton_9',['renderButton',['../class_screen.html#a3e8b7b32d0936bac40c74d48f48c7b01',1,'Screen']]],
+  ['repeat_5fcal_10',['REPEAT_CAL',['../_lib_screen_8h.html#a69345605114a271fc264352b0b8ea07e',1,'LibScreen.h']]],
+  ['rgb_5fto_5frgb565_11',['rgb_to_rgb565',['../namespacemain.html#a4a35b93b56d853d227dd858eae3da5a6',1,'main']]],
+  ['rightbutton_12',['rightButton',['../class_screen.html#af1b58dfedaa62cd285694215f41362b2',1,'Screen']]],
+  ['rightonclick_13',['rightOnclick',['../class_screen.html#ae89711cf3267b5f125f7a807f745dd68',1,'Screen']]],
+  ['root_14',['root',['../namespacemain.html#ab4b8daf4b8ea9d39568719e1e320076f',1,'main']]],
+  ['run_15',['run',['../class_screen.html#aac76d38d91d0f13cc81e8ceef7eca440',1,'Screen::run'],['../classconfig_test1.html#a13a43e6d814de94978c515cb084873b1',1,'configTest1::run()']]]
+];

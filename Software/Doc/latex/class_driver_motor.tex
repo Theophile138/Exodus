@@ -1,0 +1,130 @@
+\doxysection{Driver\+Motor Class Reference}
+\hypertarget{class_driver_motor}{}\label{class_driver_motor}\index{DriverMotor@{DriverMotor}}
+
+
+Classe pour piloter un vérin via deux sorties digitales.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Driver.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_driver_motor_a3b359ad32add29407b26d477d686d652}{Driver\+Motor}} (int \mbox{\hyperlink{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9}{pin\+Parent1}}, int \mbox{\hyperlink{class_driver_motor_ae631d46386e0b6fe97c790e447660308}{pin\+Parent2}}, \mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9}{parent}})
+\begin{DoxyCompactList}\small\item\em Constructeur du \doxylink{class_driver_motor}{Driver\+Motor}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_driver_motor_ab347c7d6a3d29b4673c35a6582b078b9}{Raise\+Arm}} ()
+\begin{DoxyCompactList}\small\item\em Active la montée du vérin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_driver_motor_a0d406715a898c204740e3dccc4c5ee90}{Lower\+Arm}} ()
+\begin{DoxyCompactList}\small\item\em Active la descente du vérin. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_driver_motor_ad6f261838abd8e3e353c92bd466b9cc7}{Stop\+Arm}} ()
+\begin{DoxyCompactList}\small\item\em Arrête le vérin. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9}{pin\+Parent1}}
+\begin{DoxyCompactList}\small\item\em Premier pin de commande du moteur. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_driver_motor_ae631d46386e0b6fe97c790e447660308}{pin\+Parent2}}
+\begin{DoxyCompactList}\small\item\em Second pin de commande du moteur. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9}{parent}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}interface de commande (registre ou direct) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour piloter un vérin via deux sorties digitales. 
+
+Cette classe permet de contrôler la montée, la descente et l\textquotesingle{}arrêt d\textquotesingle{}un vérin en utilisant deux sorties digitales, qui peuvent être connectées soit directement à l\textquotesingle{}ESP32, soit à un registre à décalage via l\textquotesingle{}interface \doxylink{class_parent_device}{Parent\+Device}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_driver_motor_a3b359ad32add29407b26d477d686d652}\index{DriverMotor@{DriverMotor}!DriverMotor@{DriverMotor}}
+\index{DriverMotor@{DriverMotor}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{DriverMotor()}{DriverMotor()}}
+{\footnotesize\ttfamily \label{class_driver_motor_a3b359ad32add29407b26d477d686d652} 
+\mbox{\hyperlink{class_driver_motor}{Driver\+Motor}} (\begin{DoxyParamCaption}\item[{int}]{pin\+Parent1}{, }\item[{int}]{pin\+Parent2}{, }\item[{\mbox{\hyperlink{class_parent_device}{Parent\+Device}} \texorpdfstring{$\ast$}{*}}]{parent}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur du \doxylink{class_driver_motor}{Driver\+Motor}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Parent1} & Numéro du premier pin de commande (direction 1). \\
+\hline
+{\em pin\+Parent2} & Numéro du second pin de commande (direction 2). \\
+\hline
+{\em parent} & Pointeur vers l\textquotesingle{}objet \doxylink{class_parent_device}{Parent\+Device} utilisé pour piloter les pins (direct ou registre). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_driver_motor_a0d406715a898c204740e3dccc4c5ee90}\index{DriverMotor@{DriverMotor}!LowerArm@{LowerArm}}
+\index{LowerArm@{LowerArm}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{LowerArm()}{LowerArm()}}
+{\footnotesize\ttfamily \label{class_driver_motor_a0d406715a898c204740e3dccc4c5ee90} 
+void Lower\+Arm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Active la descente du vérin. 
+
+\Hypertarget{class_driver_motor_ab347c7d6a3d29b4673c35a6582b078b9}\index{DriverMotor@{DriverMotor}!RaiseArm@{RaiseArm}}
+\index{RaiseArm@{RaiseArm}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{RaiseArm()}{RaiseArm()}}
+{\footnotesize\ttfamily \label{class_driver_motor_ab347c7d6a3d29b4673c35a6582b078b9} 
+void Raise\+Arm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Active la montée du vérin. 
+
+\Hypertarget{class_driver_motor_ad6f261838abd8e3e353c92bd466b9cc7}\index{DriverMotor@{DriverMotor}!StopArm@{StopArm}}
+\index{StopArm@{StopArm}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{StopArm()}{StopArm()}}
+{\footnotesize\ttfamily \label{class_driver_motor_ad6f261838abd8e3e353c92bd466b9cc7} 
+void Stop\+Arm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Arrête le vérin. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9}\index{DriverMotor@{DriverMotor}!parent@{parent}}
+\index{parent@{parent}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \label{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9} 
+\mbox{\hyperlink{class_parent_device}{Parent\+Device}}\texorpdfstring{$\ast$}{*} parent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}interface de commande (registre ou direct) 
+
+\Hypertarget{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9}\index{DriverMotor@{DriverMotor}!pinParent1@{pinParent1}}
+\index{pinParent1@{pinParent1}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{pinParent1}{pinParent1}}
+{\footnotesize\ttfamily \label{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9} 
+int pin\+Parent1\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Premier pin de commande du moteur. 
+
+\Hypertarget{class_driver_motor_ae631d46386e0b6fe97c790e447660308}\index{DriverMotor@{DriverMotor}!pinParent2@{pinParent2}}
+\index{pinParent2@{pinParent2}!DriverMotor@{DriverMotor}}
+\doxysubsubsection{\texorpdfstring{pinParent2}{pinParent2}}
+{\footnotesize\ttfamily \label{class_driver_motor_ae631d46386e0b6fe97c790e447660308} 
+int pin\+Parent2\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Second pin de commande du moteur. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_driver_8h}{Lib\+Driver.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_driver_8cpp}{Lib\+Driver.\+cpp}}\end{DoxyCompactItemize}

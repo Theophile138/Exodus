@@ -1,0 +1,61 @@
+\doxysection{S6\+D02\+A1\+\_\+\+Defines.\+h}
+\hypertarget{_s6_d02_a1___defines_8h_source}{}\label{_s6_d02_a1___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/S6D02A1\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/S6D02A1\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Change\ the\ width\ and\ height\ if\ required\ (defined\ in\ portrait\ mode)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ or\ use\ the\ constructor\ to\ over-\/ride\ defaults}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ TFT\_WIDTH\ \ 128}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ TFT\_HEIGHT\ 160}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Color\ definitions\ for\ backwards\ compatibility\ with\ old\ sketches}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ use\ colour\ definitions\ like\ TFT\_BLACK\ to\ make\ sketches\ more\ portable}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ S6D02A1\_BLACK\ \ \ \ \ \ \ 0x0000\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ S6D02A1\_NAVY\ \ \ \ \ \ \ \ 0x000F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ S6D02A1\_DARKGREEN\ \ \ 0x03E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ S6D02A1\_DARKCYAN\ \ \ \ 0x03EF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ S6D02A1\_MAROON\ \ \ \ \ \ 0x7800\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ S6D02A1\_PURPLE\ \ \ \ \ \ 0x780F\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ S6D02A1\_OLIVE\ \ \ \ \ \ \ 0x7BE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ S6D02A1\_LIGHTGREY\ \ \ 0xC618\ \ \ \ \ \ }\textcolor{comment}{/*\ 192,\ 192,\ 192\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ S6D02A1\_DARKGREY\ \ \ \ 0x7BEF\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ S6D02A1\_BLUE\ \ \ \ \ \ \ \ 0x001F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ S6D02A1\_GREEN\ \ \ \ \ \ \ 0x07E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ S6D02A1\_CYAN\ \ \ \ \ \ \ \ 0x07FF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ S6D02A1\_RED\ \ \ \ \ \ \ \ \ 0xF800\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ S6D02A1\_MAGENTA\ \ \ \ \ 0xF81F\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ S6D02A1\_YELLOW\ \ \ \ \ \ 0xFFE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ S6D02A1\_WHITE\ \ \ \ \ \ \ 0xFFFF\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ S6D02A1\_ORANGE\ \ \ \ \ \ 0xFD20\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 165,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ S6D02A1\_GREENYELLOW\ 0xAFE5\ \ \ \ \ \ }\textcolor{comment}{/*\ 173,\ 255,\ \ 47\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ S6D02A1\_PINK\ \ \ \ \ \ \ \ 0xF81F}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x80}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ 0x01}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ \ \ 0x2A}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ \ \ 0x2B}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ 0x2C}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ 0x2E}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ 0x00\ }\textcolor{comment}{//0xDD\ //\ ILI9341\ only,\ indexed\ control\ register\ read}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ TFT\_MADCTL\ \ 0x36}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MY\ \ 0x80}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MX\ \ 0x40}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MV\ \ 0x20}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_ML\ \ 0x10}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_BGR\ 0x08}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MH\ \ 0x04}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_RGB\ 0x00}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ 0x20}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ 0x21}}
+
+\end{DoxyCode}

@@ -1,0 +1,316 @@
+\doxysection{analog\+Meters Class Reference}
+\hypertarget{classanalog_meters}{}\label{classanalog_meters}\index{analogMeters@{analogMeters}}
+
+
+Classe pour afficher une jauge analogique (compteur à aiguille) sur écran TFT.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Jauge.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classanalog_meters_a17973a4c2059543f3d44a92c403d31cd}{analog\+Meters}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur par défaut. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classanalog_meters_a90fdd45529ad7ad51fe8df4bc0e50ab3}{draw\+Analog\+Meters}} (TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de}{tft}}, int \mbox{\hyperlink{classanalog_meters_a7759b29e7af15459632645dc7cbb059b}{positionX}}, int \mbox{\hyperlink{classanalog_meters_a1a668795d324254281b152fdc17d7cac}{positionY}}, int \mbox{\hyperlink{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc}{mide\+Number}}, int \mbox{\hyperlink{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7}{min\+Green\+Limite}}, int \mbox{\hyperlink{classanalog_meters_a017f5b272f44acd188807da017620b60}{max\+Green\+Limite}}, int \mbox{\hyperlink{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da}{min\+Orange\+Limite}}, int \mbox{\hyperlink{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06}{max\+Orange\+Limite}}, String \mbox{\hyperlink{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2}{unit}})
+\begin{DoxyCompactList}\small\item\em Dessine la jauge analogique à l\textquotesingle{}écran. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classanalog_meters_a32fef871d51999055ae88991a9897bcd}{plot\+Needle}} (int value, byte ms\+\_\+delay)
+\begin{DoxyCompactList}\small\item\em Déplace l\textquotesingle{}aiguille de la jauge à la valeur donnée. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classanalog_meters_a5f2e190b8261a98c97c2ea4e86670d54}{refresh}} ()
+\begin{DoxyCompactList}\small\item\em Rafraîchit l\textquotesingle{}affichage si la valeur a changé. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classanalog_meters_ad12fc34ce789bce6c8a05d8a17138534}{height}}
+\begin{DoxyCompactList}\small\item\em Hauteur de la jauge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a07b3d34c383b22949d7d9f398e6d2aa1}{new\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Nouvelle valeur à afficher. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classanalog_meters_a5b3b62a1d4b64d37cd49bec235dc4b90}{actual\+\_\+value}}
+\begin{DoxyCompactList}\small\item\em Valeur actuellement affichée. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classanalog_meters_a720cdf623f5ff1fda42791dd081109d7}{ltx}} = 0
+\begin{DoxyCompactList}\small\item\em Coordonnée x du bas de l\textquotesingle{}aiguille. \end{DoxyCompactList}\item 
+uint16\+\_\+t \mbox{\hyperlink{classanalog_meters_acd79b6ea0185b719bf9cd9621784b177}{osx}} = 120
+\item 
+uint16\+\_\+t \mbox{\hyperlink{classanalog_meters_a9e2f4da2e1da4c6e78a7add5ffcda0e8}{osy}} = 120
+\begin{DoxyCompactList}\small\item\em Coordonnées x et y de l\textquotesingle{}extrémité de l\textquotesingle{}aiguille. \end{DoxyCompactList}\item 
+uint32\+\_\+t \mbox{\hyperlink{classanalog_meters_ac989f7520de779a62b0d73a4f1488f7c}{update\+Time}} = 0
+\begin{DoxyCompactList}\small\item\em Temps pour la prochaine mise à jour. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a81a0dbe30bf978e5cf928c986bca39b1}{old\+\_\+analog}} = -\/999
+\begin{DoxyCompactList}\small\item\em Dernière valeur affichée. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc}{mide\+Number}} = 50
+\begin{DoxyCompactList}\small\item\em Valeur centrale de la jauge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7}{min\+Green\+Limite}} = -\/50
+\begin{DoxyCompactList}\small\item\em Début zone verte. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a017f5b272f44acd188807da017620b60}{max\+Green\+Limite}} = -\/25
+\begin{DoxyCompactList}\small\item\em Fin zone verte. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da}{min\+Orange\+Limite}} = 25
+\begin{DoxyCompactList}\small\item\em Début zone orange. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06}{max\+Orange\+Limite}} = 50
+\begin{DoxyCompactList}\small\item\em Fin zone orange. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a7759b29e7af15459632645dc7cbb059b}{positionX}}
+\begin{DoxyCompactList}\small\item\em Position X de la jauge. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classanalog_meters_a1a668795d324254281b152fdc17d7cac}{positionY}}
+\begin{DoxyCompactList}\small\item\em Position Y de la jauge. \end{DoxyCompactList}\item 
+String \mbox{\hyperlink{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2}{unit}} = "{}\% Force"{}
+\begin{DoxyCompactList}\small\item\em Unité affichée. \end{DoxyCompactList}\item 
+TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de}{tft}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe pour afficher une jauge analogique (compteur à aiguille) sur écran TFT. 
+
+Permet de dessiner une jauge analogique avec zones de couleur, d\textquotesingle{}afficher l\textquotesingle{}unité, et de déplacer l\textquotesingle{}aiguille en fonction d\textquotesingle{}une valeur. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classanalog_meters_a17973a4c2059543f3d44a92c403d31cd}\index{analogMeters@{analogMeters}!analogMeters@{analogMeters}}
+\index{analogMeters@{analogMeters}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{analogMeters()}{analogMeters()}}
+{\footnotesize\ttfamily \label{classanalog_meters_a17973a4c2059543f3d44a92c403d31cd} 
+\mbox{\hyperlink{classanalog_meters}{analog\+Meters}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur par défaut. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classanalog_meters_a90fdd45529ad7ad51fe8df4bc0e50ab3}\index{analogMeters@{analogMeters}!drawAnalogMeters@{drawAnalogMeters}}
+\index{drawAnalogMeters@{drawAnalogMeters}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{drawAnalogMeters()}{drawAnalogMeters()}}
+{\footnotesize\ttfamily \label{classanalog_meters_a90fdd45529ad7ad51fe8df4bc0e50ab3} 
+void draw\+Analog\+Meters (\begin{DoxyParamCaption}\item[{TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*}}]{tft}{, }\item[{int}]{positionX}{, }\item[{int}]{positionY}{, }\item[{int}]{mide\+Number}{, }\item[{int}]{min\+Green\+Limite}{, }\item[{int}]{max\+Green\+Limite}{, }\item[{int}]{min\+Orange\+Limite}{, }\item[{int}]{max\+Orange\+Limite}{, }\item[{String}]{unit}{}\end{DoxyParamCaption})}
+
+
+
+Dessine la jauge analogique à l\textquotesingle{}écran. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tft} & Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. \\
+\hline
+{\em positionX} & Position X de la jauge. \\
+\hline
+{\em positionY} & Position Y de la jauge. \\
+\hline
+{\em mide\+Number} & Valeur centrale de la jauge. \\
+\hline
+{\em min\+Green\+Limite} & Début de la zone verte. \\
+\hline
+{\em max\+Green\+Limite} & Fin de la zone verte. \\
+\hline
+{\em min\+Orange\+Limite} & Début de la zone orange. \\
+\hline
+{\em max\+Orange\+Limite} & Fin de la zone orange. \\
+\hline
+{\em unit} & Unité à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classanalog_meters_a32fef871d51999055ae88991a9897bcd}\index{analogMeters@{analogMeters}!plotNeedle@{plotNeedle}}
+\index{plotNeedle@{plotNeedle}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{plotNeedle()}{plotNeedle()}}
+{\footnotesize\ttfamily \label{classanalog_meters_a32fef871d51999055ae88991a9897bcd} 
+void plot\+Needle (\begin{DoxyParamCaption}\item[{int}]{value}{, }\item[{byte}]{ms\+\_\+delay}{}\end{DoxyParamCaption})}
+
+
+
+Déplace l\textquotesingle{}aiguille de la jauge à la valeur donnée. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & Valeur à afficher. \\
+\hline
+{\em ms\+\_\+delay} & Délai en ms pour l\textquotesingle{}animation de l\textquotesingle{}aiguille. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classanalog_meters_a5f2e190b8261a98c97c2ea4e86670d54}\index{analogMeters@{analogMeters}!refresh@{refresh}}
+\index{refresh@{refresh}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{refresh()}{refresh()}}
+{\footnotesize\ttfamily \label{classanalog_meters_a5f2e190b8261a98c97c2ea4e86670d54} 
+void refresh (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Rafraîchit l\textquotesingle{}affichage si la valeur a changé. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classanalog_meters_a5b3b62a1d4b64d37cd49bec235dc4b90}\index{analogMeters@{analogMeters}!actual\_value@{actual\_value}}
+\index{actual\_value@{actual\_value}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{actual\_value}{actual\_value}}
+{\footnotesize\ttfamily \label{classanalog_meters_a5b3b62a1d4b64d37cd49bec235dc4b90} 
+int actual\+\_\+value\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valeur actuellement affichée. 
+
+\Hypertarget{classanalog_meters_ad12fc34ce789bce6c8a05d8a17138534}\index{analogMeters@{analogMeters}!height@{height}}
+\index{height@{height}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{classanalog_meters_ad12fc34ce789bce6c8a05d8a17138534} 
+int height}
+
+
+
+Hauteur de la jauge. 
+
+\Hypertarget{classanalog_meters_a720cdf623f5ff1fda42791dd081109d7}\index{analogMeters@{analogMeters}!ltx@{ltx}}
+\index{ltx@{ltx}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{ltx}{ltx}}
+{\footnotesize\ttfamily \label{classanalog_meters_a720cdf623f5ff1fda42791dd081109d7} 
+float ltx = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coordonnée x du bas de l\textquotesingle{}aiguille. 
+
+\Hypertarget{classanalog_meters_a017f5b272f44acd188807da017620b60}\index{analogMeters@{analogMeters}!maxGreenLimite@{maxGreenLimite}}
+\index{maxGreenLimite@{maxGreenLimite}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{maxGreenLimite}{maxGreenLimite}}
+{\footnotesize\ttfamily \label{classanalog_meters_a017f5b272f44acd188807da017620b60} 
+int max\+Green\+Limite = -\/25\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Fin zone verte. 
+
+\Hypertarget{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06}\index{analogMeters@{analogMeters}!maxOrangeLimite@{maxOrangeLimite}}
+\index{maxOrangeLimite@{maxOrangeLimite}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{maxOrangeLimite}{maxOrangeLimite}}
+{\footnotesize\ttfamily \label{classanalog_meters_aafc5a45de82bee7b76280d3d127c1d06} 
+int max\+Orange\+Limite = 50\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Fin zone orange. 
+
+\Hypertarget{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc}\index{analogMeters@{analogMeters}!mideNumber@{mideNumber}}
+\index{mideNumber@{mideNumber}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{mideNumber}{mideNumber}}
+{\footnotesize\ttfamily \label{classanalog_meters_a89d5588a660832b0dea0d907e2455ddc} 
+int mide\+Number = 50\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Valeur centrale de la jauge. 
+
+\Hypertarget{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7}\index{analogMeters@{analogMeters}!minGreenLimite@{minGreenLimite}}
+\index{minGreenLimite@{minGreenLimite}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{minGreenLimite}{minGreenLimite}}
+{\footnotesize\ttfamily \label{classanalog_meters_a8127dc5c9108b31153f7d58f59e939c7} 
+int min\+Green\+Limite = -\/50\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Début zone verte. 
+
+\Hypertarget{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da}\index{analogMeters@{analogMeters}!minOrangeLimite@{minOrangeLimite}}
+\index{minOrangeLimite@{minOrangeLimite}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{minOrangeLimite}{minOrangeLimite}}
+{\footnotesize\ttfamily \label{classanalog_meters_ade721a51ca3b37784d2eb0315bb479da} 
+int min\+Orange\+Limite = 25\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Début zone orange. 
+
+\Hypertarget{classanalog_meters_a07b3d34c383b22949d7d9f398e6d2aa1}\index{analogMeters@{analogMeters}!new\_value@{new\_value}}
+\index{new\_value@{new\_value}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{new\_value}{new\_value}}
+{\footnotesize\ttfamily \label{classanalog_meters_a07b3d34c383b22949d7d9f398e6d2aa1} 
+int new\+\_\+value}
+
+
+
+Nouvelle valeur à afficher. 
+
+\Hypertarget{classanalog_meters_a81a0dbe30bf978e5cf928c986bca39b1}\index{analogMeters@{analogMeters}!old\_analog@{old\_analog}}
+\index{old\_analog@{old\_analog}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{old\_analog}{old\_analog}}
+{\footnotesize\ttfamily \label{classanalog_meters_a81a0dbe30bf978e5cf928c986bca39b1} 
+int old\+\_\+analog = -\/999\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Dernière valeur affichée. 
+
+\Hypertarget{classanalog_meters_acd79b6ea0185b719bf9cd9621784b177}\index{analogMeters@{analogMeters}!osx@{osx}}
+\index{osx@{osx}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{osx}{osx}}
+{\footnotesize\ttfamily \label{classanalog_meters_acd79b6ea0185b719bf9cd9621784b177} 
+uint16\+\_\+t osx = 120\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{classanalog_meters_a9e2f4da2e1da4c6e78a7add5ffcda0e8}\index{analogMeters@{analogMeters}!osy@{osy}}
+\index{osy@{osy}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{osy}{osy}}
+{\footnotesize\ttfamily \label{classanalog_meters_a9e2f4da2e1da4c6e78a7add5ffcda0e8} 
+uint16\+\_\+t osy = 120\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Coordonnées x et y de l\textquotesingle{}extrémité de l\textquotesingle{}aiguille. 
+
+\Hypertarget{classanalog_meters_a7759b29e7af15459632645dc7cbb059b}\index{analogMeters@{analogMeters}!positionX@{positionX}}
+\index{positionX@{positionX}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{positionX}{positionX}}
+{\footnotesize\ttfamily \label{classanalog_meters_a7759b29e7af15459632645dc7cbb059b} 
+int positionX\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position X de la jauge. 
+
+\Hypertarget{classanalog_meters_a1a668795d324254281b152fdc17d7cac}\index{analogMeters@{analogMeters}!positionY@{positionY}}
+\index{positionY@{positionY}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{positionY}{positionY}}
+{\footnotesize\ttfamily \label{classanalog_meters_a1a668795d324254281b152fdc17d7cac} 
+int positionY\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Position Y de la jauge. 
+
+\Hypertarget{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de}\index{analogMeters@{analogMeters}!tft@{tft}}
+\index{tft@{tft}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{tft}{tft}}
+{\footnotesize\ttfamily \label{classanalog_meters_ad4b71e124dca192cc08cf144e2a824de} 
+TFT\+\_\+e\+SPI\texorpdfstring{$\ast$}{*} tft\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. 
+
+\Hypertarget{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2}\index{analogMeters@{analogMeters}!unit@{unit}}
+\index{unit@{unit}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{unit}{unit}}
+{\footnotesize\ttfamily \label{classanalog_meters_a9cd4b1ca696b9d431bb85c092a7424b2} 
+String unit = "{}\% Force"{}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Unité affichée. 
+
+\Hypertarget{classanalog_meters_ac989f7520de779a62b0d73a4f1488f7c}\index{analogMeters@{analogMeters}!updateTime@{updateTime}}
+\index{updateTime@{updateTime}!analogMeters@{analogMeters}}
+\doxysubsubsection{\texorpdfstring{updateTime}{updateTime}}
+{\footnotesize\ttfamily \label{classanalog_meters_ac989f7520de779a62b0d73a4f1488f7c} 
+uint32\+\_\+t update\+Time = 0\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Temps pour la prochaine mise à jour. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_jauge_8h}{Lib\+Jauge.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_jauge_8cpp}{Lib\+Jauge.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,30 @@
+\doxysection{Lib\+Driver.\+h}
+\hypertarget{_lib_driver_8h_source}{}\label{_lib_driver_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibDriver.h@{Software\_Exodus\_VSC\_Project/src/Hardware\_lib/LibDriver.h}}
+\mbox{\hyperlink{_lib_driver_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibDriver\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibDriver\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_peripherique_8h}{LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_driver_motor_a3b359ad32add29407b26d477d686d652}{DriverMotor}}\ \{}
+\DoxyCodeLine{00019\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_driver_motor_a3b359ad32add29407b26d477d686d652}{DriverMotor}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9}{pinParent1}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_ae631d46386e0b6fe97c790e447660308}{pinParent2}},\ \mbox{\hyperlink{class_parent_device}{ParentDevice}}*\ \mbox{\hyperlink{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9}{parent}});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_ab347c7d6a3d29b4673c35a6582b078b9}{RaiseArm}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_a0d406715a898c204740e3dccc4c5ee90}{LowerArm}}();}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_driver_motor_ad6f261838abd8e3e353c92bd466b9cc7}{StopArm}}();}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_a48e00064f2edc21b0773a0763a0dc4b9}{pinParent1}};\ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_driver_motor_ae631d46386e0b6fe97c790e447660308}{pinParent2}};\ \ \ \ \ \ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_parent_device}{ParentDevice}}*\ \mbox{\hyperlink{class_driver_motor_abb124dcf86b8bbee3fd9376884db1eb9}{parent}};}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -131,6 +131,14 @@ void Screen::startOffclick(Screen* scr){
   scr->rightButton.disable = false;
   scr->gaugeButton.disable = true;
 
+  configTest1::verin->RaiseArm();
+  delay(10000);
+  configTest1::verin->StopArm();
+  configTest1::verin->LowerArm();
+  delay(2000);
+  configTest1::verin->StopArm();
+
+
   scr->leftButton.draw();
   scr->rightButton.draw();
   scr->gaugeButton.draw();
@@ -144,6 +152,7 @@ void Screen::gaugeOnClick(Screen* scr){
   scr->rightButton.disable = true;
   scr->startButton.disable = true;
   scr->gaugeButton.disable = true;
+
 
 
   scr->Gauge_Menu_init();

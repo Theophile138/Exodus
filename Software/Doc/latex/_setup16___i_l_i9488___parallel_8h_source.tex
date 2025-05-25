@@ -1,0 +1,41 @@
+\doxysection{Setup16\+\_\+\+ILI9488\+\_\+\+Parallel.\+h}
+\hypertarget{_setup16___i_l_i9488___parallel_8h_source}{}\label{_setup16___i_l_i9488___parallel_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup16\_ILI9488\_Parallel.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup16\_ILI9488\_Parallel.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ ESP32\_PARALLEL}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ILI9488\_DRIVER}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ ESP32\ pins\ used}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 33\ \ }\textcolor{comment}{//\ Chip\ select\ control\ pin}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 15\ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin\ -\/\ must\ use\ a\ pin\ in\ the\ range\ 0-\/31}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ 32\ \ }\textcolor{comment}{//\ Reset\ pin}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_WR\ \ \ \ 4\ \ }\textcolor{comment}{//\ Write\ strobe\ control\ pin\ -\/\ must\ use\ a\ pin\ in\ the\ range\ 0-\/31}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_RD\ \ \ \ 2}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ TFT\_D0\ \ \ 12\ \ }\textcolor{comment}{//\ Must\ use\ pins\ in\ the\ range\ 0-\/31\ for\ the\ data\ bus}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ TFT\_D1\ \ \ 13\ \ }\textcolor{comment}{//\ so\ a\ single\ register\ write\ sets/clears\ all\ bits}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ TFT\_D2\ \ \ 26}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TFT\_D3\ \ \ 25}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TFT\_D4\ \ \ 17}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ TFT\_D5\ \ \ 16}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ TFT\_D6\ \ \ 27}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ TFT\_D7\ \ \ 14}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+
+\end{DoxyCode}

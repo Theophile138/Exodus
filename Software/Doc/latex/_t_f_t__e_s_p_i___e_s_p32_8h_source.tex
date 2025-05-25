@@ -1,0 +1,533 @@
+\doxysection{TFT\+\_\+e\+SPI\+\_\+\+ESP32.\+h}
+\hypertarget{_t_f_t__e_s_p_i___e_s_p32_8h_source}{}\label{_t_f_t__e_s_p_i___e_s_p32_8h_source}\index{lib/TFT\_eSPI-\/master/Processors/TFT\_eSPI\_ESP32.h@{lib/TFT\_eSPI-\/master/Processors/TFT\_eSPI\_ESP32.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ TFT\_eSPI\ driver\ functions\ for\ ESP32\ processors\ //}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ \_TFT\_eSPI\_ESP32H\_}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ \_TFT\_eSPI\_ESP32H\_}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Processor\ ID\ reported\ by\ getSetup()}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ PROCESSOR\_ID\ 0x32}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Include\ processor\ specific\ header}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}soc/spi\_reg.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}driver/spi\_master.h"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ SUPPORT\_TRANSACTIONS\ is\ mandatory\ for\ ESP32\ so\ the\ hal\ mutex\ is\ toggled}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ !defined\ (SUPPORT\_TRANSACTIONS)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \#define\ SUPPORT\_TRANSACTIONS}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{ESP32:}}
+\DoxyCodeLine{00022\ \textcolor{comment}{FSPI\ not\ defined}}
+\DoxyCodeLine{00023\ \textcolor{comment}{HSPI\ =\ 2,\ uses\ SPI2}}
+\DoxyCodeLine{00024\ \textcolor{comment}{VSPI\ =\ 3,\ uses\ SPI3}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{ESP32-\/S2:}}
+\DoxyCodeLine{00027\ \textcolor{comment}{FSPI\ =\ 1,\ uses\ SPI2}}
+\DoxyCodeLine{00028\ \textcolor{comment}{HSPI\ =\ 2,\ uses\ SPI3}}
+\DoxyCodeLine{00029\ \textcolor{comment}{VSPI\ not\ defined}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{ESP32\ C3:}}
+\DoxyCodeLine{00032\ \textcolor{comment}{FSPI\ =\ 0,\ uses\ SPI2\ ????\ To\ be\ checked}}
+\DoxyCodeLine{00033\ \textcolor{comment}{HSPI\ =\ 1,\ uses\ SPI3\ ????\ To\ be\ checked}}
+\DoxyCodeLine{00034\ \textcolor{comment}{VSPI\ not\ defined}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{For\ ESP32/S2/C3:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{SPI1\_HOST\ =\ 0}}
+\DoxyCodeLine{00038\ \textcolor{comment}{SPI2\_HOST\ =\ 1}}
+\DoxyCodeLine{00039\ \textcolor{comment}{SPI3\_HOST\ =\ 2}}
+\DoxyCodeLine{00040\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ ESP32\ specific\ SPI\ port\ selection}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifdef\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \#ifdef\ CONFIG\_IDF\_TARGET\_ESP32}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_PORT\ HSPI\ \ }\textcolor{comment}{//HSPI\ is\ port\ 2\ on\ ESP32}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_PORT\ 3\ \ \ \ \ }\textcolor{comment}{//HSPI\ is\ port\ 3\ on\ ESP32\ S2}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ \#ifdef\ CONFIG\_IDF\_TARGET\_ESP32}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_PORT\ VSPI}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \#define\ SPI\_PORT\ 2\ }\textcolor{comment}{//FSPI(ESP32\ S2)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#ifdef\ RPI\_DISPLAY\_TYPE}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \#define\ CMD\_BITS\ (16-\/1)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \#define\ CMD\_BITS\ (8-\/1)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ Initialise\ processor\ specific\ SPI\ functions,\ used\ by\ init()}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ INIT\_TFT\_DATA\_BUS\ }\textcolor{comment}{//\ Not\ used}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ Define\ a\ generic\ flag\ for\ 8\ bit\ parallel}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#if\ defined\ (ESP32\_PARALLEL)\ }\textcolor{comment}{//\ Specific\ to\ ESP32\ for\ backwards\ compatibility}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \#if\ !defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_PARALLEL\_8\_BIT\ }\textcolor{comment}{//\ Generic\ parallel\ flag}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Ensure\ ESP32\ specific\ flag\ is\ defined\ for\ 8\ bit\ parallel}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#if\ defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \#if\ !defined\ (ESP32\_PARALLEL)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\ \ \ \ \#define\ ESP32\_PARALLEL}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ Processor\ specific\ code\ used\ by\ SPI\ bus\ transaction\ startWrite\ and\ endWrite\ functions}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ !defined\ (ESP32\_PARALLEL)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_SPI\_MODE\ ==\ SPI\_MODE1)\ ||\ (TFT\_SPI\_MODE\ ==\ SPI\_MODE2)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_WRITE\_MODE\ *\_spi\_user\ =\ SPI\_USR\_MOSI\ |\ SPI\_CK\_OUT\_EDGE}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_READ\_MODE\ \ *\_spi\_user\ =\ SPI\_USR\_MOSI\ |\ SPI\_USR\_MISO\ |\ SPI\_DOUTDIN\ |\ SPI\_CK\_OUT\_EDGE}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_WRITE\_MODE\ *\_spi\_user\ =\ SPI\_USR\_MOSI}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_READ\_MODE\ \ *\_spi\_user\ =\ SPI\_USR\_MOSI\ |\ SPI\_USR\_MISO\ |\ SPI\_DOUTDIN}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ Not\ applicable\ to\ parallel\ bus}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_WRITE\_MODE}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ \#define\ SET\_BUS\_READ\_MODE}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ Code\ to\ check\ if\ DMA\ is\ busy,\ used\ by\ SPI\ bus\ transaction\ transaction\ and\ endWrite\ functions}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#if\ !defined(TFT\_PARALLEL\_8\_BIT)\ \&\&\ !defined(SPI\_18BIT\_DRIVER)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \#define\ ESP32\_DMA}}
+\DoxyCodeLine{00098\ \ \ \textcolor{comment}{//\ Code\ to\ check\ if\ DMA\ is\ busy,\ used\ by\ SPI\ DMA\ +\ transaction\ +\ endWrite\ functions}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ \#define\ DMA\_BUSY\_CHECK\ \ dmaWait()}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \#define\ DMA\_BUSY\_CHECK}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#if\ defined(TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \#define\ SPI\_BUSY\_CHECK}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \#define\ SPI\_BUSY\_CHECK\ while\ (*\_spi\_cmd\&SPI\_USR)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ If\ smooth\ font\ is\ used\ then\ it\ is\ likely\ SPIFFS\ will\ be\ needed}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#ifdef\ SMOOTH\_FONT}}
+\DoxyCodeLine{00112\ \ \ \textcolor{comment}{//\ Call\ up\ the\ SPIFFS\ (SPI\ FLASH\ Filing\ System)\ for\ the\ anti-\/aliased\ fonts}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \#define\ FS\_NO\_GLOBALS}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \#include\ <FS.h>}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ \#include\ "{}SPIFFS.h"{}}\ \textcolor{comment}{//\ ESP32\ only}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \#define\ FONT\_FS\_AVAILABLE}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ Define\ the\ DC\ (TFT\ Data/Command\ or\ Register\ Select\ (RS))pin\ drive\ code}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#ifndef\ TFT\_DC}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \#define\ DC\_C\ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \#define\ DC\_D\ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \#if\ defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ TFT\_DC,\ by\ design,\ must\ be\ in\ range\ 0-\/31\ for\ single\ register\ parallel\ write}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_DC\ >=\ 0)\ \&\&\ \ (TFT\_DC\ <\ 32)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_C\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_D\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_C}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_D}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_DC\ >=\ 32)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ RPI\_DISPLAY\_TYPE\ \ }\textcolor{comment}{//\ RPi\ displays\ need\ a\ slower\ DC\ change}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_C\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32));\ \(\backslash\)}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_D\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32));\ \(\backslash\)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_C\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}\textcolor{comment}{//;GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_D\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}\textcolor{comment}{//;GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_DC\ -\/\ 32))}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \#elif\ (TFT\_DC\ >=\ 0)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ \ \ \#if\ defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#if\ defined\ (ILI9486\_DRIVER)}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ RPi\ ILI9486\ display\ needs\ a\ slower\ DC\ change}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \#define\ DC\_C\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC);\ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \#define\ DC\_D\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC);\ \(\backslash\)}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ RPi\ displays\ need\ a\ slower\ C-\/>D\ change}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \#define\ DC\_C\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \#define\ DC\_D\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC);\ \(\backslash\)}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_C\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC)}\textcolor{comment}{//;GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ DC\_D\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_DC)}\textcolor{comment}{//;GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_DC)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_C}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ DC\_D}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ Define\ the\ CS\ (TFT\ chip\ select)\ pin\ drive\ code}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#ifndef\ TFT\_CS}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ \#define\ TFT\_CS\ -\/1\ \ }\textcolor{comment}{//\ Keep\ DMA\ code\ happy}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ \#define\ CS\_L\ \ \ \ \ \ \ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \#define\ CS\_H\ \ \ \ \ \ \ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\ \ \#if\ defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\ \ \ \ \#if\ TFT\_CS\ >=\ 32}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\ \ \ \ \#elif\ TFT\_CS\ >=\ 0}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ CS\_L}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ CS\_H}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_CS\ >=\ 32)}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ RPI\_DISPLAY\_TYPE\ \ }\textcolor{comment}{//\ RPi\ display\ needs\ a\ slower\ CS\ change}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32));\ \(\backslash\)}}
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32));\ \(\backslash\)}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32));\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00199\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}\textcolor{comment}{//;GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_CS\ -\/\ 32))}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\ \ \ \ \#elif\ (TFT\_CS\ >=\ 0)}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\ \ \ \ \ \ \#ifdef\ RPI\_DISPLAY\_TYPE\ \ }\textcolor{comment}{//\ RPi\ display\ needs\ a\ slower\ CS\ change}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_CS);\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_CS);\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\ \ \ \ \ \ \#else}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_L\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_CS);\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#define\ CS\_H\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_CS)}\textcolor{comment}{//;GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_CS)}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ \ \ \#endif}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ CS\_L}}
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ CS\_H}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ Define\ the\ WR\ (TFT\ Write)\ pin\ drive\ code}}
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#if\ defined\ (TFT\_WR)}}
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_WR\ >=\ 32)}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ Note:\ it\ will\ be\ \string~1.25x\ faster\ if\ the\ TFT\_WR\ pin\ uses\ a\ GPIO\ pin\ lower\ than\ 32}}
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_L\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_WR\ -\/\ 32))}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_H\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_WR\ -\/\ 32))}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\ \ \#elif\ (TFT\_WR\ >=\ 0)}}
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ TFT\_WR,\ for\ best\ performance,\ should\ be\ in\ range\ 0-\/31\ for\ single\ register\ parallel\ write}}
+\DoxyCodeLine{00226\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_L\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_WR)}}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_H\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_WR)}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_L}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\ \ \ \ \#define\ WR\_H}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\ \ \#define\ WR\_L}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\ \ \#define\ WR\_H}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00238\ \textcolor{comment}{//\ Define\ the\ touch\ screen\ chip\ select\ pin\ drive\ code}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#ifndef\ TOUCH\_CS}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\ \ \#define\ T\_CS\_L\ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\ \ \#define\ T\_CS\_H\ }\textcolor{comment}{//\ No\ macro\ allocated\ so\ it\ generates\ no\ code}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ XPT2046\ is\ slow,\ so\ use\ slower\ digitalWrite\ here}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\ \ \#define\ T\_CS\_L\ digitalWrite(TOUCH\_CS,\ LOW)}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\ \ \#define\ T\_CS\_H\ digitalWrite(TOUCH\_CS,\ HIGH)}}
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00249\ \textcolor{comment}{//\ Make\ sure\ SPI\ default\ pins\ are\ assigned\ if\ not\ specified\ by\ user\ or\ set\ to\ -\/1}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#if\ !defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\ \ \#ifdef\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_MISO}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MISO\ -\/1}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_MOSI}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MOSI\ 13}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00262\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_MOSI\ ==\ -\/1)}}
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\ \ \ \ \ \ \#undef\ TFT\_MOSI}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MOSI\ 13}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_SCLK}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_SCLK\ 14}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_SCLK\ ==\ -\/1)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\ \ \ \ \ \ \#undef\ TFT\_SCLK}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_SCLK\ 14}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\ \ \#else\ }\textcolor{comment}{//\ VSPI\ port}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_MISO}}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MISO\ -\/1}}
+\DoxyCodeLine{00279\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_MOSI}}
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MOSI\ 23}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00284\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_MOSI\ ==\ -\/1)}}
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\ \ \ \ \ \ \#undef\ TFT\_MOSI}}
+\DoxyCodeLine{00286\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_MOSI\ 23}}
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\ \ \ \ \#ifndef\ TFT\_SCLK}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00291\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_SCLK\ ==\ -\/1)}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\ \ \ \ \ \ \#undef\ TFT\_SCLK}}
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00302\ \textcolor{comment}{//\ Define\ the\ parallel\ bus\ interface\ chip\ pin\ drive\ code}}
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#if\ defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \textcolor{comment}{//\ Create\ a\ bit\ set\ lookup\ table\ for\ data\ bus\ -\/\ wastes\ 1kbyte\ of\ RAM\ but\ speeds\ things\ up\ dramatically}}
+\DoxyCodeLine{00307\ \ \ \textcolor{comment}{//\ can\ then\ use\ e.g.\ GPIO.out\_w1ts\ =\ set\_mask(0xFF);\ to\ set\ data\ bus\ to\ 0xFF}}
+\DoxyCodeLine{00308\ \textcolor{preprocessor}{\ \ \#define\ CONSTRUCTOR\_INIT\_TFT\_DATA\_BUS\ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00309\ \textcolor{preprocessor}{\ \ for\ (int32\_t\ c\ =\ 0;\ c<256;\ c++)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\ \ \ \ xset\_mask[c]\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00312\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x01\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D0);\ \(\backslash\)}}
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x02\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D1);\ \(\backslash\)}}
+\DoxyCodeLine{00314\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x04\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D2);\ \(\backslash\)}}
+\DoxyCodeLine{00315\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x08\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D3);\ \(\backslash\)}}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x10\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D4);\ \(\backslash\)}}
+\DoxyCodeLine{00317\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x20\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D5);\ \(\backslash\)}}
+\DoxyCodeLine{00318\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x40\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D6);\ \(\backslash\)}}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\ \ \ \ if\ (\ c\ \&\ 0x80\ )\ xset\_mask[c]\ |=\ (1\ <<\ TFT\_D7);\ \(\backslash\)}}
+\DoxyCodeLine{00320\ \textcolor{preprocessor}{\ \ \}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00321\ \textcolor{preprocessor}{}}
+\DoxyCodeLine{00322\ \ \ \textcolor{comment}{//\ Mask\ for\ the\ 8\ data\ bits\ to\ set\ pin\ directions}}
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\ \ \#define\ dir\_mask\ ((1\ <<\ TFT\_D0)\ |\ (1\ <<\ TFT\_D1)\ |\ (1\ <<\ TFT\_D2)\ |\ (1\ <<\ TFT\_D3)\ |\ (1\ <<\ TFT\_D4)\ |\ (1\ <<\ TFT\_D5)\ |\ (1\ <<\ TFT\_D6)\ |\ (1\ <<\ TFT\_D7))}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_WR\ >=\ 32)}}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{comment}{//\ Data\ bits\ and\ the\ write\ line\ are\ cleared\ sequentially}}
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\ \ \ \ \#define\ clr\_mask\ (dir\_mask);\ WR\_L}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\ \ \#elif\ (TFT\_WR\ >=\ 0)}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{//\ Data\ bits\ and\ the\ write\ line\ are\ cleared\ to\ 0\ in\ one\ step\ (1.25x\ faster)}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\ \ \ \ \#define\ clr\_mask\ (dir\_mask\ |\ (1\ <<\ TFT\_WR))}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\ \ \ \ \#define\ clr\_mask}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \textcolor{comment}{//\ A\ lookup\ table\ is\ used\ to\ set\ the\ different\ bit\ patterns,\ this\ uses\ 1kByte\ of\ RAM}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\ \ \#define\ set\_mask(C)\ xset\_mask[C]\ }\textcolor{comment}{//\ 63fps\ Sprite\ rendering\ test\ 33\%\ faster,\ graphicstest\ only\ 1.8\%\ faster\ than\ shifting\ in\ real\ time}}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \textcolor{comment}{//\ Real-\/time\ shifting\ alternative\ to\ above\ to\ save\ 1KByte\ RAM,\ 47\ fps\ Sprite\ rendering\ test}}
+\DoxyCodeLine{00339\ \ \ \textcolor{comment}{/*\#define\ set\_mask(C)\ (((C)\&0x80)>>7)<<TFT\_D7\ |\ (((C)\&0x40)>>6)<<TFT\_D6\ |\ (((C)\&0x20)>>5)<<TFT\_D5\ |\ (((C)\&0x10)>>4)<<TFT\_D4\ |\ \(\backslash\)}}
+\DoxyCodeLine{00340\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (((C)\&0x08)>>3)<<TFT\_D3\ |\ (((C)\&0x04)>>2)<<TFT\_D2\ |\ (((C)\&0x02)>>1)<<TFT\_D1\ |\ (((C)\&0x01)>>0)<<TFT\_D0}}
+\DoxyCodeLine{00341\ \textcolor{comment}{\ \ //*/}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \textcolor{comment}{//\ Write\ 8\ bits\ to\ TFT}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_8(C)\ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)(C));\ WR\_H}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\ \ \#if\ defined\ (SSD1963\_DRIVER)}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ \ \ \ \textcolor{comment}{//\ Write\ 18\ bit\ color\ to\ TFT}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\ \ \ \ \#define\ tft\_Write\_16(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ (((C)\ \&\ 0xF800)>>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ (((C)\ \&\ 0x07E0)>>\ 3));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ (((C)\ \&\ 0x001F)<<\ 3));\ WR\_H}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{comment}{//\ 18\ bit\ color\ write\ with\ swapped\ bytes}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\ \ \ \ \#define\ tft\_Write\_16S(C)\ uint16\_t\ Cswap\ =\ ((C)\ >>8\ |\ (C)\ <<\ 8);\ tft\_Write\_16(Cswap)}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00357\ }
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\ \ \ \ \#ifdef\ PSEUDO\_16\_BIT}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \textcolor{comment}{//\ One\ write\ strobe\ for\ both\ bytes}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ tft\_Write\_16(C)\ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H}}
+\DoxyCodeLine{00361\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ tft\_Write\_16S(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ 16\ bits\ to\ TFT}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ tft\_Write\_16(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \textcolor{comment}{//\ 16\ bit\ write\ with\ swapped\ bytes}}
+\DoxyCodeLine{00368\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ tft\_Write\_16S(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00369\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H}}
+\DoxyCodeLine{00370\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \textcolor{comment}{//\ Write\ 32\ bits\ to\ TFT}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 24));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 16));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00377\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ \ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00378\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ \ 0));\ WR\_H}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \ \ \textcolor{comment}{//\ Write\ two\ concatenated\ 16\ bit\ values\ to\ TFT}}
+\DoxyCodeLine{00381\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32C(C,D)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00382\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((D)\ >>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((D)\ >>\ 0));\ WR\_H}}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \ \ \textcolor{comment}{//\ Write\ 16\ bit\ value\ twice\ to\ TFT\ -\/\ used\ by\ drawPixel()}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32D(C)\ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00388\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 8));\ WR\_H;\ \(\backslash\)}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GPIO.out\_w1tc\ =\ clr\_mask;\ GPIO.out\_w1ts\ =\ set\_mask((uint8\_t)\ ((C)\ >>\ 0));\ WR\_H}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \textcolor{comment}{//\ Read\ pin}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{\ \ \#ifdef\ TFT\_RD}}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\ \ \ \ \#if\ (TFT\_RD\ >=\ 32)}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_L\ GPIO.out1\_w1tc.val\ =\ (1\ <<\ (TFT\_RD\ -\/\ 32))}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_H\ GPIO.out1\_w1ts.val\ =\ (1\ <<\ (TFT\_RD\ -\/\ 32))}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\ \ \ \ \#elif\ (TFT\_RD\ >=\ 0)}}
+\DoxyCodeLine{00398\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_L\ GPIO.out\_w1tc\ =\ (1\ <<\ TFT\_RD)}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \textcolor{comment}{//\#define\ RD\_L\ digitalWrite(TFT\_WR,\ LOW)}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_H\ GPIO.out\_w1ts\ =\ (1\ <<\ TFT\_RD)}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \textcolor{comment}{//\#define\ RD\_H\ digitalWrite(TFT\_WR,\ HIGH)}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_L}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{\ \ \ \ \ \ \#define\ RD\_H}}
+\DoxyCodeLine{00405\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00406\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00407\ }
+\DoxyCodeLine{00409\ \textcolor{comment}{//\ Macros\ to\ write\ commands/pixel\ colour\ data\ to\ a\ SPI\ ILI948x\ TFT}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#elif\ \ defined\ (SPI\_18BIT\_DRIVER)\ }\textcolor{comment}{//\ SPI\ 18\ bit\ colour}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ \ \ \textcolor{comment}{//\ Write\ 8\ bits\ to\ TFT}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_8(C)\ \ \ spi.transfer(C)}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \textcolor{comment}{//\ Convert\ 16\ bit\ colour\ to\ 18\ bit\ and\ write\ in\ 3\ bytes}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16(C)\ \ spi.transfer(((C)\ \&\ 0xF800)>>8);\ \(\backslash\)}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spi.transfer(((C)\ \&\ 0x07E0)>>3);\ \(\backslash\)}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spi.transfer(((C)\ \&\ 0x001F)<<3)}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ \ \ \textcolor{comment}{//\ Future\ option\ for\ transfer\ without\ wait}}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16N(C)\ tft\_Write\_16(C)}}
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ \ \ \textcolor{comment}{//\ Convert\ swapped\ byte\ 16\ bit\ colour\ to\ 18\ bit\ and\ write\ in\ 3\ bytes}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16S(C)\ spi.transfer((C)\ \&\ 0xF8);\ \(\backslash\)}}
+\DoxyCodeLine{00426\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spi.transfer(((C)\ \&\ 0xE000)>>11\ |\ ((C)\ \&\ 0x07)<<5);\ \(\backslash\)}}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spi.transfer(((C)\ \&\ 0x1F00)>>5)}}
+\DoxyCodeLine{00428\ }
+\DoxyCodeLine{00429\ \ \ \textcolor{comment}{//\ Write\ 32\ bits\ to\ TFT}}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32(C)\ \ spi.write32(C)}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \textcolor{comment}{//\ Write\ two\ concatenated\ 16\ bit\ values\ to\ TFT}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32C(C,D)\ spi.write32((C)<<16\ |\ (D))}}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \ \ \textcolor{comment}{//\ Write\ 16\ bit\ value\ twice\ to\ TFT}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32D(C)\ \ spi.write32((C)<<16\ |\ (C))}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00439\ \textcolor{comment}{//\ Macros\ to\ write\ commands/pixel\ colour\ data\ to\ an\ Raspberry\ Pi\ TFT}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\#elif\ \ defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \textcolor{comment}{//\ ESP32\ low\ level\ SPI\ writes\ for\ 8,\ 16\ and\ 32\ bit\ values}}
+\DoxyCodeLine{00444\ \ \ \textcolor{comment}{//\ to\ avoid\ the\ function\ call\ overhead}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WRITE\_BITS(D,\ B)\ \(\backslash\)}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\ \ WRITE\_PERI\_REG(SPI\_MOSI\_DLEN\_REG(SPI\_PORT),\ B-\/1);\ \(\backslash\)}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\ \ WRITE\_PERI\_REG(SPI\_W0\_REG(SPI\_PORT),\ D);\ \(\backslash\)}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\ \ SET\_PERI\_REG\_MASK(SPI\_CMD\_REG(SPI\_PORT),\ SPI\_USR);\ \(\backslash\)}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\ \ while\ (READ\_PERI\_REG(SPI\_CMD\_REG(SPI\_PORT))\&SPI\_USR);}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \ \ \textcolor{comment}{//\ Write\ 8\ bits}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_8(C)\ TFT\_WRITE\_BITS((C)<<8,\ 16)}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \textcolor{comment}{//\ Write\ 16\ bits\ with\ corrected\ endianess\ for\ 16\ bit\ colours}}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16(C)\ TFT\_WRITE\_BITS((C)<<8\ |\ (C)>>8,\ 16)}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \textcolor{comment}{//\ Future\ option\ for\ transfer\ without\ wait}}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16N(C)\ tft\_Write\_16(C)}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \textcolor{comment}{//\ Write\ 16\ bits}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16S(C)\ TFT\_WRITE\_BITS(C,\ 16)}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \textcolor{comment}{//\ Write\ 32\ bits}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32(C)\ TFT\_WRITE\_BITS(C,\ 32)}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \textcolor{comment}{//\ Write\ two\ address\ coordinates}}
+\DoxyCodeLine{00467\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32C(C,D)\ \ TFT\_WRITE\_BITS((C)<<24\ |\ (C),\ 32);\ \(\backslash\)}}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TFT\_WRITE\_BITS((D)<<24\ |\ (D),\ 32)}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \textcolor{comment}{//\ Write\ same\ value\ twice}}
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32D(C)\ tft\_Write\_32C(C,C)}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00474\ \textcolor{comment}{//\ Macros\ for\ all\ other\ SPI\ displays}}
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00477\ \textcolor{comment}{/*\ Old\ macros}}
+\DoxyCodeLine{00478\ \textcolor{comment}{\ \ //\ ESP32\ low\ level\ SPI\ writes\ for\ 8,\ 16\ and\ 32\ bit\ values}}
+\DoxyCodeLine{00479\ \textcolor{comment}{\ \ //\ to\ avoid\ the\ function\ call\ overhead}}
+\DoxyCodeLine{00480\ \textcolor{comment}{\ \ \#define\ TFT\_WRITE\_BITS(D,\ B)\ \(\backslash\)}}
+\DoxyCodeLine{00481\ \textcolor{comment}{\ \ WRITE\_PERI\_REG(SPI\_MOSI\_DLEN\_REG(SPI\_PORT),\ B-\/1);\ \(\backslash\)}}
+\DoxyCodeLine{00482\ \textcolor{comment}{\ \ WRITE\_PERI\_REG(SPI\_W0\_REG(SPI\_PORT),\ D);\ \(\backslash\)}}
+\DoxyCodeLine{00483\ \textcolor{comment}{\ \ SET\_PERI\_REG\_MASK(SPI\_CMD\_REG(SPI\_PORT),\ SPI\_USR);\ \(\backslash\)}}
+\DoxyCodeLine{00484\ \textcolor{comment}{\ \ while\ (READ\_PERI\_REG(SPI\_CMD\_REG(SPI\_PORT))\&SPI\_USR);}}
+\DoxyCodeLine{00485\ \textcolor{comment}{}}
+\DoxyCodeLine{00486\ \textcolor{comment}{\ \ //\ Write\ 8\ bits}}
+\DoxyCodeLine{00487\ \textcolor{comment}{\ \ \#define\ tft\_Write\_8(C)\ TFT\_WRITE\_BITS(C,\ 8)}}
+\DoxyCodeLine{00488\ \textcolor{comment}{}}
+\DoxyCodeLine{00489\ \textcolor{comment}{\ \ //\ Write\ 16\ bits\ with\ corrected\ endianess\ for\ 16\ bit\ colours}}
+\DoxyCodeLine{00490\ \textcolor{comment}{\ \ \#define\ tft\_Write\_16(C)\ TFT\_WRITE\_BITS((C)<<8\ |\ (C)>>8,\ 16)}}
+\DoxyCodeLine{00491\ \textcolor{comment}{}}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ \ //\ Write\ 16\ bits}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ \ \#define\ tft\_Write\_16S(C)\ TFT\_WRITE\_BITS(C,\ 16)}}
+\DoxyCodeLine{00494\ \textcolor{comment}{}}
+\DoxyCodeLine{00495\ \textcolor{comment}{\ \ //\ Write\ 32\ bits}}
+\DoxyCodeLine{00496\ \textcolor{comment}{\ \ \#define\ tft\_Write\_32(C)\ TFT\_WRITE\_BITS(C,\ 32)}}
+\DoxyCodeLine{00497\ \textcolor{comment}{}}
+\DoxyCodeLine{00498\ \textcolor{comment}{\ \ //\ Write\ two\ address\ coordinates}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ \ \#define\ tft\_Write\_32C(C,D)\ TFT\_WRITE\_BITS((uint16\_t)((D)<<8\ |\ (D)>>8)<<16\ |\ (uint16\_t)((C)<<8\ |\ (C)>>8),\ 32)}}
+\DoxyCodeLine{00500\ \textcolor{comment}{}}
+\DoxyCodeLine{00501\ \textcolor{comment}{\ \ //\ Write\ same\ value\ twice}}
+\DoxyCodeLine{00502\ \textcolor{comment}{\ \ \#define\ tft\_Write\_32D(C)\ TFT\_WRITE\_BITS((uint16\_t)((C)<<8\ |\ (C)>>8)<<16\ |\ (uint16\_t)((C)<<8\ |\ (C)>>8),\ 32)}}
+\DoxyCodeLine{00503\ \textcolor{comment}{//*/}}
+\DoxyCodeLine{00504\ \textcolor{comment}{//*\ Replacement\ slimmer\ macros}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WRITE\_BITS(D,\ B)\ *\_spi\_mosi\_dlen\ =\ B-\/1;\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\_spi\_w\ =\ D;\ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\_spi\_cmd\ =\ SPI\_USR;\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ while\ (*\_spi\_cmd\ \&\ SPI\_USR);}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \textcolor{comment}{//\ Write\ 8\ bits}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_8(C)\ TFT\_WRITE\_BITS(C,\ 8)}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \ \ \textcolor{comment}{//\ Write\ 16\ bits\ with\ corrected\ endianess\ for\ 16\ bit\ colours}}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16(C)\ TFT\_WRITE\_BITS((C)<<8\ |\ (C)>>8,\ 16)}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \textcolor{comment}{//\ Future\ option\ for\ transfer\ without\ wait}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16N(C)\ *\_spi\_mosi\_dlen\ =\ 16-\/1;\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00518\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\_spi\_w\ =\ ((C)<<8\ |\ (C)>>8);\ \(\backslash\)}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *\_spi\_cmd\ =\ SPI\_USR;}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \textcolor{comment}{//\ Write\ 16\ bits}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_16S(C)\ TFT\_WRITE\_BITS(C,\ 16)}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \textcolor{comment}{//\ Write\ 32\ bits}}
+\DoxyCodeLine{00525\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32(C)\ TFT\_WRITE\_BITS(C,\ 32)}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \textcolor{comment}{//\ Write\ two\ address\ coordinates}}
+\DoxyCodeLine{00528\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32C(C,D)\ \ TFT\_WRITE\_BITS((uint16\_t)((D)<<8\ |\ (D)>>8)<<16\ |\ (uint16\_t)((C)<<8\ |\ (C)>>8),\ 32)}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \textcolor{comment}{//\ Write\ same\ value\ twice}}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\ \ \#define\ tft\_Write\_32D(C)\ TFT\_WRITE\_BITS((uint16\_t)((C)<<8\ |\ (C)>>8)<<16\ |\ (uint16\_t)((C)<<8\ |\ (C)>>8),\ 32)}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \textcolor{comment}{//*/}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00535\ }
+\DoxyCodeLine{00537\ \textcolor{comment}{//\ Macros\ to\ read\ from\ display\ using\ SPI\ or\ software\ SPI}}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#if\ !defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00540\ \ \ \textcolor{comment}{//\ Read\ from\ display\ using\ SPI\ or\ software\ SPI}}
+\DoxyCodeLine{00541\ \ \ \textcolor{comment}{//\ Use\ a\ SPI\ read\ transfer}}
+\DoxyCodeLine{00542\ \textcolor{preprocessor}{\ \ \#define\ tft\_Read\_8()\ spi.transfer(0)}}
+\DoxyCodeLine{00543\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \textcolor{comment}{//\ Concatenate\ a\ byte\ sequence\ A,B,C,D\ to\ CDAB,\ P\ is\ a\ uint8\_t\ pointer}}
+\DoxyCodeLine{00546\ \textcolor{preprocessor}{\#define\ DAT8TO32(P)\ (\ (uint32\_t)P[0]<<8\ |\ P[1]\ |\ P[2]<<24\ |\ P[3]<<16\ )}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ Header\ end}}
+
+\end{DoxyCode}

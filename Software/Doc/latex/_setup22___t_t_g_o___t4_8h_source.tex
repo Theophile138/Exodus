@@ -1,0 +1,39 @@
+\doxysection{Setup22\+\_\+\+TTGO\+\_\+\+T4.\+h}
+\hypertarget{_setup22___t_t_g_o___t4_8h_source}{}\label{_setup22___t_t_g_o___t4_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup22\_TTGO\_T4.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup22\_TTGO\_T4.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Setup\ for\ the\ TTGO\ T4\ v1.1\ ("{}Bitcoin\ Tracker"{})\ ESP32\ board\ with\ 2.2"{}\ ILI9341\ display}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#define\ TFT\_BACKLIGHT\_ON\ HIGH\ //\ LED\ control\ for\ TTGO\ T4\ v1.3\ only}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#define\ TFT\_BL\ 4}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_MISO\ 12}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 23}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 18}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 27}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 26\ }\textcolor{comment}{//\ pin\ 32\ for\ TTGO\ T4\ v1.3}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ \ 5}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \#define\ SPI\_FREQUENCY\ \ 40000000\ \ \ }\textcolor{comment}{//\ Maximum\ for\ ILI9341}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ USE\_HSPI\_PORT}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 6000000\ }\textcolor{comment}{//\ 6\ MHz\ is\ the\ maximum\ SPI\ read\ speed\ for\ the\ ST7789V}}
+
+\end{DoxyCode}

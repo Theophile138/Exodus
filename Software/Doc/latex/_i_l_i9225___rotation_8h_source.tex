@@ -1,0 +1,45 @@
+\doxysection{ILI9225\+\_\+\+Rotation.\+h}
+\hypertarget{_i_l_i9225___rotation_8h_source}{}\label{_i_l_i9225___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9225\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ILI9225\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;\ \textcolor{comment}{//\ Limit\ the\ range\ of\ values\ to\ 0-\/3}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ \ \ writecommand(ILI9225\_DRIVER\_OUTPUT\_CTRL);}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ writedata(0x01);writedata(0x1C);}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ writecommand(ILI9225\_ENTRY\_MODE);}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);writedata(0x30);}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ writecommand(ILI9225\_DRIVER\_OUTPUT\_CTRL);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ writedata(0x00);writedata(0x1C);}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ writecommand(ILI9225\_ENTRY\_MODE);}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);writedata(0x38);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ writecommand(ILI9225\_DRIVER\_OUTPUT\_CTRL);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ writedata(0x02);writedata(0x1C);}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ writecommand(ILI9225\_ENTRY\_MODE);}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);writedata(0x30);}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ writecommand(ILI9225\_DRIVER\_OUTPUT\_CTRL);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ writedata(0x03);writedata(0x1C);}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ writecommand(ILI9225\_ENTRY\_MODE);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);writedata(0x38);}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00039\ \ \ \}}
+
+\end{DoxyCode}

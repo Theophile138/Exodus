@@ -1,0 +1,71 @@
+\doxysection{astro\+\_\+transit\+\_\+t Struct Reference}
+\hypertarget{structastro__transit__t}{}\label{structastro__transit__t}\index{astro\_transit\_t@{astro\_transit\_t}}
+
+
+Information about a transit of Mercury or Venus, as seen from the Earth.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__transit__t_a97c506a2872e5100f69a14fc2d7a630c}{status}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__transit__t_a5434fbd0ee87b31feca65fba8563c003}{start}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__transit__t_a5856723e05e7782cadff4ec46437eb2e}{peak}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__transit__t_a9aa43e0d82251de881b8a878cf413165}{finish}}
+\item 
+double \mbox{\hyperlink{structastro__transit__t_a32da98eb820ff0523b0b22e0cd32f8d7}{separation}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Information about a transit of Mercury or Venus, as seen from the Earth. 
+
+Returned by Astronomy\+\_\+\+Search\+Transit or Astronomy\+\_\+\+Next\+Transit to report information about a transit of Mercury or Venus. A transit is when Mercury or Venus passes between the Sun and Earth so that the other planet is seen in silhouette against the Sun.
+
+The {\ttfamily start} field reports the moment in time when the planet first becomes visible against the Sun in its background. The {\ttfamily peak} field reports when the planet is most aligned with the Sun, as seen from the Earth. The {\ttfamily finish} field reports the last moment when the planet is visible against the Sun in its background.
+
+The calculations are performed from the point of view of a geocentric observer. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__transit__t_a9aa43e0d82251de881b8a878cf413165}\index{astro\_transit\_t@{astro\_transit\_t}!finish@{finish}}
+\index{finish@{finish}!astro\_transit\_t@{astro\_transit\_t}}
+\doxysubsubsection{\texorpdfstring{finish}{finish}}
+{\footnotesize\ttfamily \label{structastro__transit__t_a9aa43e0d82251de881b8a878cf413165} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+transit\+\_\+t\+::finish}
+
+Date and time at the end of the transit. \Hypertarget{structastro__transit__t_a5856723e05e7782cadff4ec46437eb2e}\index{astro\_transit\_t@{astro\_transit\_t}!peak@{peak}}
+\index{peak@{peak}!astro\_transit\_t@{astro\_transit\_t}}
+\doxysubsubsection{\texorpdfstring{peak}{peak}}
+{\footnotesize\ttfamily \label{structastro__transit__t_a5856723e05e7782cadff4ec46437eb2e} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+transit\+\_\+t\+::peak}
+
+Date and time of the peak of the transit. \Hypertarget{structastro__transit__t_a32da98eb820ff0523b0b22e0cd32f8d7}\index{astro\_transit\_t@{astro\_transit\_t}!separation@{separation}}
+\index{separation@{separation}!astro\_transit\_t@{astro\_transit\_t}}
+\doxysubsubsection{\texorpdfstring{separation}{separation}}
+{\footnotesize\ttfamily \label{structastro__transit__t_a32da98eb820ff0523b0b22e0cd32f8d7} 
+double astro\+\_\+transit\+\_\+t\+::separation}
+
+Angular separation in arcminutes between the centers of the Sun and the planet at time {\ttfamily peak}. \Hypertarget{structastro__transit__t_a5434fbd0ee87b31feca65fba8563c003}\index{astro\_transit\_t@{astro\_transit\_t}!start@{start}}
+\index{start@{start}!astro\_transit\_t@{astro\_transit\_t}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily \label{structastro__transit__t_a5434fbd0ee87b31feca65fba8563c003} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+transit\+\_\+t\+::start}
+
+Date and time at the beginning of the transit. \Hypertarget{structastro__transit__t_a97c506a2872e5100f69a14fc2d7a630c}\index{astro\_transit\_t@{astro\_transit\_t}!status@{status}}
+\index{status@{status}!astro\_transit\_t@{astro\_transit\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__transit__t_a97c506a2872e5100f69a14fc2d7a630c} 
+astro\+\_\+status\+\_\+t astro\+\_\+transit\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

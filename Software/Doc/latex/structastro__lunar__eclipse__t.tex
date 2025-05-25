@@ -1,0 +1,83 @@
+\doxysection{astro\+\_\+lunar\+\_\+eclipse\+\_\+t Struct Reference}
+\hypertarget{structastro__lunar__eclipse__t}{}\label{structastro__lunar__eclipse__t}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+
+
+Information about a lunar eclipse.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__lunar__eclipse__t_a27d3a3043f11195022839e1208507de0}{status}}
+\item 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t \mbox{\hyperlink{structastro__lunar__eclipse__t_a5c0835e71a9aeb689cada8d859f11562}{kind}}
+\item 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} \mbox{\hyperlink{structastro__lunar__eclipse__t_a60374107dfb19fa7daca88417e348c35}{peak}}
+\item 
+double \mbox{\hyperlink{structastro__lunar__eclipse__t_aaeba38eb30b4e9df273d2b6f320ff699}{sd\+\_\+penum}}
+\item 
+double \mbox{\hyperlink{structastro__lunar__eclipse__t_ae6eeef2c4b9c9df5f9d067f39e3704fd}{sd\+\_\+partial}}
+\item 
+double \mbox{\hyperlink{structastro__lunar__eclipse__t_a686e9c3c49f46311d5c6fa2258ec055f}{sd\+\_\+total}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Information about a lunar eclipse. 
+
+Returned by Astronomy\+\_\+\+Search\+Lunar\+Eclipse or Astronomy\+\_\+\+Next\+Lunar\+Eclipse to report information about a lunar eclipse event. If a lunar eclipse is found, {\ttfamily status} holds {\ttfamily ASTRO\+\_\+\+SUCCESS} and the other fields are set. If {\ttfamily status} holds any other value, it is an error code and the other fields are undefined.
+
+When a lunar eclipse is found, it is classified as penumbral, partial, or total. Penumbral eclipses are difficult to observe, because the moon is only slightly dimmed by the Earth\textquotesingle{}s penumbra; no part of the Moon touches the Earth\textquotesingle{}s umbra. Partial eclipses occur when part, but not all, of the Moon touches the Earth\textquotesingle{}s umbra. Total eclipses occur when the entire Moon passes into the Earth\textquotesingle{}s umbra.
+
+The {\ttfamily kind} field thus holds {\ttfamily ECLIPSE\+\_\+\+PENUMBRAL}, {\ttfamily ECLIPSE\+\_\+\+PARTIAL}, or {\ttfamily ECLIPSE\+\_\+\+TOTAL}, depending on the kind of lunar eclipse found.
+
+Field {\ttfamily peak} holds the date and time of the center of the eclipse, when it is at its peak.
+
+Fields {\ttfamily sd\+\_\+penum}, {\ttfamily sd\+\_\+partial}, and {\ttfamily sd\+\_\+total} hold the semi-\/duration of each phase of the eclipse, which is half of the amount of time the eclipse spends in each phase (expressed in minutes), or 0 if the eclipse never reaches that phase. By converting from minutes to days, and subtracting/adding with {\ttfamily center}, the caller may determine the date and time of the beginning/end of each eclipse phase. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__lunar__eclipse__t_a5c0835e71a9aeb689cada8d859f11562}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!kind@{kind}}
+\index{kind@{kind}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{kind}{kind}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_a5c0835e71a9aeb689cada8d859f11562} 
+astro\+\_\+eclipse\+\_\+kind\+\_\+t astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::kind}
+
+The type of lunar eclipse found. \Hypertarget{structastro__lunar__eclipse__t_a60374107dfb19fa7daca88417e348c35}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!peak@{peak}}
+\index{peak@{peak}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{peak}{peak}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_a60374107dfb19fa7daca88417e348c35} 
+\mbox{\hyperlink{structastro__time__t}{astro\+\_\+time\+\_\+t}} astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::peak}
+
+The time of the eclipse at its peak. \Hypertarget{structastro__lunar__eclipse__t_ae6eeef2c4b9c9df5f9d067f39e3704fd}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!sd\_partial@{sd\_partial}}
+\index{sd\_partial@{sd\_partial}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{sd\_partial}{sd\_partial}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_ae6eeef2c4b9c9df5f9d067f39e3704fd} 
+double astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::sd\+\_\+partial}
+
+The semi-\/duration of the partial phase in minutes, or 0.\+0 if none. \Hypertarget{structastro__lunar__eclipse__t_aaeba38eb30b4e9df273d2b6f320ff699}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!sd\_penum@{sd\_penum}}
+\index{sd\_penum@{sd\_penum}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{sd\_penum}{sd\_penum}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_aaeba38eb30b4e9df273d2b6f320ff699} 
+double astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::sd\+\_\+penum}
+
+The semi-\/duration of the penumbral phase in minutes. \Hypertarget{structastro__lunar__eclipse__t_a686e9c3c49f46311d5c6fa2258ec055f}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!sd\_total@{sd\_total}}
+\index{sd\_total@{sd\_total}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{sd\_total}{sd\_total}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_a686e9c3c49f46311d5c6fa2258ec055f} 
+double astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::sd\+\_\+total}
+
+The semi-\/duration of the total phase in minutes, or 0.\+0 if none. \Hypertarget{structastro__lunar__eclipse__t_a27d3a3043f11195022839e1208507de0}\index{astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}!status@{status}}
+\index{status@{status}!astro\_lunar\_eclipse\_t@{astro\_lunar\_eclipse\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__lunar__eclipse__t_a27d3a3043f11195022839e1208507de0} 
+astro\+\_\+status\+\_\+t astro\+\_\+lunar\+\_\+eclipse\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

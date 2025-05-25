@@ -1,0 +1,116 @@
+\doxysection{Capteur Class Reference}
+\hypertarget{class_capteur}{}\label{class_capteur}\index{Capteur@{Capteur}}
+
+
+\texorpdfstring{$<$}{<} Nécessaire pour la classe MPU6050  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Capteur.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8}{Capteur}} (int \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pin\+Analog}}, \mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9}{parent}})
+\begin{DoxyCompactList}\small\item\em Constructeur avec un parent de type \doxylink{class_parent_analog}{Parent\+Analog}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_capteur_aec0008e930e6cd069bd09ac8f44c4fb2}{Capteur}} (int \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pin\+Analog}}, \mbox{\hyperlink{class_extend___card}{Extend\+\_\+\+Card}} \texorpdfstring{$\ast$}{*}Card)
+\begin{DoxyCompactList}\small\item\em Constructeur avec une carte étendue. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_capteur_aae714dc01fe7f5bb1a175d0d1068bb92}{get\+Value}} ()
+\begin{DoxyCompactList}\small\item\em Lit la valeur analogique du capteur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9}{parent}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers le parent pour la lecture analogique. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_capteur_aa79f4a12d3cf3a4036408d9896095947}{pin\+Analog}}
+\begin{DoxyCompactList}\small\item\em Pin analogique du capteur. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\texorpdfstring{$<$}{<} Nécessaire pour la classe MPU6050 
+
+\texorpdfstring{$<$}{<} Nécessaire pour la communication I2C
+
+Classe générique pour un capteur analogique connecté via un \doxylink{class_parent_analog}{Parent\+Analog} ou une \doxylink{class_extend___card}{Extend\+\_\+\+Card}. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8}\index{Capteur@{Capteur}!Capteur@{Capteur}}
+\index{Capteur@{Capteur}!Capteur@{Capteur}}
+\doxysubsubsection{\texorpdfstring{Capteur()}{Capteur()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_capteur_aa92dd20b8c9e902f558ff644a7b298d8} 
+\mbox{\hyperlink{class_capteur}{Capteur}} (\begin{DoxyParamCaption}\item[{int}]{pin\+Analog}{, }\item[{\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}} \texorpdfstring{$\ast$}{*}}]{parent}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur avec un parent de type \doxylink{class_parent_analog}{Parent\+Analog}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Analog} & Pin analogique auquel le capteur est connecté. \\
+\hline
+{\em parent} & Pointeur vers l\textquotesingle{}objet \doxylink{class_parent_analog}{Parent\+Analog} utilisé pour la lecture. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_capteur_aec0008e930e6cd069bd09ac8f44c4fb2}\index{Capteur@{Capteur}!Capteur@{Capteur}}
+\index{Capteur@{Capteur}!Capteur@{Capteur}}
+\doxysubsubsection{\texorpdfstring{Capteur()}{Capteur()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_capteur_aec0008e930e6cd069bd09ac8f44c4fb2} 
+\mbox{\hyperlink{class_capteur}{Capteur}} (\begin{DoxyParamCaption}\item[{int}]{pin\+Analog}{, }\item[{\mbox{\hyperlink{class_extend___card}{Extend\+\_\+\+Card}} \texorpdfstring{$\ast$}{*}}]{Card}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur avec une carte étendue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Analog} & Pin analogique auquel le capteur est connecté. \\
+\hline
+{\em Card} & Pointeur vers l\textquotesingle{}objet \doxylink{class_extend___card}{Extend\+\_\+\+Card} utilisé pour la lecture. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_capteur_aae714dc01fe7f5bb1a175d0d1068bb92}\index{Capteur@{Capteur}!getValue@{getValue}}
+\index{getValue@{getValue}!Capteur@{Capteur}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily \label{class_capteur_aae714dc01fe7f5bb1a175d0d1068bb92} 
+int get\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lit la valeur analogique du capteur. 
+
+\begin{DoxyReturn}{Returns}
+int Valeur lue sur le pin analogique. 
+\end{DoxyReturn}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9}\index{Capteur@{Capteur}!parent@{parent}}
+\index{parent@{parent}!Capteur@{Capteur}}
+\doxysubsubsection{\texorpdfstring{parent}{parent}}
+{\footnotesize\ttfamily \label{class_capteur_a53ab68eabde9b576e06860fdce9ea9d9} 
+\mbox{\hyperlink{class_parent_analog}{Parent\+Analog}}\texorpdfstring{$\ast$}{*} parent\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers le parent pour la lecture analogique. 
+
+\Hypertarget{class_capteur_aa79f4a12d3cf3a4036408d9896095947}\index{Capteur@{Capteur}!pinAnalog@{pinAnalog}}
+\index{pinAnalog@{pinAnalog}!Capteur@{Capteur}}
+\doxysubsubsection{\texorpdfstring{pinAnalog}{pinAnalog}}
+{\footnotesize\ttfamily \label{class_capteur_aa79f4a12d3cf3a4036408d9896095947} 
+int pin\+Analog\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pin analogique du capteur. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_capteur_8h}{Lib\+Capteur.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_capteur_8cpp}{Lib\+Capteur.\+cpp}}\end{DoxyCompactItemize}

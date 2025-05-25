@@ -1,0 +1,349 @@
+\doxysection{Touch.\+cpp}
+\hypertarget{_touch_8cpp_source}{}\label{_touch_8cpp_source}\index{lib/TFT\_eSPI-\/master/Extensions/Touch.cpp@{lib/TFT\_eSPI-\/master/Extensions/Touch.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ The\ following\ touch\ screen\ support\ code\ by\ maxpautsch\ was\ merged\ 1/10/17}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ https://github.com/maxpautsch}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Define\ TOUCH\_CS\ is\ the\ user\ setup\ file\ to\ enable\ this\ code}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ A\ demo\ is\ provided\ in\ examples\ Generic\ folder}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Additions\ by\ Bodmer\ to\ double\ sample,\ use\ Z\ value\ to\ improve\ detection\ reliability}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ and\ to\ correct\ rotation\ handling}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ See\ license\ in\ root\ directory.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00014\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ begin\_touch\_read\_write\ -\/\ was\ spi\_begin\_touch}}
+\DoxyCodeLine{00015\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Start\ transaction\ and\ select\ touch\ controller}}
+\DoxyCodeLine{00016\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ The\ touch\ controller\ has\ a\ low\ SPI\ clock\ rate}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TFT\_eSPI::begin\_touch\_read\_write(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{00019\ \ \ DMA\_BUSY\_CHECK;}
+\DoxyCodeLine{00020\ \ \ CS\_H;\ \textcolor{comment}{//\ Just\ in\ case\ it\ has\ been\ left\ low}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \#if\ defined\ (SPI\_HAS\_TRANSACTION)\ \&\&\ defined\ (SUPPORT\_TRANSACTIONS)}}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{if}\ (locked)\ \{locked\ =\ \textcolor{keyword}{false};\ spi.beginTransaction(SPISettings(SPI\_TOUCH\_FREQUENCY,\ MSBFIRST,\ SPI\_MODE0));\}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00024\ \ \ \ \ spi.setFrequency(SPI\_TOUCH\_FREQUENCY);}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00026\ \ \ SET\_BUS\_READ\_MODE;}
+\DoxyCodeLine{00027\ \ \ T\_CS\_L;}
+\DoxyCodeLine{00028\ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00031\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ end\_touch\_read\_write\ -\/\ was\ spi\_end\_touch}}
+\DoxyCodeLine{00032\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ End\ transaction\ and\ deselect\ touch\ controller}}
+\DoxyCodeLine{00033\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ TFT\_eSPI::end\_touch\_read\_write(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{00035\ \ \ T\_CS\_H;}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \#if\ defined\ (SPI\_HAS\_TRANSACTION)\ \&\&\ defined\ (SUPPORT\_TRANSACTIONS)}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{if}(!inTransaction)\ \{\textcolor{keywordflow}{if}\ (!locked)\ \{locked\ =\ \textcolor{keyword}{true};\ spi.endTransaction();\}\}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00039\ \ \ \ \ spi.setFrequency(SPI\_FREQUENCY);}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00041\ \ \ \textcolor{comment}{//SET\_BUS\_WRITE\_MODE;}}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00045\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ Legacy\ -\/\ deprecated}}
+\DoxyCodeLine{00046\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Start/end\ transaction}}
+\DoxyCodeLine{00047\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ TFT\_eSPI::spi\_begin\_touch()\ \{begin\_touch\_read\_write();\}}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ TFT\_eSPI::spi\_end\_touch()\ \ \ \{\ \ end\_touch\_read\_write();\}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00052\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getTouchRaw}}
+\DoxyCodeLine{00053\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ read\ raw\ touch\ position.\ \ Always\ returns\ true.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00055\ uint8\_t\ TFT\_eSPI::getTouchRaw(uint16\_t\ *x,\ uint16\_t\ *y)\{}
+\DoxyCodeLine{00056\ \ \ uint16\_t\ tmp;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ begin\_touch\_read\_write();}
+\DoxyCodeLine{00059\ \ \ }
+\DoxyCodeLine{00060\ \ \ \textcolor{comment}{//\ Start\ YP\ sample\ request\ for\ x\ position,\ read\ 4\ times\ and\ keep\ last\ sample}}
+\DoxyCodeLine{00061\ \ \ spi.transfer(0xd0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ new\ YP\ conversion}}
+\DoxyCodeLine{00062\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00063\ \ \ spi.transfer(0xd0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ YP\ conversion}}
+\DoxyCodeLine{00064\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00065\ \ \ spi.transfer(0xd0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ YP\ conversion}}
+\DoxyCodeLine{00066\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00067\ \ \ spi.transfer(0xd0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ YP\ conversion}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ tmp\ =\ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00070\ \ \ tmp\ =\ tmp\ <<5;}
+\DoxyCodeLine{00071\ \ \ tmp\ |=\ 0x1f\ \&\ (spi.transfer(0x90)>>3);\ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ XP\ conversion}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ *x\ =\ tmp;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \textcolor{comment}{//\ Start\ XP\ sample\ request\ for\ y\ position,\ read\ 4\ times\ and\ keep\ last\ sample}}
+\DoxyCodeLine{00076\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00077\ \ \ spi.transfer(0x90);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ XP\ conversion}}
+\DoxyCodeLine{00078\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00079\ \ \ spi.transfer(0x90);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ XP\ conversion}}
+\DoxyCodeLine{00080\ \ \ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00081\ \ \ spi.transfer(0x90);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits\ and\ start\ new\ XP\ conversion}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ tmp\ =\ spi.transfer(0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ first\ 8\ bits}}
+\DoxyCodeLine{00084\ \ \ tmp\ =\ tmp\ <<5;}
+\DoxyCodeLine{00085\ \ \ tmp\ |=\ 0x1f\ \&\ (spi.transfer(0)>>3);\ \ \ \ \textcolor{comment}{//\ Read\ last\ 8\ bits}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ *y\ =\ tmp;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ end\_touch\_read\_write();}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00095\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getTouchRawZ}}
+\DoxyCodeLine{00096\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ read\ raw\ pressure\ on\ touchpad\ and\ return\ Z\ value.\ }}
+\DoxyCodeLine{00097\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00098\ uint16\_t\ TFT\_eSPI::getTouchRawZ(\textcolor{keywordtype}{void})\{}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ begin\_touch\_read\_write();}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \textcolor{comment}{//\ Z\ sample\ request}}
+\DoxyCodeLine{00103\ \ \ int16\_t\ tz\ =\ 0xFFF;}
+\DoxyCodeLine{00104\ \ \ spi.transfer(0xb0);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Start\ new\ Z1\ conversion}}
+\DoxyCodeLine{00105\ \ \ tz\ +=\ spi.transfer16(0xc0)\ >>\ 3;\ \ \textcolor{comment}{//\ Read\ Z1\ and\ start\ Z2\ conversion}}
+\DoxyCodeLine{00106\ \ \ tz\ -\/=\ spi.transfer16(0x00)\ >>\ 3;\ \ \textcolor{comment}{//\ Read\ Z2}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ end\_touch\_read\_write();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \textcolor{keywordflow}{return}\ (uint16\_t)tz;}
+\DoxyCodeLine{00111\ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00114\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ validTouch}}
+\DoxyCodeLine{00115\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ read\ validated\ position.\ Return\ false\ if\ not\ pressed.\ }}
+\DoxyCodeLine{00116\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ \_RAWERR\ 20\ }\textcolor{comment}{//\ Deadband\ error\ allowed\ in\ successive\ position\ samples}}
+\DoxyCodeLine{00118\ uint8\_t\ TFT\_eSPI::validTouch(uint16\_t\ *x,\ uint16\_t\ *y,\ uint16\_t\ threshold)\{}
+\DoxyCodeLine{00119\ \ \ uint16\_t\ x\_tmp,\ y\_tmp,\ x\_tmp2,\ y\_tmp2;}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \textcolor{comment}{//\ Wait\ until\ pressure\ stops\ increasing\ to\ debounce\ pressure}}
+\DoxyCodeLine{00122\ \ \ uint16\_t\ z1\ =\ 1;}
+\DoxyCodeLine{00123\ \ \ uint16\_t\ z2\ =\ 0;}
+\DoxyCodeLine{00124\ \ \ \textcolor{keywordflow}{while}\ (z1\ >\ z2)}
+\DoxyCodeLine{00125\ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ z2\ =\ z1;}
+\DoxyCodeLine{00127\ \ \ \ \ z1\ =\ getTouchRawZ();}
+\DoxyCodeLine{00128\ \ \ \ \ delay(1);}
+\DoxyCodeLine{00129\ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ \textcolor{comment}{//\ \ Serial.print("{}Z\ =\ "{});Serial.println(z1);}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keywordflow}{if}\ (z1\ <=\ threshold)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00134\ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ getTouchRaw(\&x\_tmp,\&y\_tmp);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{comment}{//\ \ Serial.print("{}Sample\ 1\ x,y\ =\ "{});\ Serial.print(x\_tmp);Serial.print("{},"{});Serial.print(y\_tmp);}}
+\DoxyCodeLine{00138\ \ \ \textcolor{comment}{//\ \ Serial.print("{},\ Z\ =\ "{});Serial.println(z1);}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ delay(1);\ \textcolor{comment}{//\ Small\ delay\ to\ the\ next\ sample}}
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{if}\ (getTouchRawZ()\ <=\ threshold)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ delay(2);\ \textcolor{comment}{//\ Small\ delay\ to\ the\ next\ sample}}
+\DoxyCodeLine{00144\ \ \ getTouchRaw(\&x\_tmp2,\&y\_tmp2);}
+\DoxyCodeLine{00145\ \ \ }
+\DoxyCodeLine{00146\ \ \ \textcolor{comment}{//\ \ Serial.print("{}Sample\ 2\ x,y\ =\ "{});\ Serial.print(x\_tmp2);Serial.print("{},"{});Serial.println(y\_tmp2);}}
+\DoxyCodeLine{00147\ \ \ \textcolor{comment}{//\ \ Serial.print("{}Sample\ difference\ =\ "{});Serial.print(abs(x\_tmp\ -\/\ x\_tmp2));Serial.print("{},"{});Serial.println(abs(y\_tmp\ -\/\ y\_tmp2));}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keywordflow}{if}\ (abs(x\_tmp\ -\/\ x\_tmp2)\ >\ \_RAWERR)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \textcolor{keywordflow}{if}\ (abs(y\_tmp\ -\/\ y\_tmp2)\ >\ \_RAWERR)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00151\ \ \ }
+\DoxyCodeLine{00152\ \ \ *x\ =\ x\_tmp;}
+\DoxyCodeLine{00153\ \ \ *y\ =\ y\_tmp;}
+\DoxyCodeLine{00154\ \ \ }
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ \ \ }
+\DoxyCodeLine{00158\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00159\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ getTouch}}
+\DoxyCodeLine{00160\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ read\ callibrated\ position.\ Return\ false\ if\ not\ pressed.\ }}
+\DoxyCodeLine{00161\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ Z\_THRESHOLD\ 350\ }\textcolor{comment}{//\ Touch\ pressure\ threshold\ for\ validating\ touches}}
+\DoxyCodeLine{00163\ uint8\_t\ TFT\_eSPI::getTouch(uint16\_t\ *x,\ uint16\_t\ *y,\ uint16\_t\ threshold)\{}
+\DoxyCodeLine{00164\ \ \ uint16\_t\ x\_tmp,\ y\_tmp;}
+\DoxyCodeLine{00165\ \ \ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{if}\ (threshold<20)\ threshold\ =\ 20;}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordflow}{if}\ (\_pressTime\ >\ millis())\ threshold=20;}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \ \ uint8\_t\ n\ =\ 5;}
+\DoxyCodeLine{00170\ \ \ uint8\_t\ valid\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \textcolor{keywordflow}{while}\ (n-\/-\/)}
+\DoxyCodeLine{00172\ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordflow}{if}\ (validTouch(\&x\_tmp,\ \&y\_tmp,\ threshold))\ valid++;;}
+\DoxyCodeLine{00174\ \ \ \}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{keywordflow}{if}\ (valid<1)\ \{\ \_pressTime\ =\ 0;\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00177\ \ \ }
+\DoxyCodeLine{00178\ \ \ \_pressTime\ =\ millis()\ +\ 50;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ convertRawXY(\&x\_tmp,\ \&y\_tmp);}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \textcolor{keywordflow}{if}\ (x\_tmp\ >=\ \_width\ ||\ y\_tmp\ >=\ \_height)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \_pressX\ =\ x\_tmp;}
+\DoxyCodeLine{00185\ \ \ \_pressY\ =\ y\_tmp;}
+\DoxyCodeLine{00186\ \ \ *x\ =\ \_pressX;}
+\DoxyCodeLine{00187\ \ \ *y\ =\ \_pressY;}
+\DoxyCodeLine{00188\ \ \ \textcolor{keywordflow}{return}\ valid;}
+\DoxyCodeLine{00189\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00192\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ convertRawXY}}
+\DoxyCodeLine{00193\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ convert\ raw\ touch\ x,y\ values\ to\ screen\ coordinates\ }}
+\DoxyCodeLine{00194\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00195\ \textcolor{keywordtype}{void}\ TFT\_eSPI::convertRawXY(uint16\_t\ *x,\ uint16\_t\ *y)}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ \ \ uint16\_t\ x\_tmp\ =\ *x,\ y\_tmp\ =\ *y,\ xx,\ yy;}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \textcolor{keywordflow}{if}(!touchCalibration\_rotate)\{}
+\DoxyCodeLine{00200\ \ \ \ \ xx=(x\_tmp-\/touchCalibration\_x0)*\_width/touchCalibration\_x1;}
+\DoxyCodeLine{00201\ \ \ \ \ yy=(y\_tmp-\/touchCalibration\_y0)*\_height/touchCalibration\_y1;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordflow}{if}(touchCalibration\_invert\_x)}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ xx\ =\ \_width\ -\/\ xx;}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordflow}{if}(touchCalibration\_invert\_y)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ yy\ =\ \_height\ -\/\ yy;}
+\DoxyCodeLine{00206\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ xx=(y\_tmp-\/touchCalibration\_x0)*\_width/touchCalibration\_x1;}
+\DoxyCodeLine{00208\ \ \ \ \ yy=(x\_tmp-\/touchCalibration\_y0)*\_height/touchCalibration\_y1;}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{if}(touchCalibration\_invert\_x)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ xx\ =\ \_width\ -\/\ xx;}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordflow}{if}(touchCalibration\_invert\_y)}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ yy\ =\ \_height\ -\/\ yy;}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ \ \ *x\ =\ xx;}
+\DoxyCodeLine{00215\ \ \ *y\ =\ yy;}
+\DoxyCodeLine{00216\ \}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00219\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ calibrateTouch}}
+\DoxyCodeLine{00220\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ generates\ calibration\ parameters\ for\ touchscreen.\ }}
+\DoxyCodeLine{00221\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00222\ \textcolor{keywordtype}{void}\ TFT\_eSPI::calibrateTouch(uint16\_t\ *parameters,\ uint32\_t\ color\_fg,\ uint32\_t\ color\_bg,\ uint8\_t\ size)\{}
+\DoxyCodeLine{00223\ \ \ int16\_t\ values[]\ =\ \{0,0,0,0,0,0,0,0\};}
+\DoxyCodeLine{00224\ \ \ uint16\_t\ x\_tmp,\ y\_tmp;}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \textcolor{keywordflow}{for}(uint8\_t\ i\ =\ 0;\ i<4;\ i++)\{}
+\DoxyCodeLine{00229\ \ \ \ \ fillRect(0,\ 0,\ size+1,\ size+1,\ color\_bg);}
+\DoxyCodeLine{00230\ \ \ \ \ fillRect(0,\ \_height-\/size-\/1,\ size+1,\ size+1,\ color\_bg);}
+\DoxyCodeLine{00231\ \ \ \ \ fillRect(\_width-\/size-\/1,\ 0,\ size+1,\ size+1,\ color\_bg);}
+\DoxyCodeLine{00232\ \ \ \ \ fillRect(\_width-\/size-\/1,\ \_height-\/size-\/1,\ size+1,\ size+1,\ color\_bg);}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ ==\ 5)\ \textcolor{keywordflow}{break};\ \textcolor{comment}{//\ used\ to\ clear\ the\ arrows}}
+\DoxyCodeLine{00235\ \ \ \ \ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{switch}\ (i)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:\ \textcolor{comment}{//\ up\ left}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ drawLine(0,\ 0,\ 0,\ size,\ color\_fg);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ drawLine(0,\ 0,\ size,\ 0,\ color\_fg);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ drawLine(0,\ 0,\ size\ ,\ size,\ color\_fg);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ \textcolor{comment}{//\ bot\ left}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ drawLine(0,\ \_height-\/size-\/1,\ 0,\ \_height-\/1,\ color\_fg);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ drawLine(0,\ \_height-\/1,\ size,\ \_height-\/1,\ color\_fg);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ drawLine(size,\ \_height-\/size-\/1,\ 0,\ \_height-\/1\ ,\ color\_fg);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ \textcolor{comment}{//\ up\ right}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ drawLine(\_width-\/size-\/1,\ 0,\ \_width-\/1,\ 0,\ color\_fg);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ drawLine(\_width-\/size-\/1,\ size,\ \_width-\/1,\ 0,\ color\_fg);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ drawLine(\_width-\/1,\ size,\ \_width-\/1,\ 0,\ color\_fg);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ \textcolor{comment}{//\ bot\ right}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ drawLine(\_width-\/size-\/1,\ \_height-\/size-\/1,\ \_width-\/1,\ \_height-\/1,\ color\_fg);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ drawLine(\_width-\/1,\ \_height-\/1-\/size,\ \_width-\/1,\ \_height-\/1,\ color\_fg);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ drawLine(\_width-\/1-\/size,\ \_height-\/1,\ \_width-\/1,\ \_height-\/1,\ color\_fg);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \ \ \ \ \textcolor{comment}{//\ user\ has\ to\ get\ the\ chance\ to\ release}}
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{keywordflow}{if}(i>0)\ delay(1000);}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keywordflow}{for}(uint8\_t\ j=\ 0;\ j<8;\ j++)\{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ a\ lower\ detect\ threshold\ as\ corners\ tend\ to\ be\ less\ sensitive}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!validTouch(\&x\_tmp,\ \&y\_tmp,\ Z\_THRESHOLD/2));}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ values[i*2\ \ ]\ +=\ x\_tmp;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ values[i*2+1]\ +=\ y\_tmp;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ values[i*2\ \ ]\ /=\ 8;}
+\DoxyCodeLine{00269\ \ \ \ \ values[i*2+1]\ /=\ 8;}
+\DoxyCodeLine{00270\ \ \ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \ \ \textcolor{comment}{//\ from\ case\ 0\ to\ case\ 1,\ the\ y\ value\ changed.\ }}
+\DoxyCodeLine{00274\ \ \ \textcolor{comment}{//\ If\ the\ measured\ delta\ of\ the\ touch\ x\ axis\ is\ bigger\ than\ the\ delta\ of\ the\ y\ axis,\ the\ touch\ and\ TFT\ axes\ are\ switched.}}
+\DoxyCodeLine{00275\ \ \ touchCalibration\_rotate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordflow}{if}(abs(values[0]-\/values[2])\ >\ abs(values[1]-\/values[3]))\{}
+\DoxyCodeLine{00277\ \ \ \ \ touchCalibration\_rotate\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00278\ \ \ \ \ touchCalibration\_x0\ =\ (values[1]\ +\ values[3])/2;\ \textcolor{comment}{//\ calc\ min\ x}}
+\DoxyCodeLine{00279\ \ \ \ \ touchCalibration\_x1\ =\ (values[5]\ +\ values[7])/2;\ \textcolor{comment}{//\ calc\ max\ x}}
+\DoxyCodeLine{00280\ \ \ \ \ touchCalibration\_y0\ =\ (values[0]\ +\ values[4])/2;\ \textcolor{comment}{//\ calc\ min\ y}}
+\DoxyCodeLine{00281\ \ \ \ \ touchCalibration\_y1\ =\ (values[2]\ +\ values[6])/2;\ \textcolor{comment}{//\ calc\ max\ y}}
+\DoxyCodeLine{00282\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00283\ \ \ \ \ touchCalibration\_x0\ =\ (values[0]\ +\ values[2])/2;\ \textcolor{comment}{//\ calc\ min\ x}}
+\DoxyCodeLine{00284\ \ \ \ \ touchCalibration\_x1\ =\ (values[4]\ +\ values[6])/2;\ \textcolor{comment}{//\ calc\ max\ x}}
+\DoxyCodeLine{00285\ \ \ \ \ touchCalibration\_y0\ =\ (values[1]\ +\ values[5])/2;\ \textcolor{comment}{//\ calc\ min\ y}}
+\DoxyCodeLine{00286\ \ \ \ \ touchCalibration\_y1\ =\ (values[3]\ +\ values[7])/2;\ \textcolor{comment}{//\ calc\ max\ y}}
+\DoxyCodeLine{00287\ \ \ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \textcolor{comment}{//\ in\ addition,\ the\ touch\ screen\ axis\ could\ be\ in\ the\ opposite\ direction\ of\ the\ TFT\ axis}}
+\DoxyCodeLine{00290\ \ \ touchCalibration\_invert\_x\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00291\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_x0\ >\ touchCalibration\_x1)\{}
+\DoxyCodeLine{00292\ \ \ \ \ values[0]=touchCalibration\_x0;}
+\DoxyCodeLine{00293\ \ \ \ \ touchCalibration\_x0\ =\ touchCalibration\_x1;}
+\DoxyCodeLine{00294\ \ \ \ \ touchCalibration\_x1\ =\ values[0];}
+\DoxyCodeLine{00295\ \ \ \ \ touchCalibration\_invert\_x\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00296\ \ \ \}}
+\DoxyCodeLine{00297\ \ \ touchCalibration\_invert\_y\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00298\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_y0\ >\ touchCalibration\_y1)\{}
+\DoxyCodeLine{00299\ \ \ \ \ values[0]=touchCalibration\_y0;}
+\DoxyCodeLine{00300\ \ \ \ \ touchCalibration\_y0\ =\ touchCalibration\_y1;}
+\DoxyCodeLine{00301\ \ \ \ \ touchCalibration\_y1\ =\ values[0];}
+\DoxyCodeLine{00302\ \ \ \ \ touchCalibration\_invert\_y\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00303\ \ \ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \textcolor{comment}{//\ pre\ calculate}}
+\DoxyCodeLine{00306\ \ \ touchCalibration\_x1\ -\/=\ touchCalibration\_x0;}
+\DoxyCodeLine{00307\ \ \ touchCalibration\_y1\ -\/=\ touchCalibration\_y0;}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_x0\ ==\ 0)\ touchCalibration\_x0\ =\ 1;}
+\DoxyCodeLine{00310\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_x1\ ==\ 0)\ touchCalibration\_x1\ =\ 1;}
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_y0\ ==\ 0)\ touchCalibration\_y0\ =\ 1;}
+\DoxyCodeLine{00312\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_y1\ ==\ 0)\ touchCalibration\_y1\ =\ 1;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \textcolor{comment}{//\ export\ parameters,\ if\ pointer\ valid}}
+\DoxyCodeLine{00315\ \ \ \textcolor{keywordflow}{if}(parameters\ !=\ NULL)\{}
+\DoxyCodeLine{00316\ \ \ \ \ parameters[0]\ =\ touchCalibration\_x0;}
+\DoxyCodeLine{00317\ \ \ \ \ parameters[1]\ =\ touchCalibration\_x1;}
+\DoxyCodeLine{00318\ \ \ \ \ parameters[2]\ =\ touchCalibration\_y0;}
+\DoxyCodeLine{00319\ \ \ \ \ parameters[3]\ =\ touchCalibration\_y1;}
+\DoxyCodeLine{00320\ \ \ \ \ parameters[4]\ =\ touchCalibration\_rotate\ |\ (touchCalibration\_invert\_x\ <<1)\ |\ (touchCalibration\_invert\_y\ <<2);}
+\DoxyCodeLine{00321\ \ \ \}}
+\DoxyCodeLine{00322\ \}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00326\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ setTouch}}
+\DoxyCodeLine{00327\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ imports\ calibration\ parameters\ for\ touchscreen.\ }}
+\DoxyCodeLine{00328\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00329\ \textcolor{keywordtype}{void}\ TFT\_eSPI::setTouch(uint16\_t\ *parameters)\{}
+\DoxyCodeLine{00330\ \ \ touchCalibration\_x0\ =\ parameters[0];}
+\DoxyCodeLine{00331\ \ \ touchCalibration\_x1\ =\ parameters[1];}
+\DoxyCodeLine{00332\ \ \ touchCalibration\_y0\ =\ parameters[2];}
+\DoxyCodeLine{00333\ \ \ touchCalibration\_y1\ =\ parameters[3];}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_x0\ ==\ 0)\ touchCalibration\_x0\ =\ 1;}
+\DoxyCodeLine{00336\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_x1\ ==\ 0)\ touchCalibration\_x1\ =\ 1;}
+\DoxyCodeLine{00337\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_y0\ ==\ 0)\ touchCalibration\_y0\ =\ 1;}
+\DoxyCodeLine{00338\ \ \ \textcolor{keywordflow}{if}(touchCalibration\_y1\ ==\ 0)\ touchCalibration\_y1\ =\ 1;}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ touchCalibration\_rotate\ =\ parameters[4]\ \&\ 0x01;}
+\DoxyCodeLine{00341\ \ \ touchCalibration\_invert\_x\ =\ parameters[4]\ \&\ 0x02;}
+\DoxyCodeLine{00342\ \ \ touchCalibration\_invert\_y\ =\ parameters[4]\ \&\ 0x04;}
+\DoxyCodeLine{00343\ \}}
+
+\end{DoxyCode}

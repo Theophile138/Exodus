@@ -1,0 +1,283 @@
+\doxysection{Extend\+\_\+\+Card Class Reference}
+\hypertarget{class_extend___card}{}\label{class_extend___card}\index{Extend\_Card@{Extend\_Card}}
+
+
+Classe permettant de gérer des extensions d\textquotesingle{}entrées/sorties grâce à un registre et deux multiplexeurs.  
+
+
+
+
+{\ttfamily \#include $<$Extend\+\_\+\+Card\+\_\+lib.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_extend___card_ad96d110c5fe07c2eb3318b4778e5a568}{Extend\+\_\+\+Card}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_extend___card}{Extend\+\_\+\+Card}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_extend___card_a9d16a91b1911a641ea3ff91bdbb0125e}{digital\+Write}} (int pin, bool value)
+\begin{DoxyCompactList}\small\item\em Écrit une valeur digitale sur un pin de sortie. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_extend___card_a6a005b7bdfeeca9d1d61b38929f34c58}{analog\+Read}} (int pin)
+\begin{DoxyCompactList}\small\item\em Lit une valeur analogique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_master_device}{Master\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_extend___card_ab853565d161d1e2ca54010b5a2cd627c}{my\+Esp32}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_master_device}{Master\+Device} qui représente l\textquotesingle{}ESP32. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_registre}{Registre}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_extend___card_a630bd6931c0ae31b7515e8b818bb3745}{mon\+Registre1}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_registre}{Registre}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_extend___card_acbbcdbcfa1c57b8962594403fac250c3}{mon\+Multiplex1}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur} 1. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_extend___card_abdb5d6b749658f776b590b1898a49ee1}{mon\+Multiplex2}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur} 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{class_extend___card_aa242eff4c3c0c61e117e0066c1f83efb}{Reg1\+Data\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de données du registre à décalage (ESP32) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a2d4923328f18e2ee43c131a3579d537f}{Reg1\+Clock\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin d\textquotesingle{}horloge du registre à décalage (ESP32) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a263b5a6260904fb2c66535b31869d1dc}{Reg1\+Trig\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de validation (latch) du registre à décalage (ESP32) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_af7b3a71ad2688b0aa95c947f11573757}{Reg1\+Length}}
+\begin{DoxyCompactList}\small\item\em Taille du registre à décalage (en bits) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a98b2964d88e6940b693d4a25ed886f8d}{Multiplex1\+PinA}}
+\begin{DoxyCompactList}\small\item\em Pin analogique de lecture du multiplexeur 1. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a5e79c8de1b972ae11d619bbfc1474109}{Multiplex1\+Pin\+S0}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S0 du multiplexeur 1. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_ae1e3d52906ac4d8d0f078cda6ba2f595}{Multiplex1\+Pin\+S1}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S1 du multiplexeur 1. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}{Multiplex1\+Pin\+S2}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S2 du multiplexeur 1. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_ac6a1c6d103ab56c8a7022556aa602ae0}{Multiplex2\+PinA}}
+\begin{DoxyCompactList}\small\item\em Pin analogique de lecture du multiplexeur 2 (sur le multiplexeur 1) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a7e7d1d0267e7a78948c063ff7b7fba33}{Multiplex2\+Pin\+S0}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S0 du multiplexeur 2. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_aa6cb6e5e409110310929b861bf694b60}{Multiplex2\+Pin\+S1}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S1 du multiplexeur 2. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{class_extend___card_a73592c6755064e523aa1d0cb319dfcb5}{Multiplex2\+Pin\+S2}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S2 du multiplexeur 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe permettant de gérer des extensions d\textquotesingle{}entrées/sorties grâce à un registre et deux multiplexeurs. 
+
+Cette classe facilite étend le nombre d\textquotesingle{}entrées/sorties sur un ESP32 en utilisant un registre pour les sorties digitales et deux multiplexeurs pour les entrées analogiques. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_extend___card_ad96d110c5fe07c2eb3318b4778e5a568}\index{Extend\_Card@{Extend\_Card}!Extend\_Card@{Extend\_Card}}
+\index{Extend\_Card@{Extend\_Card}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Extend\_Card()}{Extend\_Card()}}
+{\footnotesize\ttfamily \label{class_extend___card_ad96d110c5fe07c2eb3318b4778e5a568} 
+\mbox{\hyperlink{class_extend___card}{Extend\+\_\+\+Card}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \doxylink{class_extend___card}{Extend\+\_\+\+Card}. 
+
+Initialise les objets \doxylink{class_master_device}{Master\+Device}, \doxylink{class_registre}{Registre} et \doxylink{class_multiplexeur}{Multiplexeur} nécessaires à l\textquotesingle{}extension des I/O. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_extend___card_a6a005b7bdfeeca9d1d61b38929f34c58}\index{Extend\_Card@{Extend\_Card}!analogRead@{analogRead}}
+\index{analogRead@{analogRead}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{analogRead()}{analogRead()}}
+{\footnotesize\ttfamily \label{class_extend___card_a6a005b7bdfeeca9d1d61b38929f34c58} 
+int analog\+Read (\begin{DoxyParamCaption}\item[{int}]{pin}{}\end{DoxyParamCaption})}
+
+
+
+Lit une valeur analogique. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du pin à lire (géré par le multiplexeur). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int Valeur analogique lue. 
+\end{DoxyReturn}
+\Hypertarget{class_extend___card_a9d16a91b1911a641ea3ff91bdbb0125e}\index{Extend\_Card@{Extend\_Card}!digitalWrite@{digitalWrite}}
+\index{digitalWrite@{digitalWrite}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{digitalWrite()}{digitalWrite()}}
+{\footnotesize\ttfamily \label{class_extend___card_a9d16a91b1911a641ea3ff91bdbb0125e} 
+void digital\+Write (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})}
+
+
+
+Écrit une valeur digitale sur un pin de sortie. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du pin virtuel (géré par le registre). \\
+\hline
+{\em value} & Valeur à écrire (HIGH ou LOW). \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_extend___card_acbbcdbcfa1c57b8962594403fac250c3}\index{Extend\_Card@{Extend\_Card}!monMultiplex1@{monMultiplex1}}
+\index{monMultiplex1@{monMultiplex1}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{monMultiplex1}{monMultiplex1}}
+{\footnotesize\ttfamily \label{class_extend___card_acbbcdbcfa1c57b8962594403fac250c3} 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}\texorpdfstring{$\ast$}{*} mon\+Multiplex1}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur} 1. 
+
+\Hypertarget{class_extend___card_abdb5d6b749658f776b590b1898a49ee1}\index{Extend\_Card@{Extend\_Card}!monMultiplex2@{monMultiplex2}}
+\index{monMultiplex2@{monMultiplex2}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{monMultiplex2}{monMultiplex2}}
+{\footnotesize\ttfamily \label{class_extend___card_abdb5d6b749658f776b590b1898a49ee1} 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}\texorpdfstring{$\ast$}{*} mon\+Multiplex2}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur} 2. 
+
+\Hypertarget{class_extend___card_a630bd6931c0ae31b7515e8b818bb3745}\index{Extend\_Card@{Extend\_Card}!monRegistre1@{monRegistre1}}
+\index{monRegistre1@{monRegistre1}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{monRegistre1}{monRegistre1}}
+{\footnotesize\ttfamily \label{class_extend___card_a630bd6931c0ae31b7515e8b818bb3745} 
+\mbox{\hyperlink{class_registre}{Registre}}\texorpdfstring{$\ast$}{*} mon\+Registre1}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_registre}{Registre}. 
+
+\Hypertarget{class_extend___card_a98b2964d88e6940b693d4a25ed886f8d}\index{Extend\_Card@{Extend\_Card}!Multiplex1PinA@{Multiplex1PinA}}
+\index{Multiplex1PinA@{Multiplex1PinA}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinA}{Multiplex1PinA}}
+{\footnotesize\ttfamily \label{class_extend___card_a98b2964d88e6940b693d4a25ed886f8d} 
+const int Multiplex1\+PinA\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin analogique de lecture du multiplexeur 1. 
+
+\Hypertarget{class_extend___card_a5e79c8de1b972ae11d619bbfc1474109}\index{Extend\_Card@{Extend\_Card}!Multiplex1PinS0@{Multiplex1PinS0}}
+\index{Multiplex1PinS0@{Multiplex1PinS0}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS0}{Multiplex1PinS0}}
+{\footnotesize\ttfamily \label{class_extend___card_a5e79c8de1b972ae11d619bbfc1474109} 
+const int Multiplex1\+Pin\+S0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S0 du multiplexeur 1. 
+
+\Hypertarget{class_extend___card_ae1e3d52906ac4d8d0f078cda6ba2f595}\index{Extend\_Card@{Extend\_Card}!Multiplex1PinS1@{Multiplex1PinS1}}
+\index{Multiplex1PinS1@{Multiplex1PinS1}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS1}{Multiplex1PinS1}}
+{\footnotesize\ttfamily \label{class_extend___card_ae1e3d52906ac4d8d0f078cda6ba2f595} 
+const int Multiplex1\+Pin\+S1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S1 du multiplexeur 1. 
+
+\Hypertarget{class_extend___card_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}\index{Extend\_Card@{Extend\_Card}!Multiplex1PinS2@{Multiplex1PinS2}}
+\index{Multiplex1PinS2@{Multiplex1PinS2}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS2}{Multiplex1PinS2}}
+{\footnotesize\ttfamily \label{class_extend___card_a18d0f83f11b3d6a8c1edfa2b56a9d0ae} 
+const int Multiplex1\+Pin\+S2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S2 du multiplexeur 1. 
+
+\Hypertarget{class_extend___card_ac6a1c6d103ab56c8a7022556aa602ae0}\index{Extend\_Card@{Extend\_Card}!Multiplex2PinA@{Multiplex2PinA}}
+\index{Multiplex2PinA@{Multiplex2PinA}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex2PinA}{Multiplex2PinA}}
+{\footnotesize\ttfamily \label{class_extend___card_ac6a1c6d103ab56c8a7022556aa602ae0} 
+const int Multiplex2\+PinA\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin analogique de lecture du multiplexeur 2 (sur le multiplexeur 1) 
+
+\Hypertarget{class_extend___card_a7e7d1d0267e7a78948c063ff7b7fba33}\index{Extend\_Card@{Extend\_Card}!Multiplex2PinS0@{Multiplex2PinS0}}
+\index{Multiplex2PinS0@{Multiplex2PinS0}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex2PinS0}{Multiplex2PinS0}}
+{\footnotesize\ttfamily \label{class_extend___card_a7e7d1d0267e7a78948c063ff7b7fba33} 
+const int Multiplex2\+Pin\+S0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S0 du multiplexeur 2. 
+
+\Hypertarget{class_extend___card_aa6cb6e5e409110310929b861bf694b60}\index{Extend\_Card@{Extend\_Card}!Multiplex2PinS1@{Multiplex2PinS1}}
+\index{Multiplex2PinS1@{Multiplex2PinS1}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex2PinS1}{Multiplex2PinS1}}
+{\footnotesize\ttfamily \label{class_extend___card_aa6cb6e5e409110310929b861bf694b60} 
+const int Multiplex2\+Pin\+S1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S1 du multiplexeur 2. 
+
+\Hypertarget{class_extend___card_a73592c6755064e523aa1d0cb319dfcb5}\index{Extend\_Card@{Extend\_Card}!Multiplex2PinS2@{Multiplex2PinS2}}
+\index{Multiplex2PinS2@{Multiplex2PinS2}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Multiplex2PinS2}{Multiplex2PinS2}}
+{\footnotesize\ttfamily \label{class_extend___card_a73592c6755064e523aa1d0cb319dfcb5} 
+const int Multiplex2\+Pin\+S2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S2 du multiplexeur 2. 
+
+\Hypertarget{class_extend___card_ab853565d161d1e2ca54010b5a2cd627c}\index{Extend\_Card@{Extend\_Card}!myEsp32@{myEsp32}}
+\index{myEsp32@{myEsp32}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{myEsp32}{myEsp32}}
+{\footnotesize\ttfamily \label{class_extend___card_ab853565d161d1e2ca54010b5a2cd627c} 
+\mbox{\hyperlink{class_master_device}{Master\+Device}}\texorpdfstring{$\ast$}{*} my\+Esp32}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_master_device}{Master\+Device} qui représente l\textquotesingle{}ESP32. 
+
+\Hypertarget{class_extend___card_a2d4923328f18e2ee43c131a3579d537f}\index{Extend\_Card@{Extend\_Card}!Reg1ClockPin@{Reg1ClockPin}}
+\index{Reg1ClockPin@{Reg1ClockPin}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Reg1ClockPin}{Reg1ClockPin}}
+{\footnotesize\ttfamily \label{class_extend___card_a2d4923328f18e2ee43c131a3579d537f} 
+const int Reg1\+Clock\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin d\textquotesingle{}horloge du registre à décalage (ESP32) 
+
+\Hypertarget{class_extend___card_aa242eff4c3c0c61e117e0066c1f83efb}\index{Extend\_Card@{Extend\_Card}!Reg1DataPin@{Reg1DataPin}}
+\index{Reg1DataPin@{Reg1DataPin}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Reg1DataPin}{Reg1DataPin}}
+{\footnotesize\ttfamily \label{class_extend___card_aa242eff4c3c0c61e117e0066c1f83efb} 
+const int Reg1\+Data\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de données du registre à décalage (ESP32) 
+
+\Hypertarget{class_extend___card_af7b3a71ad2688b0aa95c947f11573757}\index{Extend\_Card@{Extend\_Card}!Reg1Length@{Reg1Length}}
+\index{Reg1Length@{Reg1Length}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Reg1Length}{Reg1Length}}
+{\footnotesize\ttfamily \label{class_extend___card_af7b3a71ad2688b0aa95c947f11573757} 
+const int Reg1\+Length\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Taille du registre à décalage (en bits) 
+
+\Hypertarget{class_extend___card_a263b5a6260904fb2c66535b31869d1dc}\index{Extend\_Card@{Extend\_Card}!Reg1TrigPin@{Reg1TrigPin}}
+\index{Reg1TrigPin@{Reg1TrigPin}!Extend\_Card@{Extend\_Card}}
+\doxysubsubsection{\texorpdfstring{Reg1TrigPin}{Reg1TrigPin}}
+{\footnotesize\ttfamily \label{class_extend___card_a263b5a6260904fb2c66535b31869d1dc} 
+const int Reg1\+Trig\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de validation (latch) du registre à décalage (ESP32) 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Extend\+\_\+\+Card\+\_\+lib/\mbox{\hyperlink{_extend___card__lib_8h}{Extend\+\_\+\+Card\+\_\+lib.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Extend\+\_\+\+Card\+\_\+lib/\mbox{\hyperlink{_extend___card__lib_8cpp}{Extend\+\_\+\+Card\+\_\+lib.\+cpp}}\end{DoxyCompactItemize}

@@ -1,0 +1,138 @@
+\doxysection{ST7735\+\_\+\+Rotation.\+h}
+\hypertarget{_s_t7735___rotation_8h_source}{}\label{_s_t7735___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ ST7735\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;\ \textcolor{comment}{//\ Limit\ the\ range\ of\ values\ to\ 0-\/3}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_BLACKTAB)\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00011\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB2)\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00015\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB3)\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ rowstart\ =\ 3;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB128)\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_MH\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ rowstart\ =\ 32;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB160x80)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_MH\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ colstart\ =\ 26;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_REDTAB160x80)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_MH\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ colstart\ =\ 24;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITB)\ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00033\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00035\ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00040\ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_BLACKTAB)\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00042\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB2)\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ colstart\ =\ 1;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ rowstart\ =\ 2;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB3)\ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ colstart\ =\ 3;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ rowstart\ =\ 2;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB128)\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ colstart\ =\ 32;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB160x80)\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ colstart\ =\ 1;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ rowstart\ =\ 26;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_REDTAB160x80)\ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ rowstart\ =\ 24;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITB)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_MX\ |\ TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00064\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00066\ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00071\ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_BLACKTAB)\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB2)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB3)\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB128)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB160x80)\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ colstart\ =\ 26;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_REDTAB160x80)\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ colstart\ =\ 24;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITB)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MY\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00095\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00102\ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_BLACKTAB)\ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB2)\ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ colstart\ =\ 1;}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ rowstart\ =\ 2;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB3)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ colstart\ =\ 1;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ rowstart\ =\ 2;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB128)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_GREENTAB160x80)\ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ colstart\ =\ 1;}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ rowstart\ =\ 26;}
+\DoxyCodeLine{00120\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITR\_REDTAB160x80)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ rowstart\ =\ 24;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tabcolor\ ==\ INITB)\ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ writedata(TFT\_MAD\_MX\ |\ TFT\_MAD\_MV\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00132\ \ \ \}}
+
+\end{DoxyCode}

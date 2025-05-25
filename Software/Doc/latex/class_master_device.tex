@@ -1,0 +1,106 @@
+\doxysection{Master\+Device Class Reference}
+\hypertarget{class_master_device}{}\label{class_master_device}\index{MasterDevice@{MasterDevice}}
+
+
+Implémente \doxylink{class_parent_device}{Parent\+Device} et \doxylink{class_parent_analog}{Parent\+Analog} pour gérer directement les pins du microcontrôleur.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Peripherique.\+h$>$}
+
+Inheritance diagram for Master\+Device\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_master_device}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_master_device_ae4cd8d8473d4ad64d50115a866958f9a}{select\+Pin\+Multiplexeur}} (int pin\+Change\+Bin, int pin1, int pin2, int pin3) override
+\begin{DoxyCompactList}\small\item\em Sélectionne un canal sur un multiplexeur.    \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_master_device_a73a9f84b3460cd42c312802f4994f3a2}{set\+Pin}} (int pin, bool value) override
+\begin{DoxyCompactList}\small\item\em Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres).    \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_master_device_a83f2a28db1123d2b9e73a0ca9e52b1ce}{analog\+Read\+Any\+Device}} (int pin) override
+\begin{DoxyCompactList}\small\item\em Lit la valeur analogique d\textquotesingle{}un canal donné.    \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implémente \doxylink{class_parent_device}{Parent\+Device} et \doxylink{class_parent_analog}{Parent\+Analog} pour gérer directement les pins du microcontrôleur. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_master_device_a83f2a28db1123d2b9e73a0ca9e52b1ce}\index{MasterDevice@{MasterDevice}!analogReadAnyDevice@{analogReadAnyDevice}}
+\index{analogReadAnyDevice@{analogReadAnyDevice}!MasterDevice@{MasterDevice}}
+\doxysubsubsection{\texorpdfstring{analogReadAnyDevice()}{analogReadAnyDevice()}}
+{\footnotesize\ttfamily \label{class_master_device_a83f2a28db1123d2b9e73a0ca9e52b1ce} 
+int analog\+Read\+Any\+Device (\begin{DoxyParamCaption}\item[{int}]{pin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Lit la valeur analogique d\textquotesingle{}un canal donné.    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du canal à lire. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Valeur analogique lue.    
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_parent_analog_a5e73de9dc55604826785e88045310739}{Parent\+Analog}}.
+
+\Hypertarget{class_master_device_ae4cd8d8473d4ad64d50115a866958f9a}\index{MasterDevice@{MasterDevice}!selectPinMultiplexeur@{selectPinMultiplexeur}}
+\index{selectPinMultiplexeur@{selectPinMultiplexeur}!MasterDevice@{MasterDevice}}
+\doxysubsubsection{\texorpdfstring{selectPinMultiplexeur()}{selectPinMultiplexeur()}}
+{\footnotesize\ttfamily \label{class_master_device_ae4cd8d8473d4ad64d50115a866958f9a} 
+void select\+Pin\+Multiplexeur (\begin{DoxyParamCaption}\item[{int}]{pin\+Change\+Bin}{, }\item[{int}]{pin1}{, }\item[{int}]{pin2}{, }\item[{int}]{pin3}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sélectionne un canal sur un multiplexeur.    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin\+Change\+Bin} & Valeur binaire à appliquer sur les pins de sélection. \\
+\hline
+{\em pin1} & Premier pin de sélection. \\
+\hline
+{\em pin2} & Deuxième pin de sélection. \\
+\hline
+{\em pin3} & Troisième pin de sélection.    \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_parent_device_ad7e19f476bb257b76c96fd70a2f4570a}{Parent\+Device}}.
+
+\Hypertarget{class_master_device_a73a9f84b3460cd42c312802f4994f3a2}\index{MasterDevice@{MasterDevice}!setPin@{setPin}}
+\index{setPin@{setPin}!MasterDevice@{MasterDevice}}
+\doxysubsubsection{\texorpdfstring{setPin()}{setPin()}}
+{\footnotesize\ttfamily \label{class_master_device_a73a9f84b3460cd42c312802f4994f3a2} 
+void set\+Pin (\begin{DoxyParamCaption}\item[{int}]{pin}{, }\item[{bool}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Définit l\textquotesingle{}état d\textquotesingle{}un pin (utilisé pour les registres).    
+
+
+\begin{DoxyParams}{Parameters}
+{\em pin} & Numéro du pin à modifier. \\
+\hline
+{\em value} & Valeur à appliquer (HIGH ou LOW).    \\
+\hline
+\end{DoxyParams}
+
+
+Reimplemented from \mbox{\hyperlink{class_parent_device_a53241009451a55d315ed1d14cc6fd731}{Parent\+Device}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8h}{Lib\+Peripherique.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Hardware\+\_\+lib/\mbox{\hyperlink{_lib_peripherique_8cpp}{Lib\+Peripherique.\+cpp}}\end{DoxyCompactItemize}

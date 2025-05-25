@@ -1,0 +1,37 @@
+\doxysection{Setup200\+\_\+\+GC9\+A01.\+h}
+\hypertarget{_setup200___g_c9_a01_8h_source}{}\label{_setup200___g_c9_a01_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup200\_GC9A01.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup200\_GC9A01.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ See\ SetupX\_Template.h\ for\ all\ options\ available}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ GC9A01\_DRIVER}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ For\ ESP32\ Dev\ board\ (only\ tested\ with\ GC9A01\ display)}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ The\ hardware\ SPI\ can\ be\ mapped\ to\ any\ pins}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_MOSI\ 15\ }\textcolor{comment}{//\ In\ some\ display\ driver\ board,\ it\ might\ be\ written\ as\ "{}SDA"{}\ and\ so\ on.}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ TFT\_SCLK\ 14}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ \ 5\ \ }\textcolor{comment}{//\ Chip\ select\ control\ pin}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ \ 27\ \ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ TFT\_RST\ \ 33\ \ }\textcolor{comment}{//\ Reset\ pin\ (could\ connect\ to\ Arduino\ RESET\ pin)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ TFT\_BL\ \ \ 22\ \ }\textcolor{comment}{//\ LED\ back-\/light}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:.}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 80000000}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 27000000}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ Optional\ reduced\ SPI\ frequency\ for\ reading\ TFT}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 5000000}}
+
+\end{DoxyCode}

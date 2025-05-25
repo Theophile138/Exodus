@@ -1,0 +1,434 @@
+\doxysection{Tom\+Thumb.\+h}
+\hypertarget{_tom_thumb_8h_source}{}\label{_tom_thumb_8h_source}\index{lib/TFT\_eSPI-\/master/Fonts/GFXFF/TomThumb.h@{lib/TFT\_eSPI-\/master/Fonts/GFXFF/TomThumb.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ TOMTHUMB\_USE\_EXTENDED\ 0}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{const}\ uint8\_t\ TomThumbBitmaps[]\ PROGMEM\ =\ \{}
+\DoxyCodeLine{00052\ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x20\ space\ */}}
+\DoxyCodeLine{00053\ \ \ \ 0x80,\ 0x80,\ 0x80,\ 0x00,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x21\ exclam\ */}}
+\DoxyCodeLine{00054\ \ \ \ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x22\ quotedbl\ */}}
+\DoxyCodeLine{00055\ \ \ \ 0xA0,\ 0xE0,\ 0xA0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x23\ numbersign\ */}}
+\DoxyCodeLine{00056\ \ \ \ 0x60,\ 0xC0,\ 0x60,\ 0xC0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x24\ dollar\ */}}
+\DoxyCodeLine{00057\ \ \ \ 0x80,\ 0x20,\ 0x40,\ 0x80,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x25\ percent\ */}}
+\DoxyCodeLine{00058\ \ \ \ 0xC0,\ 0xC0,\ 0xE0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x26\ ampersand\ */}}
+\DoxyCodeLine{00059\ \ \ \ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x27\ quotesingle\ */}}
+\DoxyCodeLine{00060\ \ \ \ 0x40,\ 0x80,\ 0x80,\ 0x80,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x28\ parenleft\ */}}
+\DoxyCodeLine{00061\ \ \ \ 0x80,\ 0x40,\ 0x40,\ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x29\ parenright\ */}}
+\DoxyCodeLine{00062\ \ \ \ 0xA0,\ 0x40,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2A\ asterisk\ */}}
+\DoxyCodeLine{00063\ \ \ \ 0x40,\ 0xE0,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2B\ plus\ */}}
+\DoxyCodeLine{00064\ \ \ \ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2C\ comma\ */}}
+\DoxyCodeLine{00065\ \ \ \ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2D\ hyphen\ */}}
+\DoxyCodeLine{00066\ \ \ \ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2E\ period\ */}}
+\DoxyCodeLine{00067\ \ \ \ 0x20,\ 0x20,\ 0x40,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2F\ slash\ */}}
+\DoxyCodeLine{00068\ \ \ \ 0x60,\ 0xA0,\ 0xA0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x30\ zero\ */}}
+\DoxyCodeLine{00069\ \ \ \ 0x40,\ 0xC0,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x31\ one\ */}}
+\DoxyCodeLine{00070\ \ \ \ 0xC0,\ 0x20,\ 0x40,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x32\ two\ */}}
+\DoxyCodeLine{00071\ \ \ \ 0xC0,\ 0x20,\ 0x40,\ 0x20,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x33\ three\ */}}
+\DoxyCodeLine{00072\ \ \ \ 0xA0,\ 0xA0,\ 0xE0,\ 0x20,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x34\ four\ */}}
+\DoxyCodeLine{00073\ \ \ \ 0xE0,\ 0x80,\ 0xC0,\ 0x20,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x35\ five\ */}}
+\DoxyCodeLine{00074\ \ \ \ 0x60,\ 0x80,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x36\ six\ */}}
+\DoxyCodeLine{00075\ \ \ \ 0xE0,\ 0x20,\ 0x40,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x37\ seven\ */}}
+\DoxyCodeLine{00076\ \ \ \ 0xE0,\ 0xA0,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x38\ eight\ */}}
+\DoxyCodeLine{00077\ \ \ \ 0xE0,\ 0xA0,\ 0xE0,\ 0x20,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x39\ nine\ */}}
+\DoxyCodeLine{00078\ \ \ \ 0x80,\ 0x00,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3A\ colon\ */}}
+\DoxyCodeLine{00079\ \ \ \ 0x40,\ 0x00,\ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3B\ semicolon\ */}}
+\DoxyCodeLine{00080\ \ \ \ 0x20,\ 0x40,\ 0x80,\ 0x40,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3C\ less\ */}}
+\DoxyCodeLine{00081\ \ \ \ 0xE0,\ 0x00,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3D\ equal\ */}}
+\DoxyCodeLine{00082\ \ \ \ 0x80,\ 0x40,\ 0x20,\ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3E\ greater\ */}}
+\DoxyCodeLine{00083\ \ \ \ 0xE0,\ 0x20,\ 0x40,\ 0x00,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x3F\ question\ */}}
+\DoxyCodeLine{00084\ \ \ \ 0x40,\ 0xA0,\ 0xE0,\ 0x80,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x40\ at\ */}}
+\DoxyCodeLine{00085\ \ \ \ 0x40,\ 0xA0,\ 0xE0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x41\ A\ */}}
+\DoxyCodeLine{00086\ \ \ \ 0xC0,\ 0xA0,\ 0xC0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x42\ B\ */}}
+\DoxyCodeLine{00087\ \ \ \ 0x60,\ 0x80,\ 0x80,\ 0x80,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x43\ C\ */}}
+\DoxyCodeLine{00088\ \ \ \ 0xC0,\ 0xA0,\ 0xA0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x44\ D\ */}}
+\DoxyCodeLine{00089\ \ \ \ 0xE0,\ 0x80,\ 0xE0,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x45\ E\ */}}
+\DoxyCodeLine{00090\ \ \ \ 0xE0,\ 0x80,\ 0xE0,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x46\ F\ */}}
+\DoxyCodeLine{00091\ \ \ \ 0x60,\ 0x80,\ 0xE0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x47\ G\ */}}
+\DoxyCodeLine{00092\ \ \ \ 0xA0,\ 0xA0,\ 0xE0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x48\ H\ */}}
+\DoxyCodeLine{00093\ \ \ \ 0xE0,\ 0x40,\ 0x40,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x49\ I\ */}}
+\DoxyCodeLine{00094\ \ \ \ 0x20,\ 0x20,\ 0x20,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4A\ J\ */}}
+\DoxyCodeLine{00095\ \ \ \ 0xA0,\ 0xA0,\ 0xC0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4B\ K\ */}}
+\DoxyCodeLine{00096\ \ \ \ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4C\ L\ */}}
+\DoxyCodeLine{00097\ \ \ \ 0xA0,\ 0xE0,\ 0xE0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4D\ M\ */}}
+\DoxyCodeLine{00098\ \ \ \ 0xA0,\ 0xE0,\ 0xE0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4E\ N\ */}}
+\DoxyCodeLine{00099\ \ \ \ 0x40,\ 0xA0,\ 0xA0,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x4F\ O\ */}}
+\DoxyCodeLine{00100\ \ \ \ 0xC0,\ 0xA0,\ 0xC0,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x50\ P\ */}}
+\DoxyCodeLine{00101\ \ \ \ 0x40,\ 0xA0,\ 0xA0,\ 0xE0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x51\ Q\ */}}
+\DoxyCodeLine{00102\ \ \ \ 0xC0,\ 0xA0,\ 0xE0,\ 0xC0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x52\ R\ */}}
+\DoxyCodeLine{00103\ \ \ \ 0x60,\ 0x80,\ 0x40,\ 0x20,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x53\ S\ */}}
+\DoxyCodeLine{00104\ \ \ \ 0xE0,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x54\ T\ */}}
+\DoxyCodeLine{00105\ \ \ \ 0xA0,\ 0xA0,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x55\ U\ */}}
+\DoxyCodeLine{00106\ \ \ \ 0xA0,\ 0xA0,\ 0xA0,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x56\ V\ */}}
+\DoxyCodeLine{00107\ \ \ \ 0xA0,\ 0xA0,\ 0xE0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x57\ W\ */}}
+\DoxyCodeLine{00108\ \ \ \ 0xA0,\ 0xA0,\ 0x40,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x58\ X\ */}}
+\DoxyCodeLine{00109\ \ \ \ 0xA0,\ 0xA0,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x59\ Y\ */}}
+\DoxyCodeLine{00110\ \ \ \ 0xE0,\ 0x20,\ 0x40,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5A\ Z\ */}}
+\DoxyCodeLine{00111\ \ \ \ 0xE0,\ 0x80,\ 0x80,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5B\ bracketleft\ */}}
+\DoxyCodeLine{00112\ \ \ \ 0x80,\ 0x40,\ 0x20,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5C\ backslash\ */}}
+\DoxyCodeLine{00113\ \ \ \ 0xE0,\ 0x20,\ 0x20,\ 0x20,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5D\ bracketright\ */}}
+\DoxyCodeLine{00114\ \ \ \ 0x40,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5E\ asciicircum\ */}}
+\DoxyCodeLine{00115\ \ \ \ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x5F\ underscore\ */}}
+\DoxyCodeLine{00116\ \ \ \ 0x80,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x60\ grave\ */}}
+\DoxyCodeLine{00117\ \ \ \ 0xC0,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x61\ a\ */}}
+\DoxyCodeLine{00118\ \ \ \ 0x80,\ 0xC0,\ 0xA0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x62\ b\ */}}
+\DoxyCodeLine{00119\ \ \ \ 0x60,\ 0x80,\ 0x80,\ 0x60,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x63\ c\ */}}
+\DoxyCodeLine{00120\ \ \ \ 0x20,\ 0x60,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x64\ d\ */}}
+\DoxyCodeLine{00121\ \ \ \ 0x60,\ 0xA0,\ 0xC0,\ 0x60,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x65\ e\ */}}
+\DoxyCodeLine{00122\ \ \ \ 0x20,\ 0x40,\ 0xE0,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x66\ f\ */}}
+\DoxyCodeLine{00123\ \ \ \ 0x60,\ 0xA0,\ 0xE0,\ 0x20,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x67\ g\ */}}
+\DoxyCodeLine{00124\ \ \ \ 0x80,\ 0xC0,\ 0xA0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x68\ h\ */}}
+\DoxyCodeLine{00125\ \ \ \ 0x80,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x69\ i\ */}}
+\DoxyCodeLine{00126\ \ \ \ 0x20,\ 0x00,\ 0x20,\ 0x20,\ 0xA0,\ 0x40,\ \ \textcolor{comment}{/*\ 0x6A\ j\ */}}
+\DoxyCodeLine{00127\ \ \ \ 0x80,\ 0xA0,\ 0xC0,\ 0xC0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x6B\ k\ */}}
+\DoxyCodeLine{00128\ \ \ \ 0xC0,\ 0x40,\ 0x40,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x6C\ l\ */}}
+\DoxyCodeLine{00129\ \ \ \ 0xE0,\ 0xE0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x6D\ m\ */}}
+\DoxyCodeLine{00130\ \ \ \ 0xC0,\ 0xA0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x6E\ n\ */}}
+\DoxyCodeLine{00131\ \ \ \ 0x40,\ 0xA0,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x6F\ o\ */}}
+\DoxyCodeLine{00132\ \ \ \ 0xC0,\ 0xA0,\ 0xA0,\ 0xC0,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x70\ p\ */}}
+\DoxyCodeLine{00133\ \ \ \ 0x60,\ 0xA0,\ 0xA0,\ 0x60,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x71\ q\ */}}
+\DoxyCodeLine{00134\ \ \ \ 0x60,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x72\ r\ */}}
+\DoxyCodeLine{00135\ \ \ \ 0x60,\ 0xC0,\ 0x60,\ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x73\ s\ */}}
+\DoxyCodeLine{00136\ \ \ \ 0x40,\ 0xE0,\ 0x40,\ 0x40,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x74\ t\ */}}
+\DoxyCodeLine{00137\ \ \ \ 0xA0,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x75\ u\ */}}
+\DoxyCodeLine{00138\ \ \ \ 0xA0,\ 0xA0,\ 0xE0,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x76\ v\ */}}
+\DoxyCodeLine{00139\ \ \ \ 0xA0,\ 0xE0,\ 0xE0,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x77\ w\ */}}
+\DoxyCodeLine{00140\ \ \ \ 0xA0,\ 0x40,\ 0x40,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x78\ x\ */}}
+\DoxyCodeLine{00141\ \ \ \ 0xA0,\ 0xA0,\ 0x60,\ 0x20,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x79\ y\ */}}
+\DoxyCodeLine{00142\ \ \ \ 0xE0,\ 0x60,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x7A\ z\ */}}
+\DoxyCodeLine{00143\ \ \ \ 0x60,\ 0x40,\ 0x80,\ 0x40,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x7B\ braceleft\ */}}
+\DoxyCodeLine{00144\ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x7C\ bar\ */}}
+\DoxyCodeLine{00145\ \ \ \ 0xC0,\ 0x40,\ 0x20,\ 0x40,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x7D\ braceright\ */}}
+\DoxyCodeLine{00146\ \ \ \ 0x60,\ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x7E\ asciitilde\ */}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#if\ (TOMTHUMB\_USE\_EXTENDED)}}
+\DoxyCodeLine{00148\ \ \ \ 0x80,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA1\ exclamdown\ */}}
+\DoxyCodeLine{00149\ \ \ \ 0x40,\ 0xE0,\ 0x80,\ 0xE0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA2\ cent\ */}}
+\DoxyCodeLine{00150\ \ \ \ 0x60,\ 0x40,\ 0xE0,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA3\ sterling\ */}}
+\DoxyCodeLine{00151\ \ \ \ 0xA0,\ 0x40,\ 0xE0,\ 0x40,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA4\ currency\ */}}
+\DoxyCodeLine{00152\ \ \ \ 0xA0,\ 0xA0,\ 0x40,\ 0xE0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA5\ yen\ */}}
+\DoxyCodeLine{00153\ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA6\ brokenbar\ */}}
+\DoxyCodeLine{00154\ \ \ \ 0x60,\ 0x40,\ 0xA0,\ 0x40,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA7\ section\ */}}
+\DoxyCodeLine{00155\ \ \ \ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA8\ dieresis\ */}}
+\DoxyCodeLine{00156\ \ \ \ 0x60,\ 0x80,\ 0x60,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xA9\ copyright\ */}}
+\DoxyCodeLine{00157\ \ \ \ 0x60,\ 0xA0,\ 0xE0,\ 0x00,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAA\ ordfeminine\ */}}
+\DoxyCodeLine{00158\ \ \ \ 0x40,\ 0x80,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAB\ guillemotleft\ */}}
+\DoxyCodeLine{00159\ \ \ \ 0xE0,\ 0x20,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAC\ logicalnot\ */}}
+\DoxyCodeLine{00160\ \ \ \ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAD\ softhyphen\ */}}
+\DoxyCodeLine{00161\ \ \ \ 0xC0,\ 0xC0,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAE\ registered\ */}}
+\DoxyCodeLine{00162\ \ \ \ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xAF\ macron\ */}}
+\DoxyCodeLine{00163\ \ \ \ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB0\ degree\ */}}
+\DoxyCodeLine{00164\ \ \ \ 0x40,\ 0xE0,\ 0x40,\ 0x00,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB1\ plusminus\ */}}
+\DoxyCodeLine{00165\ \ \ \ 0xC0,\ 0x40,\ 0x60,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB2\ twosuperior\ */}}
+\DoxyCodeLine{00166\ \ \ \ 0xE0,\ 0x60,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB3\ threesuperior\ */}}
+\DoxyCodeLine{00167\ \ \ \ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB4\ acute\ */}}
+\DoxyCodeLine{00168\ \ \ \ 0xA0,\ 0xA0,\ 0xA0,\ 0xC0,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB5\ mu\ */}}
+\DoxyCodeLine{00169\ \ \ \ 0x60,\ 0xA0,\ 0x60,\ 0x60,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB6\ paragraph\ */}}
+\DoxyCodeLine{00170\ \ \ \ 0xE0,\ 0xE0,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB7\ periodcentered\ */}}
+\DoxyCodeLine{00171\ \ \ \ 0x40,\ 0x20,\ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB8\ cedilla\ */}}
+\DoxyCodeLine{00172\ \ \ \ 0x80,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xB9\ onesuperior\ */}}
+\DoxyCodeLine{00173\ \ \ \ 0x40,\ 0xA0,\ 0x40,\ 0x00,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBA\ ordmasculine\ */}}
+\DoxyCodeLine{00174\ \ \ \ 0x80,\ 0x40,\ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBB\ guillemotright\ */}}
+\DoxyCodeLine{00175\ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x60,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBC\ onequarter\ */}}
+\DoxyCodeLine{00176\ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0xC0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBD\ onehalf\ */}}
+\DoxyCodeLine{00177\ \ \ \ 0xC0,\ 0xC0,\ 0x00,\ 0x60,\ 0x20,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBE\ threequarters\ */}}
+\DoxyCodeLine{00178\ \ \ \ 0x40,\ 0x00,\ 0x40,\ 0x80,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xBF\ questiondown\ */}}
+\DoxyCodeLine{00179\ \ \ \ 0x40,\ 0x20,\ 0x40,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC0\ Agrave\ */}}
+\DoxyCodeLine{00180\ \ \ \ 0x40,\ 0x80,\ 0x40,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC1\ Aacute\ */}}
+\DoxyCodeLine{00181\ \ \ \ 0xE0,\ 0x00,\ 0x40,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC2\ Acircumflex\ */}}
+\DoxyCodeLine{00182\ \ \ \ 0x60,\ 0xC0,\ 0x40,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC3\ Atilde\ */}}
+\DoxyCodeLine{00183\ \ \ \ 0xA0,\ 0x40,\ 0xA0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC4\ Adieresis\ */}}
+\DoxyCodeLine{00184\ \ \ \ 0xC0,\ 0xC0,\ 0xA0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC5\ Aring\ */}}
+\DoxyCodeLine{00185\ \ \ \ 0x60,\ 0xC0,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC6\ AE\ */}}
+\DoxyCodeLine{00186\ \ \ \ 0x60,\ 0x80,\ 0x80,\ 0x60,\ 0x20,\ 0x40,\ \ \textcolor{comment}{/*\ 0xC7\ Ccedilla\ */}}
+\DoxyCodeLine{00187\ \ \ \ 0x40,\ 0x20,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC8\ Egrave\ */}}
+\DoxyCodeLine{00188\ \ \ \ 0x40,\ 0x80,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xC9\ Eacute\ */}}
+\DoxyCodeLine{00189\ \ \ \ 0xE0,\ 0x00,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCA\ Ecircumflex\ */}}
+\DoxyCodeLine{00190\ \ \ \ 0xA0,\ 0x00,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCB\ Edieresis\ */}}
+\DoxyCodeLine{00191\ \ \ \ 0x40,\ 0x20,\ 0xE0,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCC\ Igrave\ */}}
+\DoxyCodeLine{00192\ \ \ \ 0x40,\ 0x80,\ 0xE0,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCD\ Iacute\ */}}
+\DoxyCodeLine{00193\ \ \ \ 0xE0,\ 0x00,\ 0xE0,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCE\ Icircumflex\ */}}
+\DoxyCodeLine{00194\ \ \ \ 0xA0,\ 0x00,\ 0xE0,\ 0x40,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xCF\ Idieresis\ */}}
+\DoxyCodeLine{00195\ \ \ \ 0xC0,\ 0xA0,\ 0xE0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD0\ Eth\ */}}
+\DoxyCodeLine{00196\ \ \ \ 0xC0,\ 0x60,\ 0xA0,\ 0xE0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD1\ Ntilde\ */}}
+\DoxyCodeLine{00197\ \ \ \ 0x40,\ 0x20,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD2\ Ograve\ */}}
+\DoxyCodeLine{00198\ \ \ \ 0x40,\ 0x80,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD3\ Oacute\ */}}
+\DoxyCodeLine{00199\ \ \ \ 0xE0,\ 0x00,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD4\ Ocircumflex\ */}}
+\DoxyCodeLine{00200\ \ \ \ 0xC0,\ 0x60,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD5\ Otilde\ */}}
+\DoxyCodeLine{00201\ \ \ \ 0xA0,\ 0x00,\ 0xE0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD6\ Odieresis\ */}}
+\DoxyCodeLine{00202\ \ \ \ 0xA0,\ 0x40,\ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD7\ multiply\ */}}
+\DoxyCodeLine{00203\ \ \ \ 0x60,\ 0xA0,\ 0xE0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD8\ Oslash\ */}}
+\DoxyCodeLine{00204\ \ \ \ 0x80,\ 0x40,\ 0xA0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xD9\ Ugrave\ */}}
+\DoxyCodeLine{00205\ \ \ \ 0x20,\ 0x40,\ 0xA0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xDA\ Uacute\ */}}
+\DoxyCodeLine{00206\ \ \ \ 0xE0,\ 0x00,\ 0xA0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xDB\ Ucircumflex\ */}}
+\DoxyCodeLine{00207\ \ \ \ 0xA0,\ 0x00,\ 0xA0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xDC\ Udieresis\ */}}
+\DoxyCodeLine{00208\ \ \ \ 0x20,\ 0x40,\ 0xA0,\ 0xE0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xDD\ Yacute\ */}}
+\DoxyCodeLine{00209\ \ \ \ 0x80,\ 0xE0,\ 0xA0,\ 0xE0,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xDE\ Thorn\ */}}
+\DoxyCodeLine{00210\ \ \ \ 0x60,\ 0xA0,\ 0xC0,\ 0xA0,\ 0xC0,\ 0x80,\ \ \textcolor{comment}{/*\ 0xDF\ germandbls\ */}}
+\DoxyCodeLine{00211\ \ \ \ 0x40,\ 0x20,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE0\ agrave\ */}}
+\DoxyCodeLine{00212\ \ \ \ 0x40,\ 0x80,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE1\ aacute\ */}}
+\DoxyCodeLine{00213\ \ \ \ 0xE0,\ 0x00,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE2\ acircumflex\ */}}
+\DoxyCodeLine{00214\ \ \ \ 0x60,\ 0xC0,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE3\ atilde\ */}}
+\DoxyCodeLine{00215\ \ \ \ 0xA0,\ 0x00,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE4\ adieresis\ */}}
+\DoxyCodeLine{00216\ \ \ \ 0x60,\ 0x60,\ 0x60,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE5\ aring\ */}}
+\DoxyCodeLine{00217\ \ \ \ 0x60,\ 0xE0,\ 0xE0,\ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE6\ ae\ */}}
+\DoxyCodeLine{00218\ \ \ \ 0x60,\ 0x80,\ 0x60,\ 0x20,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE7\ ccedilla\ */}}
+\DoxyCodeLine{00219\ \ \ \ 0x40,\ 0x20,\ 0x60,\ 0xE0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE8\ egrave\ */}}
+\DoxyCodeLine{00220\ \ \ \ 0x40,\ 0x80,\ 0x60,\ 0xE0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xE9\ eacute\ */}}
+\DoxyCodeLine{00221\ \ \ \ 0xE0,\ 0x00,\ 0x60,\ 0xE0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEA\ ecircumflex\ */}}
+\DoxyCodeLine{00222\ \ \ \ 0xA0,\ 0x00,\ 0x60,\ 0xE0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEB\ edieresis\ */}}
+\DoxyCodeLine{00223\ \ \ \ 0x80,\ 0x40,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEC\ igrave\ */}}
+\DoxyCodeLine{00224\ \ \ \ 0x40,\ 0x80,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xED\ iacute\ */}}
+\DoxyCodeLine{00225\ \ \ \ 0xE0,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEE\ icircumflex\ */}}
+\DoxyCodeLine{00226\ \ \ \ 0xA0,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEF\ idieresis\ */}}
+\DoxyCodeLine{00227\ \ \ \ 0x60,\ 0xC0,\ 0x60,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF0\ eth\ */}}
+\DoxyCodeLine{00228\ \ \ \ 0xC0,\ 0x60,\ 0xC0,\ 0xA0,\ 0xA0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF1\ ntilde\ */}}
+\DoxyCodeLine{00229\ \ \ \ 0x40,\ 0x20,\ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF2\ ograve\ */}}
+\DoxyCodeLine{00230\ \ \ \ 0x40,\ 0x80,\ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF3\ oacute\ */}}
+\DoxyCodeLine{00231\ \ \ \ 0xE0,\ 0x00,\ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF4\ ocircumflex\ */}}
+\DoxyCodeLine{00232\ \ \ \ 0xC0,\ 0x60,\ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF5\ otilde\ */}}
+\DoxyCodeLine{00233\ \ \ \ 0xA0,\ 0x00,\ 0x40,\ 0xA0,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF6\ odieresis\ */}}
+\DoxyCodeLine{00234\ \ \ \ 0x40,\ 0x00,\ 0xE0,\ 0x00,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF7\ divide\ */}}
+\DoxyCodeLine{00235\ \ \ \ 0x60,\ 0xE0,\ 0xA0,\ 0xC0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF8\ oslash\ */}}
+\DoxyCodeLine{00236\ \ \ \ 0x80,\ 0x40,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xF9\ ugrave\ */}}
+\DoxyCodeLine{00237\ \ \ \ 0x20,\ 0x40,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xFA\ uacute\ */}}
+\DoxyCodeLine{00238\ \ \ \ 0xE0,\ 0x00,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xFB\ ucircumflex\ */}}
+\DoxyCodeLine{00239\ \ \ \ 0xA0,\ 0x00,\ 0xA0,\ 0xA0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xFC\ udieresis\ */}}
+\DoxyCodeLine{00240\ \ \ \ 0x20,\ 0x40,\ 0xA0,\ 0x60,\ 0x20,\ 0x40,\ \ \textcolor{comment}{/*\ 0xFD\ yacute\ */}}
+\DoxyCodeLine{00241\ \ \ \ 0x80,\ 0xC0,\ 0xA0,\ 0xC0,\ 0x80,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xFE\ thorn\ */}}
+\DoxyCodeLine{00242\ \ \ \ 0xA0,\ 0x00,\ 0xA0,\ 0x60,\ 0x20,\ 0x40,\ \ \textcolor{comment}{/*\ 0xFF\ ydieresis\ */}}
+\DoxyCodeLine{00243\ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x11D\ gcircumflex\ */}}
+\DoxyCodeLine{00244\ \ \ \ 0x60,\ 0xC0,\ 0xE0,\ 0xC0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x152\ OE\ */}}
+\DoxyCodeLine{00245\ \ \ \ 0x60,\ 0xE0,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x153\ oe\ */}}
+\DoxyCodeLine{00246\ \ \ \ 0xA0,\ 0x60,\ 0xC0,\ 0x60,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x160\ Scaron\ */}}
+\DoxyCodeLine{00247\ \ \ \ 0xA0,\ 0x60,\ 0xC0,\ 0x60,\ 0xC0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x161\ scaron\ */}}
+\DoxyCodeLine{00248\ \ \ \ 0xA0,\ 0x00,\ 0xA0,\ 0x40,\ 0x40,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x178\ Ydieresis\ */}}
+\DoxyCodeLine{00249\ \ \ \ 0xA0,\ 0xE0,\ 0x60,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x17D\ Zcaron\ */}}
+\DoxyCodeLine{00250\ \ \ \ 0xA0,\ 0xE0,\ 0x60,\ 0xC0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x17E\ zcaron\ */}}
+\DoxyCodeLine{00251\ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xEA4\ uni0EA4\ */}}
+\DoxyCodeLine{00252\ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x13A0\ uni13A0\ */}}
+\DoxyCodeLine{00253\ \ \ \ 0x80,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2022\ bullet\ */}}
+\DoxyCodeLine{00254\ \ \ \ 0xA0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x2026\ ellipsis\ */}}
+\DoxyCodeLine{00255\ \ \ \ 0x60,\ 0xE0,\ 0xE0,\ 0xC0,\ 0x60,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0x20AC\ Euro\ */}}
+\DoxyCodeLine{00256\ \ \ \ 0xE0,\ 0xA0,\ 0xA0,\ 0xA0,\ 0xE0,\ \ \ \ \ \ \ \ \textcolor{comment}{/*\ 0xFFFD\ uniFFFD\ */}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ (TOMTHUMB\_USE\_EXTENDED)\ \ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00258\ \ \ \};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{comment}{/*\ \{offset,\ width,\ height,\ advance\ cursor,\ x\ offset,\ y\ offset\}\ */}}
+\DoxyCodeLine{00262\ \textcolor{keyword}{const}\ GFXglyph\ TomThumbGlyphs[]\ PROGMEM\ =\ \{}
+\DoxyCodeLine{00263\ \ \ \ \{\ 0,\ 8,\ 1,\ 2,\ 0,\ -\/5\ \},\ \ \ \ \textcolor{comment}{/*\ 0x20\ space\ */}}
+\DoxyCodeLine{00264\ \ \ \ \{\ 1,\ 8,\ 5,\ 2,\ 0,\ -\/5\ \},\ \ \ \ \textcolor{comment}{/*\ 0x21\ exclam\ */}}
+\DoxyCodeLine{00265\ \ \ \ \{\ 6,\ 8,\ 2,\ 4,\ 0,\ -\/5\ \},\ \ \ \ \textcolor{comment}{/*\ 0x22\ quotedbl\ */}}
+\DoxyCodeLine{00266\ \ \ \ \{\ 8,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \ \textcolor{comment}{/*\ 0x23\ numbersign\ */}}
+\DoxyCodeLine{00267\ \ \ \ \{\ 13,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x24\ dollar\ */}}
+\DoxyCodeLine{00268\ \ \ \ \{\ 18,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x25\ percent\ */}}
+\DoxyCodeLine{00269\ \ \ \ \{\ 23,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x26\ ampersand\ */}}
+\DoxyCodeLine{00270\ \ \ \ \{\ 28,\ 8,\ 2,\ 2,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x27\ quotesingle\ */}}
+\DoxyCodeLine{00271\ \ \ \ \{\ 30,\ 8,\ 5,\ 3,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x28\ parenleft\ */}}
+\DoxyCodeLine{00272\ \ \ \ \{\ 35,\ 8,\ 5,\ 3,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x29\ parenright\ */}}
+\DoxyCodeLine{00273\ \ \ \ \{\ 40,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x2A\ asterisk\ */}}
+\DoxyCodeLine{00274\ \ \ \ \{\ 43,\ 8,\ 3,\ 4,\ 0,\ -\/4\ \},\ \ \ \textcolor{comment}{/*\ 0x2B\ plus\ */}}
+\DoxyCodeLine{00275\ \ \ \ \{\ 46,\ 8,\ 2,\ 3,\ 0,\ -\/2\ \},\ \ \ \textcolor{comment}{/*\ 0x2C\ comma\ */}}
+\DoxyCodeLine{00276\ \ \ \ \{\ 48,\ 8,\ 1,\ 4,\ 0,\ -\/3\ \},\ \ \ \textcolor{comment}{/*\ 0x2D\ hyphen\ */}}
+\DoxyCodeLine{00277\ \ \ \ \{\ 49,\ 8,\ 1,\ 2,\ 0,\ -\/1\ \},\ \ \ \textcolor{comment}{/*\ 0x2E\ period\ */}}
+\DoxyCodeLine{00278\ \ \ \ \{\ 50,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x2F\ slash\ */}}
+\DoxyCodeLine{00279\ \ \ \ \{\ 55,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x30\ zero\ */}}
+\DoxyCodeLine{00280\ \ \ \ \{\ 60,\ 8,\ 5,\ 3,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x31\ one\ */}}
+\DoxyCodeLine{00281\ \ \ \ \{\ 65,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x32\ two\ */}}
+\DoxyCodeLine{00282\ \ \ \ \{\ 70,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x33\ three\ */}}
+\DoxyCodeLine{00283\ \ \ \ \{\ 75,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x34\ four\ */}}
+\DoxyCodeLine{00284\ \ \ \ \{\ 80,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x35\ five\ */}}
+\DoxyCodeLine{00285\ \ \ \ \{\ 85,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x36\ six\ */}}
+\DoxyCodeLine{00286\ \ \ \ \{\ 90,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x37\ seven\ */}}
+\DoxyCodeLine{00287\ \ \ \ \{\ 95,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \ \textcolor{comment}{/*\ 0x38\ eight\ */}}
+\DoxyCodeLine{00288\ \ \ \ \{\ 100,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x39\ nine\ */}}
+\DoxyCodeLine{00289\ \ \ \ \{\ 105,\ 8,\ 3,\ 2,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x3A\ colon\ */}}
+\DoxyCodeLine{00290\ \ \ \ \{\ 108,\ 8,\ 4,\ 3,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x3B\ semicolon\ */}}
+\DoxyCodeLine{00291\ \ \ \ \{\ 112,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x3C\ less\ */}}
+\DoxyCodeLine{00292\ \ \ \ \{\ 117,\ 8,\ 3,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x3D\ equal\ */}}
+\DoxyCodeLine{00293\ \ \ \ \{\ 120,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x3E\ greater\ */}}
+\DoxyCodeLine{00294\ \ \ \ \{\ 125,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x3F\ question\ */}}
+\DoxyCodeLine{00295\ \ \ \ \{\ 130,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x40\ at\ */}}
+\DoxyCodeLine{00296\ \ \ \ \{\ 135,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x41\ A\ */}}
+\DoxyCodeLine{00297\ \ \ \ \{\ 140,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x42\ B\ */}}
+\DoxyCodeLine{00298\ \ \ \ \{\ 145,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x43\ C\ */}}
+\DoxyCodeLine{00299\ \ \ \ \{\ 150,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x44\ D\ */}}
+\DoxyCodeLine{00300\ \ \ \ \{\ 155,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x45\ E\ */}}
+\DoxyCodeLine{00301\ \ \ \ \{\ 160,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x46\ F\ */}}
+\DoxyCodeLine{00302\ \ \ \ \{\ 165,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x47\ G\ */}}
+\DoxyCodeLine{00303\ \ \ \ \{\ 170,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x48\ H\ */}}
+\DoxyCodeLine{00304\ \ \ \ \{\ 175,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x49\ I\ */}}
+\DoxyCodeLine{00305\ \ \ \ \{\ 180,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4A\ J\ */}}
+\DoxyCodeLine{00306\ \ \ \ \{\ 185,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4B\ K\ */}}
+\DoxyCodeLine{00307\ \ \ \ \{\ 190,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4C\ L\ */}}
+\DoxyCodeLine{00308\ \ \ \ \{\ 195,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4D\ M\ */}}
+\DoxyCodeLine{00309\ \ \ \ \{\ 200,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4E\ N\ */}}
+\DoxyCodeLine{00310\ \ \ \ \{\ 205,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x4F\ O\ */}}
+\DoxyCodeLine{00311\ \ \ \ \{\ 210,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x50\ P\ */}}
+\DoxyCodeLine{00312\ \ \ \ \{\ 215,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x51\ Q\ */}}
+\DoxyCodeLine{00313\ \ \ \ \{\ 220,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x52\ R\ */}}
+\DoxyCodeLine{00314\ \ \ \ \{\ 225,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x53\ S\ */}}
+\DoxyCodeLine{00315\ \ \ \ \{\ 230,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x54\ T\ */}}
+\DoxyCodeLine{00316\ \ \ \ \{\ 235,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x55\ U\ */}}
+\DoxyCodeLine{00317\ \ \ \ \{\ 240,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x56\ V\ */}}
+\DoxyCodeLine{00318\ \ \ \ \{\ 245,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x57\ W\ */}}
+\DoxyCodeLine{00319\ \ \ \ \{\ 250,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x58\ X\ */}}
+\DoxyCodeLine{00320\ \ \ \ \{\ 255,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x59\ Y\ */}}
+\DoxyCodeLine{00321\ \ \ \ \{\ 260,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x5A\ Z\ */}}
+\DoxyCodeLine{00322\ \ \ \ \{\ 265,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x5B\ bracketleft\ */}}
+\DoxyCodeLine{00323\ \ \ \ \{\ 270,\ 8,\ 3,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x5C\ backslash\ */}}
+\DoxyCodeLine{00324\ \ \ \ \{\ 273,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x5D\ bracketright\ */}}
+\DoxyCodeLine{00325\ \ \ \ \{\ 278,\ 8,\ 2,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x5E\ asciicircum\ */}}
+\DoxyCodeLine{00326\ \ \ \ \{\ 280,\ 8,\ 1,\ 4,\ 0,\ -\/1\ \},\ \ \textcolor{comment}{/*\ 0x5F\ underscore\ */}}
+\DoxyCodeLine{00327\ \ \ \ \{\ 281,\ 8,\ 2,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x60\ grave\ */}}
+\DoxyCodeLine{00328\ \ \ \ \{\ 283,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x61\ a\ */}}
+\DoxyCodeLine{00329\ \ \ \ \{\ 287,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x62\ b\ */}}
+\DoxyCodeLine{00330\ \ \ \ \{\ 292,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x63\ c\ */}}
+\DoxyCodeLine{00331\ \ \ \ \{\ 296,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x64\ d\ */}}
+\DoxyCodeLine{00332\ \ \ \ \{\ 301,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x65\ e\ */}}
+\DoxyCodeLine{00333\ \ \ \ \{\ 305,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x66\ f\ */}}
+\DoxyCodeLine{00334\ \ \ \ \{\ 310,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x67\ g\ */}}
+\DoxyCodeLine{00335\ \ \ \ \{\ 315,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x68\ h\ */}}
+\DoxyCodeLine{00336\ \ \ \ \{\ 320,\ 8,\ 5,\ 2,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x69\ i\ */}}
+\DoxyCodeLine{00337\ \ \ \ \{\ 325,\ 8,\ 6,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x6A\ j\ */}}
+\DoxyCodeLine{00338\ \ \ \ \{\ 331,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x6B\ k\ */}}
+\DoxyCodeLine{00339\ \ \ \ \{\ 336,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x6C\ l\ */}}
+\DoxyCodeLine{00340\ \ \ \ \{\ 341,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x6D\ m\ */}}
+\DoxyCodeLine{00341\ \ \ \ \{\ 345,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x6E\ n\ */}}
+\DoxyCodeLine{00342\ \ \ \ \{\ 349,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x6F\ o\ */}}
+\DoxyCodeLine{00343\ \ \ \ \{\ 353,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x70\ p\ */}}
+\DoxyCodeLine{00344\ \ \ \ \{\ 358,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x71\ q\ */}}
+\DoxyCodeLine{00345\ \ \ \ \{\ 363,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x72\ r\ */}}
+\DoxyCodeLine{00346\ \ \ \ \{\ 367,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x73\ s\ */}}
+\DoxyCodeLine{00347\ \ \ \ \{\ 371,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x74\ t\ */}}
+\DoxyCodeLine{00348\ \ \ \ \{\ 376,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x75\ u\ */}}
+\DoxyCodeLine{00349\ \ \ \ \{\ 380,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x76\ v\ */}}
+\DoxyCodeLine{00350\ \ \ \ \{\ 384,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x77\ w\ */}}
+\DoxyCodeLine{00351\ \ \ \ \{\ 388,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x78\ x\ */}}
+\DoxyCodeLine{00352\ \ \ \ \{\ 392,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x79\ y\ */}}
+\DoxyCodeLine{00353\ \ \ \ \{\ 397,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x7A\ z\ */}}
+\DoxyCodeLine{00354\ \ \ \ \{\ 401,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x7B\ braceleft\ */}}
+\DoxyCodeLine{00355\ \ \ \ \{\ 406,\ 8,\ 5,\ 2,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x7C\ bar\ */}}
+\DoxyCodeLine{00356\ \ \ \ \{\ 411,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x7D\ braceright\ */}}
+\DoxyCodeLine{00357\ \ \ \ \{\ 416,\ 8,\ 2,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x7E\ asciitilde\ */}}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#if\ (TOMTHUMB\_USE\_EXTENDED)}}
+\DoxyCodeLine{00359\ \ \ \ \{\ 418,\ 8,\ 5,\ 2,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA1\ exclamdown\ */}}
+\DoxyCodeLine{00360\ \ \ \ \{\ 423,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA2\ cent\ */}}
+\DoxyCodeLine{00361\ \ \ \ \{\ 428,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA3\ sterling\ */}}
+\DoxyCodeLine{00362\ \ \ \ \{\ 433,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA4\ currency\ */}}
+\DoxyCodeLine{00363\ \ \ \ \{\ 438,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA5\ yen\ */}}
+\DoxyCodeLine{00364\ \ \ \ \{\ 443,\ 8,\ 5,\ 2,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA6\ brokenbar\ */}}
+\DoxyCodeLine{00365\ \ \ \ \{\ 448,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA7\ section\ */}}
+\DoxyCodeLine{00366\ \ \ \ \{\ 453,\ 8,\ 1,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA8\ dieresis\ */}}
+\DoxyCodeLine{00367\ \ \ \ \{\ 454,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xA9\ copyright\ */}}
+\DoxyCodeLine{00368\ \ \ \ \{\ 457,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xAA\ ordfeminine\ */}}
+\DoxyCodeLine{00369\ \ \ \ \{\ 462,\ 8,\ 3,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xAB\ guillemotleft\ */}}
+\DoxyCodeLine{00370\ \ \ \ \{\ 465,\ 8,\ 2,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xAC\ logicalnot\ */}}
+\DoxyCodeLine{00371\ \ \ \ \{\ 467,\ 8,\ 1,\ 3,\ 0,\ -\/3\ \},\ \ \textcolor{comment}{/*\ 0xAD\ softhyphen\ */}}
+\DoxyCodeLine{00372\ \ \ \ \{\ 468,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xAE\ registered\ */}}
+\DoxyCodeLine{00373\ \ \ \ \{\ 471,\ 8,\ 1,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xAF\ macron\ */}}
+\DoxyCodeLine{00374\ \ \ \ \{\ 472,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB0\ degree\ */}}
+\DoxyCodeLine{00375\ \ \ \ \{\ 475,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB1\ plusminus\ */}}
+\DoxyCodeLine{00376\ \ \ \ \{\ 480,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB2\ twosuperior\ */}}
+\DoxyCodeLine{00377\ \ \ \ \{\ 483,\ 8,\ 3,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB3\ threesuperior\ */}}
+\DoxyCodeLine{00378\ \ \ \ \{\ 486,\ 8,\ 2,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB4\ acute\ */}}
+\DoxyCodeLine{00379\ \ \ \ \{\ 488,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB5\ mu\ */}}
+\DoxyCodeLine{00380\ \ \ \ \{\ 493,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB6\ paragraph\ */}}
+\DoxyCodeLine{00381\ \ \ \ \{\ 498,\ 8,\ 3,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xB7\ periodcentered\ */}}
+\DoxyCodeLine{00382\ \ \ \ \{\ 501,\ 8,\ 3,\ 4,\ 0,\ -\/3\ \},\ \ \textcolor{comment}{/*\ 0xB8\ cedilla\ */}}
+\DoxyCodeLine{00383\ \ \ \ \{\ 504,\ 8,\ 3,\ 2,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xB9\ onesuperior\ */}}
+\DoxyCodeLine{00384\ \ \ \ \{\ 507,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBA\ ordmasculine\ */}}
+\DoxyCodeLine{00385\ \ \ \ \{\ 512,\ 8,\ 3,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBB\ guillemotright\ */}}
+\DoxyCodeLine{00386\ \ \ \ \{\ 515,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBC\ onequarter\ */}}
+\DoxyCodeLine{00387\ \ \ \ \{\ 520,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBD\ onehalf\ */}}
+\DoxyCodeLine{00388\ \ \ \ \{\ 525,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBE\ threequarters\ */}}
+\DoxyCodeLine{00389\ \ \ \ \{\ 530,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xBF\ questiondown\ */}}
+\DoxyCodeLine{00390\ \ \ \ \{\ 535,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC0\ Agrave\ */}}
+\DoxyCodeLine{00391\ \ \ \ \{\ 540,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC1\ Aacute\ */}}
+\DoxyCodeLine{00392\ \ \ \ \{\ 545,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC2\ Acircumflex\ */}}
+\DoxyCodeLine{00393\ \ \ \ \{\ 550,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC3\ Atilde\ */}}
+\DoxyCodeLine{00394\ \ \ \ \{\ 555,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC4\ Adieresis\ */}}
+\DoxyCodeLine{00395\ \ \ \ \{\ 560,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC5\ Aring\ */}}
+\DoxyCodeLine{00396\ \ \ \ \{\ 565,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC6\ AE\ */}}
+\DoxyCodeLine{00397\ \ \ \ \{\ 570,\ 8,\ 6,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC7\ Ccedilla\ */}}
+\DoxyCodeLine{00398\ \ \ \ \{\ 576,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC8\ Egrave\ */}}
+\DoxyCodeLine{00399\ \ \ \ \{\ 581,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xC9\ Eacute\ */}}
+\DoxyCodeLine{00400\ \ \ \ \{\ 586,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCA\ Ecircumflex\ */}}
+\DoxyCodeLine{00401\ \ \ \ \{\ 591,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCB\ Edieresis\ */}}
+\DoxyCodeLine{00402\ \ \ \ \{\ 596,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCC\ Igrave\ */}}
+\DoxyCodeLine{00403\ \ \ \ \{\ 601,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCD\ Iacute\ */}}
+\DoxyCodeLine{00404\ \ \ \ \{\ 606,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCE\ Icircumflex\ */}}
+\DoxyCodeLine{00405\ \ \ \ \{\ 611,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xCF\ Idieresis\ */}}
+\DoxyCodeLine{00406\ \ \ \ \{\ 616,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD0\ Eth\ */}}
+\DoxyCodeLine{00407\ \ \ \ \{\ 621,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD1\ Ntilde\ */}}
+\DoxyCodeLine{00408\ \ \ \ \{\ 626,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD2\ Ograve\ */}}
+\DoxyCodeLine{00409\ \ \ \ \{\ 631,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD3\ Oacute\ */}}
+\DoxyCodeLine{00410\ \ \ \ \{\ 636,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD4\ Ocircumflex\ */}}
+\DoxyCodeLine{00411\ \ \ \ \{\ 641,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD5\ Otilde\ */}}
+\DoxyCodeLine{00412\ \ \ \ \{\ 646,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD6\ Odieresis\ */}}
+\DoxyCodeLine{00413\ \ \ \ \{\ 651,\ 8,\ 3,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xD7\ multiply\ */}}
+\DoxyCodeLine{00414\ \ \ \ \{\ 654,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD8\ Oslash\ */}}
+\DoxyCodeLine{00415\ \ \ \ \{\ 659,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xD9\ Ugrave\ */}}
+\DoxyCodeLine{00416\ \ \ \ \{\ 664,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDA\ Uacute\ */}}
+\DoxyCodeLine{00417\ \ \ \ \{\ 669,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDB\ Ucircumflex\ */}}
+\DoxyCodeLine{00418\ \ \ \ \{\ 674,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDC\ Udieresis\ */}}
+\DoxyCodeLine{00419\ \ \ \ \{\ 679,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDD\ Yacute\ */}}
+\DoxyCodeLine{00420\ \ \ \ \{\ 684,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDE\ Thorn\ */}}
+\DoxyCodeLine{00421\ \ \ \ \{\ 689,\ 8,\ 6,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xDF\ germandbls\ */}}
+\DoxyCodeLine{00422\ \ \ \ \{\ 695,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE0\ agrave\ */}}
+\DoxyCodeLine{00423\ \ \ \ \{\ 700,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE1\ aacute\ */}}
+\DoxyCodeLine{00424\ \ \ \ \{\ 705,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE2\ acircumflex\ */}}
+\DoxyCodeLine{00425\ \ \ \ \{\ 710,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE3\ atilde\ */}}
+\DoxyCodeLine{00426\ \ \ \ \{\ 715,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE4\ adieresis\ */}}
+\DoxyCodeLine{00427\ \ \ \ \{\ 720,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE5\ aring\ */}}
+\DoxyCodeLine{00428\ \ \ \ \{\ 725,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xE6\ ae\ */}}
+\DoxyCodeLine{00429\ \ \ \ \{\ 729,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xE7\ ccedilla\ */}}
+\DoxyCodeLine{00430\ \ \ \ \{\ 734,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE8\ egrave\ */}}
+\DoxyCodeLine{00431\ \ \ \ \{\ 739,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xE9\ eacute\ */}}
+\DoxyCodeLine{00432\ \ \ \ \{\ 744,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xEA\ ecircumflex\ */}}
+\DoxyCodeLine{00433\ \ \ \ \{\ 749,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xEB\ edieresis\ */}}
+\DoxyCodeLine{00434\ \ \ \ \{\ 754,\ 8,\ 5,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xEC\ igrave\ */}}
+\DoxyCodeLine{00435\ \ \ \ \{\ 759,\ 8,\ 5,\ 3,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xED\ iacute\ */}}
+\DoxyCodeLine{00436\ \ \ \ \{\ 764,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xEE\ icircumflex\ */}}
+\DoxyCodeLine{00437\ \ \ \ \{\ 769,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xEF\ idieresis\ */}}
+\DoxyCodeLine{00438\ \ \ \ \{\ 774,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF0\ eth\ */}}
+\DoxyCodeLine{00439\ \ \ \ \{\ 779,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF1\ ntilde\ */}}
+\DoxyCodeLine{00440\ \ \ \ \{\ 784,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF2\ ograve\ */}}
+\DoxyCodeLine{00441\ \ \ \ \{\ 789,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF3\ oacute\ */}}
+\DoxyCodeLine{00442\ \ \ \ \{\ 794,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF4\ ocircumflex\ */}}
+\DoxyCodeLine{00443\ \ \ \ \{\ 799,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF5\ otilde\ */}}
+\DoxyCodeLine{00444\ \ \ \ \{\ 804,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF6\ odieresis\ */}}
+\DoxyCodeLine{00445\ \ \ \ \{\ 809,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF7\ divide\ */}}
+\DoxyCodeLine{00446\ \ \ \ \{\ 814,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xF8\ oslash\ */}}
+\DoxyCodeLine{00447\ \ \ \ \{\ 818,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xF9\ ugrave\ */}}
+\DoxyCodeLine{00448\ \ \ \ \{\ 823,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFA\ uacute\ */}}
+\DoxyCodeLine{00449\ \ \ \ \{\ 828,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFB\ ucircumflex\ */}}
+\DoxyCodeLine{00450\ \ \ \ \{\ 833,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFC\ udieresis\ */}}
+\DoxyCodeLine{00451\ \ \ \ \{\ 838,\ 8,\ 6,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFD\ yacute\ */}}
+\DoxyCodeLine{00452\ \ \ \ \{\ 844,\ 8,\ 5,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0xFE\ thorn\ */}}
+\DoxyCodeLine{00453\ \ \ \ \{\ 849,\ 8,\ 6,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFF\ ydieresis\ */}}
+\DoxyCodeLine{00454\ \ \ \ \{\ 855,\ 8,\ 1,\ 2,\ 0,\ -\/1\ \},\ \ \textcolor{comment}{/*\ 0x11D\ gcircumflex\ */}}
+\DoxyCodeLine{00455\ \ \ \ \{\ 856,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x152\ OE\ */}}
+\DoxyCodeLine{00456\ \ \ \ \{\ 861,\ 8,\ 4,\ 4,\ 0,\ -\/4\ \},\ \ \textcolor{comment}{/*\ 0x153\ oe\ */}}
+\DoxyCodeLine{00457\ \ \ \ \{\ 865,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x160\ Scaron\ */}}
+\DoxyCodeLine{00458\ \ \ \ \{\ 870,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x161\ scaron\ */}}
+\DoxyCodeLine{00459\ \ \ \ \{\ 875,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x178\ Ydieresis\ */}}
+\DoxyCodeLine{00460\ \ \ \ \{\ 880,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x17D\ Zcaron\ */}}
+\DoxyCodeLine{00461\ \ \ \ \{\ 885,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x17E\ zcaron\ */}}
+\DoxyCodeLine{00462\ \ \ \ \{\ 890,\ 8,\ 1,\ 2,\ 0,\ -\/1\ \},\ \ \textcolor{comment}{/*\ 0xEA4\ uni0EA4\ */}}
+\DoxyCodeLine{00463\ \ \ \ \{\ 891,\ 8,\ 1,\ 2,\ 0,\ -\/1\ \},\ \ \textcolor{comment}{/*\ 0x13A0\ uni13A0\ */}}
+\DoxyCodeLine{00464\ \ \ \ \{\ 892,\ 8,\ 1,\ 2,\ 0,\ -\/3\ \},\ \ \textcolor{comment}{/*\ 0x2022\ bullet\ */}}
+\DoxyCodeLine{00465\ \ \ \ \{\ 893,\ 8,\ 1,\ 4,\ 0,\ -\/1\ \},\ \ \textcolor{comment}{/*\ 0x2026\ ellipsis\ */}}
+\DoxyCodeLine{00466\ \ \ \ \{\ 894,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0x20AC\ Euro\ */}}
+\DoxyCodeLine{00467\ \ \ \ \{\ 899,\ 8,\ 5,\ 4,\ 0,\ -\/5\ \},\ \ \textcolor{comment}{/*\ 0xFFFD\ uniFFFD\ */}}
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ (TOMTHUMB\_USE\_EXTENDED)\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00469\ \};}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \textcolor{keyword}{const}\ GFXfont\ TomThumb\ PROGMEM\ =\ \{}
+\DoxyCodeLine{00472\ \ \ (uint8\_t\ \ *)TomThumbBitmaps,}
+\DoxyCodeLine{00473\ \ \ (GFXglyph\ *)TomThumbGlyphs,}
+\DoxyCodeLine{00474\ \ \ 0x20,\ 0x7E,\ 6\ \};}
+
+\end{DoxyCode}

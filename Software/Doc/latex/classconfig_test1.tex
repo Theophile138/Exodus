@@ -1,0 +1,370 @@
+\doxysection{config\+Test1 Class Reference}
+\hypertarget{classconfig_test1}{}\label{classconfig_test1}\index{configTest1@{configTest1}}
+
+
+Classe statique de configuration pour un test matériel avec registre à décalage, multiplexeur, capteurs et actionneur sur ESP32.  
+
+
+
+
+{\ttfamily \#include $<$config\+Test1.\+h$>$}
+
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{classconfig_test1_a02fd73d861ef2e4aabb38c0c9ff82947}{init}} ()
+\begin{DoxyCompactList}\small\item\em Initialise tous les objets matériels pour le test (registre, multiplexeur, capteurs, moteur). \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{classconfig_test1_a13a43e6d814de94978c515cb084873b1}{run}} ()
+\begin{DoxyCompactList}\small\item\em Exécute la boucle principale du test (lecture capteurs, contrôle moteur, affichage, etc.). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+static const int \mbox{\hyperlink{classconfig_test1_aa242eff4c3c0c61e117e0066c1f83efb}{Reg1\+Data\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de données du registre à décalage. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_a2d4923328f18e2ee43c131a3579d537f}{Reg1\+Clock\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin d\textquotesingle{}horloge du registre à décalage. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_a263b5a6260904fb2c66535b31869d1dc}{Reg1\+Trig\+Pin}}
+\begin{DoxyCompactList}\small\item\em Pin de validation (latch) du registre à décalage. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_af7b3a71ad2688b0aa95c947f11573757}{Reg1\+Length}}
+\begin{DoxyCompactList}\small\item\em Taille du registre à décalage (en bits) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_registre}{Registre}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_a118ac26995035aa7ab70ec8c4fcc409d}{mon\+Registre1}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_registre}{Registre}. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_a98b2964d88e6940b693d4a25ed886f8d}{Multiplex1\+PinA}}
+\begin{DoxyCompactList}\small\item\em Pin analogique de lecture du multiplexeur. \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_a5e79c8de1b972ae11d619bbfc1474109}{Multiplex1\+Pin\+S0}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S0 du multiplexeur (contrôlé par le registre) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_ae1e3d52906ac4d8d0f078cda6ba2f595}{Multiplex1\+Pin\+S1}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S1 du multiplexeur (contrôlé par le registre) \end{DoxyCompactList}\item 
+static const int \mbox{\hyperlink{classconfig_test1_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}{Multiplex1\+Pin\+S2}}
+\begin{DoxyCompactList}\small\item\em Pin de sélection S2 du multiplexeur (contrôlé par le registre) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_master_device}{Master\+Device}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_acce95f6bea2186aed8b8e1189e31d0e8}{my\+Esp32}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_master_device}{Master\+Device} (ESP32) \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_a37e15f2d829291b896bb930b00c66bd6}{mon\+Multiplex1}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur}. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_ad3a5a77cfeec05ce7fad1b459c1678f4}{capteur\+Force1}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur de force 1. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_ae8f0bfd2dee05c222ff6ae5b295ce724}{capteur\+Force2}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur de force 2. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_a8be0f45fcf1b2c07909d8de871b3100c}{capteur\+Force3}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur de force 3. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_ad61caffd18aebd119aa9b41caeebed16}{capteur\+Force4}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur de force 4. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_af637ab8158e04390ad9affba536e1ffa}{capteur\+Force5}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur de force 5. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_capteur_m_p_u6050}{Capteur\+MPU6050}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_aa1594e99b47b5b1f999367f3f809a74f}{capteur\+MPU}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le capteur MPU6050. \end{DoxyCompactList}\item 
+static \mbox{\hyperlink{class_driver_motor}{Driver\+Motor}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classconfig_test1_a1942f40054f69df08d85696bc2bacfac}{verin}} = nullptr
+\begin{DoxyCompactList}\small\item\em Pointeur vers le moteur linéaire. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_a851cf68c8f607573c1a5e987784c83f6}{dir}} = 0
+\begin{DoxyCompactList}\small\item\em Variable de direction pour le moteur ou l\textquotesingle{}état. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_a46d0a008fc6de84d73fd5be54c9a1deb}{dir2}} = 0
+\begin{DoxyCompactList}\small\item\em Variable de direction secondaire. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_abd81615ba26662ab5fd655d3396fe2bc}{value1}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 1. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_a888bdb4f90bf0fbaa4168ca1824d4cd9}{value2}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 2. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_ae619c77a32d6d4e35d8312a439f09195}{value3}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 3. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_ac510e51f9277ecff3f83a6f034c9e140}{value4}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 4. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_aa4cb7bd9281452408632f7b7af850eb1}{value5}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 5. \end{DoxyCompactList}\item 
+static int \mbox{\hyperlink{classconfig_test1_abeb4ed1925f365858cad5e399c806b58}{value6}} = 0
+\begin{DoxyCompactList}\small\item\em Valeur lue du capteur 6 (si utilisé) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe statique de configuration pour un test matériel avec registre à décalage, multiplexeur, capteurs et actionneur sur ESP32. 
+
+Cette classe regroupe la configuration des broches, l\textquotesingle{}initialisation des objets matériels (registre, multiplexeur, capteurs, moteur) et fournit des méthodes statiques pour initialiser et exécuter le test. 
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classconfig_test1_a02fd73d861ef2e4aabb38c0c9ff82947}\index{configTest1@{configTest1}!init@{init}}
+\index{init@{init}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily \label{classconfig_test1_a02fd73d861ef2e4aabb38c0c9ff82947} 
+void init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Initialise tous les objets matériels pour le test (registre, multiplexeur, capteurs, moteur). 
+
+\Hypertarget{classconfig_test1_a13a43e6d814de94978c515cb084873b1}\index{configTest1@{configTest1}!run@{run}}
+\index{run@{run}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily \label{classconfig_test1_a13a43e6d814de94978c515cb084873b1} 
+void run (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Exécute la boucle principale du test (lecture capteurs, contrôle moteur, affichage, etc.). 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classconfig_test1_ad3a5a77cfeec05ce7fad1b459c1678f4}\index{configTest1@{configTest1}!capteurForce1@{capteurForce1}}
+\index{capteurForce1@{capteurForce1}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurForce1}{capteurForce1}}
+{\footnotesize\ttfamily \label{classconfig_test1_ad3a5a77cfeec05ce7fad1b459c1678f4} 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} capteur\+Force1 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur de force 1. 
+
+\Hypertarget{classconfig_test1_ae8f0bfd2dee05c222ff6ae5b295ce724}\index{configTest1@{configTest1}!capteurForce2@{capteurForce2}}
+\index{capteurForce2@{capteurForce2}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurForce2}{capteurForce2}}
+{\footnotesize\ttfamily \label{classconfig_test1_ae8f0bfd2dee05c222ff6ae5b295ce724} 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} capteur\+Force2 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur de force 2. 
+
+\Hypertarget{classconfig_test1_a8be0f45fcf1b2c07909d8de871b3100c}\index{configTest1@{configTest1}!capteurForce3@{capteurForce3}}
+\index{capteurForce3@{capteurForce3}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurForce3}{capteurForce3}}
+{\footnotesize\ttfamily \label{classconfig_test1_a8be0f45fcf1b2c07909d8de871b3100c} 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} capteur\+Force3 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur de force 3. 
+
+\Hypertarget{classconfig_test1_ad61caffd18aebd119aa9b41caeebed16}\index{configTest1@{configTest1}!capteurForce4@{capteurForce4}}
+\index{capteurForce4@{capteurForce4}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurForce4}{capteurForce4}}
+{\footnotesize\ttfamily \label{classconfig_test1_ad61caffd18aebd119aa9b41caeebed16} 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} capteur\+Force4 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur de force 4. 
+
+\Hypertarget{classconfig_test1_af637ab8158e04390ad9affba536e1ffa}\index{configTest1@{configTest1}!capteurForce5@{capteurForce5}}
+\index{capteurForce5@{capteurForce5}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurForce5}{capteurForce5}}
+{\footnotesize\ttfamily \label{classconfig_test1_af637ab8158e04390ad9affba536e1ffa} 
+\mbox{\hyperlink{class_capteur}{Capteur}} \texorpdfstring{$\ast$}{*} capteur\+Force5 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur de force 5. 
+
+\Hypertarget{classconfig_test1_aa1594e99b47b5b1f999367f3f809a74f}\index{configTest1@{configTest1}!capteurMPU@{capteurMPU}}
+\index{capteurMPU@{capteurMPU}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{capteurMPU}{capteurMPU}}
+{\footnotesize\ttfamily \label{classconfig_test1_aa1594e99b47b5b1f999367f3f809a74f} 
+\mbox{\hyperlink{class_capteur_m_p_u6050}{Capteur\+MPU6050}} \texorpdfstring{$\ast$}{*} capteur\+MPU = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le capteur MPU6050. 
+
+\Hypertarget{classconfig_test1_a851cf68c8f607573c1a5e987784c83f6}\index{configTest1@{configTest1}!dir@{dir}}
+\index{dir@{dir}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{dir}{dir}}
+{\footnotesize\ttfamily \label{classconfig_test1_a851cf68c8f607573c1a5e987784c83f6} 
+int dir = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Variable de direction pour le moteur ou l\textquotesingle{}état. 
+
+\Hypertarget{classconfig_test1_a46d0a008fc6de84d73fd5be54c9a1deb}\index{configTest1@{configTest1}!dir2@{dir2}}
+\index{dir2@{dir2}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{dir2}{dir2}}
+{\footnotesize\ttfamily \label{classconfig_test1_a46d0a008fc6de84d73fd5be54c9a1deb} 
+int dir2 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Variable de direction secondaire. 
+
+\Hypertarget{classconfig_test1_a37e15f2d829291b896bb930b00c66bd6}\index{configTest1@{configTest1}!monMultiplex1@{monMultiplex1}}
+\index{monMultiplex1@{monMultiplex1}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{monMultiplex1}{monMultiplex1}}
+{\footnotesize\ttfamily \label{classconfig_test1_a37e15f2d829291b896bb930b00c66bd6} 
+\mbox{\hyperlink{class_multiplexeur}{Multiplexeur}} \texorpdfstring{$\ast$}{*} mon\+Multiplex1 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_multiplexeur}{Multiplexeur}. 
+
+\Hypertarget{classconfig_test1_a118ac26995035aa7ab70ec8c4fcc409d}\index{configTest1@{configTest1}!monRegistre1@{monRegistre1}}
+\index{monRegistre1@{monRegistre1}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{monRegistre1}{monRegistre1}}
+{\footnotesize\ttfamily \label{classconfig_test1_a118ac26995035aa7ab70ec8c4fcc409d} 
+\mbox{\hyperlink{class_registre}{Registre}} \texorpdfstring{$\ast$}{*} mon\+Registre1 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_registre}{Registre}. 
+
+\Hypertarget{classconfig_test1_a98b2964d88e6940b693d4a25ed886f8d}\index{configTest1@{configTest1}!Multiplex1PinA@{Multiplex1PinA}}
+\index{Multiplex1PinA@{Multiplex1PinA}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinA}{Multiplex1PinA}}
+{\footnotesize\ttfamily \label{classconfig_test1_a98b2964d88e6940b693d4a25ed886f8d} 
+const int Multiplex1\+PinA\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin analogique de lecture du multiplexeur. 
+
+\Hypertarget{classconfig_test1_a5e79c8de1b972ae11d619bbfc1474109}\index{configTest1@{configTest1}!Multiplex1PinS0@{Multiplex1PinS0}}
+\index{Multiplex1PinS0@{Multiplex1PinS0}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS0}{Multiplex1PinS0}}
+{\footnotesize\ttfamily \label{classconfig_test1_a5e79c8de1b972ae11d619bbfc1474109} 
+const int Multiplex1\+Pin\+S0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S0 du multiplexeur (contrôlé par le registre) 
+
+\Hypertarget{classconfig_test1_ae1e3d52906ac4d8d0f078cda6ba2f595}\index{configTest1@{configTest1}!Multiplex1PinS1@{Multiplex1PinS1}}
+\index{Multiplex1PinS1@{Multiplex1PinS1}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS1}{Multiplex1PinS1}}
+{\footnotesize\ttfamily \label{classconfig_test1_ae1e3d52906ac4d8d0f078cda6ba2f595} 
+const int Multiplex1\+Pin\+S1\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S1 du multiplexeur (contrôlé par le registre) 
+
+\Hypertarget{classconfig_test1_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}\index{configTest1@{configTest1}!Multiplex1PinS2@{Multiplex1PinS2}}
+\index{Multiplex1PinS2@{Multiplex1PinS2}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Multiplex1PinS2}{Multiplex1PinS2}}
+{\footnotesize\ttfamily \label{classconfig_test1_a18d0f83f11b3d6a8c1edfa2b56a9d0ae} 
+const int Multiplex1\+Pin\+S2\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de sélection S2 du multiplexeur (contrôlé par le registre) 
+
+\Hypertarget{classconfig_test1_acce95f6bea2186aed8b8e1189e31d0e8}\index{configTest1@{configTest1}!myEsp32@{myEsp32}}
+\index{myEsp32@{myEsp32}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{myEsp32}{myEsp32}}
+{\footnotesize\ttfamily \label{classconfig_test1_acce95f6bea2186aed8b8e1189e31d0e8} 
+\mbox{\hyperlink{class_master_device}{Master\+Device}} \texorpdfstring{$\ast$}{*} my\+Esp32 = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet \doxylink{class_master_device}{Master\+Device} (ESP32) 
+
+\Hypertarget{classconfig_test1_a2d4923328f18e2ee43c131a3579d537f}\index{configTest1@{configTest1}!Reg1ClockPin@{Reg1ClockPin}}
+\index{Reg1ClockPin@{Reg1ClockPin}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Reg1ClockPin}{Reg1ClockPin}}
+{\footnotesize\ttfamily \label{classconfig_test1_a2d4923328f18e2ee43c131a3579d537f} 
+const int Reg1\+Clock\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin d\textquotesingle{}horloge du registre à décalage. 
+
+\Hypertarget{classconfig_test1_aa242eff4c3c0c61e117e0066c1f83efb}\index{configTest1@{configTest1}!Reg1DataPin@{Reg1DataPin}}
+\index{Reg1DataPin@{Reg1DataPin}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Reg1DataPin}{Reg1DataPin}}
+{\footnotesize\ttfamily \label{classconfig_test1_aa242eff4c3c0c61e117e0066c1f83efb} 
+const int Reg1\+Data\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de données du registre à décalage. 
+
+\Hypertarget{classconfig_test1_af7b3a71ad2688b0aa95c947f11573757}\index{configTest1@{configTest1}!Reg1Length@{Reg1Length}}
+\index{Reg1Length@{Reg1Length}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Reg1Length}{Reg1Length}}
+{\footnotesize\ttfamily \label{classconfig_test1_af7b3a71ad2688b0aa95c947f11573757} 
+const int Reg1\+Length\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Taille du registre à décalage (en bits) 
+
+\Hypertarget{classconfig_test1_a263b5a6260904fb2c66535b31869d1dc}\index{configTest1@{configTest1}!Reg1TrigPin@{Reg1TrigPin}}
+\index{Reg1TrigPin@{Reg1TrigPin}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{Reg1TrigPin}{Reg1TrigPin}}
+{\footnotesize\ttfamily \label{classconfig_test1_a263b5a6260904fb2c66535b31869d1dc} 
+const int Reg1\+Trig\+Pin\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pin de validation (latch) du registre à décalage. 
+
+\Hypertarget{classconfig_test1_abd81615ba26662ab5fd655d3396fe2bc}\index{configTest1@{configTest1}!value1@{value1}}
+\index{value1@{value1}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value1}{value1}}
+{\footnotesize\ttfamily \label{classconfig_test1_abd81615ba26662ab5fd655d3396fe2bc} 
+int value1 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 1. 
+
+\Hypertarget{classconfig_test1_a888bdb4f90bf0fbaa4168ca1824d4cd9}\index{configTest1@{configTest1}!value2@{value2}}
+\index{value2@{value2}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value2}{value2}}
+{\footnotesize\ttfamily \label{classconfig_test1_a888bdb4f90bf0fbaa4168ca1824d4cd9} 
+int value2 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 2. 
+
+\Hypertarget{classconfig_test1_ae619c77a32d6d4e35d8312a439f09195}\index{configTest1@{configTest1}!value3@{value3}}
+\index{value3@{value3}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value3}{value3}}
+{\footnotesize\ttfamily \label{classconfig_test1_ae619c77a32d6d4e35d8312a439f09195} 
+int value3 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 3. 
+
+\Hypertarget{classconfig_test1_ac510e51f9277ecff3f83a6f034c9e140}\index{configTest1@{configTest1}!value4@{value4}}
+\index{value4@{value4}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value4}{value4}}
+{\footnotesize\ttfamily \label{classconfig_test1_ac510e51f9277ecff3f83a6f034c9e140} 
+int value4 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 4. 
+
+\Hypertarget{classconfig_test1_aa4cb7bd9281452408632f7b7af850eb1}\index{configTest1@{configTest1}!value5@{value5}}
+\index{value5@{value5}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value5}{value5}}
+{\footnotesize\ttfamily \label{classconfig_test1_aa4cb7bd9281452408632f7b7af850eb1} 
+int value5 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 5. 
+
+\Hypertarget{classconfig_test1_abeb4ed1925f365858cad5e399c806b58}\index{configTest1@{configTest1}!value6@{value6}}
+\index{value6@{value6}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{value6}{value6}}
+{\footnotesize\ttfamily \label{classconfig_test1_abeb4ed1925f365858cad5e399c806b58} 
+int value6 = 0\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Valeur lue du capteur 6 (si utilisé) 
+
+\Hypertarget{classconfig_test1_a1942f40054f69df08d85696bc2bacfac}\index{configTest1@{configTest1}!verin@{verin}}
+\index{verin@{verin}!configTest1@{configTest1}}
+\doxysubsubsection{\texorpdfstring{verin}{verin}}
+{\footnotesize\ttfamily \label{classconfig_test1_a1942f40054f69df08d85696bc2bacfac} 
+\mbox{\hyperlink{class_driver_motor}{Driver\+Motor}} \texorpdfstring{$\ast$}{*} verin = nullptr\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Pointeur vers le moteur linéaire. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Extend\+\_\+\+Card\+\_\+lib/\mbox{\hyperlink{config_test1_8h}{config\+Test1.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Extend\+\_\+\+Card\+\_\+lib/\mbox{\hyperlink{config_test1_8cpp}{config\+Test1.\+cpp}}\end{DoxyCompactItemize}

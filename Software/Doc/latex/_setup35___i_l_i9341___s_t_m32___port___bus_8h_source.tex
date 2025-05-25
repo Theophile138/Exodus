@@ -1,0 +1,62 @@
+\doxysection{Setup35\+\_\+\+ILI9341\+\_\+\+STM32\+\_\+\+Port\+\_\+\+Bus.\+h}
+\hypertarget{_setup35___i_l_i9341___s_t_m32___port___bus_8h_source}{}\label{_setup35___i_l_i9341___s_t_m32___port___bus_8h_source}\index{lib/TFT\_eSPI-\/master/User\_Setups/Setup35\_ILI9341\_STM32\_Port\_Bus.h@{lib/TFT\_eSPI-\/master/User\_Setups/Setup35\_ILI9341\_STM32\_Port\_Bus.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ Setup\ for\ STM32\ and\ ILI9341\ display\ \ \ \ \ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Last\ update\ by\ Bodmer:\ 28/3/20}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Define\ STM32\ to\ invoke\ STM32\ optimised\ driver}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ STM32}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Define\ if\ Port\ A\ (or\ B)\ pins\ 0-\/7\ are\ used\ for\ data\ bus\ bits\ 0-\/7}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ this\ will\ improve\ rendering\ performance\ by\ a\ factor\ of\ \string~8x}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ STM\_PORTA\_DATA\_BUS}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\#define\ STM\_PORTB\_DATA\_BUS\ //\ Pins\ below\ must\ re\ re-\/allocated\ to\ use\ this\ option}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ Tell\ the\ library\ to\ use\ 8\ bit\ parallel\ mode\ (otherwise\ SPI\ is\ assumed)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ TFT\_PARALLEL\_8\_BIT}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ Define\ ONE\ of\ the\ the\ TFT\ display\ drivers}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ ILI9341\_DRIVER}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\#define\ ILI9481\_DRIVER}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\#define\ ILI9486\_DRIVER}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\#define\ ILI9488\_DRIVER}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\#define\ ST7796\_DRIVER}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ TFT\_CS\ \ PB7\ }\textcolor{comment}{//\ Chip\ select\ control\ pin}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ TFT\_DC\ \ PB8\ }\textcolor{comment}{//\ Data\ Command\ control\ pin}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ TFT\_RST\ PB0\ }\textcolor{comment}{//\ Reset\ pin}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ TFT\_WR\ \ PB9\ }\textcolor{comment}{//\ Write\ strobe\ control\ pin}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ TFT\_RD\ \ PB1\ }\textcolor{comment}{//\ Read\ pin}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ TFT\_D0\ PA0\ }\textcolor{comment}{//\ 8\ bit\ Port\ A\ parallel\ bus\ to\ TFT}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ TFT\_D1\ PA1}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ TFT\_D2\ PA2}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ TFT\_D3\ PA3}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ TFT\_D4\ PA4}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ TFT\_D5\ PA5}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ TFT\_D6\ PA6}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ TFT\_D7\ PA7}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ LOAD\_GLCD\ \ \ }\textcolor{comment}{//\ Font\ 1.\ Original\ Adafruit\ 8\ pixel\ font\ needs\ \string~1820\ bytes\ in\ FLASH}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ LOAD\_FONT2\ \ }\textcolor{comment}{//\ Font\ 2.\ Small\ 16\ pixel\ high\ font,\ needs\ \string~3534\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ LOAD\_FONT4\ \ }\textcolor{comment}{//\ Font\ 4.\ Medium\ 26\ pixel\ high\ font,\ needs\ \string~5848\ bytes\ in\ FLASH,\ 96\ characters}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ LOAD\_FONT6\ \ }\textcolor{comment}{//\ Font\ 6.\ Large\ 48\ pixel\ font,\ needs\ \string~2666\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.apm}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ LOAD\_FONT7\ \ }\textcolor{comment}{//\ Font\ 7.\ 7\ segment\ 48\ pixel\ font,\ needs\ \string~2438\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ LOAD\_FONT8\ \ }\textcolor{comment}{//\ Font\ 8.\ Large\ 75\ pixel\ font\ needs\ \string~3256\ bytes\ in\ FLASH,\ only\ characters\ 1234567890:-\/.}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ LOAD\_GFXFF\ \ }\textcolor{comment}{//\ FreeFonts.\ Include\ access\ to\ the\ 48\ Adafruit\_GFX\ free\ fonts\ FF1\ to\ FF48\ and\ custom\ fonts}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ STM32\ support\ for\ smooth\ fonts\ via\ program\ memory\ (FLASH)\ arrays}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ SMOOTH\_FONT}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ Assuming\ the\ processor\ clock\ is\ 72MHz:}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SPI\_FREQUENCY\ \ 36000000\ \ \ }\textcolor{comment}{//\ 36MHz\ SPI\ clock}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\#define\ SPI\_FREQUENCY\ \ 18000000\ \ \ //\ 18MHz\ SPI\ clock}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SPI\_READ\_FREQUENCY\ \ 12000000\ }\textcolor{comment}{//\ Reads\ need\ a\ slower\ SPI\ clock}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SPI\_TOUCH\_FREQUENCY\ \ 2500000\ }\textcolor{comment}{//\ Must\ be\ very\ slow}}
+
+\end{DoxyCode}

@@ -1,0 +1,84 @@
+\doxysection{ILI9486\+\_\+\+Init.\+h}
+\hypertarget{_i_l_i9486___init_8h_source}{}\label{_i_l_i9486___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9486\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ILI9486\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ILI9486\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ uses\ simple\ 8\ bit\ SPI\ writecommand()\ and\ writedata()\ functions}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ See\ ST7735\_Setup.h\ file\ for\ an\ alternative\ format}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \{}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ From\ https://github.com/notro/fbtft/blob/master/fb\_ili9486.c}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//writecommand(0x01);\ //\ SW\ reset}}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{comment}{//delay(120);}}
+\DoxyCodeLine{00013\ \ \ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ writecommand(0x11);\ \textcolor{comment}{//\ Sleep\ out,\ also\ SW\ reset}}
+\DoxyCodeLine{00015\ \ \ \ \ delay(120);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ writecommand(0x3A);}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined\ (TFT\_PARALLEL\_8\_BIT)\ ||\ defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ writedata(0x55);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 16\ bit\ colour\ interface}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ writedata(0x66);\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 18\ bit\ colour\ interface}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ writecommand(0xC2);}
+\DoxyCodeLine{00025\ \ \ \ \ writedata(0x44);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ writecommand(0xC5);}
+\DoxyCodeLine{00028\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00029\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00030\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00031\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ writecommand(0xE0);}
+\DoxyCodeLine{00034\ \ \ \ \ writedata(0x0F);}
+\DoxyCodeLine{00035\ \ \ \ \ writedata(0x1F);}
+\DoxyCodeLine{00036\ \ \ \ \ writedata(0x1C);}
+\DoxyCodeLine{00037\ \ \ \ \ writedata(0x0C);}
+\DoxyCodeLine{00038\ \ \ \ \ writedata(0x0F);}
+\DoxyCodeLine{00039\ \ \ \ \ writedata(0x08);}
+\DoxyCodeLine{00040\ \ \ \ \ writedata(0x48);}
+\DoxyCodeLine{00041\ \ \ \ \ writedata(0x98);}
+\DoxyCodeLine{00042\ \ \ \ \ writedata(0x37);}
+\DoxyCodeLine{00043\ \ \ \ \ writedata(0x0A);}
+\DoxyCodeLine{00044\ \ \ \ \ writedata(0x13);}
+\DoxyCodeLine{00045\ \ \ \ \ writedata(0x04);}
+\DoxyCodeLine{00046\ \ \ \ \ writedata(0x11);}
+\DoxyCodeLine{00047\ \ \ \ \ writedata(0x0D);}
+\DoxyCodeLine{00048\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00049\ \ }
+\DoxyCodeLine{00050\ \ \ \ \ writecommand(0xE1);}
+\DoxyCodeLine{00051\ \ \ \ \ writedata(0x0F);}
+\DoxyCodeLine{00052\ \ \ \ \ writedata(0x32);}
+\DoxyCodeLine{00053\ \ \ \ \ writedata(0x2E);}
+\DoxyCodeLine{00054\ \ \ \ \ writedata(0x0B);}
+\DoxyCodeLine{00055\ \ \ \ \ writedata(0x0D);}
+\DoxyCodeLine{00056\ \ \ \ \ writedata(0x05);}
+\DoxyCodeLine{00057\ \ \ \ \ writedata(0x47);}
+\DoxyCodeLine{00058\ \ \ \ \ writedata(0x75);}
+\DoxyCodeLine{00059\ \ \ \ \ writedata(0x37);}
+\DoxyCodeLine{00060\ \ \ \ \ writedata(0x06);}
+\DoxyCodeLine{00061\ \ \ \ \ writedata(0x10);}
+\DoxyCodeLine{00062\ \ \ \ \ writedata(0x03);}
+\DoxyCodeLine{00063\ \ \ \ \ writedata(0x24);}
+\DoxyCodeLine{00064\ \ \ \ \ writedata(0x20);}
+\DoxyCodeLine{00065\ \ \ \ \ writedata(0x00);}
+\DoxyCodeLine{00066\ \ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \#if\ defined\ (TFT\_PARALLEL\_8\_BIT)\ ||\ defined\ (RPI\_DISPLAY\_TYPE)}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ writecommand(TFT\_INVOFF);}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ writecommand(TFT\_INVON);}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00072\ \ }
+\DoxyCodeLine{00073\ \ \ \ \ writecommand(0x36);}
+\DoxyCodeLine{00074\ \ \ \ \ writedata(0x48);}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ writecommand(0x29);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ display\ on}}
+\DoxyCodeLine{00077\ \ \ \ \ delay(150);}
+\DoxyCodeLine{00078\ \}}
+
+\end{DoxyCode}

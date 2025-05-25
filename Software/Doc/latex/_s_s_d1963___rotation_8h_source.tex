@@ -1,0 +1,35 @@
+\doxysection{SSD1963\+\_\+\+Rotation.\+h}
+\hypertarget{_s_s_d1963___rotation_8h_source}{}\label{_s_s_d1963___rotation_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1963\_Rotation.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/SSD1963\_Rotation.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ rotates\ the\ SSD1963\ driver\ coordinate\ frame}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \ \ rotation\ =\ m\ \%\ 4;\ \textcolor{comment}{//\ Limit\ the\ range\ of\ values\ to\ 0-\/3}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \ \ writecommand(TFT\_MADCTL);}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordflow}{switch}\ (rotation)\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ writedata(0x21\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00012\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordflow}{case}\ 1:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ writedata(0x00\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{case}\ 2:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ writedata(0x22\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \_width\ \ =\ \_init\_width;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \_height\ =\ \_init\_height;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{case}\ 3:}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ writedata(0x03\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \_width\ \ =\ \_init\_height;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \_height\ =\ \_init\_width;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \}}
+
+\end{DoxyCode}

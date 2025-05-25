@@ -1,0 +1,208 @@
+\doxysection{ST7735\+\_\+\+Init.\+h}
+\hypertarget{_s_t7735___init_8h_source}{}\label{_s_t7735___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ ST7735\ driver}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ This\ setup\ information\ is\ in\ a\ format\ accepted\ by\ the\ commandList()\ function}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ which\ reduces\ FLASH\ space,\ but\ on\ an\ ESP8266\ there\ is\ plenty\ available!}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ See\ ILI9341\_Setup.h\ file\ for\ an\ alternative\ simpler\ format}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ Initialization\ commands\ for\ ST7735\ screens}}
+\DoxyCodeLine{00011\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ uint8\_t\ PROGMEM}
+\DoxyCodeLine{00012\ \ \ Bcmd[]\ =\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialization\ commands\ for\ 7735B\ screens}}
+\DoxyCodeLine{00013\ \ \ \ \ 18,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 18\ commands\ in\ list:}}
+\DoxyCodeLine{00014\ \ \ \ \ ST7735\_SWRESET,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 1:\ Software\ reset,\ no\ args,\ w/delay}}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ 50,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 50\ ms\ delay}}
+\DoxyCodeLine{00016\ \ \ \ \ ST7735\_SLPOUT\ ,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 2:\ Out\ of\ sleep\ mode,\ no\ args,\ w/delay}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ 255,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 255\ =\ 500\ ms\ delay}}
+\DoxyCodeLine{00018\ \ \ \ \ ST7735\_COLMOD\ ,\ 1+TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 3:\ Set\ color\ mode,\ 1\ arg\ +\ delay:}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ 0x05,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 16-\/bit\ color}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00021\ \ \ \ \ ST7735\_FRMCTR1,\ 3+TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 4:\ Frame\ rate\ control,\ 3\ args\ +\ delay:}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ fastest\ refresh}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ 0x06,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 6\ lines\ front\ porch}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ 0x03,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 3\ lines\ back\ porch}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00026\ \ \ \ \ ST7735\_MADCTL\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 5:\ Memory\ access\ ctrl\ (directions),\ 1\ arg:}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ 0x40\ |\ TFT\_MAD\_COLOR\_ORDER,\ \textcolor{comment}{//\ \ \ \ \ Row\ addr/col\ addr,\ bottom\ to\ top\ refresh}}
+\DoxyCodeLine{00028\ \ \ \ \ ST7735\_DISSET5,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 6:\ Display\ settings\ \#5,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ 0x15,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 1\ clk\ cycle\ nonoverlap,\ 2\ cycle\ gate}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ rise,\ 3\ cycle\ osc\ equalize}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Fix\ on\ VTL}}
+\DoxyCodeLine{00032\ \ \ \ \ ST7735\_INVCTR\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 7:\ Display\ inversion\ control,\ 1\ arg:}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ 0x0,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Line\ inversion}}
+\DoxyCodeLine{00034\ \ \ \ \ ST7735\_PWCTR1\ ,\ 2+TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 8:\ Power\ control,\ 2\ args\ +\ delay:}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ GVDD\ =\ 4.7V}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ 0x70,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 1.0uA}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00038\ \ \ \ \ ST7735\_PWCTR2\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 9:\ Power\ control,\ 1\ arg,\ no\ delay:}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ 0x05,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ VGH\ =\ 14.7V,\ VGL\ =\ -\/7.35V}}
+\DoxyCodeLine{00040\ \ \ \ \ ST7735\_PWCTR3\ ,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 10:\ Power\ control,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ 0x01,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Opamp\ current\ small}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Boost\ frequency}}
+\DoxyCodeLine{00043\ \ \ \ \ ST7735\_VMCTR1\ ,\ 2+TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ 11:\ Power\ control,\ 2\ args\ +\ delay:}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ 0x3C,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ VCOMH\ =\ 4V}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ 0x38,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ VCOML\ =\ -\/1.1V}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00047\ \ \ \ \ ST7735\_PWCTR6\ ,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 12:\ Power\ control,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ 0x11,\ 0x15,}
+\DoxyCodeLine{00049\ \ \ \ \ ST7735\_GMCTRP1,16\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 13:\ Magical\ unicorn\ dust,\ 16\ args,\ no\ delay:}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ 0x09,\ 0x16,\ 0x09,\ 0x20,\ \textcolor{comment}{//\ \ \ \ \ (seriously\ though,\ not\ sure\ what}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ 0x21,\ 0x1B,\ 0x13,\ 0x19,\ \textcolor{comment}{//\ \ \ \ \ \ these\ config\ values\ represent)}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ 0x17,\ 0x15,\ 0x1E,\ 0x2B,}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ 0x04,\ 0x05,\ 0x02,\ 0x0E,}
+\DoxyCodeLine{00054\ \ \ \ \ ST7735\_GMCTRN1,16+TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ 14:\ Sparkles\ and\ rainbows,\ 16\ args\ +\ delay:}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ 0x0B,\ 0x14,\ 0x08,\ 0x1E,\ \textcolor{comment}{//\ \ \ \ \ (ditto)}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ 0x22,\ 0x1D,\ 0x18,\ 0x1E,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ 0x1B,\ 0x1A,\ 0x24,\ 0x2B,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ 0x06,\ 0x06,\ 0x02,\ 0x0F,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00060\ \ \ \ \ ST7735\_CASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 15:\ Column\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ 0x00,\ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 2}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ 0x00,\ 0x81,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 129}}
+\DoxyCodeLine{00063\ \ \ \ \ ST7735\_RASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 16:\ Row\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ 0x00,\ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 1}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ 0x00,\ 0x81,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 160}}
+\DoxyCodeLine{00066\ \ \ \ \ ST7735\_NORON\ \ ,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ 17:\ Normal\ display\ on,\ no\ args,\ w/delay}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00068\ \ \ \ \ ST7735\_DISPON\ ,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ 18:\ Main\ screen\ turn\ on,\ no\ args,\ w/delay}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ 255\ \},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 255\ =\ 500\ ms\ delay}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ Rcmd1[]\ =\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ for\ 7735R,\ part\ 1\ (red\ or\ green\ tab)}}
+\DoxyCodeLine{00072\ \ \ \ \ 15,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 15\ commands\ in\ list:}}
+\DoxyCodeLine{00073\ \ \ \ \ ST7735\_SWRESET,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 1:\ Software\ reset,\ 0\ args,\ w/delay}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ 150,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 150\ ms\ delay}}
+\DoxyCodeLine{00075\ \ \ \ \ ST7735\_SLPOUT\ ,\ \ \ TFT\_INIT\_DELAY,\ \ \textcolor{comment}{//\ \ 2:\ Out\ of\ sleep\ mode,\ 0\ args,\ w/delay}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ 255,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 500\ ms\ delay}}
+\DoxyCodeLine{00077\ \ \ \ \ ST7735\_FRMCTR1,\ 3\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 3:\ Frame\ rate\ ctrl\ -\/\ normal\ mode,\ 3\ args:}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ 0x01,\ 0x2C,\ 0x2D,\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Rate\ =\ fosc/(1x2+40)\ *\ (LINE+2C+2D)}}
+\DoxyCodeLine{00079\ \ \ \ \ ST7735\_FRMCTR2,\ 3\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 4:\ Frame\ rate\ control\ -\/\ idle\ mode,\ 3\ args:}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ 0x01,\ 0x2C,\ 0x2D,\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Rate\ =\ fosc/(1x2+40)\ *\ (LINE+2C+2D)}}
+\DoxyCodeLine{00081\ \ \ \ \ ST7735\_FRMCTR3,\ 6\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 5:\ Frame\ rate\ ctrl\ -\/\ partial\ mode,\ 6\ args:}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ 0x01,\ 0x2C,\ 0x2D,\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Dot\ inversion\ mode}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ 0x01,\ 0x2C,\ 0x2D,\ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Line\ inversion\ mode}}
+\DoxyCodeLine{00084\ \ \ \ \ ST7735\_INVCTR\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 6:\ Display\ inversion\ ctrl,\ 1\ arg,\ no\ delay:}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ 0x07,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ No\ inversion}}
+\DoxyCodeLine{00086\ \ \ \ \ ST7735\_PWCTR1\ ,\ 3\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 7:\ Power\ control,\ 3\ args,\ no\ delay:}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ 0xA2,}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ -\/4.6V}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ 0x84,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ AUTO\ mode}}
+\DoxyCodeLine{00090\ \ \ \ \ ST7735\_PWCTR2\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 8:\ Power\ control,\ 1\ arg,\ no\ delay:}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ 0xC5,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ VGH25\ =\ 2.4C\ VGSEL\ =\ -\/10\ VGH\ =\ 3\ *\ AVDD}}
+\DoxyCodeLine{00092\ \ \ \ \ ST7735\_PWCTR3\ ,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 9:\ Power\ control,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ 0x0A,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Opamp\ current\ small}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ Boost\ frequency}}
+\DoxyCodeLine{00095\ \ \ \ \ ST7735\_PWCTR4\ ,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 10:\ Power\ control,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ 0x8A,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ BCLK/2,\ Opamp\ current\ small\ \&\ Medium\ low}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ 0x2A,\ \ }
+\DoxyCodeLine{00098\ \ \ \ \ ST7735\_PWCTR5\ ,\ 2\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 11:\ Power\ control,\ 2\ args,\ no\ delay:}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ 0x8A,\ 0xEE,}
+\DoxyCodeLine{00100\ \ \ \ \ ST7735\_VMCTR1\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 12:\ Power\ control,\ 1\ arg,\ no\ delay:}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ 0x0E,}
+\DoxyCodeLine{00102\ \ \ \ \ ST7735\_INVOFF\ ,\ 0\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 13:\ Don't\ invert\ display,\ no\ args,\ no\ delay}}
+\DoxyCodeLine{00103\ \ \ \ \ ST7735\_MADCTL\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 14:\ Memory\ access\ control\ (directions),\ 1\ arg:}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ 0xC0\ |\ TFT\_MAD\_COLOR\_ORDER,\ \textcolor{comment}{//\ \ \ \ \ row\ addr/col\ addr,\ bottom\ to\ top\ refresh}}
+\DoxyCodeLine{00105\ \ \ \ \ ST7735\_COLMOD\ ,\ 1\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ 15:\ set\ color\ mode,\ 1\ arg,\ no\ delay:}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ 0x05\ \},\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 16-\/bit\ color}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ Rcmd2green[]\ =\ \{\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ for\ 7735R,\ part\ 2\ (green\ tab\ only)}}
+\DoxyCodeLine{00109\ \ \ \ \ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 2\ commands\ in\ list:}}
+\DoxyCodeLine{00110\ \ \ \ \ ST7735\_CASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 1:\ Column\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ 0x00,\ 0x02,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 0}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ 0x00,\ 0x7F+0x02,\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 127}}
+\DoxyCodeLine{00113\ \ \ \ \ ST7735\_RASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 2:\ Row\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ 0x00,\ 0x01,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 0}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ 0x00,\ 0x9F+0x01\ \},\ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 159}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ Rcmd2red[]\ =\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ for\ 7735R,\ part\ 2\ (red\ tab\ only)}}
+\DoxyCodeLine{00118\ \ \ \ \ 2,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 2\ commands\ in\ list:}}
+\DoxyCodeLine{00119\ \ \ \ \ ST7735\_CASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 1:\ Column\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ 0x00,\ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 0}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ 0x00,\ 0x7F,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 127}}
+\DoxyCodeLine{00122\ \ \ \ \ ST7735\_RASET\ \ ,\ 4\ \ \ \ \ \ ,\ \ \textcolor{comment}{//\ \ 2:\ Row\ addr\ set,\ 4\ args,\ no\ delay:}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ 0x00,\ 0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XSTART\ =\ 0}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ 0x00,\ 0x9F\ \},\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ XEND\ =\ 159}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ Rcmd3[]\ =\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Init\ for\ 7735R,\ part\ 3\ (red\ or\ green\ tab)}}
+\DoxyCodeLine{00127\ \ \ \ \ 4,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 4\ commands\ in\ list:}}
+\DoxyCodeLine{00128\ \ \ \ \ ST7735\_GMCTRP1,\ 16\ \ \ \ \ \ ,\ \textcolor{comment}{//\ \ 1:\ 16\ args,\ no\ delay:}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ 0x02,\ 0x1c,\ 0x07,\ 0x12,}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ 0x37,\ 0x32,\ 0x29,\ 0x2d,}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ 0x29,\ 0x25,\ 0x2B,\ 0x39,}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ 0x00,\ 0x01,\ 0x03,\ 0x10,}
+\DoxyCodeLine{00133\ \ \ \ \ ST7735\_GMCTRN1,\ 16\ \ \ \ \ \ ,\ \textcolor{comment}{//\ \ 2:\ 16\ args,\ no\ delay:}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ 0x03,\ 0x1d,\ 0x07,\ 0x06,}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ 0x2E,\ 0x2C,\ 0x29,\ 0x2D,}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ 0x2E,\ 0x2E,\ 0x37,\ 0x3F,}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x02,\ 0x10,}
+\DoxyCodeLine{00138\ \ \ \ \ ST7735\_NORON\ \ ,\ \ \ \ TFT\_INIT\_DELAY,\ \textcolor{comment}{//\ \ 3:\ Normal\ display\ on,\ no\ args,\ w/delay}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ 10,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 10\ ms\ delay}}
+\DoxyCodeLine{00140\ \ \ \ \ ST7735\_DISPON\ ,\ \ \ \ TFT\_INIT\_DELAY,\ \textcolor{comment}{//\ \ 4:\ Main\ screen\ turn\ on,\ no\ args\ w/delay}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ 100\ \};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ 100\ ms\ delay}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITB)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ commandList(Bcmd);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ commandList(Rcmd1);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_GREENTAB)}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_GREENTAB2)}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ writecommand(ST7735\_MADCTL);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ writedata(0xC0\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_GREENTAB3)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ colstart\ =\ 2;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 3;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_GREENTAB128)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ colstart\ =\ 0;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 32;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_GREENTAB160x80)}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ writecommand(TFT\_INVON);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ colstart\ =\ 26;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 1;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_REDTAB160x80)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2green);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ colstart\ =\ 24;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ rowstart\ =\ 0;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_REDTAB)}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ commandList(Rcmd2red);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tabcolor\ ==\ INITR\_BLACKTAB)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ writecommand(ST7735\_MADCTL);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ writedata(0xC0\ |\ TFT\_MAD\_COLOR\_ORDER);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ commandList(Rcmd3);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \}}
+
+\end{DoxyCode}

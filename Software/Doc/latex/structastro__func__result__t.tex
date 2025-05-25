@@ -1,0 +1,43 @@
+\doxysection{astro\+\_\+func\+\_\+result\+\_\+t Struct Reference}
+\hypertarget{structastro__func__result__t}{}\label{structastro__func__result__t}\index{astro\_func\_result\_t@{astro\_func\_result\_t}}
+
+
+A real value returned by a function whose ascending root is to be found.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+astro\+\_\+status\+\_\+t \mbox{\hyperlink{structastro__func__result__t_a8e86a498accbd6c245ad737b9c775ef4}{status}}
+\item 
+double \mbox{\hyperlink{structastro__func__result__t_abb36158e9c74ccc058a05d9e2440b888}{value}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A real value returned by a function whose ascending root is to be found. 
+
+When calling Astronomy\+\_\+\+Search, the caller must pass in a callback function compatible with the function-\/pointer type astro\+\_\+search\+\_\+func\+\_\+t whose ascending root is to be found. That callback function must return \doxylink{structastro__func__result__t}{astro\+\_\+func\+\_\+result\+\_\+t}. If the function call is successful, it will set {\ttfamily status} to {\ttfamily ASTRO\+\_\+\+SUCCESS} and {\ttfamily value} to the numeric value appropriate for the given date and time. If the call fails for some reason, it should set {\ttfamily status} to an appropriate error value other than {\ttfamily ASTRO\+\_\+\+SUCCESS}; in the error case, to guard against any possible misuse of {\ttfamily value}, it is recommended to set {\ttfamily value} to {\ttfamily NAN}, though this is not strictly necessary. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__func__result__t_a8e86a498accbd6c245ad737b9c775ef4}\index{astro\_func\_result\_t@{astro\_func\_result\_t}!status@{status}}
+\index{status@{status}!astro\_func\_result\_t@{astro\_func\_result\_t}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{structastro__func__result__t_a8e86a498accbd6c245ad737b9c775ef4} 
+astro\+\_\+status\+\_\+t astro\+\_\+func\+\_\+result\+\_\+t\+::status}
+
+{\ttfamily ASTRO\+\_\+\+SUCCESS} if this struct is valid; otherwise an error code. \Hypertarget{structastro__func__result__t_abb36158e9c74ccc058a05d9e2440b888}\index{astro\_func\_result\_t@{astro\_func\_result\_t}!value@{value}}
+\index{value@{value}!astro\_func\_result\_t@{astro\_func\_result\_t}}
+\doxysubsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily \label{structastro__func__result__t_abb36158e9c74ccc058a05d9e2440b888} 
+double astro\+\_\+func\+\_\+result\+\_\+t\+::value}
+
+The value returned by a function whose ascending root is to be found. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

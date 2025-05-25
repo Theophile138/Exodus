@@ -4,9 +4,16 @@
 #include "Screen_lib/LibScreen.h"
 
 #include "Arduino.h"
+#include "ServoDS3240.h"
+
+
+#define SERVO_PIN 18 //à remplacer par le pin qu'on voudra PWM
+#define SERVO_CHANNEL 0
 
 Screen myScreen;
 Extend_Card myCard;
+ServoDS3240 monServo(SERVO_PIN, SERVO_CHANNEL);
+
 
 unsigned long Time_screen;
 unsigned long Time;
@@ -26,91 +33,85 @@ void setup() {
   Serial.begin(115200);
 
   myCard = Extend_Card();
+  monServo.begin();
 
   myScreen = Screen(); 
   myScreen.touch_calibrate();
   
   myScreen.imageStart(FirmwareVersion);
+  Serial.println("Initialisation finie");
 
   delay(5000);
 
   myScreen.Select_Menu_init();
 
-  Time_screen = millis();
+  Time_screen = millis(); ///< Temps de l'initialisation de l'écran
   
-  Time_config = micros();
+  Time_config = micros(); ///< Temps de l'initialisation de la config
 
-  Time = millis();
+  Time = millis(); ///< Temps global
 
   total_time1 = 0;
   iteration1 = 0;
 
   total_time2 = 0;
   iteration2 = 0;
-
 }
 
 void loop() 
 {
+	// Verifie si la derniere fois qu'on a mis à jour l'écran c'était il y a plus de 20ms
+	if (millis() - Time_screen > 20){ 
+		Time_screen = millis(); // Met à jour la dernière fois qu'on a mis à jour l'écran
+		myScreen.run(&myScreen); // Appelle la fonction de mise à jour de l'écran
+		total_time1 = total_time1 + (millis() - Time_screen); 
+		iteration1 ++;
+	}
 
-  if (millis() - Time_screen > 20){
-    Time_screen = millis();
-    myScreen.run(&myScreen);
-    total_time1 = total_time1 + (millis() - Time_screen);
-    iteration1 ++;
-  }
+	if (micros() - Time_config > 400){
+		Time_config = micros();
+		if (myScreen.activeControle == true){
+		Task2();
+		}
+		total_time2 = total_time2 + (micros() - Time_config);
+		iteration2 ++;
+	}
 
-  if (micros() - Time_config > 400){
-    Time_config = micros();
-    if (myScreen.activeControle == true){
-      Task2();
-    }
-    total_time2 = total_time2 + (micros() - Time_config);
-    iteration2 ++;
-  }
+	if (millis() - Time >= timeDelay){
+	
+		Serial.print("Temp de gestion des taches sur "+String(timeDelay/1000.0));
+		//Serial.print(" seconde :");
+		//Serial.print(total_time1);
+		Serial.print("  Ecran :");
+		Serial.print((total_time1/timeDelay)*100);
+		Serial.print("%");
+		Serial.print("  Run config :");
+		Serial.print((total_time2/(timeDelay*1000))*100);
+		Serial.print("%");
 
+		Serial.println("");
 
+		float temp_moyen1 = total_time1/((float)iteration1);
+		float temp_moyen2 = total_time2/((float)iteration2);
+		Serial.print("Le temps moyen en miliseconde est de :");
+		Serial.print(" Ecran :");
+		Serial.print(temp_moyen1);
+		Serial.println("");
 
-  
-  if (millis() - Time >= timeDelay){
-  
-    Serial.print("Temp de gestion des taches sur "+String(timeDelay/1000.0));
-    //Serial.print(" seconde :");
-    //Serial.print(total_time1);
-    Serial.print("  Ecran :");
-    Serial.print((total_time1/timeDelay)*100);
-    Serial.print("%");
-    Serial.print("  Run config :");
-    Serial.print((total_time2/(timeDelay*1000))*100);
-    Serial.print("%");
+		Serial.print("Le temps moyen en microseconde est de :");
+		Serial.print(" Run config :");
+		Serial.print(temp_moyen2);
 
-    Serial.println("");
+		Serial.println("");
 
-    float temp_moyen1 = total_time1/((float)iteration1);
-    float temp_moyen2 = total_time2/((float)iteration2);
-    Serial.print("Le temps moyen en miliseconde est de :");
-    Serial.print(" Ecran :");
-    Serial.print(temp_moyen1);
-    Serial.println("");
+		iteration1 = 0;
+		iteration2 = 0;
 
-    Serial.print("Le temps moyen en microseconde est de :");
-    Serial.print(" Run config :");
-    Serial.print(temp_moyen2);
+		total_time1 = 0;
+		total_time2 = 0;
 
-    Serial.println("");
-
-    iteration1 = 0;
-    iteration2 = 0;
-
-    total_time1 = 0;
-    total_time2 = 0;
-
-    Time = millis();
-
-    
-
-  }
-  
+		Time = millis();
+	}
 }
 
 void Task2(){
@@ -129,5 +130,25 @@ void Task2(){
       myScreen.myGauge->new_value = (int)((configTest1::value6) );
 
     }
+
+	/// exemple simulé comme j'ai pas l'esp et le moteur avec moi
+    /// Simulation pression sinusoïdale entre 0 et 4095
+	static int step = 0;
+    float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
+    step++;
+
+	/// qu'on remplacera par :
+	/// Version capteur réel (activer ça plus tard)
+	// float pression = configTest1::value6;
+
+    float angle = map(pression, 0, 4095, 0, 180);
+    angle = constrain(angle, 0, 180);
+
+    Serial.print("Pression = ");
+    Serial.print(pression);
+    Serial.print(" convertie donne Angle = ");
+    Serial.println(angle);
+
+    monServo.setAngle(angle);
   }
 }

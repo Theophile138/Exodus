@@ -1,0 +1,79 @@
+\doxysection{Lib\+Screen.\+h}
+\hypertarget{_lib_screen_8h_source}{}\label{_lib_screen_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibScreen.h@{Software\_Exodus\_VSC\_Project/src/Screen\_lib/LibScreen.h}}
+\mbox{\hyperlink{_lib_screen_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ LibScreen\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ LibScreen\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <TFT\_eSPI.h>}\ \ \ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <SPI.h>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_jauge_8h}{LibJauge.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}FS.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_button_8h}{LibButton.h}}"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SCREEN\_WIDTH\ \ 240\ \ \ }}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SCREEN\_HEIGHT\ 320\ \ \ }}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ CALIBRATION\_FILE\ "{}/TouchCalData1"{}\ }}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ REPEAT\_CAL\ false\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}();}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a9d7e8af417b6d543da691e9c0e2f6f9f}{clearScreen}}();}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a7f4a7f74fcd8198786bf84fc42ea9498}{imageStart}}(String\ firmwareVersion);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_ad8413ecfc1ee0076a980dbe9061c2191}{Select\_Menu\_init}}();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a05e58050b508512330000e3614b06530}{Select\_Menu\_run}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a62020430c5e88868041bee6e80544f2a}{Gauge\_Menu\_init}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a626b94288571784f80a5b59c8f9b1f63}{Gauge\_Menu\_run}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a271ec88b4f649c140318c7a74f47c300}{touch\_calibrate}}();}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a3e8b7b32d0936bac40c74d48f48c7b01}{renderButton}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ void\ (*\mbox{\hyperlink{class_screen_aac76d38d91d0f13cc81e8ceef7eca440}{run}})(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Callbacks\ pour\ les\ boutons\ -\/-\/-\/}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_adf747047a457fd8f7c5209a4ccbfcfdf}{leftOnclick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ \ \ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_ae89711cf3267b5f125f7a807f745dd68}{rightOnclick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ \ }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a09991519b52a7faed2bfd3235c3ebef5}{startOnclick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a5f8df37a491ded9e6a00bf0d078a5613}{startOffclick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a01f6224095235d5f20b7ba05a89cb257}{gaugeOnClick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_screen_a5437febe9f988033d4617df5f0572e5d}{backOnClick}}(\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}}*\ Scr);\ \ \ \ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classlinear_meter}{linearMeter}}*\ \mbox{\hyperlink{class_screen_a9c74076bb2daeb8d6afe286d0345e56e}{linearMeters}};\ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_screen_a0f821edd4c4f3dc414c3b5cd07e80307}{activeControle}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_screen_a00cc70edb8bebd26941092740094250c}{config\_selectionne}};\ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classanalog_meters}{analogMeters}}*\ \mbox{\hyperlink{class_screen_a454b5df2ab493347f096f064dbce8c16}{myGauge}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_screen_a7106e2abc437ad981830d14176d15f09}{number}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_screen_a750b5d744c39a06bfb13e6eb010e35d0}{index}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ TFT\_eSPI*\ \mbox{\hyperlink{class_screen_ad4b71e124dca192cc08cf144e2a824de}{tft}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ static\ void\ emptyFunction(Screen*)\ \{Serial.println("{}NO\ run\ set\ for\ the\ sreen\ !"{});\}}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fonction\ vide\ appelée\ si\ aucune\ méthode\ n'est\ définie\ pour\ le\ bouton}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button}{Button}}\ \mbox{\hyperlink{class_screen_a9ce29135999ae1faa41cff8b8b8d8ed8}{startButton}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button}{Button}}\ \mbox{\hyperlink{class_screen_ab9daac209c9041a80858634dd4229644}{leftButton}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button}{Button}}\ \mbox{\hyperlink{class_screen_af1b58dfedaa62cd285694215f41362b2}{rightButton}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button}{Button}}\ \mbox{\hyperlink{class_screen_aa078169e2ddea0a9c46d833942cfa11d}{gaugeButton}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_button}{Button}}\ \mbox{\hyperlink{class_screen_a27a8c9418ec0ceeec5516d5739b7695b}{backButton}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

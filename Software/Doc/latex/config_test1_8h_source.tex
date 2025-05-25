@@ -1,0 +1,77 @@
+\doxysection{config\+Test1.\+h}
+\hypertarget{config_test1_8h_source}{}\label{config_test1_8h_source}\index{Software\_Exodus\_VSC\_Project/src/Extend\_Card\_lib/configTest1.h@{Software\_Exodus\_VSC\_Project/src/Extend\_Card\_lib/configTest1.h}}
+\mbox{\hyperlink{config_test1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ @file\ configTest1.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ @brief\ Configuration\ matérielle\ et\ logique\ pour\ un\ test\ d'extension\ de\ carte\ sur\ ESP32\ (registre\ à\ décalage,\ multiplexeur,\ capteurs,\ actionneurs).}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ configTest1\_h}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ configTest1\_h}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_peripherique_8h}{../Hardware\_lib/LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}Arduino.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_capteur_8h}{../Hardware\_lib/LibCapteur.h}}"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_driver_8h}{../Hardware\_lib/LibDriver.h}}"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ defined(ESP32)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}soc/gpio\_struct.h"{}}\ \textcolor{comment}{//\ Pour\ accéder\ aux\ registres\ GPIO}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}driver/gpio.h"{}}\ \ \ \ \textcolor{comment}{//\ Pour\ configurer\ les\ GPIOs}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_lib_screen_8h}{../Screen\_lib/LibScreen.h}}"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classconfig_test1}{configTest1}}\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \#if\ defined(ESP32)}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classconfig_test1_a02fd73d861ef2e4aabb38c0c9ff82947}{init}}(\mbox{\hyperlink{class_screen}{Screen}}*\ scr);}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \#else}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classconfig_test1_a02fd73d861ef2e4aabb38c0c9ff82947}{init}}();}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classconfig_test1_a13a43e6d814de94978c515cb084873b1}{run}}();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Configuration\ du\ registre\ à\ décalage\ -\/-\/-\/}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_aa242eff4c3c0c61e117e0066c1f83efb}{Reg1DataPin}};\ \ \ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a2d4923328f18e2ee43c131a3579d537f}{Reg1ClockPin}};\ \ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a263b5a6260904fb2c66535b31869d1dc}{Reg1TrigPin}};\ \ \ }
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_af7b3a71ad2688b0aa95c947f11573757}{Reg1Length}};\ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_registre}{Registre}}*\ \mbox{\hyperlink{classconfig_test1_a118ac26995035aa7ab70ec8c4fcc409d}{monRegistre1}};\ \ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Configuration\ du\ multiplexeur\ -\/-\/-\/}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a98b2964d88e6940b693d4a25ed886f8d}{Multiplex1PinA}};\ \ \ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a5e79c8de1b972ae11d619bbfc1474109}{Multiplex1PinS0}};\ \ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_ae1e3d52906ac4d8d0f078cda6ba2f595}{Multiplex1PinS1}};\ \ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a18d0f83f11b3d6a8c1edfa2b56a9d0ae}{Multiplex1PinS2}};\ \ }
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_master_device}{MasterDevice}}*\ \mbox{\hyperlink{classconfig_test1_acce95f6bea2186aed8b8e1189e31d0e8}{myEsp32}};\ \ \ \ \ \ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_multiplexeur}{Multiplexeur}}*\ \mbox{\hyperlink{classconfig_test1_a37e15f2d829291b896bb930b00c66bd6}{monMultiplex1}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Capteurs\ analogiques\ (ex:\ capteurs\ de\ force)\ -\/-\/-\/}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur}{Capteur}}*\ \mbox{\hyperlink{classconfig_test1_ad3a5a77cfeec05ce7fad1b459c1678f4}{capteurForce1}};\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur}{Capteur}}*\ \mbox{\hyperlink{classconfig_test1_ae8f0bfd2dee05c222ff6ae5b295ce724}{capteurForce2}};\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur}{Capteur}}*\ \mbox{\hyperlink{classconfig_test1_a8be0f45fcf1b2c07909d8de871b3100c}{capteurForce3}};\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur}{Capteur}}*\ \mbox{\hyperlink{classconfig_test1_ad61caffd18aebd119aa9b41caeebed16}{capteurForce4}};\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur}{Capteur}}*\ \mbox{\hyperlink{classconfig_test1_af637ab8158e04390ad9affba536e1ffa}{capteurForce5}};\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Capteur\ MPU6050\ (accéléromètre/gyroscope)\ -\/-\/-\/}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_capteur_m_p_u6050}{CapteurMPU6050}}*\ \mbox{\hyperlink{classconfig_test1_aa1594e99b47b5b1f999367f3f809a74f}{capteurMPU}};\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Actionneur\ (moteur\ linéaire)\ -\/-\/-\/}}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_driver_motor}{DriverMotor}}*\ \mbox{\hyperlink{classconfig_test1_a1942f40054f69df08d85696bc2bacfac}{verin}};\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//\ -\/-\/-\/\ Variables\ de\ direction\ et\ de\ valeurs\ lues\ -\/-\/-\/}}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a851cf68c8f607573c1a5e987784c83f6}{dir}};\ \ \ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a46d0a008fc6de84d73fd5be54c9a1deb}{dir2}};\ \ }
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_abd81615ba26662ab5fd655d3396fe2bc}{value1}};\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_a888bdb4f90bf0fbaa4168ca1824d4cd9}{value2}};\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_ae619c77a32d6d4e35d8312a439f09195}{value3}};\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_ac510e51f9277ecff3f83a6f034c9e140}{value4}};\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_aa4cb7bd9281452408632f7b7af850eb1}{value5}};\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classconfig_test1_abeb4ed1925f365858cad5e399c806b58}{value6}};\ }
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

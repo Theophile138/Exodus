@@ -1,0 +1,87 @@
+\doxysection{main Namespace Reference}
+\hypertarget{namespacemain}{}\label{namespacemain}\index{main@{main}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain_a4a35b93b56d853d227dd858eae3da5a6}{rgb\+\_\+to\+\_\+rgb565}} (r, g, b)
+\item 
+\mbox{\hyperlink{namespacemain_ab778763febc92b67ad64d6c761416817}{image\+\_\+to\+\_\+rgb565\+\_\+array}} (image\+\_\+path)
+\item 
+\mbox{\hyperlink{namespacemain_a986ffd3bffac57aa2e8dc52dfff6b1b7}{save\+\_\+arrays\+\_\+to\+\_\+header\+\_\+file}} (images\+\_\+dict, filename)
+\item 
+\mbox{\hyperlink{namespacemain_a2d5499bd5d4e25aa3f55c3fe96461f8c}{select\+\_\+folder}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{namespacemain_ab4b8daf4b8ea9d39568719e1e320076f}{root}} = tk.\+Tk()
+\item 
+\mbox{\hyperlink{namespacemain_a14139799dd4b2fc41ecb6cb14936322f}{button}} = tk.\+Button(\mbox{\hyperlink{namespacemain_ab4b8daf4b8ea9d39568719e1e320076f}{root}}, text="{}Choisissez le dossier"{}, command=\mbox{\hyperlink{namespacemain_a2d5499bd5d4e25aa3f55c3fe96461f8c}{select\+\_\+folder}})
+\item 
+\mbox{\hyperlink{namespacemain_aacfca40f5357b3bdb417b60bb98b8150}{pady}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacemain_ab778763febc92b67ad64d6c761416817}\index{main@{main}!image\_to\_rgb565\_array@{image\_to\_rgb565\_array}}
+\index{image\_to\_rgb565\_array@{image\_to\_rgb565\_array}!main@{main}}
+\doxysubsubsection{\texorpdfstring{image\_to\_rgb565\_array()}{image\_to\_rgb565\_array()}}
+{\footnotesize\ttfamily \label{namespacemain_ab778763febc92b67ad64d6c761416817} 
+image\+\_\+to\+\_\+rgb565\+\_\+array (\begin{DoxyParamCaption}\item[{}]{image\+\_\+path}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Permet de convertir une image vers un tableau de RGB565 sans changer la taille.
+Args:
+    image_path (str): Chemin de l'image à convertir.
+Returns:
+    (Tableau, Largeur, Hauteur) (tuple): Un tuple contenant le tableau RGB565, la largeur et la hauteur de l'image.\end{DoxyVerb}
+ \Hypertarget{namespacemain_a4a35b93b56d853d227dd858eae3da5a6}\index{main@{main}!rgb\_to\_rgb565@{rgb\_to\_rgb565}}
+\index{rgb\_to\_rgb565@{rgb\_to\_rgb565}!main@{main}}
+\doxysubsubsection{\texorpdfstring{rgb\_to\_rgb565()}{rgb\_to\_rgb565()}}
+{\footnotesize\ttfamily \label{namespacemain_a4a35b93b56d853d227dd858eae3da5a6} 
+rgb\+\_\+to\+\_\+rgb565 (\begin{DoxyParamCaption}\item[{}]{r}{, }\item[{}]{g}{, }\item[{}]{b}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Permet de convertir un code RGB vers le format RGB565.
+Args:
+    r (int): Composante de rouge (0-255).
+    g (int): Composante de vert (0-255).
+    b (int): Composante de bleu (0-255).
+Returns:
+    int: Valeur RGB565.\end{DoxyVerb}
+ \Hypertarget{namespacemain_a986ffd3bffac57aa2e8dc52dfff6b1b7}\index{main@{main}!save\_arrays\_to\_header\_file@{save\_arrays\_to\_header\_file}}
+\index{save\_arrays\_to\_header\_file@{save\_arrays\_to\_header\_file}!main@{main}}
+\doxysubsubsection{\texorpdfstring{save\_arrays\_to\_header\_file()}{save\_arrays\_to\_header\_file()}}
+{\footnotesize\ttfamily \label{namespacemain_a986ffd3bffac57aa2e8dc52dfff6b1b7} 
+save\+\_\+arrays\+\_\+to\+\_\+header\+\_\+file (\begin{DoxyParamCaption}\item[{}]{images\+\_\+dict}{, }\item[{}]{filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Enregistre plusieurs tableaux RGB565 dans un seul fichier .h.
+Args:
+    images_dict (dict): Dictionnaire contenant les tableaux d'images.
+    filename (str): Nom du fichier de sortie.\end{DoxyVerb}
+ \Hypertarget{namespacemain_a2d5499bd5d4e25aa3f55c3fe96461f8c}\index{main@{main}!select\_folder@{select\_folder}}
+\index{select\_folder@{select\_folder}!main@{main}}
+\doxysubsubsection{\texorpdfstring{select\_folder()}{select\_folder()}}
+{\footnotesize\ttfamily \label{namespacemain_a2d5499bd5d4e25aa3f55c3fe96461f8c} 
+select\+\_\+folder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb} Ouvre une fenêtre de dialogue pour sélectionner un dossier et traite toutes les images à l'intérieur.\end{DoxyVerb}
+ 
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacemain_a14139799dd4b2fc41ecb6cb14936322f}\index{main@{main}!button@{button}}
+\index{button@{button}!main@{main}}
+\doxysubsubsection{\texorpdfstring{button}{button}}
+{\footnotesize\ttfamily \label{namespacemain_a14139799dd4b2fc41ecb6cb14936322f} 
+button = tk.\+Button(\mbox{\hyperlink{namespacemain_ab4b8daf4b8ea9d39568719e1e320076f}{root}}, text="{}Choisissez le dossier"{}, command=\mbox{\hyperlink{namespacemain_a2d5499bd5d4e25aa3f55c3fe96461f8c}{select\+\_\+folder}})}
+
+\Hypertarget{namespacemain_aacfca40f5357b3bdb417b60bb98b8150}\index{main@{main}!pady@{pady}}
+\index{pady@{pady}!main@{main}}
+\doxysubsubsection{\texorpdfstring{pady}{pady}}
+{\footnotesize\ttfamily \label{namespacemain_aacfca40f5357b3bdb417b60bb98b8150} 
+pady}
+
+\Hypertarget{namespacemain_ab4b8daf4b8ea9d39568719e1e320076f}\index{main@{main}!root@{root}}
+\index{root@{root}!main@{main}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily \label{namespacemain_ab4b8daf4b8ea9d39568719e1e320076f} 
+root = tk.\+Tk()}
+

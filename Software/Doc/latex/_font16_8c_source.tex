@@ -1,0 +1,638 @@
+\doxysection{Font16.\+c}
+\hypertarget{_font16_8c_source}{}\label{_font16_8c_source}\index{lib/TFT\_eSPI-\/master/Fonts/Font16.c@{lib/TFT\_eSPI-\/master/Fonts/Font16.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Font\ 2}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Comment\ out\ for\ £\ sign\ for\ character\ 24}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ TFT\_ESPI\_FONT2\_DOLLAR}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ The\ grave\ (\ \`{}\ )\ diacritical\ mark\ will\ show\ as\ a\ degree\ (\ °\ )\ symbol}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Comment\ out\ next\ line\ to\ return\ character\ 0x60\ to\ the\ grave\ accent:}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TFT\_ESPI\_GRAVE\_IS\_DEGREE}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Width\ has\ been\ increased\ by\ 1\ pixel\ so\ pixel\ lengths\ are\ calculated\ correctly}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ for\ the\ displayed\ string}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ widtbl\_f16[96]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ character\ width\ table}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ 6,\ 3,\ 4,\ 9,\ 8,\ 9,\ 9,\ 3,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 32\ -\/\ 39}}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ 7,\ 7,\ 8,\ 6,\ 3,\ 6,\ 5,\ 7,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 40\ -\/\ 47}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 48\ -\/\ 55}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ 8,\ 8,\ 3,\ 3,\ 6,\ 6,\ 6,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 56\ -\/\ 63}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ 9,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 64\ -\/\ 71}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ 8,\ 4,\ 8,\ 8,\ 7,\ 10,\ 8,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 72\ -\/\ 79}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 8,\ 10,\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 80\ -\/\ 87}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ 8,\ 8,\ 8,\ 4,\ 7,\ 4,\ 7,\ 9,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 88\ -\/\ 95}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifdef\ TFT\_ESPI\_GRAVE\_IS\_DEGREE}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ 5,\ 7,\ 7,\ 7,\ 7,\ 7,\ 6,\ 7,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 96\ -\/\ 103\ 0x60\ is\ degree\ symbol}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ 4,\ 7,\ 7,\ 7,\ 7,\ 7,\ 6,\ 7,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 96\ -\/\ 103\ 0x60\ is\ grave}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ 7,\ 4,\ 5,\ 6,\ 4,\ 8,\ 7,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 104\ -\/\ 111}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ 7,\ 8,\ 6,\ 6,\ 5,\ 7,\ 8,\ 8,\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 112\ -\/\ 119}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ 6,\ 7,\ 7,\ 5,\ 3,\ 5,\ 8,\ 6\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ 120\ -\/\ 127}}
+\DoxyCodeLine{00031\ \};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Row\ format,\ MSB\ left}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_20[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_21[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ 0x00,\ 0x40,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_22[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0xA0,\ 0xA0,\ 0xA0,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_23[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x24,\ 0x24,\ 0x24,\ 0xFF,\ 0x24,\ 0x24,\ 0xFF,\ 0x24,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ 0x24,\ 0x24,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_24[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifdef\ TFT\_ESPI\_FONT2\_DOLLAR}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x28,\ 0x38,\ 0x6C,\ 0xAA,\ 0xA8,\ 0x68,\ 0x3C,\ 0x2A,\ 0xAA,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ 0x6C,\ 0x38,\ 0x28,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#else\ \ \ }\textcolor{comment}{//\ GBP\ sign}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x3C,\ 0x42,\ 0x40,\ 0x40,\ 0x70,\ 0x40,\ 0x70,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ 0x40,\ 0xFE,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_25[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x61,\ 0x91,\ 0x92,\ 0x64,\ 0x08,\ 0x10,\ 0x26,\ 0x49,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ 0x89,\ 0x86,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_26[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x20,\ 0x50,\ 0x88,\ 0x88,\ 0x50,\ 0x20,\ 0x52,\ 0x8C,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ 0x8C,\ 0x73,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_27[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00083\ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ 0x80,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_28[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ 0x00,\ 0x0C,\ 0x10,\ 0x20,\ 0x40,\ 0x40,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ 0x40,\ 0x40,\ 0x20,\ 0x10,\ 0x0C\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00092\ \};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_29[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ 0x00,\ 0xC0,\ 0x20,\ 0x10,\ 0x08,\ 0x08,\ 0x04,\ 0x04,\ 0x04,\ 0x04,\ 0x04,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ 0x08,\ 0x08,\ 0x10,\ 0x20,\ 0xC0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00098\ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00101\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x10,\ 0x92,\ 0x54,\ 0x38,\ 0x54,\ 0x92,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00104\ \};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00107\ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x20,\ 0x20,\ 0xF8,\ 0x20,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00113\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ 0xC0,\ 0xC0,\ 0x40,\ 0x80,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2D[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00119\ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2E[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00125\ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ 0xC0,\ 0xC0,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00128\ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_2F[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x04,\ 0x04,\ 0x08,\ 0x08,\ 0x10,\ 0x10,\ 0x20,\ 0x20,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ 0x40,\ 0x80,\ 0x80,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00134\ \};}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_30[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x44,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x44,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00140\ \};}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_31[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x10,\ 0x30,\ 0x50,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ 0x10,\ 0x7C,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00146\ \};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_32[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x02,\ 0x04,\ 0x18,\ 0x20,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ 0x80,\ 0xFE,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00152\ \};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_33[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00155\ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x78,\ 0x84,\ 0x02,\ 0x04,\ 0x38,\ 0x04,\ 0x02,\ 0x02,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ 0x84,\ 0x78,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_34[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00161\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x04,\ 0x0C,\ 0x14,\ 0x24,\ 0x44,\ 0x84,\ 0xFE,\ 0x04,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ 0x04,\ 0x04,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00164\ \};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_35[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00167\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFC,\ 0x80,\ 0x80,\ 0x80,\ 0xF8,\ 0x04,\ 0x02,\ 0x02,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ 0x84,\ 0x78,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00170\ \};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_36[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00173\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x3C,\ 0x40,\ 0x80,\ 0x80,\ 0xB8,\ 0xC4,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00176\ \};}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_37[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x7E,\ 0x02,\ 0x02,\ 0x04,\ 0x04,\ 0x08,\ 0x08,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ 0x10,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00182\ \};}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_38[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x44,\ 0x38,\ 0x44,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00188\ \};}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_39[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00191\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x82,\ 0x46,\ 0x3A,\ 0x02,\ 0x02,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ 0x04,\ 0x78,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00194\ \};}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00197\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xC0,\ 0xC0,\ 0x00,\ 0xC0,\ 0xC0,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00200\ \};}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00203\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xC0,\ 0xC0,\ 0x00,\ 0xC0,\ 0xC0,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ 0x40,\ 0x80,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00206\ \};}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00209\ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x08,\ 0x10,\ 0x20,\ 0x40,\ 0x80,\ 0x40,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ 0x10,\ 0x08,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00212\ \};}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3D[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00215\ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x00,\ 0xF8,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00218\ \};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3E[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00221\ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x40,\ 0x20,\ 0x10,\ 0x08,\ 0x10,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ 0x40,\ 0x80,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00224\ \};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_3F[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00227\ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x02,\ 0x04,\ 0x08,\ 0x10,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ 0x00,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00230\ \};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_40[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x3C,\ 0x42,\ 0x99,\ 0xA5,\ 0xA5,\ 0xA5,\ 0xA5,\ 0x9E,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ 0x40,\ 0x3E,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00236\ \};}
+\DoxyCodeLine{00237\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_41[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00238\ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x10,\ 0x10,\ 0x28,\ 0x28,\ 0x44,\ 0x44,\ 0x7C,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ 0x82,\ 0x82,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00241\ \};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_42[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00244\ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x84,\ 0x82,\ 0x84,\ 0xF8,\ 0x84,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ 0x84,\ 0xF8,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00247\ \};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_43[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00250\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x3C,\ 0x42,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ 0x42,\ 0x3C,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00253\ \};}
+\DoxyCodeLine{00254\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_44[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00255\ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x84,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ 0x84,\ 0xF8,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00258\ \};}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_45[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00261\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFE,\ 0x80,\ 0x80,\ 0x80,\ 0xFC,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ 0x80,\ 0xFE,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00264\ \};}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_46[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00267\ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFE,\ 0x80,\ 0x80,\ 0x80,\ 0xF8,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00270\ \};}
+\DoxyCodeLine{00271\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_47[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00272\ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x3C,\ 0x42,\ 0x80,\ 0x80,\ 0x80,\ 0x9C,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ 0x42,\ 0x3C,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00275\ \};}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_48[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00278\ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x84,\ 0x84,\ 0x84,\ 0x84,\ 0xFC,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ 0x84,\ 0x84,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00281\ \};}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_49[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00284\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xE0,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ 0x40,\ 0xE0,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00287\ \};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00290\ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x02,\ 0x02,\ 0x02,\ 0x02,\ 0x02,\ 0x02,\ 0x02,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00293\ \};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00296\ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x84,\ 0x88,\ 0x90,\ 0xA0,\ 0xC0,\ 0xA0,\ 0x90,\ 0x88,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ 0x84,\ 0x82,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00299\ \};}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00302\ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ 0x80,\ 0xFC,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00305\ \};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4D[32]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ unsigned\ chars\ per\ row}}
+\DoxyCodeLine{00308\ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xC1,\ 0x80,\ 0xC1,\ 0x80,\ 0xA2,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 6}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ 0xA2,\ 0x80,\ 0x94,\ 0x80,\ 0x94,\ 0x80,\ 0x88,\ 0x80,\ 0x88,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 7\ -\/\ 12}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 13\ -\/\ 16}}
+\DoxyCodeLine{00312\ \};}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4E[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00315\ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xC2,\ 0xC2,\ 0xA2,\ 0xA2,\ 0x92,\ 0x92,\ 0x8A,\ 0x8A,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ 0x86,\ 0x86,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00318\ \};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_4F[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00321\ \{}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00324\ \};}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_50[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x84,\ 0x82,\ 0x82,\ 0x82,\ 0x84,\ 0xF8,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00330\ \};}
+\DoxyCodeLine{00331\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_51[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x08,\ 0x06,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00335\ \};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_52[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00338\ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xF8,\ 0x84,\ 0x82,\ 0x82,\ 0x84,\ 0xF8,\ 0x90,\ 0x88,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ 0x84,\ 0x82,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00341\ \};}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_53[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00344\ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x80,\ 0x60,\ 0x1C,\ 0x02,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00347\ \};}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_54[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00350\ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFE,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ 0x10,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00353\ \};}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_55[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00356\ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00359\ \};}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_56[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00362\ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x44,\ 0x44,\ 0x28,\ 0x28,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ 0x10,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00365\ \};}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_57[32]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2\ unsigned\ chars\ per\ row}}
+\DoxyCodeLine{00368\ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 6}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ 0x88,\ 0x80,\ 0x88,\ 0x80,\ 0x49,\ 0x00,\ 0x55,\ 0x00,\ 0x55,\ 0x00,\ 0x22,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 7\ -\/\ 12}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ 0x22,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 13\ -\/\ 16}}
+\DoxyCodeLine{00372\ \};}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_58[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00375\ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x44,\ 0x28,\ 0x10,\ 0x10,\ 0x28,\ 0x44,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ 0x82,\ 0x82,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00378\ \};}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_59[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00381\ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x82,\ 0x44,\ 0x28,\ 0x10,\ 0x10,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ 0x10,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00384\ \};}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00387\ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFE,\ 0x02,\ 0x04,\ 0x08,\ 0x10,\ 0x10,\ 0x20,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ 0x80,\ 0xFE,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00390\ \};}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00393\ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0xE0,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ 0x80,\ 0x80,\ 0xE0,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00396\ \};}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00399\ \{}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0x40,\ 0x40,\ 0x20,\ 0x20,\ 0x10,\ 0x10,\ 0x08,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ 0x08,\ 0x04,\ 0x04,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00402\ \};}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5D[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00405\ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0xE0,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ 0x20,\ 0x20,\ 0xE0,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00408\ \};}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5E[32]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ chars\ per\ row}}
+\DoxyCodeLine{00411\ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ 0x00,\ 0x10,\ 0x28,\ 0x44,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00414\ \};}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_5F[32]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ chars\ per\ row}}
+\DoxyCodeLine{00417\ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xFF,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00420\ \};}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_60[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00423\ \{}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\#ifdef\ TFT\_ESPI\_GRAVE\_IS\_DEGREE}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x60,\ 0x90,\ 0x90,\ 0x60,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11\ \ \ Degree\ symbol}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00}
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ 0x20,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11\ \ \ Grave\ accent}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00431\ \};}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_61[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00434\ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x70,\ 0x08,\ 0x04,\ 0x74,\ 0x8C,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ 0x8C,\ 0x74,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00437\ \};}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_62[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00440\ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0xB0,\ 0xC8,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ 0xC8,\ 0xB0,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00443\ \};}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_63[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00446\ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00449\ \};}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_64[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00452\ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x04,\ 0x04,\ 0x34,\ 0x4C,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ 0x4C,\ 0x34,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00455\ \};}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_65[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00458\ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x84,\ 0xF8,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00461\ \};}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_66[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00464\ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x30,\ 0x48,\ 0x40,\ 0x40,\ 0x40,\ 0xE0,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ 0x40,\ 0x40,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00467\ \};}
+\DoxyCodeLine{00468\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_67[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00469\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x30,\ 0x4C,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ 0x4C,\ 0x34,\ 0x04,\ 0x08,\ 0x70\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00472\ \};}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_68[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00475\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ 0xB0,\ 0xC8,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ 0x84,\ 0x84,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00478\ \};}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_69[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00481\ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x40,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ 0x40,\ 0x40,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00484\ \};}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00487\ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x10,\ 0x00,\ 0x30,\ 0x10,\ 0x10,\ 0x10,\ 0x10,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ 0x10,\ 0x10,\ 0x10,\ 0x90,\ 0x60\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00490\ \};}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00493\ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x80,\ 0x80,\ 0x80,\ 0x88,\ 0x90,\ 0xA0,\ 0xC0,\ 0xA0,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ 0x90,\ 0x88,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00496\ \};}
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00499\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0xC0,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ 0x40,\ 0x40,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00502\ \};}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6D[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00505\ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xAC,\ 0xD2,\ 0x92,\ 0x92,\ 0x92,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ 0x92,\ 0x92,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00508\ \};}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6E[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00511\ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xB0,\ 0xC8,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ 0x84,\ 0x84,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00514\ \};}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_6F[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00517\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x38,\ 0x44,\ 0x82,\ 0x82,\ 0x82,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ 0x44,\ 0x38,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00520\ \};}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_70[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00523\ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xB0,\ 0xC8,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ 0xC8,\ 0xB0,\ 0x80,\ 0x80,\ 0x80\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00526\ \};}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_71[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00529\ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x34,\ 0x4C,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ 0x4C,\ 0x34,\ 0x04,\ 0x04,\ 0x06\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00532\ \};}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_72[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00535\ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xB0,\ 0xC8,\ 0x80,\ 0x80,\ 0x80,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ 0x80,\ 0x80,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00538\ \};}
+\DoxyCodeLine{00539\ }
+\DoxyCodeLine{00540\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_73[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00541\ \{}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x70,\ 0x88,\ 0x80,\ 0x70,\ 0x08,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ 0x88,\ 0x70,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00544\ \};}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_74[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00547\ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x40,\ 0x40,\ 0xE0,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ 0x40,\ 0x30,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00550\ \};}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_75[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00553\ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x84,\ 0x84,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ 0x4C,\ 0x34,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00556\ \};}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_76[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00559\ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x82,\ 0x82,\ 0x44,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ 0x28,\ 0x10,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00562\ \};}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_77[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00565\ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x82,\ 0x82,\ 0x82,\ 0x92,\ 0x92,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ 0xAA,\ 0x44,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00568\ \};}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_78[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00571\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x88,\ 0x88,\ 0x50,\ 0x20,\ 0x50,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ 0x88,\ 0x88,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00574\ \};}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_79[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00577\ \{}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x84,\ 0x84,\ 0x84,\ 0x84,\ 0x84,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ 0x4C,\ 0x34,\ 0x04,\ 0x08,\ 0x70\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00580\ \};}
+\DoxyCodeLine{00581\ }
+\DoxyCodeLine{00582\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7A[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00583\ \{}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0xFC,\ 0x04,\ 0x08,\ 0x30,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ 0x80,\ 0xFC,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00586\ \};}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7B[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00589\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ 0x00,\ 0x10,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x40,\ 0x20,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x10\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00592\ \};}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7C[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00595\ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x40,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ 0x40,\ 0x40,\ 0x40,\ 0x40,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00598\ \};}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7D[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00601\ \{}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ 0x00,\ 0x40,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x10,\ 0x20,\ 0x20,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ 0x20,\ 0x20,\ 0x20,\ 0x20,\ 0x40\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00604\ \};}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7E[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00607\ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x32,\ 0x4C,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00610\ \};}
+\DoxyCodeLine{00611\ }
+\DoxyCodeLine{00612\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ chr\_f16\_7F[16]\ =\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1\ unsigned\ char\ per\ row}}
+\DoxyCodeLine{00613\ \{}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x30,\ 0x48,\ 0x48,\ 0x30,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00,\ \ \ \ \textcolor{comment}{//\ row\ 1\ -\/\ 11}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ 0x00,\ 0x00,\ 0x00,\ 0x00,\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ row\ 12\ -\/\ 16}}
+\DoxyCodeLine{00616\ \};}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ PROGMEM\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ chrtbl\_f16[96]\ =\ \ \ \ \ \ \ \textcolor{comment}{//\ character\ pointer\ table}}
+\DoxyCodeLine{00619\ \{}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ chr\_f16\_20,\ chr\_f16\_21,\ chr\_f16\_22,\ chr\_f16\_23,\ chr\_f16\_24,\ chr\_f16\_25,\ chr\_f16\_26,\ chr\_f16\_27,\ }
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ chr\_f16\_28,\ chr\_f16\_29,\ chr\_f16\_2A,\ chr\_f16\_2B,\ chr\_f16\_2C,\ chr\_f16\_2D,\ chr\_f16\_2E,\ chr\_f16\_2F,\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ chr\_f16\_30,\ chr\_f16\_31,\ chr\_f16\_32,\ chr\_f16\_33,\ chr\_f16\_34,\ chr\_f16\_35,\ chr\_f16\_36,\ chr\_f16\_37,\ }
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ chr\_f16\_38,\ chr\_f16\_39,\ chr\_f16\_3A,\ chr\_f16\_3B,\ chr\_f16\_3C,\ chr\_f16\_3D,\ chr\_f16\_3E,\ chr\_f16\_3F,\ }
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ chr\_f16\_40,\ chr\_f16\_41,\ chr\_f16\_42,\ chr\_f16\_43,\ chr\_f16\_44,\ chr\_f16\_45,\ chr\_f16\_46,\ chr\_f16\_47,\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ chr\_f16\_48,\ chr\_f16\_49,\ chr\_f16\_4A,\ chr\_f16\_4B,\ chr\_f16\_4C,\ chr\_f16\_4D,\ chr\_f16\_4E,\ chr\_f16\_4F,\ }
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ chr\_f16\_50,\ chr\_f16\_51,\ chr\_f16\_52,\ chr\_f16\_53,\ chr\_f16\_54,\ chr\_f16\_55,\ chr\_f16\_56,\ chr\_f16\_57,\ }
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ chr\_f16\_58,\ chr\_f16\_59,\ chr\_f16\_5A,\ chr\_f16\_5B,\ chr\_f16\_5C,\ chr\_f16\_5D,\ chr\_f16\_5E,\ chr\_f16\_5F,\ }
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ chr\_f16\_60,\ chr\_f16\_61,\ chr\_f16\_62,\ chr\_f16\_63,\ chr\_f16\_64,\ chr\_f16\_65,\ chr\_f16\_66,\ chr\_f16\_67,\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ chr\_f16\_68,\ chr\_f16\_69,\ chr\_f16\_6A,\ chr\_f16\_6B,\ chr\_f16\_6C,\ chr\_f16\_6D,\ chr\_f16\_6E,\ chr\_f16\_6F,\ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ chr\_f16\_70,\ chr\_f16\_71,\ chr\_f16\_72,\ chr\_f16\_73,\ chr\_f16\_74,\ chr\_f16\_75,\ chr\_f16\_76,\ chr\_f16\_77,\ }
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ chr\_f16\_78,\ chr\_f16\_79,\ chr\_f16\_7A,\ chr\_f16\_7B,\ chr\_f16\_7C,\ chr\_f16\_7D,\ chr\_f16\_7E,\ chr\_f16\_7F}
+\DoxyCodeLine{00632\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,53 @@
+\doxysection{astro\+\_\+observer\+\_\+t Struct Reference}
+\hypertarget{structastro__observer__t}{}\label{structastro__observer__t}\index{astro\_observer\_t@{astro\_observer\_t}}
+
+
+The location of an observer on (or near) the surface of the Earth.  
+
+
+
+
+{\ttfamily \#include $<$astronomy.\+h$>$}
+
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{structastro__observer__t_a4ece76c5061138651f91cdc0a43fabea}{latitude}}
+\item 
+double \mbox{\hyperlink{structastro__observer__t_aa54800e341dd1fcdd8ae257f702c3872}{longitude}}
+\item 
+double \mbox{\hyperlink{structastro__observer__t_aed0ae0473aa7ad733819288803fbff0b}{height}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The location of an observer on (or near) the surface of the Earth. 
+
+This structure is passed to functions that calculate phenomena as observed from a particular place on the Earth.
+
+You can create this structure directly, or you can call the convenience function Astronomy\+\_\+\+Make\+Observer\# to create one for you. 
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structastro__observer__t_aed0ae0473aa7ad733819288803fbff0b}\index{astro\_observer\_t@{astro\_observer\_t}!height@{height}}
+\index{height@{height}!astro\_observer\_t@{astro\_observer\_t}}
+\doxysubsubsection{\texorpdfstring{height}{height}}
+{\footnotesize\ttfamily \label{structastro__observer__t_aed0ae0473aa7ad733819288803fbff0b} 
+double astro\+\_\+observer\+\_\+t\+::height}
+
+The height above (positive) or below (negative) sea level, expressed in meters. \Hypertarget{structastro__observer__t_a4ece76c5061138651f91cdc0a43fabea}\index{astro\_observer\_t@{astro\_observer\_t}!latitude@{latitude}}
+\index{latitude@{latitude}!astro\_observer\_t@{astro\_observer\_t}}
+\doxysubsubsection{\texorpdfstring{latitude}{latitude}}
+{\footnotesize\ttfamily \label{structastro__observer__t_a4ece76c5061138651f91cdc0a43fabea} 
+double astro\+\_\+observer\+\_\+t\+::latitude}
+
+Geographic latitude in degrees north (positive) or south (negative) of the equator. \Hypertarget{structastro__observer__t_aa54800e341dd1fcdd8ae257f702c3872}\index{astro\_observer\_t@{astro\_observer\_t}!longitude@{longitude}}
+\index{longitude@{longitude}!astro\_observer\_t@{astro\_observer\_t}}
+\doxysubsubsection{\texorpdfstring{longitude}{longitude}}
+{\footnotesize\ttfamily \label{structastro__observer__t_aa54800e341dd1fcdd8ae257f702c3872} 
+double astro\+\_\+observer\+\_\+t\+::longitude}
+
+Geographic longitude in degrees east (positive) or west (negative) of the prime meridian at Greenwich, England. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+lib/\+TFT\+\_\+e\+SPI-\/master/examples/\+Sprite/\+Orrery/astronomy.\+h\end{DoxyCompactItemize}

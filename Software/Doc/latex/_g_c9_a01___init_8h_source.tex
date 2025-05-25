@@ -1,0 +1,238 @@
+\doxysection{GC9\+A01\+\_\+\+Init.\+h}
+\hypertarget{_g_c9_a01___init_8h_source}{}\label{_g_c9_a01___init_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/GC9A01\_Init.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/GC9A01\_Init.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ This\ is\ the\ command\ sequence\ that\ initialises\ the\ GC9A01\ driver}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \{}
+\DoxyCodeLine{00005\ \ \ writecommand(0xEF);}
+\DoxyCodeLine{00006\ \ \ writecommand(0xEB);}
+\DoxyCodeLine{00007\ \ \ writedata(0x14);}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \ \ writecommand(0xFE);}
+\DoxyCodeLine{00010\ \ \ writecommand(0xEF);}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ writecommand(0xEB);}
+\DoxyCodeLine{00013\ \ \ writedata(0x14);}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ writecommand(0x84);}
+\DoxyCodeLine{00016\ \ \ writedata(0x40);}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ writecommand(0x85);}
+\DoxyCodeLine{00019\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ writecommand(0x86);}
+\DoxyCodeLine{00022\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ writecommand(0x87);}
+\DoxyCodeLine{00025\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ writecommand(0x88);}
+\DoxyCodeLine{00028\ \ \ writedata(0x0A);}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ writecommand(0x89);}
+\DoxyCodeLine{00031\ \ \ writedata(0x21);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ writecommand(0x8A);}
+\DoxyCodeLine{00034\ \ \ writedata(0x00);}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ writecommand(0x8B);}
+\DoxyCodeLine{00037\ \ \ writedata(0x80);}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ writecommand(0x8C);}
+\DoxyCodeLine{00040\ \ \ writedata(0x01);}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ writecommand(0x8D);}
+\DoxyCodeLine{00043\ \ \ writedata(0x01);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ writecommand(0x8E);}
+\DoxyCodeLine{00046\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ writecommand(0x8F);}
+\DoxyCodeLine{00049\ \ \ writedata(0xFF);}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ writecommand(0xB6);}
+\DoxyCodeLine{00052\ \ \ writedata(0x00);}
+\DoxyCodeLine{00053\ \ \ writedata(0x20);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ writecommand(0x3A);}
+\DoxyCodeLine{00056\ \ \ writedata(0x05);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ writecommand(0x90);}
+\DoxyCodeLine{00059\ \ \ writedata(0x08);}
+\DoxyCodeLine{00060\ \ \ writedata(0x08);}
+\DoxyCodeLine{00061\ \ \ writedata(0x08);}
+\DoxyCodeLine{00062\ \ \ writedata(0x08);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ writecommand(0xBD);}
+\DoxyCodeLine{00065\ \ \ writedata(0x06);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ writecommand(0xBC);}
+\DoxyCodeLine{00068\ \ \ writedata(0x00);}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ writecommand(0xFF);}
+\DoxyCodeLine{00071\ \ \ writedata(0x60);}
+\DoxyCodeLine{00072\ \ \ writedata(0x01);}
+\DoxyCodeLine{00073\ \ \ writedata(0x04);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ writecommand(0xC3);}
+\DoxyCodeLine{00076\ \ \ writedata(0x13);}
+\DoxyCodeLine{00077\ \ \ writecommand(0xC4);}
+\DoxyCodeLine{00078\ \ \ writedata(0x13);}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ writecommand(0xC9);}
+\DoxyCodeLine{00081\ \ \ writedata(0x22);}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ writecommand(0xBE);}
+\DoxyCodeLine{00084\ \ \ writedata(0x11);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ writecommand(0xE1);}
+\DoxyCodeLine{00087\ \ \ writedata(0x10);}
+\DoxyCodeLine{00088\ \ \ writedata(0x0E);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ writecommand(0xDF);}
+\DoxyCodeLine{00091\ \ \ writedata(0x21);}
+\DoxyCodeLine{00092\ \ \ writedata(0x0c);}
+\DoxyCodeLine{00093\ \ \ writedata(0x02);}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ writecommand(0xF0);}
+\DoxyCodeLine{00096\ \ \ writedata(0x45);}
+\DoxyCodeLine{00097\ \ \ writedata(0x09);}
+\DoxyCodeLine{00098\ \ \ writedata(0x08);}
+\DoxyCodeLine{00099\ \ \ writedata(0x08);}
+\DoxyCodeLine{00100\ \ \ writedata(0x26);}
+\DoxyCodeLine{00101\ \ \ writedata(0x2A);}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ writecommand(0xF1);}
+\DoxyCodeLine{00104\ \ \ writedata(0x43);}
+\DoxyCodeLine{00105\ \ \ writedata(0x70);}
+\DoxyCodeLine{00106\ \ \ writedata(0x72);}
+\DoxyCodeLine{00107\ \ \ writedata(0x36);}
+\DoxyCodeLine{00108\ \ \ writedata(0x37);}
+\DoxyCodeLine{00109\ \ \ writedata(0x6F);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ writecommand(0xF2);}
+\DoxyCodeLine{00112\ \ \ writedata(0x45);}
+\DoxyCodeLine{00113\ \ \ writedata(0x09);}
+\DoxyCodeLine{00114\ \ \ writedata(0x08);}
+\DoxyCodeLine{00115\ \ \ writedata(0x08);}
+\DoxyCodeLine{00116\ \ \ writedata(0x26);}
+\DoxyCodeLine{00117\ \ \ writedata(0x2A);}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ writecommand(0xF3);}
+\DoxyCodeLine{00120\ \ \ writedata(0x43);}
+\DoxyCodeLine{00121\ \ \ writedata(0x70);}
+\DoxyCodeLine{00122\ \ \ writedata(0x72);}
+\DoxyCodeLine{00123\ \ \ writedata(0x36);}
+\DoxyCodeLine{00124\ \ \ writedata(0x37);}
+\DoxyCodeLine{00125\ \ \ writedata(0x6F);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ writecommand(0xED);}
+\DoxyCodeLine{00128\ \ \ writedata(0x1B);}
+\DoxyCodeLine{00129\ \ \ writedata(0x0B);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \ \ writecommand(0xAE);}
+\DoxyCodeLine{00132\ \ \ writedata(0x77);}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ writecommand(0xCD);}
+\DoxyCodeLine{00135\ \ \ writedata(0x63);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ writecommand(0x70);}
+\DoxyCodeLine{00138\ \ \ writedata(0x07);}
+\DoxyCodeLine{00139\ \ \ writedata(0x07);}
+\DoxyCodeLine{00140\ \ \ writedata(0x04);}
+\DoxyCodeLine{00141\ \ \ writedata(0x0E);}
+\DoxyCodeLine{00142\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00143\ \ \ writedata(0x09);}
+\DoxyCodeLine{00144\ \ \ writedata(0x07);}
+\DoxyCodeLine{00145\ \ \ writedata(0x08);}
+\DoxyCodeLine{00146\ \ \ writedata(0x03);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ writecommand(0xE8);}
+\DoxyCodeLine{00149\ \ \ writedata(0x34);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ writecommand(0x62);}
+\DoxyCodeLine{00152\ \ \ writedata(0x18);}
+\DoxyCodeLine{00153\ \ \ writedata(0x0D);}
+\DoxyCodeLine{00154\ \ \ writedata(0x71);}
+\DoxyCodeLine{00155\ \ \ writedata(0xED);}
+\DoxyCodeLine{00156\ \ \ writedata(0x70);}
+\DoxyCodeLine{00157\ \ \ writedata(0x70);}
+\DoxyCodeLine{00158\ \ \ writedata(0x18);}
+\DoxyCodeLine{00159\ \ \ writedata(0x0F);}
+\DoxyCodeLine{00160\ \ \ writedata(0x71);}
+\DoxyCodeLine{00161\ \ \ writedata(0xEF);}
+\DoxyCodeLine{00162\ \ \ writedata(0x70);}
+\DoxyCodeLine{00163\ \ \ writedata(0x70);}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ writecommand(0x63);}
+\DoxyCodeLine{00166\ \ \ writedata(0x18);}
+\DoxyCodeLine{00167\ \ \ writedata(0x11);}
+\DoxyCodeLine{00168\ \ \ writedata(0x71);}
+\DoxyCodeLine{00169\ \ \ writedata(0xF1);}
+\DoxyCodeLine{00170\ \ \ writedata(0x70);}
+\DoxyCodeLine{00171\ \ \ writedata(0x70);}
+\DoxyCodeLine{00172\ \ \ writedata(0x18);}
+\DoxyCodeLine{00173\ \ \ writedata(0x13);}
+\DoxyCodeLine{00174\ \ \ writedata(0x71);}
+\DoxyCodeLine{00175\ \ \ writedata(0xF3);}
+\DoxyCodeLine{00176\ \ \ writedata(0x70);}
+\DoxyCodeLine{00177\ \ \ writedata(0x70);}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ writecommand(0x64);}
+\DoxyCodeLine{00180\ \ \ writedata(0x28);}
+\DoxyCodeLine{00181\ \ \ writedata(0x29);}
+\DoxyCodeLine{00182\ \ \ writedata(0xF1);}
+\DoxyCodeLine{00183\ \ \ writedata(0x01);}
+\DoxyCodeLine{00184\ \ \ writedata(0xF1);}
+\DoxyCodeLine{00185\ \ \ writedata(0x00);}
+\DoxyCodeLine{00186\ \ \ writedata(0x07);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ writecommand(0x66);}
+\DoxyCodeLine{00189\ \ \ writedata(0x3C);}
+\DoxyCodeLine{00190\ \ \ writedata(0x00);}
+\DoxyCodeLine{00191\ \ \ writedata(0xCD);}
+\DoxyCodeLine{00192\ \ \ writedata(0x67);}
+\DoxyCodeLine{00193\ \ \ writedata(0x45);}
+\DoxyCodeLine{00194\ \ \ writedata(0x45);}
+\DoxyCodeLine{00195\ \ \ writedata(0x10);}
+\DoxyCodeLine{00196\ \ \ writedata(0x00);}
+\DoxyCodeLine{00197\ \ \ writedata(0x00);}
+\DoxyCodeLine{00198\ \ \ writedata(0x00);}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ writecommand(0x67);}
+\DoxyCodeLine{00201\ \ \ writedata(0x00);}
+\DoxyCodeLine{00202\ \ \ writedata(0x3C);}
+\DoxyCodeLine{00203\ \ \ writedata(0x00);}
+\DoxyCodeLine{00204\ \ \ writedata(0x00);}
+\DoxyCodeLine{00205\ \ \ writedata(0x00);}
+\DoxyCodeLine{00206\ \ \ writedata(0x01);}
+\DoxyCodeLine{00207\ \ \ writedata(0x54);}
+\DoxyCodeLine{00208\ \ \ writedata(0x10);}
+\DoxyCodeLine{00209\ \ \ writedata(0x32);}
+\DoxyCodeLine{00210\ \ \ writedata(0x98);}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ writecommand(0x74);}
+\DoxyCodeLine{00213\ \ \ writedata(0x10);}
+\DoxyCodeLine{00214\ \ \ writedata(0x85);}
+\DoxyCodeLine{00215\ \ \ writedata(0x80);}
+\DoxyCodeLine{00216\ \ \ writedata(0x00);}
+\DoxyCodeLine{00217\ \ \ writedata(0x00);}
+\DoxyCodeLine{00218\ \ \ writedata(0x4E);}
+\DoxyCodeLine{00219\ \ \ writedata(0x00);}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ writecommand(0x98);}
+\DoxyCodeLine{00222\ \ \ writedata(0x3e);}
+\DoxyCodeLine{00223\ \ \ writedata(0x07);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ writecommand(0x35);}
+\DoxyCodeLine{00226\ \ \ writecommand(0x21);}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ writecommand(0x11);}
+\DoxyCodeLine{00229\ \ \ delay(120);}
+\DoxyCodeLine{00230\ \ \ writecommand(0x29);}
+\DoxyCodeLine{00231\ \ \ delay(20);}
+\DoxyCodeLine{00232\ \}}
+
+\end{DoxyCode}

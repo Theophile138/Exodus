@@ -1,0 +1,394 @@
+\doxysection{Screen Class Reference}
+\hypertarget{class_screen}{}\label{class_screen}\index{Screen@{Screen}}
+
+
+Classe principale pour gérer l\textquotesingle{}affichage, les boutons et les jauges sur un écran TFT tactile.  
+
+
+
+
+{\ttfamily \#include $<$Lib\+Screen.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_screen_a261bb3958a10afdccc74310bfe1d387d}{Screen}} ()
+\begin{DoxyCompactList}\small\item\em Constructeur de la classe \doxylink{class_screen}{Screen}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_a9d7e8af417b6d543da691e9c0e2f6f9f}{clear\+Screen}} ()
+\begin{DoxyCompactList}\small\item\em Efface l\textquotesingle{}écran (remplit de noir). \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_a7f4a7f74fcd8198786bf84fc42ea9498}{image\+Start}} (String firmware\+Version)
+\begin{DoxyCompactList}\small\item\em Affiche l\textquotesingle{}écran de démarrage avec la version du firmware. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_ad8413ecfc1ee0076a980dbe9061c2191}{Select\+\_\+\+Menu\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le menu de sélection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_a62020430c5e88868041bee6e80544f2a}{Gauge\+\_\+\+Menu\+\_\+init}} ()
+\begin{DoxyCompactList}\small\item\em Initialise le menu des jauges. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_a271ec88b4f649c140318c7a74f47c300}{touch\+\_\+calibrate}} ()
+\begin{DoxyCompactList}\small\item\em Lance la calibration de l\textquotesingle{}écran tactile. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_screen_a3e8b7b32d0936bac40c74d48f48c7b01}{render\+Button}} ()
+\begin{DoxyCompactList}\small\item\em Redessine tous les boutons à l\textquotesingle{}écran. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_screen_a05e58050b508512330000e3614b06530}{Select\+\_\+\+Menu\+\_\+run}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Fonction statique pour gérer la boucle du menu de sélection. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_a626b94288571784f80a5b59c8f9b1f63}{Gauge\+\_\+\+Menu\+\_\+run}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Fonction statique pour gérer la boucle du menu des jauges. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_adf747047a457fd8f7c5209a4ccbfcfdf}{left\+Onclick}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton gauche. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_ae89711cf3267b5f125f7a807f745dd68}{right\+Onclick}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton droit. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_a09991519b52a7faed2bfd3235c3ebef5}{start\+Onclick}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton START (appui) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_a5f8df37a491ded9e6a00bf0d078a5613}{start\+Offclick}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton START (relâchement) \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_a01f6224095235d5f20b7ba05a89cb257}{gauge\+On\+Click}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton jauge. \end{DoxyCompactList}\item 
+static void \mbox{\hyperlink{class_screen_a5437febe9f988033d4617df5f0572e5d}{back\+On\+Click}} (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}Scr)
+\begin{DoxyCompactList}\small\item\em Callback pour le bouton retour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+void(\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_screen_aac76d38d91d0f13cc81e8ceef7eca440}{run}} )(\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})
+\begin{DoxyCompactList}\small\item\em Pointeur vers la fonction de boucle courante (menu ou jauge). \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classlinear_meter}{linear\+Meter}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_screen_a9c74076bb2daeb8d6afe286d0345e56e}{linear\+Meters}}
+\begin{DoxyCompactList}\small\item\em Tableau de jauges linéaires. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_screen_a0f821edd4c4f3dc414c3b5cd07e80307}{active\+Controle}}
+\begin{DoxyCompactList}\small\item\em Indique si le contrôle est actif. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_screen_a00cc70edb8bebd26941092740094250c}{config\+\_\+selectionne}}
+\begin{DoxyCompactList}\small\item\em Numéro de la configuration sélectionnée. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classanalog_meters}{analog\+Meters}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_screen_a454b5df2ab493347f096f064dbce8c16}{my\+Gauge}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers la jauge analogique. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_screen_a7106e2abc437ad981830d14176d15f09}{number}}
+\begin{DoxyCompactList}\small\item\em Variable interne pour l\textquotesingle{}animation ou la sélection. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_screen_a750b5d744c39a06bfb13e6eb010e35d0}{index}}
+\begin{DoxyCompactList}\small\item\em Index courant pour les jauges. \end{DoxyCompactList}\item 
+TFT\+\_\+e\+SPI \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_screen_ad4b71e124dca192cc08cf144e2a824de}{tft}}
+\begin{DoxyCompactList}\small\item\em Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_button}{Button}} \mbox{\hyperlink{class_screen_a9ce29135999ae1faa41cff8b8b8d8ed8}{start\+Button}}
+\begin{DoxyCompactList}\small\item\em Bouton START. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_button}{Button}} \mbox{\hyperlink{class_screen_ab9daac209c9041a80858634dd4229644}{left\+Button}}
+\begin{DoxyCompactList}\small\item\em Bouton gauche. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_button}{Button}} \mbox{\hyperlink{class_screen_af1b58dfedaa62cd285694215f41362b2}{right\+Button}}
+\begin{DoxyCompactList}\small\item\em Bouton droit. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_button}{Button}} \mbox{\hyperlink{class_screen_aa078169e2ddea0a9c46d833942cfa11d}{gauge\+Button}}
+\begin{DoxyCompactList}\small\item\em Bouton jauge. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_button}{Button}} \mbox{\hyperlink{class_screen_a27a8c9418ec0ceeec5516d5739b7695b}{back\+Button}}
+\begin{DoxyCompactList}\small\item\em Bouton retour. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Classe principale pour gérer l\textquotesingle{}affichage, les boutons et les jauges sur un écran TFT tactile. 
+
+Permet d\textquotesingle{}initialiser l\textquotesingle{}écran, d\textquotesingle{}afficher des images, des jauges, de gérer les menus, les boutons tactiles et la calibration. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_screen_a261bb3958a10afdccc74310bfe1d387d}\index{Screen@{Screen}!Screen@{Screen}}
+\index{Screen@{Screen}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Screen()}{Screen()}}
+{\footnotesize\ttfamily \label{class_screen_a261bb3958a10afdccc74310bfe1d387d} 
+\mbox{\hyperlink{class_screen}{Screen}} (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Constructeur de la classe \doxylink{class_screen}{Screen}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_screen_a5437febe9f988033d4617df5f0572e5d}\index{Screen@{Screen}!backOnClick@{backOnClick}}
+\index{backOnClick@{backOnClick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{backOnClick()}{backOnClick()}}
+{\footnotesize\ttfamily \label{class_screen_a5437febe9f988033d4617df5f0572e5d} 
+void back\+On\+Click (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton retour. 
+
+\Hypertarget{class_screen_a9d7e8af417b6d543da691e9c0e2f6f9f}\index{Screen@{Screen}!clearScreen@{clearScreen}}
+\index{clearScreen@{clearScreen}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{clearScreen()}{clearScreen()}}
+{\footnotesize\ttfamily \label{class_screen_a9d7e8af417b6d543da691e9c0e2f6f9f} 
+void clear\+Screen (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Efface l\textquotesingle{}écran (remplit de noir). 
+
+\Hypertarget{class_screen_a62020430c5e88868041bee6e80544f2a}\index{Screen@{Screen}!Gauge\_Menu\_init@{Gauge\_Menu\_init}}
+\index{Gauge\_Menu\_init@{Gauge\_Menu\_init}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Gauge\_Menu\_init()}{Gauge\_Menu\_init()}}
+{\footnotesize\ttfamily \label{class_screen_a62020430c5e88868041bee6e80544f2a} 
+void Gauge\+\_\+\+Menu\+\_\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise le menu des jauges. 
+
+\Hypertarget{class_screen_a626b94288571784f80a5b59c8f9b1f63}\index{Screen@{Screen}!Gauge\_Menu\_run@{Gauge\_Menu\_run}}
+\index{Gauge\_Menu\_run@{Gauge\_Menu\_run}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Gauge\_Menu\_run()}{Gauge\_Menu\_run()}}
+{\footnotesize\ttfamily \label{class_screen_a626b94288571784f80a5b59c8f9b1f63} 
+void Gauge\+\_\+\+Menu\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fonction statique pour gérer la boucle du menu des jauges. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scr} & Pointeur vers l\textquotesingle{}objet \doxylink{class_screen}{Screen} courant. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_screen_a01f6224095235d5f20b7ba05a89cb257}\index{Screen@{Screen}!gaugeOnClick@{gaugeOnClick}}
+\index{gaugeOnClick@{gaugeOnClick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{gaugeOnClick()}{gaugeOnClick()}}
+{\footnotesize\ttfamily \label{class_screen_a01f6224095235d5f20b7ba05a89cb257} 
+void gauge\+On\+Click (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton jauge. 
+
+\Hypertarget{class_screen_a7f4a7f74fcd8198786bf84fc42ea9498}\index{Screen@{Screen}!imageStart@{imageStart}}
+\index{imageStart@{imageStart}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{imageStart()}{imageStart()}}
+{\footnotesize\ttfamily \label{class_screen_a7f4a7f74fcd8198786bf84fc42ea9498} 
+void image\+Start (\begin{DoxyParamCaption}\item[{String}]{firmware\+Version}{}\end{DoxyParamCaption})}
+
+
+
+Affiche l\textquotesingle{}écran de démarrage avec la version du firmware. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em firmware\+Version} & Version du firmware à afficher. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_screen_adf747047a457fd8f7c5209a4ccbfcfdf}\index{Screen@{Screen}!leftOnclick@{leftOnclick}}
+\index{leftOnclick@{leftOnclick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{leftOnclick()}{leftOnclick()}}
+{\footnotesize\ttfamily \label{class_screen_adf747047a457fd8f7c5209a4ccbfcfdf} 
+void left\+Onclick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton gauche. 
+
+\Hypertarget{class_screen_a3e8b7b32d0936bac40c74d48f48c7b01}\index{Screen@{Screen}!renderButton@{renderButton}}
+\index{renderButton@{renderButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{renderButton()}{renderButton()}}
+{\footnotesize\ttfamily \label{class_screen_a3e8b7b32d0936bac40c74d48f48c7b01} 
+void render\+Button (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Redessine tous les boutons à l\textquotesingle{}écran. 
+
+\Hypertarget{class_screen_ae89711cf3267b5f125f7a807f745dd68}\index{Screen@{Screen}!rightOnclick@{rightOnclick}}
+\index{rightOnclick@{rightOnclick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{rightOnclick()}{rightOnclick()}}
+{\footnotesize\ttfamily \label{class_screen_ae89711cf3267b5f125f7a807f745dd68} 
+void right\+Onclick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton droit. 
+
+\Hypertarget{class_screen_ad8413ecfc1ee0076a980dbe9061c2191}\index{Screen@{Screen}!Select\_Menu\_init@{Select\_Menu\_init}}
+\index{Select\_Menu\_init@{Select\_Menu\_init}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Select\_Menu\_init()}{Select\_Menu\_init()}}
+{\footnotesize\ttfamily \label{class_screen_ad8413ecfc1ee0076a980dbe9061c2191} 
+void Select\+\_\+\+Menu\+\_\+init (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Initialise le menu de sélection. 
+
+\Hypertarget{class_screen_a05e58050b508512330000e3614b06530}\index{Screen@{Screen}!Select\_Menu\_run@{Select\_Menu\_run}}
+\index{Select\_Menu\_run@{Select\_Menu\_run}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{Select\_Menu\_run()}{Select\_Menu\_run()}}
+{\footnotesize\ttfamily \label{class_screen_a05e58050b508512330000e3614b06530} 
+void Select\+\_\+\+Menu\+\_\+run (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Fonction statique pour gérer la boucle du menu de sélection. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Scr} & Pointeur vers l\textquotesingle{}objet \doxylink{class_screen}{Screen} courant. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_screen_a5f8df37a491ded9e6a00bf0d078a5613}\index{Screen@{Screen}!startOffclick@{startOffclick}}
+\index{startOffclick@{startOffclick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{startOffclick()}{startOffclick()}}
+{\footnotesize\ttfamily \label{class_screen_a5f8df37a491ded9e6a00bf0d078a5613} 
+void start\+Offclick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton START (relâchement) 
+
+\Hypertarget{class_screen_a09991519b52a7faed2bfd3235c3ebef5}\index{Screen@{Screen}!startOnclick@{startOnclick}}
+\index{startOnclick@{startOnclick}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{startOnclick()}{startOnclick()}}
+{\footnotesize\ttfamily \label{class_screen_a09991519b52a7faed2bfd3235c3ebef5} 
+void start\+Onclick (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*}}]{Scr}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Callback pour le bouton START (appui) 
+
+\Hypertarget{class_screen_a271ec88b4f649c140318c7a74f47c300}\index{Screen@{Screen}!touch\_calibrate@{touch\_calibrate}}
+\index{touch\_calibrate@{touch\_calibrate}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{touch\_calibrate()}{touch\_calibrate()}}
+{\footnotesize\ttfamily \label{class_screen_a271ec88b4f649c140318c7a74f47c300} 
+void touch\+\_\+calibrate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Lance la calibration de l\textquotesingle{}écran tactile. 
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_screen_a0f821edd4c4f3dc414c3b5cd07e80307}\index{Screen@{Screen}!activeControle@{activeControle}}
+\index{activeControle@{activeControle}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{activeControle}{activeControle}}
+{\footnotesize\ttfamily \label{class_screen_a0f821edd4c4f3dc414c3b5cd07e80307} 
+bool active\+Controle}
+
+
+
+Indique si le contrôle est actif. 
+
+\Hypertarget{class_screen_a27a8c9418ec0ceeec5516d5739b7695b}\index{Screen@{Screen}!backButton@{backButton}}
+\index{backButton@{backButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{backButton}{backButton}}
+{\footnotesize\ttfamily \label{class_screen_a27a8c9418ec0ceeec5516d5739b7695b} 
+\mbox{\hyperlink{class_button}{Button}} back\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton retour. 
+
+\Hypertarget{class_screen_a00cc70edb8bebd26941092740094250c}\index{Screen@{Screen}!config\_selectionne@{config\_selectionne}}
+\index{config\_selectionne@{config\_selectionne}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{config\_selectionne}{config\_selectionne}}
+{\footnotesize\ttfamily \label{class_screen_a00cc70edb8bebd26941092740094250c} 
+int config\+\_\+selectionne}
+
+
+
+Numéro de la configuration sélectionnée. 
+
+\Hypertarget{class_screen_aa078169e2ddea0a9c46d833942cfa11d}\index{Screen@{Screen}!gaugeButton@{gaugeButton}}
+\index{gaugeButton@{gaugeButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{gaugeButton}{gaugeButton}}
+{\footnotesize\ttfamily \label{class_screen_aa078169e2ddea0a9c46d833942cfa11d} 
+\mbox{\hyperlink{class_button}{Button}} gauge\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton jauge. 
+
+\Hypertarget{class_screen_a750b5d744c39a06bfb13e6eb010e35d0}\index{Screen@{Screen}!index@{index}}
+\index{index@{index}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{index}{index}}
+{\footnotesize\ttfamily \label{class_screen_a750b5d744c39a06bfb13e6eb010e35d0} 
+int index\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Index courant pour les jauges. 
+
+\Hypertarget{class_screen_ab9daac209c9041a80858634dd4229644}\index{Screen@{Screen}!leftButton@{leftButton}}
+\index{leftButton@{leftButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{leftButton}{leftButton}}
+{\footnotesize\ttfamily \label{class_screen_ab9daac209c9041a80858634dd4229644} 
+\mbox{\hyperlink{class_button}{Button}} left\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton gauche. 
+
+\Hypertarget{class_screen_a9c74076bb2daeb8d6afe286d0345e56e}\index{Screen@{Screen}!linearMeters@{linearMeters}}
+\index{linearMeters@{linearMeters}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{linearMeters}{linearMeters}}
+{\footnotesize\ttfamily \label{class_screen_a9c74076bb2daeb8d6afe286d0345e56e} 
+\mbox{\hyperlink{classlinear_meter}{linear\+Meter}}\texorpdfstring{$\ast$}{*} linear\+Meters}
+
+
+
+Tableau de jauges linéaires. 
+
+\Hypertarget{class_screen_a454b5df2ab493347f096f064dbce8c16}\index{Screen@{Screen}!myGauge@{myGauge}}
+\index{myGauge@{myGauge}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{myGauge}{myGauge}}
+{\footnotesize\ttfamily \label{class_screen_a454b5df2ab493347f096f064dbce8c16} 
+\mbox{\hyperlink{classanalog_meters}{analog\+Meters}}\texorpdfstring{$\ast$}{*} my\+Gauge}
+
+
+
+Pointeur vers la jauge analogique. 
+
+\Hypertarget{class_screen_a7106e2abc437ad981830d14176d15f09}\index{Screen@{Screen}!number@{number}}
+\index{number@{number}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{number}{number}}
+{\footnotesize\ttfamily \label{class_screen_a7106e2abc437ad981830d14176d15f09} 
+int number\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Variable interne pour l\textquotesingle{}animation ou la sélection. 
+
+\Hypertarget{class_screen_af1b58dfedaa62cd285694215f41362b2}\index{Screen@{Screen}!rightButton@{rightButton}}
+\index{rightButton@{rightButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{rightButton}{rightButton}}
+{\footnotesize\ttfamily \label{class_screen_af1b58dfedaa62cd285694215f41362b2} 
+\mbox{\hyperlink{class_button}{Button}} right\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton droit. 
+
+\Hypertarget{class_screen_aac76d38d91d0f13cc81e8ceef7eca440}\index{Screen@{Screen}!run@{run}}
+\index{run@{run}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{run}{run}}
+{\footnotesize\ttfamily \label{class_screen_aac76d38d91d0f13cc81e8ceef7eca440} 
+void(\texorpdfstring{$\ast$}{*} run) (\mbox{\hyperlink{class_screen}{Screen}} \texorpdfstring{$\ast$}{*})}
+
+
+
+Pointeur vers la fonction de boucle courante (menu ou jauge). 
+
+\Hypertarget{class_screen_a9ce29135999ae1faa41cff8b8b8d8ed8}\index{Screen@{Screen}!startButton@{startButton}}
+\index{startButton@{startButton}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{startButton}{startButton}}
+{\footnotesize\ttfamily \label{class_screen_a9ce29135999ae1faa41cff8b8b8d8ed8} 
+\mbox{\hyperlink{class_button}{Button}} start\+Button\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Bouton START. 
+
+\Hypertarget{class_screen_ad4b71e124dca192cc08cf144e2a824de}\index{Screen@{Screen}!tft@{tft}}
+\index{tft@{tft}!Screen@{Screen}}
+\doxysubsubsection{\texorpdfstring{tft}{tft}}
+{\footnotesize\ttfamily \label{class_screen_ad4b71e124dca192cc08cf144e2a824de} 
+TFT\+\_\+e\+SPI\texorpdfstring{$\ast$}{*} tft\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointeur vers l\textquotesingle{}objet TFT\+\_\+e\+SPI. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_screen_8h}{Lib\+Screen.\+h}}\item 
+Software\+\_\+\+Exodus\+\_\+\+VSC\+\_\+\+Project/src/\+Screen\+\_\+lib/\mbox{\hyperlink{_lib_screen_8cpp}{Lib\+Screen.\+cpp}}\end{DoxyCompactItemize}

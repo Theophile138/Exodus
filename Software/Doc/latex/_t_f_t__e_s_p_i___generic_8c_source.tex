@@ -1,0 +1,246 @@
+\doxysection{TFT\+\_\+e\+SPI\+\_\+\+Generic.\+c}
+\hypertarget{_t_f_t__e_s_p_i___generic_8c_source}{}\label{_t_f_t__e_s_p_i___generic_8c_source}\index{lib/TFT\_eSPI-\/master/Processors/TFT\_eSPI\_Generic.c@{lib/TFT\_eSPI-\/master/Processors/TFT\_eSPI\_Generic.c}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00002\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ TFT\_eSPI\ generic\ driver\ functions\ \ \ \ \ \ \ \ //}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ Global\ variables}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Select\ the\ SPI\ port\ to\ use}}
+\DoxyCodeLine{00010\ SPIClass\&\ spi\ =\ SPI;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#if\ defined\ (TFT\_SDA\_READ)\ \&\&\ !defined\ (TFT\_PARALLEL\_8\_BIT)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00017\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ tft\_Read\_8}}
+\DoxyCodeLine{00018\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Bit\ bashed\ SPI\ to\ read\ bidirectional\ SDA\ line}}
+\DoxyCodeLine{00019\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00020\ uint8\_t\ TFT\_eSPI::tft\_Read\_8(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \ \ uint8\_t\ \ ret\ =\ 0;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \textcolor{keywordflow}{for}\ (uint8\_t\ i\ =\ 0;\ i\ <\ 8;\ i++)\ \{\ \ \textcolor{comment}{//\ read\ results}}
+\DoxyCodeLine{00025\ \ \ \ \ ret\ <<=\ 1;}
+\DoxyCodeLine{00026\ \ \ \ \ SCLK\_L;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{if}\ (digitalRead(TFT\_MOSI))\ ret\ |=\ 1;}
+\DoxyCodeLine{00028\ \ \ \ \ SCLK\_H;}
+\DoxyCodeLine{00029\ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordflow}{return}\ ret;}
+\DoxyCodeLine{00032\ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00035\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ beginSDA}}
+\DoxyCodeLine{00036\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Detach\ SPI\ from\ pin\ to\ permit\ software\ SPI}}
+\DoxyCodeLine{00037\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ TFT\_eSPI::begin\_SDA\_Read(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \textcolor{comment}{//\ Release\ configured\ SPI\ port\ for\ SDA\ read}}
+\DoxyCodeLine{00041\ \ \ spi.end();}
+\DoxyCodeLine{00042\ \}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00045\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ endSDA}}
+\DoxyCodeLine{00046\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Attach\ SPI\ pins\ after\ software\ SPI}}
+\DoxyCodeLine{00047\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{void}\ TFT\_eSPI::end\_SDA\_Read(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00049\ \{}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ Configure\ SPI\ port\ ready\ for\ next\ TFT\ access}}
+\DoxyCodeLine{00051\ \ \ spi.begin();}
+\DoxyCodeLine{00052\ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \#if\ defined\ (TFT\_SDA\_READ)}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#if\ defined\ (TFT\_PARALLEL\_8\_BIT)\ }\textcolor{comment}{//\ Code\ for\ generic\ (i.e.\ any)\ processor}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00064\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushBlock\ -\/\ for\ generic\ processor\ and\ parallel\ display}}
+\DoxyCodeLine{00065\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ block\ of\ pixels\ of\ the\ same\ colour}}
+\DoxyCodeLine{00066\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00067\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushBlock(uint16\_t\ color,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordflow}{while}\ (len>1)\ \{tft\_Write\_32D(color);\ len-\/=2;\}}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordflow}{if}\ (len)\ \{tft\_Write\_16(color);\}}
+\DoxyCodeLine{00071\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00074\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushPixels\ -\/\ for\ gereric\ processor\ and\ parallel\ display}}
+\DoxyCodeLine{00075\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ sequence\ of\ pixels}}
+\DoxyCodeLine{00076\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00077\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushPixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data\_in,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ uint16\_t\ *data\ =\ (uint16\_t*)data\_in;}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordflow}{if}(\_swapBytes)\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{while}\ (len>1)\ \{tft\_Write\_16(*data);\ data++;\ tft\_Write\_16(*data);\ data++;\ len\ -\/=2;\}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordflow}{if}\ (len)\ \{tft\_Write\_16(*data);\}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordflow}{while}\ (len>1)\ \{tft\_Write\_16S(*data);\ data++;\ tft\_Write\_16S(*data);\ data++;\ len\ -\/=2;\}}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{if}\ (len)\ \{tft\_Write\_16S(*data);\}}
+\DoxyCodeLine{00088\ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00091\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ GPIO\ direction\ control\ \ -\/\ supports\ class\ functions}}
+\DoxyCodeLine{00092\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Set\ parallel\ bus\ to\ INPUT\ or\ OUTPUT}}
+\DoxyCodeLine{00093\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00094\ \textcolor{keywordtype}{void}\ TFT\_eSPI::busDir(uint32\_t\ mask,\ uint8\_t\ mode)}
+\DoxyCodeLine{00095\ \{}
+\DoxyCodeLine{00096\ \ \ \textcolor{comment}{//\ mask\ is\ unused\ for\ generic\ processor}}
+\DoxyCodeLine{00097\ \ \ \textcolor{comment}{//\ Arduino\ native\ functions\ suited\ well\ to\ a\ generic\ driver}}
+\DoxyCodeLine{00098\ \ \ pinMode(TFT\_D0,\ mode);}
+\DoxyCodeLine{00099\ \ \ pinMode(TFT\_D1,\ mode);}
+\DoxyCodeLine{00100\ \ \ pinMode(TFT\_D2,\ mode);}
+\DoxyCodeLine{00101\ \ \ pinMode(TFT\_D3,\ mode);}
+\DoxyCodeLine{00102\ \ \ pinMode(TFT\_D4,\ mode);}
+\DoxyCodeLine{00103\ \ \ pinMode(TFT\_D5,\ mode);}
+\DoxyCodeLine{00104\ \ \ pinMode(TFT\_D6,\ mode);}
+\DoxyCodeLine{00105\ \ \ pinMode(TFT\_D7,\ mode);}
+\DoxyCodeLine{00106\ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00107\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00110\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ GPIO\ direction\ control\ \ -\/\ supports\ class\ functions}}
+\DoxyCodeLine{00111\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Faster\ GPIO\ pin\ input/output\ switch}}
+\DoxyCodeLine{00112\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}\ TFT\_eSPI::gpioMode(uint8\_t\ gpio,\ uint8\_t\ mode)}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \ \ \textcolor{comment}{//\ No\ fast\ port\ based\ generic\ approach\ available}}
+\DoxyCodeLine{00116\ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00119\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ read\ byte\ \ -\/\ supports\ class\ functions}}
+\DoxyCodeLine{00120\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Read\ a\ byte\ -\/\ parallel\ bus\ only}}
+\DoxyCodeLine{00121\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00122\ uint8\_t\ TFT\_eSPI::readByte(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00123\ \{}
+\DoxyCodeLine{00124\ \ \ uint8\_t\ b\ =\ 0;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ busDir(0,\ INPUT);}
+\DoxyCodeLine{00127\ \ \ digitalWrite(TFT\_RD,\ LOW);}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ b\ |=\ digitalRead(TFT\_D0)\ <<\ 0;}
+\DoxyCodeLine{00130\ \ \ b\ |=\ digitalRead(TFT\_D1)\ <<\ 1;}
+\DoxyCodeLine{00131\ \ \ b\ |=\ digitalRead(TFT\_D2)\ <<\ 2;}
+\DoxyCodeLine{00132\ \ \ b\ |=\ digitalRead(TFT\_D3)\ <<\ 3;}
+\DoxyCodeLine{00133\ \ \ b\ |=\ digitalRead(TFT\_D4)\ <<\ 4;}
+\DoxyCodeLine{00134\ \ \ b\ |=\ digitalRead(TFT\_D5)\ <<\ 5;}
+\DoxyCodeLine{00135\ \ \ b\ |=\ digitalRead(TFT\_D6)\ <<\ 6;}
+\DoxyCodeLine{00136\ \ \ b\ |=\ digitalRead(TFT\_D7)\ <<\ 7;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ digitalWrite(TFT\_RD,\ HIGH);}
+\DoxyCodeLine{00139\ \ \ busDir(0,\ OUTPUT);\ }
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \textcolor{keywordflow}{return}\ b;}
+\DoxyCodeLine{00142\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#elif\ defined\ (RPI\_WRITE\_STROBE)\ \ }\textcolor{comment}{//\ For\ RPi\ TFT\ with\ write\ strobe\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00149\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushBlock\ -\/\ for\ ESP32\ or\ STM32\ RPi\ TFT}}
+\DoxyCodeLine{00150\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ block\ of\ pixels\ of\ the\ same\ colour}}
+\DoxyCodeLine{00151\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00152\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushBlock(uint16\_t\ color,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ \ \textcolor{keywordflow}{if}(len)\ \{\ tft\_Write\_16(color);\ len-\/-\/;\ \}}
+\DoxyCodeLine{00155\ \ \ \textcolor{keywordflow}{while}(len-\/-\/)\ \{WR\_L;\ WR\_H;\}}
+\DoxyCodeLine{00156\ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00159\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushPixels\ -\/\ for\ ESP32\ or\ STM32\ RPi\ TFT}}
+\DoxyCodeLine{00160\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ sequence\ of\ pixels}}
+\DoxyCodeLine{00161\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00162\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushPixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data\_in,\ uint32\_t\ len)}
+\DoxyCodeLine{00163\ \{}
+\DoxyCodeLine{00164\ \ \ uint16\_t\ *data\ =\ (uint16\_t*)data\_in;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \textcolor{keywordflow}{if}\ (\_swapBytes)\ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_16S(*data);\ data++;\}}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_16(*data);\ data++;\}}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#elif\ defined\ (SPI\_18BIT\_DRIVER)\ }\textcolor{comment}{//\ SPI\ 18\ bit\ colour\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00175\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushBlock\ -\/\ for\ STM32\ and\ 3\ byte\ RGB\ display}}
+\DoxyCodeLine{00176\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ block\ of\ pixels\ of\ the\ same\ colour}}
+\DoxyCodeLine{00177\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00178\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushBlock(uint16\_t\ color,\ uint32\_t\ len)}
+\DoxyCodeLine{00179\ \{}
+\DoxyCodeLine{00180\ \ \ \textcolor{comment}{//\ Split\ out\ the\ colours}}
+\DoxyCodeLine{00181\ \ \ uint8\_t\ r\ =\ (color\ \&\ 0xF800)>>8;}
+\DoxyCodeLine{00182\ \ \ uint8\_t\ g\ =\ (color\ \&\ 0x07E0)>>3;}
+\DoxyCodeLine{00183\ \ \ uint8\_t\ b\ =\ (color\ \&\ 0x001F)<<3;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_8(r);\ tft\_Write\_8(g);\ tft\_Write\_8(b);\}}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00189\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushPixels\ -\/\ for\ STM32\ and\ 3\ byte\ RGB\ display}}
+\DoxyCodeLine{00190\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ sequence\ of\ pixels}}
+\DoxyCodeLine{00191\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00192\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushPixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data\_in,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ uint16\_t\ *data\ =\ (uint16\_t*)data\_in;}
+\DoxyCodeLine{00195\ \ \ \textcolor{keywordflow}{if}\ (\_swapBytes)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ uint16\_t\ color\ =\ *data\ >>\ 8\ |\ *data\ <<\ 8;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ tft\_Write\_8((color\ \&\ 0xF800)>>8);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ tft\_Write\_8((color\ \&\ 0x07E0)>>3);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ tft\_Write\_8((color\ \&\ 0x001F)<<3);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ data++;}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ tft\_Write\_8((*data\ \&\ 0xF800)>>8);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ tft\_Write\_8((*data\ \&\ 0x07E0)>>3);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ tft\_Write\_8((*data\ \&\ 0x001F)<<3);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ data++;}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \}}
+\DoxyCodeLine{00212\ \}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Standard\ SPI\ 16\ bit\ colour\ TFT\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00219\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushBlock\ -\/\ for\ STM32}}
+\DoxyCodeLine{00220\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ block\ of\ pixels\ of\ the\ same\ colour}}
+\DoxyCodeLine{00221\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00222\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushBlock(uint16\_t\ color,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_16(color);\}}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{comment}{/***************************************************************************************}}
+\DoxyCodeLine{00228\ \textcolor{comment}{**\ Function\ name:\ \ \ \ \ \ \ \ \ \ \ pushPixels\ -\/\ for\ STM32}}
+\DoxyCodeLine{00229\ \textcolor{comment}{**\ Description:\ \ \ \ \ \ \ \ \ \ \ \ \ Write\ a\ sequence\ of\ pixels}}
+\DoxyCodeLine{00230\ \textcolor{comment}{***************************************************************************************/}}
+\DoxyCodeLine{00231\ \textcolor{keywordtype}{void}\ TFT\_eSPI::pushPixels(\textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*\ data\_in,\ uint32\_t\ len)\{}
+\DoxyCodeLine{00232\ }
+\DoxyCodeLine{00233\ \ \ uint16\_t\ *data\ =\ (uint16\_t*)data\_in;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \textcolor{keywordflow}{if}\ (\_swapBytes)\ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_16(*data);\ data++;\}}
+\DoxyCodeLine{00236\ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{while}\ (\ len-\/-\/\ )\ \{tft\_Write\_16S(*data);\ data++;\}}
+\DoxyCodeLine{00237\ \}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ End\ of\ display\ interface\ specific\ functions}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00245\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DMA\ FUNCTIONS\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Placeholder\ for\ DMA\ functions}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00251\ \textcolor{comment}{Minimal\ function\ set\ to\ support\ DMA:}}
+\DoxyCodeLine{00252\ \textcolor{comment}{}}
+\DoxyCodeLine{00253\ \textcolor{comment}{bool\ TFT\_eSPI::initDMA(void)}}
+\DoxyCodeLine{00254\ \textcolor{comment}{void\ TFT\_eSPI::deInitDMA(void)}}
+\DoxyCodeLine{00255\ \textcolor{comment}{bool\ TFT\_eSPI::dmaBusy(void)}}
+\DoxyCodeLine{00256\ \textcolor{comment}{void\ TFT\_eSPI::pushPixelsDMA(uint16\_t*\ image,\ uint32\_t\ len)}}
+\DoxyCodeLine{00257\ \textcolor{comment}{void\ TFT\_eSPI::pushImageDMA(int32\_t\ x,\ int32\_t\ y,\ int32\_t\ w,\ int32\_t\ h,\ uint16\_t*\ image)}}
+\DoxyCodeLine{00258\ \textcolor{comment}{}}
+\DoxyCodeLine{00259\ \textcolor{comment}{*/}}
+
+\end{DoxyCode}

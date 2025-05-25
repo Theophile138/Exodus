@@ -1,0 +1,41 @@
+\doxysection{Lib\+Capteur.\+h}
+\hypertarget{_software___exodus__old_2_lib_capteur_8h_source}{}\label{_software___exodus__old_2_lib_capteur_8h_source}\index{Software\_Exodus\_old/LibCapteur.h@{Software\_Exodus\_old/LibCapteur.h}}
+\mbox{\hyperlink{_software___exodus__old_2_lib_capteur_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{Theophile\ Klein\ -\/\ 27/01/2025}}
+\DoxyCodeLine{00003\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ LibCapteur\_h}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ LibCapteur\_h}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <Wire.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <MPU6050.h>}\ \textcolor{comment}{//\ Bibliothèque\ nécessaire\ pour\ MPU6050}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_software___exodus__old_2_lib_peripherique_8h}{LibPeripherique.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Capteur\ de\ Force\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_capteur_de_force_a6c1746cf1b1aeefb2a752811c2aab06a}{CapteurDeForce}}\ \{}
+\DoxyCodeLine{00014\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_capteur_de_force_a6c1746cf1b1aeefb2a752811c2aab06a}{CapteurDeForce}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_de_force_a8299b1da9eaaab7b9c284c641d5ad5a5}{pinAnalog}},\ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_capteur_de_force_ac907af3947f2b446e965c8fe16459de7}{parent}});}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_de_force_ad85e58020115d239d94a518b90fec474}{getValue}}();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_parent_analog}{ParentAnalog}}*\ \mbox{\hyperlink{class_capteur_de_force_ac907af3947f2b446e965c8fe16459de7}{parent}};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_capteur_de_force_a8299b1da9eaaab7b9c284c641d5ad5a5}{pinAnalog}};}
+\DoxyCodeLine{00021\ \};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Capteur\ MPU6050\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_capteur_m_p_u6050_a662ff0d300355e0251a749c74e588f52}{CapteurMPU6050}}\ \{}
+\DoxyCodeLine{00025\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_capteur_m_p_u6050_a662ff0d300355e0251a749c74e588f52}{CapteurMPU6050}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_af6f98c6b3e724ee29f9f794b0b9de956}{begin}}();}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_a857d7c4f88daba97a40377606a769b36}{getAcceleration}}(int16\_t\ \&ax,\ int16\_t\ \&ay,\ int16\_t\ \&az);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_capteur_m_p_u6050_a8c1b52cdd8559e8a5a19d90f1848b41c}{getGyroscope}}(int16\_t\ \&gx,\ int16\_t\ \&gy,\ int16\_t\ \&gz);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00032\ \ \ \ \ MPU6050\ \mbox{\hyperlink{class_capteur_m_p_u6050_a4a8a0cf66c94741abf8dff798f4bcc62}{mpu}};}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

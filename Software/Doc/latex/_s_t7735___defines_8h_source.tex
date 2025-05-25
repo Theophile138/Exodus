@@ -1,0 +1,177 @@
+\doxysection{ST7735\+\_\+\+Defines.\+h}
+\hypertarget{_s_t7735___defines_8h_source}{}\label{_s_t7735___defines_8h_source}\index{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Defines.h@{lib/TFT\_eSPI-\/master/TFT\_Drivers/ST7735\_Defines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Change\ the\ width\ and\ height\ if\ required\ (defined\ in\ portrait\ mode)}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ or\ use\ the\ constructor\ to\ over-\/ride\ defaults}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ TFT\_WIDTH}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\ \ \#define\ TFT\_WIDTH\ \ 128}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ TFT\_HEIGHT}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \#define\ TFT\_HEIGHT\ 160}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ Enumerate\ the\ different\ configurations}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ INITR\_GREENTAB\ \ \ \ \ \ \ 0x0}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ INITR\_REDTAB\ \ \ \ \ \ \ \ \ 0x1}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ INITR\_BLACKTAB\ \ \ \ \ \ \ 0x2\ }\textcolor{comment}{//\ Display\ with\ no\ offsets}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ INITR\_GREENTAB2\ \ \ \ \ \ 0x3\ }\textcolor{comment}{//\ Use\ if\ you\ get\ random\ pixels\ on\ two\ edges\ of\ green\ tab\ display}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ INITR\_GREENTAB3\ \ \ \ \ \ 0x4\ }\textcolor{comment}{//\ Use\ if\ you\ get\ random\ pixels\ on\ edge(s)\ of\ 128x128\ screen}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ INITR\_GREENTAB128\ \ \ \ 0x5\ }\textcolor{comment}{//\ Use\ if\ you\ only\ get\ part\ of\ 128x128\ screen\ in\ rotation\ 0\ \&\ 1}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ INITR\_GREENTAB160x80\ 0x6\ }\textcolor{comment}{//\ Use\ if\ you\ only\ get\ part\ of\ 128x128\ screen\ in\ rotation\ 0\ \&\ 1}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ INITR\_REDTAB160x80\ \ \ 0x7\ }\textcolor{comment}{//\ Added\ for\ https://www.aliexpress.com/item/ShengYang-\/1pcs-\/IPS-\/0-\/96-\/inch-\/7P-\/SPI-\/HD-\/65K-\/Full-\/Color-\/OLED-\/Module-\/ST7735-\/Drive/32918394604.html}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ INITB\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0xB}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ Setup\ the\ tab\ color\ that\ will\ be\ used\ by\ the\ library\ setRotation()\ and\ setup\ command\ list}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ defined\ (ST7735\_INITB)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITB}}
+\DoxyCodeLine{00026\ \ \ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_GREENTAB)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_GREENTAB}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00030\ \ \ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_GREENTAB2)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_GREENTAB2}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_GREENTAB3)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_GREENTAB3}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_GREENTAB128)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_GREENTAB128}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00042\ \ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_GREENTAB160x80)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_GREENTAB160x80}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_REDTAB160x80)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_REDTAB160x80}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ \#define\ CGRAM\_OFFSET}}
+\DoxyCodeLine{00050\ \ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_REDTAB)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_REDTAB}}
+\DoxyCodeLine{00053\ \ \ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#elif\ defined\ (ST7735\_BLACKTAB)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_BLACKTAB}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ Make\ sure\ it\ is\ not\ undefined}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \#define\ TAB\_COLOUR\ INITR\_BLACKTAB}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ Color\ definitions\ for\ backwards\ compatibility\ with\ old\ sketches}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ use\ colour\ definitions\ like\ TFT\_BLACK\ to\ make\ sketches\ more\ portable}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ST7735\_BLACK\ \ \ \ \ \ \ 0x0000\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ ST7735\_NAVY\ \ \ \ \ \ \ \ 0x000F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ ST7735\_DARKGREEN\ \ \ 0x03E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ ST7735\_DARKCYAN\ \ \ \ 0x03EF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ ST7735\_MAROON\ \ \ \ \ \ 0x7800\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ ST7735\_PURPLE\ \ \ \ \ \ 0x780F\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ \ \ 0,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ ST7735\_OLIVE\ \ \ \ \ \ \ 0x7BE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ ST7735\_LIGHTGREY\ \ \ 0xC618\ \ \ \ \ \ }\textcolor{comment}{/*\ 192,\ 192,\ 192\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ ST7735\_DARKGREY\ \ \ \ 0x7BEF\ \ \ \ \ \ }\textcolor{comment}{/*\ 128,\ 128,\ 128\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ ST7735\_BLUE\ \ \ \ \ \ \ \ 0x001F\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ ST7735\_GREEN\ \ \ \ \ \ \ 0x07E0\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ ST7735\_CYAN\ \ \ \ \ \ \ \ 0x07FF\ \ \ \ \ \ }\textcolor{comment}{/*\ \ \ 0,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ ST7735\_RED\ \ \ \ \ \ \ \ \ 0xF800\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ ST7735\_MAGENTA\ \ \ \ \ 0xF81F\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ \ \ 0,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ ST7735\_YELLOW\ \ \ \ \ \ 0xFFE0\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ ST7735\_WHITE\ \ \ \ \ \ \ 0xFFFF\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 255,\ 255\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ ST7735\_ORANGE\ \ \ \ \ \ 0xFD20\ \ \ \ \ \ }\textcolor{comment}{/*\ 255,\ 165,\ \ \ 0\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ ST7735\_GREENYELLOW\ 0xAFE5\ \ \ \ \ \ }\textcolor{comment}{/*\ 173,\ 255,\ \ 47\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ ST7735\_PINK\ \ \ \ \ \ \ \ 0xF81F}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Delay\ between\ some\ initialisation\ commands}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ TFT\_INIT\_DELAY\ 0x80}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ Generic\ commands\ used\ by\ TFT\_eSPI.cpp}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ TFT\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ TFT\_SWRST\ \ \ 0x01}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ TFT\_CASET\ \ \ 0x2A}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ TFT\_PASET\ \ \ 0x2B}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ TFT\_RAMWR\ \ \ 0x2C}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ TFT\_RAMRD\ \ \ 0x2E}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ TFT\_IDXRD\ \ \ 0x00\ }\textcolor{comment}{//0xDD\ //\ ILI9341\ only,\ indexed\ control\ register\ read}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ TFT\_MADCTL\ \ 0x36}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MY\ \ 0x80}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MX\ \ 0x40}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MV\ \ 0x20}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_ML\ \ 0x10}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_BGR\ 0x08}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_MH\ \ 0x04}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ TFT\_MAD\_RGB\ 0x00}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#ifndef\ TFT\_RGB\_ORDER}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \#if\ defined(INITR\_BLACKTAB)\ ||\ defined(INITR\_GREENTAB2)\ ||\ defined(INITB)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_RGB}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_BGR}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\ \ \#if\ (TFT\_RGB\_ORDER\ ==\ 1)}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_RGB}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \#else}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\ \ \ \ \#define\ TFT\_MAD\_COLOR\_ORDER\ TFT\_MAD\_BGR}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\ \ \#endif}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ TFT\_INVOFF\ \ 0x20}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ TFT\_INVON\ \ \ 0x21}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ ST7735\ specific\ commands\ used\ in\ init}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ ST7735\_NOP\ \ \ \ \ 0x00}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ ST7735\_SWRESET\ 0x01}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ ST7735\_RDDID\ \ \ 0x04}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ ST7735\_RDDST\ \ \ 0x09}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ ST7735\_SLPIN\ \ \ 0x10}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ ST7735\_SLPOUT\ \ 0x11}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#define\ ST7735\_PTLON\ \ \ 0x12}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#define\ ST7735\_NORON\ \ \ 0x13}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ ST7735\_INVOFF\ \ 0x20}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#define\ ST7735\_INVON\ \ \ 0x21}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ ST7735\_DISPOFF\ 0x28}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#define\ ST7735\_DISPON\ \ 0x29}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ ST7735\_CASET\ \ \ 0x2A}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#define\ ST7735\_RASET\ \ \ 0x2B\ }\textcolor{comment}{//\ PASET}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ ST7735\_RAMWR\ \ \ 0x2C}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ ST7735\_RAMRD\ \ \ 0x2E}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ ST7735\_PTLAR\ \ \ 0x30}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#define\ ST7735\_COLMOD\ \ 0x3A}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ ST7735\_MADCTL\ \ 0x36}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ ST7735\_FRMCTR1\ 0xB1}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ ST7735\_FRMCTR2\ 0xB2}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ ST7735\_FRMCTR3\ 0xB3}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ ST7735\_INVCTR\ \ 0xB4}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ ST7735\_DISSET5\ 0xB6}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR1\ \ 0xC0}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR2\ \ 0xC1}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR3\ \ 0xC2}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR4\ \ 0xC3}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR5\ \ 0xC4}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ ST7735\_VMCTR1\ \ 0xC5}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#define\ ST7735\_RDID1\ \ \ 0xDA}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#define\ ST7735\_RDID2\ \ \ 0xDB}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#define\ ST7735\_RDID3\ \ \ 0xDC}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#define\ ST7735\_RDID4\ \ \ 0xDD}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ ST7735\_PWCTR6\ \ 0xFC}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#define\ ST7735\_GMCTRP1\ 0xE0}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#define\ ST7735\_GMCTRN1\ 0xE1}}
+
+\end{DoxyCode}
