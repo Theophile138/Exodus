@@ -127,7 +127,7 @@
 		(descr "Through hole straight pin header, 1x10, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x10 2.54mm single row")
 		(property "Reference" "J9"
-			(at 0 -2.33 360)
+			(at 0 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "a04c0f01-260e-408b-a08f-46177eece6c4")
 			(effects
@@ -138,7 +138,7 @@
 			)
 		)
 		(property "Value" "Conn_01x10_Pin"
-			(at 0 25.19 360)
+			(at 0 25.19 0)
 			(layer "F.Fab")
 			(uuid "f408cdd3-968b-4936-a65c-4d8c15555967")
 			(effects
@@ -482,7 +482,7 @@
 		(descr "16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U2"
-			(at 3.81 -2.33 360)
+			(at 3.81 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "e5f20e97-ff3f-46c0-837b-cbeaefe1a208")
 			(effects
@@ -493,7 +493,7 @@
 			)
 		)
 		(property "Value" "74HC595"
-			(at 3.81 20.11 360)
+			(at 3.81 20.11 0)
 			(layer "F.Fab")
 			(uuid "2449e983-ee60-46db-ba97-efa656bf8edd")
 			(effects
@@ -699,7 +699,7 @@
 			(uuid "4368d919-3f4f-48ef-a0a0-215645fe5e6c")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 3.81 8.89 360)
+			(at 3.81 8.89 0)
 			(layer "F.Fab")
 			(uuid "6e8a157e-8dc0-412e-ad5a-4cf7d64e8aab")
 			(effects
@@ -1120,7 +1120,7 @@
 			(uuid "31fc1e57-7f05-48f4-bef7-f5a0e2c057a7")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 8.89 360)
+			(at 0 8.89 0)
 			(layer "F.Fab")
 			(uuid "912f5ce6-d8ce-4456-ab84-bb396b30a9f7")
 			(effects
@@ -1237,7 +1237,7 @@
 		(descr "16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U4"
-			(at 3.81 -2.33 360)
+			(at 3.81 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "40653493-9306-42c2-b0a0-edd38afb4a4d")
 			(effects
@@ -1248,7 +1248,7 @@
 			)
 		)
 		(property "Value" "74HC4051"
-			(at 3.81 20.11 360)
+			(at 3.81 20.11 0)
 			(layer "F.Fab")
 			(uuid "4031daf6-620f-49e0-aecd-0e08d4f6452a")
 			(effects
@@ -1454,7 +1454,7 @@
 			(uuid "df1acc74-f0fb-416e-8cc9-63a3c90eb3f0")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 3.81 8.89 360)
+			(at 3.81 8.89 0)
 			(layer "F.Fab")
 			(uuid "c73c4966-d870-4764-b075-1fbb1018a469")
 			(effects
@@ -1659,7 +1659,7 @@
 		(descr "16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U1"
-			(at 3.81 -2.33 360)
+			(at 3.81 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "36974b3e-03b4-48b1-8b16-707f937ccf00")
 			(effects
@@ -1670,7 +1670,7 @@
 			)
 		)
 		(property "Value" "74HC595"
-			(at 3.81 20.11 360)
+			(at 3.81 20.11 0)
 			(layer "F.Fab")
 			(uuid "d76b3cb5-6f66-407c-87cd-7a3957fdf7a1")
 			(effects
@@ -1876,7 +1876,7 @@
 			(uuid "9c53b42d-c354-4f3e-813f-a7a745cadc85")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 3.81 8.89 360)
+			(at 3.81 8.89 0)
 			(layer "F.Fab")
 			(uuid "e3d6225c-34c5-4bd7-9680-61150684e848")
 			(effects
@@ -2081,7 +2081,7 @@
 		(descr "16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils)")
 		(tags "THT DIP DIL PDIP 2.54mm 7.62mm 300mil")
 		(property "Reference" "U3"
-			(at 3.81 -2.33 360)
+			(at 3.81 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "48c99f75-641d-4ea6-bef6-132c81c6f702")
 			(effects
@@ -2092,7 +2092,7 @@
 			)
 		)
 		(property "Value" "74HC4051"
-			(at 3.81 20.11 360)
+			(at 3.81 20.11 0)
 			(layer "F.Fab")
 			(uuid "c1dfc1d1-9bd5-4847-b897-e0ead46c567d")
 			(effects
@@ -2298,7 +2298,7 @@
 			(uuid "7baaef34-923c-41d0-840d-92e3c5901ffc")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 3.81 8.89 360)
+			(at 3.81 8.89 0)
 			(layer "F.Fab")
 			(uuid "fa55afb4-8375-4227-af6b-914a3f19d95b")
 			(effects
@@ -2503,7 +2503,7 @@
 		(descr "Through hole straight pin header, 1x06, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x06 2.54mm single row")
 		(property "Reference" "J14"
-			(at 0 -2.33 360)
+			(at 0 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "cddfad8a-5a9a-499a-93a8-09cecb7a7abc")
 			(effects
@@ -2514,7 +2514,7 @@
 			)
 		)
 		(property "Value" "Conn_01x06_Pin"
-			(at 0 15.03 360)
+			(at 0 15.03 0)
 			(layer "F.Fab")
 			(uuid "0e55bf8a-4124-4ea7-ae93-06ca9d511ab8")
 			(effects
@@ -2814,7 +2814,7 @@
 		(descr "Through hole straight pin header, 1x07, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x07 2.54mm single row")
 		(property "Reference" "J1"
-			(at 0 -2.33 360)
+			(at 0 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "2296e3bb-24d9-450e-b184-3a3cad61df93")
 			(effects
@@ -2825,7 +2825,7 @@
 			)
 		)
 		(property "Value" "Conn_01x07_Pin"
-			(at 0 17.57 360)
+			(at 0 17.57 0)
 			(layer "F.Fab")
 			(uuid "85c347ff-6112-45b6-8d40-c0d9f64b4a9c")
 			(effects
@@ -3136,7 +3136,7 @@
 		(descr "Through hole straight pin header, 1x05, 2.54mm pitch, single row")
 		(tags "Through hole pin header THT 1x05 2.54mm single row")
 		(property "Reference" "J12"
-			(at 0 -2.33 360)
+			(at 0 -2.33 0)
 			(layer "F.SilkS")
 			(uuid "53a88110-b0fc-41fd-ab11-19d9265863fb")
 			(effects
@@ -3147,7 +3147,7 @@
 			)
 		)
 		(property "Value" "Conn_01x05_Pin"
-			(at 0 12.49 360)
+			(at 0 12.49 0)
 			(layer "F.Fab")
 			(uuid "e67321f1-edcd-4f4a-87d5-911f27d5fbb8")
 			(effects
@@ -3430,7 +3430,7 @@
 		)
 	)
 	(gr_rect
-		(start 88 28)
+		(start 121 28)
 		(end 187 98)
 		(stroke
 			(width 0.05)
