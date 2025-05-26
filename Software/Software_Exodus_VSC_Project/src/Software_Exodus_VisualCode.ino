@@ -131,24 +131,24 @@ void Task2(){
 
     }
 
-	/// exemple simulé comme j'ai pas l'esp et le moteur avec moi
-    /// Simulation pression sinusoïdale entre 0 et 4095
-	static int step = 0;
-    float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
-    step++;
+	// /// exemple simulé comme j'ai pas l'esp et le moteur avec moi
+    // /// Simulation pression sinusoïdale entre 0 et 4095
+	// static int step = 0;
+    // float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
+    // step++;
 
-	/// qu'on remplacera par :
-	/// Version capteur réel (activer ça plus tard)
-	// float pression = configTest1::value6;
+	// /// qu'on remplacera par :
+	// /// Version capteur réel (activer ça plus tard)
+	// // float pression = configTest1::value6;
 
-    float angle = map(pression, 0, 4095, 0, 180);
-    angle = constrain(angle, 0, 180);
+    // float angle = map(pression, 0, 4095, 0, 180);
+    // angle = constrain(angle, 0, 180);
 
-    Serial.print("Pression = ");
-    Serial.print(pression);
-    Serial.print(" convertie donne Angle = ");
-    Serial.println(angle);
+    // Serial.print("Pression = ");
+    // Serial.print(pression);
+    // Serial.print(" convertie donne Angle = ");
+    // Serial.println(angle);
 
-    monServo.setAngle(angle);
+    // monServo.setAngle(angle);
   }
 }
