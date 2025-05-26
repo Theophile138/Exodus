@@ -10,6 +10,7 @@ Paul Escalier - 25/02/2025
 
 class DriverMotor {
   public:
+    bool actif;          ///< Indicateur si le moteur est actif ou non
 
   //void setDir(int direction);
   DriverMotor(int pinParent1, int pinParent2, ParentDevice* parent);
@@ -26,7 +27,6 @@ class DriverMotor {
   private: 
     int pinParent1;      ///< Premier pin de commande du moteur
     int pinParent2;      ///< Second pin de commande du moteur
-    bool actif;          ///< Indicateur si le moteur est actif ou non
     ParentDevice* parent;///< Pointeur vers l'interface de commande (registre ou direct)
 };
 

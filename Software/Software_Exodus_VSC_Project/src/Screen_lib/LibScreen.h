@@ -96,11 +96,16 @@ class Screen {
         static void startOffclick(Screen* Scr);  ///< Callback pour le bouton START (relâchement)
         static void gaugeOnClick(Screen* Scr);   ///< Callback pour le bouton jauge
         static void backOnClick(Screen* Scr);    ///< Callback pour le bouton retour
+        static void MAJBrasGauche(Screen* Scr, DriverMotor* bras); ///< Callback pour la mise à jour du bras
+        static void MAJBrasDroit(Screen* Scr, DriverMotor* bras);  ///< Callback pour la mise à jour du bras
 
         linearMeter* linearMeters;   ///< Tableau de jauges linéaires
         bool activeControle;         ///< Indique si le contrôle est actif
         int config_selectionne;      ///< Numéro de la configuration sélectionnée
         analogMeters* myGauge;       ///< Pointeur vers la jauge analogique
+        DriverMotor* brasGauche;     ///< Pointeur vers le moteur du bras gauche
+        DriverMotor* brasDroit;      ///< Pointeur vers le moteur du bras droit
+
 
     private: 
         
@@ -117,6 +122,8 @@ class Screen {
         Button rightButton;          ///< Bouton droit
         Button gaugeButton;          ///< Bouton jauge
         Button backButton;           ///< Bouton retour
+        Button brasGaucheButton;     ///< Bouton pour le bras gauche
+        Button brasDroitButton;      ///< Bouton pour le bras droit
 
 };
 
