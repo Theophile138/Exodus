@@ -341,7 +341,7 @@
 			(uuid "0d6a36f9-3eb1-4c36-b49e-4a55a5e688f8")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 16.51 360)
+			(at 0 16.51 0)
 			(layer "F.Fab")
 			(uuid "c039e137-76da-4a5c-b8d3-f5906e907ddc")
 			(effects
@@ -740,7 +740,7 @@
 			(uuid "201bfb7c-d43d-42e3-a062-97b0ecfb87a7")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 2.54 360)
+			(at 0 2.54 0)
 			(layer "F.Fab")
 			(uuid "9a5a3efd-d061-463f-a57c-fbd7be2d8214")
 			(effects
@@ -811,7 +811,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "92a20a53-92d7-4ccc-a701-47f971910085")
@@ -823,7 +823,7 @@
 			)
 		)
 		(property "Footprint" "MyEsp32Library:Esp32_Wroom32_DevKit"
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "dfaea8b3-782c-478a-9eac-7653683074f2")
@@ -835,7 +835,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "41483e41-d961-4856-9f05-76b2d509ab67")
@@ -847,7 +847,7 @@
 			)
 		)
 		(property "Description" ""
-			(at 0 0 360)
+			(at 0 0 0)
 			(layer "F.Fab")
 			(hide yes)
 			(uuid "e7670972-993d-4e48-95dd-9a2ae8828696")
@@ -1632,7 +1632,7 @@
 			(uuid "18c12c05-de62-4d27-9cd5-dc3e60d8b0f1")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 2.54 360)
+			(at 0 2.54 0)
 			(layer "F.Fab")
 			(uuid "e1b67060-ed51-4c1d-967d-1f6d6ffd6767")
 			(effects
@@ -1910,7 +1910,7 @@
 			(uuid "748140f4-75ea-4834-a5cd-b8915a7c6d83")
 		)
 		(fp_text user "${REFERENCE}"
-			(at 0 6.35 360)
+			(at 0 6.35 0)
 			(layer "F.Fab")
 			(uuid "3ff44486-3834-4d0c-8410-0026229892c1")
 			(effects

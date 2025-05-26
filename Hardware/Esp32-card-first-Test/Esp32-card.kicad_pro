@@ -489,7 +489,7 @@
       "plot": "Fichier cnc/V2/",
       "pos_files": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "Esp32-card.step",
       "svg": "",
       "vrml": ""
     },
