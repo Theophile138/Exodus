@@ -12,7 +12,7 @@
 
 Screen::Screen(){
     //tft = new Adafruit_ILI9341(TFT_CS, TFT_DC,TFT_RST);
-    tft =new TFT_eSPI(); 
+    tft = new TFT_eSPI(); 
     tft->init();
     tft->setRotation(2);
 
