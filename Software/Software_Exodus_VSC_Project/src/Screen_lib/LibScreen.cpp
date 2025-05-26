@@ -105,24 +105,31 @@ void Screen::startOnclick(Screen* scr){
   scr->leftButton.disable = true;
   scr->rightButton.disable = true;
   scr->gaugeButton.disable = false;
+  Serial.println("Variables");
+
 
   scr->leftButton.draw();
   scr->rightButton.draw();
   scr->gaugeButton.draw();
+  Serial.println("Fonctions");
 
   scr->activeControle = true;
 
     // Le mieux serai d'appeler le init de la config qui serait donné par une instance dans la class screen
     if (scr->config_selectionne == 0){
+      Serial.println("If");
       configTest1::init(scr);
     }else{
+      Serial.println("Else Debut");
       scr->linearMeters[0].disable = false;
       scr->linearMeters[1].disable = false;
       scr->linearMeters[2].disable = false;
       scr->linearMeters[3].disable = false;
       scr->linearMeters[4].disable = false;
       scr->linearMeters[5].disable = false;
+      Serial.println("Else Fin");
     }
+    Serial.println("Fin");
 
 }
 
@@ -130,14 +137,14 @@ void Screen::startOffclick(Screen* scr){
   scr->leftButton.disable = false;
   scr->rightButton.disable = false;
   scr->gaugeButton.disable = true;
-
+/*
   configTest1::verin->RaiseArm();
   delay(10000);
   configTest1::verin->StopArm();
   configTest1::verin->LowerArm();
   delay(2000);
   configTest1::verin->StopArm();
-
+*/
 
   scr->leftButton.draw();
   scr->rightButton.draw();

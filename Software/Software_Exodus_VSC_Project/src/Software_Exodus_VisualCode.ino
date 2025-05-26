@@ -33,7 +33,7 @@ void setup() {
   Serial.begin(115200);
 
   myCard = Extend_Card();
-  monServo.begin();
+  //monServo.begin();
 
   myScreen = Screen(); 
   myScreen.touch_calibrate();
@@ -63,7 +63,7 @@ void setup() {
 void loop() 
 {
 	// Verifie si la derniere fois qu'on a mis à jour l'écran c'était il y a plus de 20ms
-	if (millis() - Time_screen > 20){ 
+	if (millis() - Time_screen > 100){ 
 		Time_screen = millis(); // Met à jour la dernière fois qu'on a mis à jour l'écran
 		myScreen.run(&myScreen); // Appelle la fonction de mise à jour de l'écran
 		total_time1 = total_time1 + (millis() - Time_screen); 

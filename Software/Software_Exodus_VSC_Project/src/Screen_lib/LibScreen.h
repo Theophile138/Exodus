@@ -16,7 +16,7 @@
 #define SCREEN_HEIGHT 320   ///< Hauteur de l'écran TFT
 
 #define CALIBRATION_FILE "/TouchCalData1" ///< Nom du fichier de calibration tactile (SPIFFS)
-#define REPEAT_CAL false                  ///< Mettre à true pour forcer la calibration à chaque démarrage
+#define REPEAT_CAL false                 ///< Mettre à true pour forcer la calibration à chaque démarrage
 
 /**
  * @class Screen
