@@ -33,7 +33,7 @@ void setup() {
   Serial.begin(115200);
 
   myCard = Extend_Card();
-  monServo.begin();
+  //monServo.begin();
 
   myScreen = Screen(); 
   myScreen.touch_calibrate();
@@ -61,7 +61,7 @@ void setup() {
 void loop() 
 {
 	// Verifie si la derniere fois qu'on a mis à jour l'écran c'était il y a plus de 20ms
-	if (millis() - Time_screen > 20){ 
+	if (millis() - Time_screen > 100){ 
 		Time_screen = millis(); // Met à jour la dernière fois qu'on a mis à jour l'écran
 		myScreen.run(&myScreen); // Appelle la fonction de mise à jour de l'écran
 		total_time1 = total_time1 + (millis() - Time_screen); 
@@ -133,22 +133,22 @@ void Task2(){
 
 	/// exemple simulé comme j'ai pas l'esp et le moteur avec moi
     /// Simulation pression sinusoïdale entre 0 et 4095
-	static int step = 0;
-    float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
-    step++;
+	// static int step = 0;
+    // float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
+    // step++;
 
-	/// qu'on remplacera par :
-	/// Version capteur réel (activer ça plus tard)
-	// float pression = configTest1::value6;
+	// /// qu'on remplacera par :
+	// /// Version capteur réel (activer ça plus tard)
+	// // float pression = configTest1::value6;
 
-    float angle = map(pression, 0, 4095, 0, 180);
-    angle = constrain(angle, 0, 180);
+    // float angle = map(pression, 0, 4095, 0, 180);
+    // angle = constrain(angle, 0, 180);
 
-    Serial.print("Pression = ");
-    Serial.print(pression);
-    Serial.print(" convertie donne Angle = ");
-    Serial.println(angle);
+    // Serial.print("Pression = ");
+    // Serial.print(pression);
+    // Serial.print(" convertie donne Angle = ");
+    // Serial.println(angle);
 
-    monServo.setAngle(angle);
+    // monServo.setAngle(angle);
   }
 }
