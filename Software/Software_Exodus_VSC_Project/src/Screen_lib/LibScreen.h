@@ -96,8 +96,6 @@ class Screen {
         static void startOffclick(Screen* Scr);  ///< Callback pour le bouton START (relâchement)
         static void gaugeOnClick(Screen* Scr);   ///< Callback pour le bouton jauge
         static void backOnClick(Screen* Scr);    ///< Callback pour le bouton retour
-        static void MAJBrasGauche(Screen* Scr, DriverMotor* bras); ///< Callback pour la mise à jour du bras
-        static void MAJBrasDroit(Screen* Scr, DriverMotor* bras);  ///< Callback pour la mise à jour du bras
 
         linearMeter* linearMeters;   ///< Tableau de jauges linéaires
         bool activeControle;         ///< Indique si le contrôle est actif
