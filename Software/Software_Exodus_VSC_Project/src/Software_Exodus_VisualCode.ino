@@ -38,12 +38,14 @@ void setup() {
   myScreen = Screen(); 
   myScreen.touch_calibrate();
   
-  myScreen.imageStart(FirmwareVersion);
+  myScreen.ChoixBras(); ///< Permet de choisir le bras à contrôler
+
+//   myScreen.imageStart(FirmwareVersion);
   Serial.println("Initialisation finie");
 
   delay(5000);
 
-  myScreen.Select_Menu_init();
+//   myScreen.Select_Menu_init();
 
   Time_screen = millis(); ///< Temps de l'initialisation de l'écran
   
@@ -131,8 +133,8 @@ void Task2(){
 
     }
 
-	/// exemple simulé comme j'ai pas l'esp et le moteur avec moi
-    /// Simulation pression sinusoïdale entre 0 et 4095
+	// /// exemple simulé comme j'ai pas l'esp et le moteur avec moi
+    // /// Simulation pression sinusoïdale entre 0 et 4095
 	// static int step = 0;
     // float pression = (sin(step / 10.0) + 1.0) / 2.0 * 4095.0;
     // step++;

@@ -81,6 +81,11 @@ class Screen {
          */
         void (*run)(Screen*);
 
+        /**
+         * @brief Permet de choisir le bras à contrôler.
+         */
+        void ChoixBras();
+
         static void emptyFunction(Screen*) {} ///< Fonction vide par défaut pour les callbacks
 
 
