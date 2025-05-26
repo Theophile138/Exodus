@@ -314,3 +314,11 @@ void Screen::touch_calibrate()
     }
   }
 }
+
+void Screen::ChoixBras(){
+    tft->fillScreen(TFT_BLACK);
+    tft->pushImage((SCREEN_WIDTH-160)/2, 0, image_BrasGaucheEteint_width, image_BrasGaucheEteint_height, image_BrasGaucheEteint);
+    tft->pushImage((SCREEN_WIDTH-80)/2, 0, image_BrasDroitEteint_width, image_BrasDroitEteint_height, image_BrasDroitEteint);
+
+
+}

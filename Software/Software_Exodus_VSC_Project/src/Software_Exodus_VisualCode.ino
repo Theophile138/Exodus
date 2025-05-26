@@ -38,12 +38,14 @@ void setup() {
   myScreen = Screen(); 
   myScreen.touch_calibrate();
   
-  myScreen.imageStart(FirmwareVersion);
+  myScreen.ChoixBras(); ///< Permet de choisir le bras à contrôler
+
+//   myScreen.imageStart(FirmwareVersion);
   Serial.println("Initialisation finie");
 
   delay(5000);
 
-  myScreen.Select_Menu_init();
+//   myScreen.Select_Menu_init();
 
   Time_screen = millis(); ///< Temps de l'initialisation de l'écran
   
