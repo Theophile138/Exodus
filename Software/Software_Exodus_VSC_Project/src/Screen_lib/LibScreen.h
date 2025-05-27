@@ -101,6 +101,9 @@ class Screen {
         bool activeControle;         ///< Indique si le contrôle est actif
         int config_selectionne;      ///< Numéro de la configuration sélectionnée
         analogMeters* myGauge;       ///< Pointeur vers la jauge analogique
+        DriverMotor* brasGauche;     ///< Pointeur vers le moteur du bras gauche
+        DriverMotor* brasDroit;      ///< Pointeur vers le moteur du bras droit
+
 
     private: 
         
@@ -117,6 +120,8 @@ class Screen {
         Button rightButton;          ///< Bouton droit
         Button gaugeButton;          ///< Bouton jauge
         Button backButton;           ///< Bouton retour
+        Button brasGaucheButton;     ///< Bouton pour le bras gauche
+        Button brasDroitButton;      ///< Bouton pour le bras droit
 
 };
 

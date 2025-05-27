@@ -327,6 +327,39 @@ void Screen::ChoixBras(){
     tft->fillScreen(TFT_BLACK);
     tft->pushImage((SCREEN_WIDTH-120)/2, 0, image_BrasGaucheEteint_width, image_BrasGaucheEteint_height, image_BrasGaucheEteint);
     tft->pushImage((SCREEN_WIDTH)/2, 0, image_BrasDroitEteint_width, image_BrasDroitEteint_height, image_BrasDroitEteint);
+    // Affiche l'image selon l'état de chaque bras
+    tft->pushImage((SCREEN_WIDTH-120)/2, 0,
+        image_BrasGaucheAllume_width, image_BrasGaucheAllume_height,
+        brasGauche->actif ? image_BrasGaucheAllume : image_BrasGaucheEteint);
 
+    tft->pushImage((SCREEN_WIDTH)/2, 0,
+        image_BrasDroitAllume_width, image_BrasDroitAllume_height,
+        brasDroit->actif ? image_BrasDroitAllume : image_BrasDroitEteint);
 
+    brasGaucheButton.initButton(
+        tft, (SCREEN_WIDTH-120)/2, 0,
+        image_BrasGaucheAllume_width, image_BrasGaucheAllume_height,
+        image_BrasGaucheAllume, image_BrasGaucheEteint,
+        this, [](Screen* scr) { 
+            if (scr->brasGauche) {
+                scr->brasGauche->toggleActive();
+            }
+            scr->ChoixBras();
+        }
+    );
+
+    brasDroitButton.initButton(
+        tft, (SCREEN_WIDTH)/2, 0,
+        image_BrasDroitAllume_width, image_BrasDroitAllume_height,
+        image_BrasDroitAllume, image_BrasDroitEteint,
+        this, [](Screen* scr) { 
+            if (scr->brasDroit) {
+                scr->brasDroit->toggleActive();
+            }
+            scr->ChoixBras();
+        }
+    );
+
+    brasGaucheButton.draw();
+    brasDroitButton.draw();
 }
