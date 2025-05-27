@@ -38,9 +38,9 @@ void setup() {
   myScreen = Screen(); 
   myScreen.touch_calibrate();
   
-  myScreen.ChoixBras(); ///< Permet de choisir le bras à contrôler
+//   myScreen.ChoixBras(); ///< Permet de choisir le bras à contrôler
 
-//   myScreen.imageStart(FirmwareVersion);
+  myScreen.imageStart(FirmwareVersion);
   Serial.println("Initialisation finie");
 
   delay(5000);
